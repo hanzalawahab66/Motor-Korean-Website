@@ -1,0 +1,501 @@
+<!DOCTYPE html><html><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Service - NSM Autos</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>window.FontAwesomeConfig = {autoReplaceSvg: 'nest'};</script>
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" rel="stylesheet">
+  <script src="scripts/api-origin.js"></script>
+  <style>
+    ::-webkit-scrollbar { display: none; }
+    * { font-family: 'Inter', sans-serif; }
+    .fade-in-up { opacity: 0; transform: translateY(12px); }
+    .fade-in-up.show { opacity: 1; transform: translateY(0); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+  </style>
+  <style>
+    .goog-te-banner-frame{display:none!important}
+    body{top:0!important}
+    #google_translate_element{display:none!important}
+    .goog-te-gadget{display:none!important}
+    .skiptranslate{display:none!important}
+  </style>
+  <script>
+    function googleTranslateElementInit(){ new google.translate.TranslateElement({ pageLanguage:'en', includedLanguages:'en,ar,ko,es,fr', autoDisplay:false }, 'google_translate_element'); }
+    (function(){
+      function setCookie(name,value){ var e='expires=Fri, 31 Dec 9999 23:59:59 GMT'; document.cookie=name+'='+value+';'+e+';path=/'; var host=location.hostname; if(host.indexOf('.')!==-1){ document.cookie=name+'='+value+';'+e+';path=/;domain='+host; } }
+      function applyDir(lang){ try{ document.documentElement.setAttribute('dir', lang==='ar'?'rtl':'ltr'); }catch(_){ }
+      }
+      function triggerCombo(lang){ var sel=document.querySelector('.goog-te-combo'); if(sel){ if(lang && sel.value==lang) return true; sel.value=(lang||'en'); setTimeout(function(){ sel.dispatchEvent(new Event('change')); }, 0); return true; } return false; }
+      function changeLanguage(lang){
+        lang = lang || 'en';
+        if(triggerCombo(lang)){
+          try{ localStorage.setItem('lang', lang); }catch(_){ }
+          applyDir(lang);
+          return;
+        }
+        var attempts = 0;
+        var interval = setInterval(function(){
+          if(triggerCombo(lang)){
+            clearInterval(interval);
+            try{ localStorage.setItem('lang', lang); }catch(_){ }
+            applyDir(lang);
+          } else {
+            attempts++;
+            if(attempts >= 50){
+              clearInterval(interval);
+              setCookie('googtrans','/en/'+lang);
+              try{ localStorage.setItem('lang', lang); }catch(_){ }
+              applyDir(lang);
+            }
+          }
+        }, 100);
+      }
+      function init(){ var saved=null; try{ saved=localStorage.getItem('lang'); }catch(_){ } applyDir(saved||'en'); }
+      function protect(){ var q='input[type=password],input[type=email],input[name=password],input[name=email],input[name=username],textarea[name=password],textarea[name=email],textarea[name=username]'; document.querySelectorAll(q).forEach(function(el){ el.classList.add('notranslate'); el.setAttribute('translate','no'); }); }
+      document.addEventListener('click', function(e){ var btn=e.target.closest('[data-lang]'); if(!btn) return; var lang=btn.getAttribute('data-lang')||'en'; changeLanguage(lang); var label=document.querySelector('#languageToggle span'); if(label) label.textContent=btn.textContent.trim(); });
+      document.addEventListener('DOMContentLoaded', function(){ protect(); init(); });
+      var st=document.createElement('style'); st.textContent='.goog-te-banner-frame{display:none!important} body{top:0!important} #google_translate_element{display:none!important} .goog-te-gadget{display:none!important} .skiptranslate{display:none!important}'; document.head.appendChild(st);
+    })();
+  </script>
+  <div id="google_translate_element"></div>
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</head>
+<body class="bg-gray-50">
+
+<div class="bg-[#0D1F39] text-white font-body relative z-[60]">
+  <div class="container mx-auto px-6 py-2">
+    <div class="flex items-center justify-between">
+      <div class="relative">
+        <button id="languageToggle" class="flex items-center space-x-2 text-white/90 hover:text-white font-medium transition-colors">
+          <i class="fa-solid fa-globe text-base"></i>
+          <span class="text-sm md:text-base">English</span>
+          <i class="fa-solid fa-chevron-down text-xs"></i>
+        </button>
+        <div id="languageDropdown" class="absolute left-0 top-full mt-1 bg-white rounded-lg shadow-xl border border-gray-200 py-2 min-w-[160px] hidden z-[1000]">
+          <button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="en">
+            <img src="https://flagcdn.com/w20/us.png" alt="English" class="w-4 h-3"><span>English</span>
+          </button>
+          <button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="ko">
+            <img src="https://flagcdn.com/w20/kr.png" alt="한국어" class="w-4 h-3"><span>한국어</span>
+          </button>
+          <button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="ar">
+            <img src="https://flagcdn.com/w20/sa.png" alt="العربية" class="w-4 h-3"><span>العربية</span>
+          </button>
+          <button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="fr">
+            <img src="https://flagcdn.com/w20/fr.png" alt="Français" class="w-4 h-3"><span>Français</span>
+          </button>
+        </div>
+      </div>
+      <div class="flex items-center space-x-3">
+        <button class="bg-white/10 hover:bg-white/20 text-white px-4 py-1.5 rounded-lg font-medium transition-all h-hover" data-text="sign-in" onclick="window.open('signin.html','_blank')">Login</button>
+        <button class="bg-[#D53C46] text-white hover:bg-[#D53C46] px-4 py-1.5 rounded-lg font-semibold transition-all h-hover" data-text="sign-up" onclick="window.open('signup.html','_blank')">Register</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<header id="header" class="sticky top-0 z-50 backdrop-blur">
+  <div class="w-full px-6 py-2 bg-white">
+    <div class="w-full px-4 md:px-6 py-3 flex items-center justify-between">
+      <a href="home.html" class="flex items-center space-x-3">
+        <img src="assets/images/Gemini_Generated_Image_2f4bkg2f4bkg2f4bee.png" alt="Logo" class="w-80 h-[100px] object-contain animate-logo" />
+      </a>
+      <nav class="hidden md:flex items-center space-x-8 text-gray-900 font-semibold animate-nav">
+        <a href="home.html" class="hover:text-[#0D1F39] transition-colors">Home</a>
+        <a href="inventory.html" class="hover:text-[#0D1F39] transition-colors">Inventory</a>
+        <div class="relative" id="navAbout">
+          <a href="about-us.html" id="navAboutToggle" class="hover:text-[#0D1F39] transition-colors flex items-center space-x-1">
+            <span>About Us</span>
+            <i class="fa-solid fa-chevron-down text-xs"></i>
+          </a>
+          <div id="navAboutMenu" class="absolute left-1/2 -translate-x-1/2 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg py-2 min-w-[220px] opacity-0 translate-y-1 pointer-events-none transition-all duration-300 z-50">
+            <a href="mit-info.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">MIT Info</a>
+            <a href="service-introduction.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">Service Introduction</a>
+          </div>
+        </div>
+        <a href="contact-us.html" class="hover:text-[#0D1F39] transition-colors">Contact Us</a>
+        <div class="relative" id="navMore">
+          <button id="navMoreToggle" class="hover:text-[#0D1F39] transition-colors flex items-center space-x-1">
+            <span>More</span>
+            <i class="fa-solid fa-chevron-down text-xs"></i>
+          </button>
+          <div id="navMoreMenu" class="absolute left-1/2 -translate-x-1/2 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg py-2 min-w-[220px] opacity-0 translate-y-1 pointer-events-none transition-all duration-300 z-50">
+            <a href="faq.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">FAQs</a>
+            <a href="reviews.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">Reviews</a>
+            <a href="blog.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">Blogs</a>
+          </div>
+        </div>
+      </nav>
+      <div class="flex items-center space-x-4 animate-actions">
+        <div class="hidden md:flex items-center bg-white rounded-full shadow px-3 py-1.5 border border-gray-200">
+          <i class="fa-solid fa-magnifying-glass text-gray-600 mr-2 hover:text-[#D53C46]"></i>
+          <input id="headerSearchInput" type="text" placeholder="Search" class="w-40 md:w-52 text-sm bg-transparent focus:outline-none" />
+        </div>
+        <button id="mobileSearchToggle" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition group h-hover">
+          <i class="fa-solid fa-magnifying-glass group-hover:text-[#D53C46]"></i>
+        </button>
+        <a id="headerFavorite" href="dashboard-saved.html" class="relative inline-flex items-center justify-center w-10 h-10 rounded-full border border-gray-200 hover:bg-gray-50 transition-colors group h-hover">
+          <i class="fa-regular fa-heart text-[#0D1F39] group-hover:text-[#D53C46]"></i>
+          <span class="absolute -top-1 -right-1 inline-flex items-center justify-center w-5 h-5 rounded-full bg-[#D53C46] text-white text-xs">0</span>
+        </a>
+        <button id="mobileMenuToggle" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition group h-hover">
+          <i class="fa-solid fa-bars group-hover:text-[#D53C46]"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    var h = document.getElementById('header');
+    if (h) { requestAnimationFrame(function(){ h.classList.add('header-ready'); }); }
+  });
+  (function(){
+    function setupHoverDelay(containerId, toggleId, menuId){
+      var c=document.getElementById(containerId); var t=document.getElementById(toggleId); var m=document.getElementById(menuId);
+      if(!c||!t||!m) return; var hid=null;
+      function show(){ if(hid){ clearTimeout(hid); hid=null; } m.classList.remove('opacity-0','pointer-events-none','translate-y-1'); m.classList.add('opacity-100','pointer-events-auto','translate-y-0'); }
+      function schedule(){ if(hid) clearTimeout(hid); hid=setTimeout(function(){ m.classList.remove('opacity-100','pointer-events-auto','translate-y-0'); m.classList.add('opacity-0','pointer-events-none','translate-y-1'); hid=null; },300); }
+      c.addEventListener('mouseenter', show); t.addEventListener('mouseenter', show); m.addEventListener('mouseenter', show);
+      c.addEventListener('mouseleave', schedule); t.addEventListener('mouseleave', schedule); m.addEventListener('mouseleave', schedule);
+      t.addEventListener('click', show);
+    }
+    setupHoverDelay('navAbout','navAboutToggle','navAboutMenu');
+    setupHoverDelay('navMore','navMoreToggle','navMoreMenu');
+  })();
+</script>
+
+<div id="mobileSearchContainer" class="md:hidden hidden px-6">
+  <div class="flex items-center bg-white rounded-full shadow px-3 py-2 border border-gray-200">
+    <i class="fa-solid fa-magnifying-glass text-gray-600 mr-2"></i>
+    <input id="mobileHeaderSearchInput" type="text" placeholder="Search" class="flex-1 text-sm bg-transparent focus:outline-none" />
+    <button id="mobileHeaderSearchBtn" class="ml-2 px-3 py-1 rounded-full bg-[#0D1F39] text-white text-xs">Search</button>
+  </div>
+</div>
+
+<div id="mobileMenuOverlay" class="fixed inset-0 bg-black/40 hidden z-40 md:hidden"></div>
+<aside id="mobileDrawer" class="fixed inset-y-0 right-0 w-80 max-w-[88vw] bg-white shadow-xl border-l border-gray-200 z-50 transform translate-x-full transition-transform duration-300 ease-out md:hidden" aria-hidden="true" role="dialog">
+  <div class="flex items-center justify-between px-4 py-3 border-b border-gray-100">
+    <div class="flex items-center space-x-2">
+      <img src="assets/images/Gemini_Generated_Image_2f4bkg2f4bkg2f4bee.png" alt="Logo" class="w-64 h-16 object-contain" />
+    </div>
+    <button id="mobileDrawerClose" class="inline-flex items-center justify-center w-10 h-10 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition" aria-label="Close menu">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+  <div class="px-4 py-3">
+    <div class="flex items-center bg-white rounded-full border border-gray-200 px-3 py-2 shadow-sm">
+      <i class="fa-solid fa-magnifying-glass text-gray-600 mr-2"></i>
+      <input id="drawerSearchInput" type="text" placeholder="Search" class="flex-1 text-sm bg-transparent focus:outline-none" />
+      <button id="drawerSearchBtn" class="ml-2 px-3 py-1 rounded-full bg-[#0D1F39] text-white text-xs">Search</button>
+    </div>
+  </div>
+  <nav class="px-4 py-3 space-y-1 text-gray-900 font-semibold">
+    <a href="home.html" class="block py-2 rounded-lg hover:bg-gray-50">Home</a>
+    <a href="inventory.html" class="block py-2 rounded-lg hover:bg-gray-50">Inventory</a>
+    <div class="border-t border-gray-100 my-2"></div>
+    <button id="drawerAboutToggle" class="w-full flex items-center justify-between py-2 rounded-lg hover:bg-gray-50 text-left" aria-expanded="false">
+      <span>About Us</span>
+      <i class="fa-solid fa-chevron-down text-xs"></i>
+    </button>
+    <div id="drawerAboutMenu" class="hidden ml-3 space-y-1 text-gray-700 font-normal">
+      <a href="mit-info.html" class="block py-1.5 rounded hover:bg-gray-50">MIT Info</a>
+      <a href="service-introduction.html" class="block py-1.5 rounded hover:bg-gray-50">Service Introduction</a>
+    </div>
+    <a href="contact-us.html" class="block py-2 rounded-lg hover:bg-gray-50">Contact Us</a>
+    <button id="drawerMoreToggle" class="w-full flex items-center justify-between py-2 rounded-lg hover:bg-gray-50 text-left" aria-expanded="false">
+      <span>More</span>
+      <i class="fa-solid fa-chevron-down text-xs"></i>
+    </button>
+    <div id="drawerMoreMenu" class="hidden ml-3 space-y-1 text-gray-700 font-normal">
+      <a href="faq.html" class="block py-1.5 rounded hover:bg-gray-50">FAQs</a>
+      <a href="reviews.html" class="block py-1.5 rounded hover:bg-gray-50">Reviews</a>
+      <a href="blog.html" class="block py-1.5 rounded hover:bg-gray-50">Blogs</a>
+    </div>
+  </nav>
+</aside>
+
+<script>
+  (function(){
+    var langToggle = document.getElementById('languageToggle');
+    var langDropdown = document.getElementById('languageDropdown');
+    if (langToggle && langDropdown) {
+      langToggle.addEventListener('click', function(){ langDropdown.classList.toggle('hidden'); });
+      document.addEventListener('click', function(e){ if (!langDropdown.contains(e.target) && !langToggle.contains(e.target)) langDropdown.classList.add('hidden'); });
+    }
+    var mobileSearchToggle = document.getElementById('mobileSearchToggle');
+    var mobileSearchContainer = document.getElementById('mobileSearchContainer');
+    if (mobileSearchToggle && mobileSearchContainer) {
+      mobileSearchToggle.addEventListener('click', function(){ mobileSearchContainer.classList.toggle('hidden'); });
+    }
+    var overlay = document.getElementById('mobileMenuOverlay');
+    var drawer = document.getElementById('mobileDrawer');
+    var menuBtn = document.getElementById('mobileMenuToggle');
+    var closeBtn = document.getElementById('mobileDrawerClose');
+    function openDrawer(){ if (overlay && drawer) { overlay.classList.remove('hidden'); drawer.style.transform='translateX(0)'; } }
+    function closeDrawer(){ if (overlay && drawer) { overlay.classList.add('hidden'); drawer.style.transform=''; } }
+    if (menuBtn) menuBtn.addEventListener('click', openDrawer);
+    if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+    if (overlay) overlay.addEventListener('click', closeDrawer);
+    var drawerAboutToggle = document.getElementById('drawerAboutToggle');
+    var drawerAboutMenu = document.getElementById('drawerAboutMenu');
+    if (drawerAboutToggle && drawerAboutMenu) {
+      drawerAboutToggle.addEventListener('click', function(){
+        var hidden = drawerAboutMenu.classList.toggle('hidden');
+        drawerAboutToggle.setAttribute('aria-expanded', hidden ? 'false' : 'true');
+      });
+    }
+    var drawerMoreToggle = document.getElementById('drawerMoreToggle');
+    var drawerMoreMenu = document.getElementById('drawerMoreMenu');
+    if (drawerMoreToggle && drawerMoreMenu) {
+      drawerMoreToggle.addEventListener('click', function(){
+        var hidden = drawerMoreMenu.classList.toggle('hidden');
+        drawerMoreToggle.setAttribute('aria-expanded', hidden ? 'false' : 'true');
+      });
+    }
+  })();
+</script>
+
+<main class="max-w-7xl mx-auto px-6 md:px-8 py-10 md:py-12">
+  <section class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#0A2A4A] to-[#133B66] text-white">
+    <img src="assets/images/about-us-banner.jpg" alt="Banner" class="absolute inset-0 w-full h-full object-cover opacity-20">
+    <div class="relative px-8 py-16 md:px-12 md:py-20">
+      <div class="max-w-3xl">
+        <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight" data-animate="heading" style="opacity:0; transform:translateY(12px); transition:opacity .8s ease-out, transform .8s ease-out;">Terms of Service</h1>
+        <p class="mt-4 text-white/80" data-animate="text" style="opacity:0; transition:opacity .8s ease-out;">Please read these terms carefully before using our services.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-12">
+    <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 md:p-8">
+      <div class="prose max-w-none">
+        <h2 class="text-2xl font-semibold text-gray-900">NAWISAJAD MUMAND LTD. – TERMS OF SERVICE</h2>
+        <p class="text-sm text-gray-600">Last Updated: 28-12-2025</p>
+        <div class="space-y-6 leading-relaxed text-gray-800">
+          <p>⸻ IMPORTANT NOTICE</p>
+          <p>By accessing, browsing, registering, or using any service provided by NawiSajad Mumand Ltd. (“Company,” “we,” “us”), you agree to be legally bound by these Terms of Service (“Terms”). If you do not agree, do not use the services.</p>
+          <p>⸻ 1. Company Information</p>
+          <p>Company Name: NawiSajad Mumand Ltd. The Company operates an online and offline business involving the sale, listing, inspection, and export of used vehicles, including related logistics and documentation support.</p>
+          <p>⸻ 2. Scope of Services</p>
+          <ul class="list-disc ml-6">
+            <li>• Sale of vehicles owned by the Company</li>
+            <li>• Listing of vehicles from third-party sellers</li>
+            <li>• Vehicle inspection services (visual and non-invasive unless stated otherwise)</li>
+            <li>• Export, logistics, shipping, and documentation coordination</li>
+          </ul>
+          <p>The Company is NOT a manufacturer and does NOT provide mechanical, legal, financial, or fitness-for-purpose advice.</p>
+          <p>⸻ 3. Used Vehicle Condition Disclosure</p>
+          <ol class="list-decimal ml-6">
+            <li>1. All vehicles sold or listed are USED VEHICLES.</li>
+            <li>2. Users acknowledge that used vehicles may naturally have:</li>
+          </ol>
+          <ul class="list-disc ml-8">
+            <li>• Minor oil or fluid seepage</li>
+            <li>• Small dents</li>
+            <li>• Scratches</li>
+            <li>• Paint, interior, or exterior wear</li>
+            <li>• Noise or vibration consistent with age and mileage</li>
+          </ul>
+          <p>3. These conditions are normal characteristics of used vehicles and do NOT constitute defects, misrepresentation, or grounds for refund, return, or dispute.</p>
+          <p>⸻ 4. Vehicle Inspections</p>
+          <ol class="list-decimal ml-6">
+            <li>1. Inspections are based solely on visible condition at the time of inspection.</li>
+            <li>2. Inspections do NOT guarantee:</li>
+          </ol>
+          <ul class="list-disc ml-8">
+            <li>• Mechanical condition</li>
+            <li>• Future performance</li>
+            <li>• Absence of hidden, developing, or undiscovered issues</li>
+          </ul>
+          <p>3. Inspection reports, photos, and videos are provided for reference only. Buyers are fully responsible for reviewing all materials carefully before purchase.</p>
+          <p>⸻ 5. AS-IS / WHERE-IS Sale – No Warranty</p>
+          <ol class="list-decimal ml-6">
+            <li>1. All vehicles are sold strictly on an “AS-IS, WHERE-IS” basis.</li>
+            <li>2. The Company provides NO warranties, express or implied, including but not limited to:</li>
+          </ol>
+          <ul class="list-disc ml-8">
+            <li>• Merchantability</li>
+            <li>• Fitness for a particular purpose</li>
+            <li>• Condition, durability, or usability</li>
+          </ul>
+          <p>3. After purchase, the Company shall NOT be responsible for:</p>
+          <ul class="list-disc ml-8">
+            <li>• Repairs or maintenance</li>
+            <li>• Refunds or returns</li>
+            <li>• Condition-related complaints</li>
+            <li>• Buyer dissatisfaction for any reason</li>
+          </ul>
+          <p>⸻ 6. Buyer Responsibilities</p>
+          <p>Buyers acknowledge and agree that they:</p>
+          <ul class="list-disc ml-8">
+            <li>• Have reviewed all photos, videos, descriptions, and inspection notes</li>
+            <li>• Accept all risks associated with used vehicle purchases</li>
+            <li>• Are solely responsible for import laws, customs clearance, taxes, duties, and local regulations</li>
+          </ul>
+          <p>The Company is NOT liable for:</p>
+          <ul class="list-disc ml-8">
+            <li>• Customs refusal or seizure</li>
+            <li>• Port congestion or delays</li>
+            <li>• Storage fees or penalties</li>
+            <li>• Regulatory or compliance issues in the destination country</li>
+          </ul>
+          <p>⸻ 7. User Accounts & Information Accuracy</p>
+          <ol class="list-decimal ml-6">
+            <li>1. Users must use only their own true and lawful personal or company information.</li>
+            <li>2. Users must NOT:</li>
+          </ol>
+          <ul class="list-disc ml-8">
+            <li>• Use another person’s identity, documents, phone number, email, or payment details</li>
+            <li>• Sign up or sign in using false, stolen, or third-party information</li>
+          </ul>
+          <p>3. Users are fully responsible for all activities conducted under their account. The Company is NOT responsible for losses, damages, suspensions, terminations, or legal consequences arising from false or unauthorized information.</p>
+          <p>⸻ 8. Payments & Transactions</p>
+          <ol class="list-decimal ml-6">
+            <li>1. Prices may change without notice.</li>
+            <li>2. All payments must be made through approved payment methods.</li>
+            <li>3. All sales are FINAL once payment is confirmed.</li>
+            <li>4. Users waive all rights to chargebacks or payment disputes related to:</li>
+          </ol>
+          <ul class="list-disc ml-8">
+            <li>• Vehicle condition</li>
+            <li>• Inspection results</li>
+            <li>• Delivery delays</li>
+            <li>• Post-purchase dissatisfaction</li>
+          </ul>
+          <p>The Company is NOT responsible for third-party payment processor failures, banking delays, or currency conversion differences.</p>
+          <p>⸻ 9. Limitation of Liability</p>
+          <p>To the maximum extent permitted by law:</p>
+          <ul class="list-disc ml-8">
+            <li>• The Company shall NOT be liable for indirect, incidental, special, or consequential damages</li>
+            <li>• The Company shall NOT be liable for loss of profit, business, data, or opportunity</li>
+            <li>• Total liability, if any, shall not exceed the amount paid by the user for the relevant transaction</li>
+          </ul>
+          <p>⸻ 10. Indemnification</p>
+          <p>Users agree to indemnify and hold harmless the Company, its directors, officers, employees, and partners from any claims, losses, damages, liabilities, fines, or expenses arising from:</p>
+          <ul class="list-disc ml-8">
+            <li>• Violation of these Terms</li>
+            <li>• Misuse of the services</li>
+            <li>• False or unauthorized information</li>
+            <li>• User disputes with third parties</li>
+          </ul>
+          <p>⸻ 11. Service Availability & Technical Disclaimer</p>
+          <p>The Company does NOT guarantee uninterrupted, secure, or error-free service and is NOT liable for:</p>
+          <ul class="list-disc ml-8">
+            <li>• Downtime or system failure</li>
+            <li>• Hacking or cyberattacks</li>
+            <li>• Data loss or unauthorized access</li>
+            <li>• Technical or network issues</li>
+          </ul>
+          <p>⸻ 12. Suspension & Termination</p>
+          <p>The Company may suspend or terminate any user account at any time and without prior notice if:</p>
+          <ul class="list-disc ml-8">
+            <li>• These Terms are violated</li>
+            <li>• Fraud, misuse, or illegal activity is suspected</li>
+          </ul>
+          <p>⸻ 13. Force Majeure</p>
+          <p>The Company shall not be liable for failure or delay caused by events beyond reasonable control, including but not limited to:</p>
+          <ul class="list-disc ml-8">
+            <li>• Natural disasters</li>
+            <li>• War, strikes, or labor disputes</li>
+            <li>• Government actions</li>
+            <li>• Pandemics</li>
+            <li>• Port congestion or transportation failures</li>
+          </ul>
+          <p>⸻ 14. Severability & Language</p>
+          <p>If any provision is held invalid or unenforceable, the remaining provisions remain in full force. The English version of these Terms shall prevail.</p>
+          <p>⸻ 15. Governing Law & Jurisdiction</p>
+          <p>These Terms are governed by the laws of the Republic of Korea. All disputes shall be subject to the exclusive jurisdiction of Korean courts.</p>
+          <p>⸻ 16. Contact Information</p>
+          <p>For Terms-related inquiries:<br>Company: NawiSajad Mumand Ltd.<br>Email: info@autonsm.com<br>Tel : +82 10-9199-9687, +82 10-9869-9687</p>
+        </div>
+      </div>
+  </section>
+</main>
+
+<footer id="footer" class="bg-[#f5f5f5] text-[#666666]">
+  <div class="max-w-7xl mx-auto px-[24px] py-[32px]">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-[32px]">
+      <div class="space-y-[10px] text-[15px] leading-[26px]">
+        <div><span class="text-[#444444]">대표자</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">카일자민파룩아마드</span></div>
+        <div><span class="text-[#444444]">사업자등록 번호</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">470-88-00357</span></div>
+        <div><span class="text-[#444444]">주소</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">인천광역시 연수구 옥련로37 씨동 306호</span></div>
+      </div>
+      <div class="space-y-[10px] text-[15px] leading-[26px]">
+        <div><span class="text-[#444444]">Email</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">info@autonsm.com</span></div>
+        <div>
+          <span class="text-[#444444]">TEL</span>
+          <span class="text-[#666666] whitespace-pre">   +82 10-9199-9687 (English, Korean)</span>
+        </div>
+        <div><span class="text-[#444444]">TEL</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">+821098699687</span></div>
+        <div><span class="text-[#666666] whitespace-pre">306 C dong  37 Okryeon ro  Yeonsu gu Incheon South Korea</span></div>
+      </div>
+    </div>
+    <div class="mt-[28px] border-t border-[#e5e7eb] pt-[18px]">
+      <div class="flex flex-col md:flex-row items-center justify-between">
+        <div class="text-[14px] text-[#666666] space-x-[18px]">
+          <a href="private-policy.html" class="hover:text-[#111111]">Private Policy</a>
+          <a href="terms-of-service.html" class="hover:text-[#111111]">Terms of Service</a>
+        </div>
+        <div class="text-[14px] text-[#666666] mt-[12px] md:mt-0">Copyright © Auto Nsm. All rights Reserved.</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  window.addEventListener('scroll', function(){
+    var header = document.getElementById('header');
+    if (!header) return;
+    if (window.scrollY > 10) header.classList.add('shadow-xl'); else header.classList.remove('shadow-xl');
+  });
+</script>
+
+<script>
+  (function(){
+    try {
+      var role = (localStorage.getItem('role') || localStorage.getItem('userRole') || '').toLowerCase();
+      if (!role || (role !== 'buyer' && role !== 'seller')) return;
+      var signInEl = document.querySelector('[data-text="sign-in"]');
+      var signUpEl = document.querySelector('[data-text="sign-up"]');
+      var container = (signInEl && signInEl.parentElement) || (signUpEl && signUpEl.parentElement);
+      if (!container) return;
+      if (signInEl) signInEl.remove();
+      if (signUpEl) signUpEl.remove();
+      var link = document.createElement('a');
+      link.textContent = role === 'buyer' ? 'Buyer Dashboard' : 'Seller Dashboard';
+      link.href = role === 'buyer' ? 'buyer-dashboard.html' : 'seller-dashboard.html';
+      link.className = 'bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-lg font-semibold transition-all transform hover:scale-105';
+      container.appendChild(link);
+    } catch(e) {}
+  })();
+</script>
+
+<script>
+  (function(){
+    function init(){
+      try {
+        var els = document.querySelectorAll('[data-animate]');
+        if (!els || !els.length) return;
+        var io = new IntersectionObserver(function(entries){
+          entries.forEach(function(entry){
+            if (entry.isIntersecting) {
+              var el = entry.target;
+              try { el.style.opacity = '1'; el.style.transform = 'none'; } catch(_){}
+              io.unobserve(el);
+            }
+          });
+        }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
+        for (var i=0;i<els.length;i++){ io.observe(els[i]); }
+      } catch(_){}
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+</script>
+
+</body></html>

@@ -1,0 +1,535 @@
+<!DOCTYPE html><html><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQs — Payment, Shipping, Documentation & More | NSM Autos</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>window.FontAwesomeConfig = {autoReplaceSvg: 'nest'};</script>
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" rel="stylesheet">
+  <style>::-webkit-scrollbar { display: none; } * { font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', sans-serif; } .tab-content{display:none} .tab-content.active{display:block}</style>
+  <style>
+    .heading-prep{opacity:0;transform:translateY(10px)}
+    .heading-visible{opacity:1;transform:translateY(0);transition:opacity 700ms ease,transform 700ms ease}
+    .reveal-prep{opacity:0;transform:translateY(16px)}
+    .reveal-visible{opacity:1;transform:translateY(0);transition:opacity 700ms ease,transform 700ms ease}
+    .accordion-content{max-height:0;overflow:hidden;opacity:0;transform:translateY(6px);transition:max-height 280ms cubic-bezier(0.22,1,0.36,1),opacity 220ms ease,transform 220ms ease}
+    .accordion-content.open{opacity:1;transform:translateY(0)}
+    @media (prefers-reduced-motion: reduce){.heading-visible,.reveal-visible,.accordion-content{transition-duration:1ms!important}}
+  </style>
+</style>
+<style>
+  .goog-te-banner-frame{display:none!important}
+  body{top:0!important}
+  #google_translate_element{display:none!important}
+  .goog-te-gadget{display:none!important}
+  .skiptranslate{display:none!important}
+</style>
+<script>
+  function googleTranslateElementInit(){ new google.translate.TranslateElement({ pageLanguage:'en', includedLanguages:'en,ar,ko,es,fr', autoDisplay:false }, 'google_translate_element'); }
+  (function(){
+    function setCookie(name,value){ var e='expires=Fri, 31 Dec 9999 23:59:59 GMT'; document.cookie=name+'='+value+';'+e+';path=/'; var host=location.hostname; if(host.indexOf('.')!==-1){ document.cookie=name+'='+value+';'+e+';path=/;domain='+host; } }
+    function applyDir(lang){ try{ document.documentElement.setAttribute('dir', lang==='ar'?'rtl':'ltr'); }catch(_){ } }
+    function triggerCombo(lang){ var sel=document.querySelector('.goog-te-combo'); if(sel){ if(lang && sel.value==lang) return true; sel.value=(lang||'en'); setTimeout(function(){ sel.dispatchEvent(new Event('change')); }, 0); return true; } return false; }
+    function openTranslateProxy(url, lang){ var sl='en'; var tl=(lang||'en'); var href='https://translate.google.com/translate?hl='+tl+'&sl='+sl+'&tl='+tl+'&u='+encodeURIComponent(url); try{ window.open(href, '_blank'); }catch(_){} }
+    function changeLanguage(lang){
+      lang = lang || 'en';
+      if(triggerCombo(lang)){
+        try{ localStorage.setItem('lang', lang); }catch(_){ }
+        applyDir(lang);
+        return;
+      }
+      var attempts = 0;
+      var interval = setInterval(function(){
+        if(triggerCombo(lang)){
+          clearInterval(interval);
+          try{ localStorage.setItem('lang', lang); }catch(_){ }
+          applyDir(lang);
+        } else {
+          attempts++;
+          if(attempts >= 50){
+            clearInterval(interval);
+            setCookie('googtrans','/en/'+lang);
+            try{ localStorage.setItem('lang', lang); }catch(_){ }
+            applyDir(lang);
+          }
+        }
+      }, 100);
+    }
+    function init(){ var saved=null; try{ saved=localStorage.getItem('lang'); }catch(_){ } applyDir(saved||'en'); }
+    function protect(){ var q='input[type=password],input[type=email],input[name=password],input[name=email],input[name=username],textarea[name=password],textarea[name=email],textarea[name=username]'; document.querySelectorAll(q).forEach(function(el){ el.classList.add('notranslate'); el.setAttribute('translate','no'); }); }
+    document.addEventListener('click', function(e){ var btn=e.target.closest('[data-lang]'); if(!btn) return; var lang=btn.getAttribute('data-lang')||'en'; changeLanguage(lang); var label=document.querySelector('#languageToggle span'); if(label) label.textContent=btn.textContent.trim(); });
+    document.addEventListener('DOMContentLoaded', function(){ protect(); init(); });
+    var st=document.createElement('style'); st.textContent='.goog-te-banner-frame{display:none!important} body{top:0!important} #google_translate_element{display:none!important} .goog-te-gadget{display:none!important} .skiptranslate{display:none!important}'; document.head.appendChild(st);
+  })();
+</script>
+<div id="google_translate_element"></div>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</head>
+<body class="bg-gray-50">
+  <div class="bg-[#0D1F39] text-white font-body relative z-[60]">
+    <div class="container mx-auto px-6 py-2">
+      <div class="flex items-center justify-between">
+        <div class="relative">
+          <button id="languageToggle" class="flex items-center space-x-2 text-white/90 hover:text-white font-medium transition-colors">
+            <i class="fa-solid fa-globe text-base"></i>
+            <span class="text-sm md:text-base">English</span>
+            <i class="fa-solid fa-chevron-down text-xs"></i>
+          </button>
+          <div id="languageDropdown" class="absolute left-0 top-full mt-1 bg-white rounded-lg shadow-xl border border-gray-200 py-2 min-w-[160px] hidden z-[1000]">
+            <button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="en">
+              <img src="https://flagcdn.com/w20/us.png" alt="English" class="w-4 h-3">
+              <span>English</span>
+            </button>
+            <button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="ko">
+              <img src="https://flagcdn.com/w20/kr.png" alt="한국어" class="w-4 h-3">
+              <span>한국어</span>
+            </button>
+            <button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="ar">
+              <img src="https://flagcdn.com/w20/sa.png" alt="العربية" class="w-4 h-3">
+              <span>العربية</span>
+            </button>
+            <button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="fr">
+              <img src="https://flagcdn.com/w20/fr.png" alt="Français" class="w-4 h-3">
+              <span>Français</span>
+            </button>
+          </div>
+        </div>
+        <div class="flex items-center space-x-3">
+          <button class="bg-white/10 hover:bg-white/20 text-white px-4 py-1.5 rounded-lg font-medium transition-all h-hover" data-text="sign-in" onclick="window.open('signin.html','_blank')">Login</button>
+          <button class="bg-[#D53C46] text-white hover:bg-[#D53C46] px-4 py-1.5 rounded-lg font-semibold transition-all h-hover" data-text="sign-up" onclick="window.open('signup.html','_blank')">Register</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <header id="header" class="sticky top-0 z-50 backdrop-blur">
+  <div class="w-full px-6 py-2 bg-white">
+    <div class="w-full px-4 md:px-6 py-3 flex items-center justify-between">
+        <a href="home.html" class="flex items-center space-x-3">
+          <img src="assets/images/Gemini_Generated_Image_2f4bkg2f4bkg2f4bee.png" alt="Logo" class="w-80 h-[100px] object-contain animate-logo" />
+        </a>
+        <nav class="hidden md:flex items-center space-x-8 text-gray-900 font-semibold animate-nav">
+          <a href="home.html" class="hover:text-[#0D1F39] transition-colors">Home</a>
+          <a href="inventory.html" class="hover:text-[#0D1F39] transition-colors">Inventory</a>
+          <div class="relative" id="navAbout">
+            <a href="about-us.html" id="navAboutToggle" class="hover:text-[#0D1F39] transition-colors flex items-center space-x-1">
+            <span>About Us</span>
+            <i class="fa-solid fa-chevron-down text-xs"></i>
+          </a>
+            <div id="navAboutMenu" class="absolute left-1/2 -translate-x-1/2 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg py-2 min-w-[220px] opacity-0 translate-y-1 pointer-events-none transition-all duration-300 z-50">
+              <a href="mit-info.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">MIT Info</a>
+              <a href="service-introduction.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">Service Introduction</a>
+            </div>
+          </div>
+          <a href="contact-us.html" class="hover:text-[#0D1F39] transition-colors">Contact Us</a>
+          <div class="relative" id="navMore">
+            <button id="navMoreToggle" class="hover:text-[#0D1F39] transition-colors flex items-center space-x-1">
+              <span>More</span>
+              <i class="fa-solid fa-chevron-down text-xs"></i>
+            </button>
+            <div id="navMoreMenu" class="absolute left-1/2 -translate-x-1/2 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg py-2 min-w-[220px] opacity-0 translate-y-1 pointer-events-none transition-all duration-300 z-50">
+              <a href="faq.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">FAQs</a>
+              <a href="reviews.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">Reviews</a>
+              <a href="blog.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">Blogs</a>
+            </div>
+          </div>
+        </nav>
+        <div class="flex items-center space-x-4 animate-actions">
+          <div class="hidden md:flex items-center bg-white rounded-full shadow px-3 py-1.5 border border-gray-200">
+            <i class="fa-solid fa-magnifying-glass text-gray-600 mr-2 hover:text-[#D53C46]"></i>
+            <input id="headerSearchInput" type="text" placeholder="Search" class="w-40 md:w-52 text-sm bg-transparent focus:outline-none" />
+          </div>
+          <button id="mobileSearchToggle" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition group h-hover">
+            <i class="fa-solid fa-magnifying-glass group-hover:text-[#D53C46]"></i>
+          </button>
+          <a id="headerFavorite" href="dashboard-saved.html" class="relative inline-flex items-center justify-center w-10 h-10 rounded-full border border-gray-200 hover:bg-gray-50 transition-colors group h-hover">
+            <i class="fa-regular fa-heart text-[#0D1F39] group-hover:text-[#D53C46]"></i>
+            <span class="absolute -top-1 -right-1 inline-flex items-center justify-center w-5 h-5 rounded-full bg-[#D53C46] text-white text-xs">0</span>
+          </a>
+          <button id="mobileMenuToggle" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition group h-hover">
+            <i class="fa-solid fa-bars group-hover:text-[#D53C46]"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      var h = document.getElementById('header');
+      if (h) { requestAnimationFrame(function(){ h.classList.add('header-ready'); }); }
+    });
+    (function(){
+      function setupHoverDelay(containerId, toggleId, menuId){
+        var c=document.getElementById(containerId); var t=document.getElementById(toggleId); var m=document.getElementById(menuId);
+        if(!c||!t||!m) return; var hid=null;
+        function show(){ if(hid){ clearTimeout(hid); hid=null; } m.classList.remove('opacity-0','pointer-events-none','translate-y-1'); m.classList.add('opacity-100','pointer-events-auto','translate-y-0'); }
+      function schedule(){ if(hid) clearTimeout(hid); hid=setTimeout(function(){ m.classList.remove('opacity-100','pointer-events-auto','translate-y-0'); m.classList.add('opacity-0','pointer-events-none','translate-y-1'); hid=null; },300); }
+        c.addEventListener('mouseenter', show); t.addEventListener('mouseenter', show); m.addEventListener('mouseenter', show);
+        c.addEventListener('mouseleave', schedule); t.addEventListener('mouseleave', schedule); m.addEventListener('mouseleave', schedule);
+        t.addEventListener('click', show);
+      }
+      setupHoverDelay('navAbout','navAboutToggle','navAboutMenu');
+      setupHoverDelay('navMore','navMoreToggle','navMoreMenu');
+    })();
+  </script>
+
+  <script>
+    (function(){
+      function revealHeading(){
+        var title=document.querySelector('main section h1');
+        var subtitle=document.querySelector('main section p');
+        if(title){ title.classList.add('heading-prep'); requestAnimationFrame(function(){ title.classList.add('heading-visible'); }); }
+        if(subtitle){ subtitle.classList.add('heading-prep'); setTimeout(function(){ subtitle.classList.add('heading-visible'); },120); }
+      }
+      function initTabReveal(){
+        var active=document.querySelector('.tab-content.active');
+        if(!active) return;
+        var items=active.querySelectorAll('details');
+        var observer=new IntersectionObserver(function(entries){
+          entries.forEach(function(e){
+            if(e.isIntersecting){
+              var el=e.target; el.classList.add('reveal-visible'); observer.unobserve(el);
+            }
+          });
+        },{threshold:0.15});
+        items.forEach(function(el,idx){
+          el.classList.add('reveal-prep');
+          el.style.transitionDelay=(idx*80)+'ms';
+          observer.observe(el);
+        });
+      }
+      function initAccordion(){
+        var all=document.querySelectorAll('.tab-content details');
+        all.forEach(function(d){
+          var s=d.querySelector('summary');
+          var c=s?s.nextElementSibling:null;
+          if(!c) return;
+          c.classList.add('accordion-content');
+          if(d.open){ c.classList.add('open'); c.style.maxHeight=c.scrollHeight+'px'; }
+          d.addEventListener('toggle',function(){
+            if(d.open){ c.classList.add('open'); c.style.maxHeight=c.scrollHeight+'px'; }
+            else { c.classList.remove('open'); c.style.maxHeight='0px'; }
+          });
+        });
+      }
+      document.addEventListener('DOMContentLoaded',function(){
+        revealHeading();
+        initTabReveal();
+        initAccordion();
+        var tabs=document.querySelectorAll('.tab');
+        tabs.forEach(function(t){ t.addEventListener('click',function(){ setTimeout(function(){ initTabReveal(); initAccordion(); },50); }); });
+      });
+    })();
+  </script>
+  <div id="mobileSearchContainer" class="md:hidden hidden px-6">
+    <div class="flex items-center bg-white rounded-full shadow px-3 py-2 border border-gray-200">
+      <i class="fa-solid fa-magnifying-glass text-gray-600 mr-2"></i>
+      <input id="mobileHeaderSearchInput" type="text" placeholder="Search" class="flex-1 text-sm bg-transparent focus:outline-none" />
+      <button id="mobileHeaderSearchBtn" class="ml-2 px-3 py-1 rounded-full bg-[#0D1F39] text-white text-xs">Search</button>
+    </div>
+  </div>
+  <div id="mobileMenuOverlay" class="fixed inset-0 bg-black/40 hidden z-40 md:hidden"></div>
+  <aside id="mobileDrawer" class="fixed inset-y-0 right-0 w-80 max-w-[88vw] bg-white shadow-xl border-l border-gray-200 z-50 transform translate-x-full transition-transform duration-300 ease-out md:hidden" aria-hidden="true" role="dialog">
+    <div class="flex items-center justify-between px-4 py-3 border-b border-gray-100">
+      <div class="flex items-center space-x-2">
+        <img src="assets/images/Gemini_Generated_Image_2f4bkg2f4bkg2f4bee.png" alt="Logo" class="w-64 h-16 object-contain" />
+      </div>
+      <button id="mobileDrawerClose" class="inline-flex items-center justify-center w-10 h-10 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition" aria-label="Close menu">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <div class="px-4 py-3">
+      <div class="flex items-center bg-white rounded-full border border-gray-200 px-3 py-2 shadow-sm">
+        <i class="fa-solid fa-magnifying-glass text-gray-600 mr-2"></i>
+        <input id="drawerSearchInput" type="text" placeholder="Search" class="flex-1 text-sm bg-transparent focus:outline-none" />
+        <button id="drawerSearchBtn" class="ml-2 px-3 py-1 rounded-full bg-[#0D1F39] text-white text-xs">Search</button>
+      </div>
+    </div>
+    <nav class="px-4 py-3 space-y-1 text-gray-900 font-semibold">
+      <a href="home.html" class="block py-2 rounded-lg hover:bg-gray-50">Home</a>
+      <a href="inventory.html" class="block py-2 rounded-lg hover:bg-gray-50">Inventory</a>
+      <div class="border-t border-gray-100 my-2"></div>
+      <button id="drawerAboutToggle" class="w-full flex items-center justify-between py-2 rounded-lg hover:bg-gray-50 text-left" aria-expanded="false">
+        <span>About Us</span>
+        <i class="fa-solid fa-chevron-down text-xs"></i>
+      </button>
+      <div id="drawerAboutMenu" class="hidden ml-3 space-y-1 text-gray-700 font-normal">
+        <a href="mit-info.html" class="block py-1.5 rounded hover:bg-gray-50">MIT Info</a>
+        <a href="service-introduction.html" class="block py-1.5 rounded hover:bg-gray-50">Service Introduction</a>
+      </div>
+      <a href="contact-us.html" class="block py-2 rounded-lg hover:bg-gray-50">Contact Us</a>
+      <button id="drawerMoreToggle" class="w-full flex items-center justify-between py-2 rounded-lg hover:bg-gray-50 text-left" aria-expanded="false">
+        <span>More</span>
+        <i class="fa-solid fa-chevron-down text-xs"></i>
+      </button>
+      <div id="drawerMoreMenu" class="hidden ml-3 space-y-1 text-gray-700 font-normal">
+        <a href="faq.html" class="block py-1.5 rounded hover:bg-gray-50">FAQs</a>
+        <a href="reviews.html" class="block py-1.5 rounded hover:bg-gray-50">Reviews</a>
+        <a href="blog.html" class="block py-1.5 rounded hover:bg-gray-50">Blogs</a>
+      </div>
+    </nav>
+  </aside>
+  <script>
+    (function(){
+      var langToggle = document.getElementById('languageToggle');
+      var langDropdown = document.getElementById('languageDropdown');
+      if (langToggle && langDropdown) {
+        langToggle.addEventListener('click', function(){ langDropdown.classList.toggle('hidden'); });
+        document.addEventListener('click', function(e){ if (!langDropdown.contains(e.target) && !langToggle.contains(e.target)) langDropdown.classList.add('hidden'); });
+      }
+      var mobileSearchToggle = document.getElementById('mobileSearchToggle');
+      var mobileSearchContainer = document.getElementById('mobileSearchContainer');
+      if (mobileSearchToggle && mobileSearchContainer) {
+        mobileSearchToggle.addEventListener('click', function(){ mobileSearchContainer.classList.toggle('hidden'); });
+      }
+      var overlay = document.getElementById('mobileMenuOverlay');
+      var drawer = document.getElementById('mobileDrawer');
+      var menuBtn = document.getElementById('mobileMenuToggle');
+      var closeBtn = document.getElementById('mobileDrawerClose');
+      function openDrawer(){ if (overlay && drawer) { overlay.classList.remove('hidden'); drawer.style.transform='translateX(0)'; } }
+      function closeDrawer(){ if (overlay && drawer) { overlay.classList.add('hidden'); drawer.style.transform=''; } }
+      if (menuBtn) menuBtn.addEventListener('click', openDrawer);
+      if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+      if (overlay) overlay.addEventListener('click', closeDrawer);
+      var drawerAboutToggle = document.getElementById('drawerAboutToggle');
+      var drawerAboutMenu = document.getElementById('drawerAboutMenu');
+      if (drawerAboutToggle && drawerAboutMenu) {
+        drawerAboutToggle.addEventListener('click', function(){
+          var hidden = drawerAboutMenu.classList.toggle('hidden');
+          drawerAboutToggle.setAttribute('aria-expanded', hidden ? 'false' : 'true');
+        });
+      }
+      var drawerMoreToggle = document.getElementById('drawerMoreToggle');
+      var drawerMoreMenu = document.getElementById('drawerMoreMenu');
+      if (drawerMoreToggle && drawerMoreMenu) {
+        drawerMoreToggle.addEventListener('click', function(){
+          var hidden = drawerMoreMenu.classList.toggle('hidden');
+          drawerMoreToggle.setAttribute('aria-expanded', hidden ? 'false' : 'true');
+        });
+      }
+    })();
+  </script>
+
+  <main class="max-w-7xl mx-auto px-6 md:px-8 py-10 md:py-12">
+    <section class="relative rounded-3xl bg-gradient-to-br from-[#0A2A4A] to-[#133B66] text-white overflow-hidden" style="min-height:220px">
+      <div class="absolute inset-0 w-full h-full opacity-20" style="background-image:url('assets/images/about-us-banner.jpg');background-size:cover;background-position:center"></div>
+      <div class="relative px-8 py-12 md:px-12 md:py-16">
+        <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight">FAQs — Payment, Shipping, Documentation & More</h1>
+        <p class="mt-3 text-white/85">Answers to common questions about buying with NSM Autos.</p>
+      </div>
+    </section>
+
+    <section class="mt-12">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 items-start">
+        <div class="md:col-span-12">
+          <div class="mb-6 overflow-x-auto whitespace-nowrap tabs-container select-none">
+            <button class="tab px-4 py-2 rounded-full border border-gray-200 bg-white text-gray-700 mr-2 active" data-tab="tab-general">General</button>
+            <button class="tab px-4 py-2 rounded-full border border-gray-200 bg-white text-gray-700 mr-2" data-tab="tab-payment">Payment</button>
+            <button class="tab px-4 py-2 rounded-full border border-gray-200 bg-white text-gray-700 mr-2" data-tab="tab-shipment">Shipment</button>
+            <button class="tab px-4 py-2 rounded-full border border-gray-200 bg-white text-gray-700 mr-2" data-tab="tab-vehicle">Vehicle Condition</button>
+            <button class="tab px-4 py-2 rounded-full border border-gray-200 bg-white text-gray-700 mr-2" data-tab="tab-account">Account</button>
+            <button class="tab px-4 py-2 rounded-full border border-gray-200 bg-white text-gray-700 mr-2" data-tab="tab-documentation">Documentation</button>
+            <button class="tab px-4 py-2 rounded-full border border-gray-200 bg-white text-gray-700" data-tab="tab-glossary">Glossary</button>
+          </div>
+
+          <div class="space-y-10">
+            <div id="tab-general" class="tab-content active">
+              <h2 class="text-xl font-bold text-gray-900">General</h2>
+              <div class="mt-4 space-y-3">
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">Can I become a registered member of Autonsm?</summary><div class="mt-2 text-gray-700 text-sm">Anyone seeking Korean vehicles can become a registered member of Autonsm.</div></details>
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">Is there any registration or membership fee?</summary><div class="mt-2 text-gray-700 text-sm">No, there is no registration or membership fee. Sign up today and explore our wide range of Korean used cars.</div></details>
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow_sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">What are your office timings?</summary><div class="mt-2 text-gray-700 text-sm">Our office timings are from 8:30 a.m. to 5:30 p.m., Monday to Friday (Korea standard time). We will provide notifications in the event of office closures on holidays.</div></details>
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">What language do you do business in?</summary><div class="mt-2 text-gray-700 text-sm">Our prime business language is English. However, we also do business in Korean.</div></details>
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">When can I use the Auction Service?</summary><div class="mt-2 text-gray-700 text-sm">You can use the auction service any day.</div></details>
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">Why should I purchase a Korean Car?</summary><div class="mt-2 text-gray-700 text-sm">Investing in Korean vehicles is a smart decision due to their superior quality. Korean vehicles are built with high standards, making them highly dependable and less prone to costly repairs or breakdowns.</div></details>
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">How can I find out the rules and regulations for importing a vehicle in my country?</summary><div class="mt-2 text-gray-700 text-sm">To know about rules, regulations, and procedures for importing a car in your country, please visit the particular country page on our website and check the information. Lastly, it is suggested that you do your own research prior to importing a vehicle to understand all the responsibilities, legal charges, and risks.</div></details>
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">Who should I consult for more questions and queries?</summary><div class="mt-2 text-gray-700 text-sm">If you have more questions or queries, feel free to consult our customer support at sales@autonsm.com. We will be happy to assist you.</div></details>
+              </div>
+            </div>
+
+            <div id="tab-payment" class="tab-content">
+              <h2 class="text-xl font-bold text-gray-900">Payment</h2>
+              <div class="mt-4 space-y-3">
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">Can I cancel my order?</summary><div class="mt-2 text-gray-700 text-sm">Yes! As long as the order is not sent for shipment, you can cancel it. However, if your vehicle has been sent for shipment, you cannot cancel it.</div></details>
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">From where can I get the T/T copy?</summary><div class="mt-2 text-gray-700 text-sm">After submitting payment for transfer at your bank, you will receive a TT copy, also known as a Telegraphic Transfer Copy. It is the proof of your payment. The deposit slip can replace the TT copy only if the TT copy isn't issued from your bank immediately.</div></details>
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">If my payment is late, will Autonsm charge any penalties?</summary><div class="mt-2 text-gray-700 text-sm">No, you do not have to pay any penalty in the event of late payment. However, keep in mind that you must provide proof of payment within five days of placing an order to confirm your order and reassure us that you want to purchase the vehicle.</div></details>
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">How much do I have to pay when purchasing a vehicle?</summary><div class="mt-2 text-gray-700 text-sm">You will have to give the whole payment before the shipment of the vehicle.</div></details>
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">Can I get a discount on purchasing any vehicle?</summary><div class="mt-2 text-gray-700 text-sm">If you want to negotiate the price of any vehicle, contact our customer support team at info@autonsm.com.</div></details>
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">What currencies does Autonsm accept payment in?</summary><div class="mt-2 text-gray-700 text-sm">Primarily, we accept payment in US Dollars and Korean WON.</div></details>
+              </div>
+            </div>
+
+            <div id="tab-shipment" class="tab-content">
+              <h2 class="text-xl font-bold text-gray-900">Shipment</h2>
+              <div class="mt-4 space-y-3">
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">How long will it take me to receive my car?</summary><div class="mt-2 text-gray-700 text-sm">Delivery of the vehicle depends upon the shipping schedule. However, it usually takes from 4 to 8 weeks for the vehicle to be delivered to you.</div></details>
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">How can I track the shipment of my product?</summary><div class="mt-2 text-gray-700 text-sm">You can check the shipping route of your vehicle through our car tracking service. However, you are advised to contact the shipping company directly for the most precise update.</div></details>
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">How do I know if my vehicle has passed its inspection?</summary><div class="mt-2 text-gray-700 text-sm">You will be provided with the PDF of your vehicle’s inspection certificate once the inspection agency is done with the inspection. You can find the certificate on the car tracking service page.</div></details>
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">Does Autonsm offer door-step delivery service?</summary><div class="mt-2 text-gray-700 text-sm">Autonsm provides doorstep delivery service to our customers around the globe so they can enjoy a hassle-free purchase experience.</div></details>
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">Can my shipping schedule change?</summary><div class="mt-2 text-gray-700 text-sm">Your shipping schedule can change by a few days because of unavoidable conditions such as weather or the routing of ships.</div></details>
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">What information do I need to provide at the start of the shipment process of my purchased item?</summary><div class="mt-2 text-gray-700 text-sm">You need to provide details such as your name, address, and phone number along with the final port and the invoice number. Make sure that all the information provided is correct, as incorrect information can lead to delays in the shipment of your vehicle.</div></details>
+              </div>
+            </div>
+
+            <div id="tab-vehicle" class="tab-content">
+              <h2 class="text-xl font-bold text-gray-900">Vehicle Condition</h2>
+              <div class="mt-4 space-y-3">
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">How can I know the condition of the vehicle?</summary><div class="mt-2 text-gray-700 text-sm">To ensure our customers’ satisfaction, we provide detailed pictures of the vehicle to help you with your buying decision.</div></details>
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">Can I find a vehicle not listed on your website?</summary><div class="mt-2 text-gray-700 text-sm">Yes, if you do not find the vehicle you are looking for on our website, feel free to reach out to us. Our staff will help you find the vehicle that best suits your needs.</div></details>
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">Can you change the vehicle’s odometer reading on request?</summary><div class="mt-2 text-gray-700 text-sm">No, changing the odometer reading of the vehicle is illegal. Autonsm does not participate in any illegal actions under any circumstances.</div></details>
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">Does the vehicle I purchase from Autonsm come with an English manual?</summary><div class="mt-2 text-gray-700 text-sm">No, as we sell vehicles previously owned and used in Korea, the manual provided will be in Korean.</div></details>
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">Will I get spare keys to the vehicle?</summary><div class="mt-2 text-gray-700 text-sm">It depends. If you cannot find spare keys in the vehicle’s glove compartment, it means they are unavailable. You can make a copy of the original car keys when you receive the vehicle.</div></details>
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">Can you also send me auto parts for the vehicle I am purchasing?</summary><div class="mt-2 text-gray-700 text-sm">No, we are not allowed to put anything inside the vehicle unless the container ships it.</div></details>
+              </div>
+            </div>
+
+            <div id="tab-account" class="tab-content">
+              <h2 class="text-xl font-bold text-gray-900">Account</h2>
+              <div class="mt-4 space-y-3">
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">Can I create an account on Autonsm for free?</summary><div class="mt-2 text-gray-700 text-sm">Yes, creating an account on Autonsm is absolutely free. There are no initial or monthly charges to create an account.</div></details>
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">How can I create an account on Autonsm?</summary><div class="mt-2 text-gray-700 text-sm"><div>Click to Log In / Sign Up on the top right of the Autonsm home page and choose Sign Up.</div><div class="mt-2">Fill out the Sign-Up form by adding your full name, address, password, and other information.</div><div class="mt-2">Click on “Create Account” and verify your email to successfully create an account with Autonsm.</div></div></details>
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">Is my information protected with Autonsm?</summary><div class="mt-2 text-gray-700 text-sm">We use SSL to secure all the information we receive to maintain a highly ethical privacy policy. You can check out our detailed privacy policy and learn more about our protection protocol.</div></details>
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">Is using real names and information safe to create an account?</summary><div class="mt-2 text-gray-700 text-sm">Yes, it is completely safe. It is also important to add original information to create your account in Autonsm. When we issue an invoice, our system automatically adds all the information from your profile as Consignee and Notify Party information. Not adding the right information can result in difficulties during export procedures.</div></details>
+              </div>
+            </div>
+
+            <div id="tab-documentation" class="tab-content">
+              <h2 class="text-xl font-bold text-gray-900">Documentation</h2>
+              <div class="mt-4 space-y-3">
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">Which documents will I receive from Autonsm regarding my shipment?</summary><div class="mt-2 text-gray-700 text-sm">As an importer, you will receive the following documents: Bill of Lading, Insurance Document, Export Certificate, and Commercial Invoice. If the government demands, we will also provide you with an inspection certificate and export permit.</div></details>
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">Can you change the vehicle information in the B/L or any other document if asked?</summary><div class="mt-2 text-gray-700 text-sm">Altering information on the B/L or any other document is illegal, and Autonsm does not participate in any illegal action, regardless of the circumstances.</div></details>
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">What is a Consignee?</summary><div class="mt-2 text-gray-700 text-sm">The consignee is the vehicle’s “owner-to-be.” It is important to provide the consignee’s full name, which should match the name on the passport or ID. We also require their full address (without abbreviations) and phone number. There should be no spelling mistakes in the consignee’s full name. Even a small error can be subject to B/L amendment, which may cost you additional time and fees.</div></details>
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">Why is it important for the consignee to provide full name and address?</summary><div class="mt-2 text-gray-700 text-sm">The B/L is an official document that proves the ownership of the cargo. Therefore, the full name and address of the consignee, similar to the one written on their ID and passport, should be used.</div></details>
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">What is the DHL delivery address?</summary><div class="mt-2 text-gray-700 text-sm">This is the address where we mail you documents, including B/L, through DHL courier.</div></details>
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">Who is the Notifying party?</summary><div class="mt-2 text-gray-700 text-sm">The notifying party is the individual contacted by the shipping agency to tell the vessel's confirmed arrival date. If you have a private clearing agency, you can mention them. However, it is not mandatory since they are not required to be declared on the B/L.</div></details>
+              </div>
+            </div>
+
+            <div id="tab-glossary" class="tab-content">
+              <h2 class="text-xl font-bold text-gray-900">Glossary</h2>
+              <div class="mt-4 space-y-3">
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">What is BL?</summary><div class="mt-2 text-gray-700 text-sm">The BL, or Bill of Lading, is a document handed by the carrier or agent to the shipper as a contract for the carriage of goods. It further specifies that cargo is accepted for transportation, and it must be presented for delivery at the destination.</div></details>
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">What is C&F?</summary><div class="mt-2 text-gray-700 text-sm">Cost and freight is a term of sale that signifies that the price quoted or invoiced by the seller for shipment does not include insurance charges but does include all expenses up to a named port of discharge.</div></details>
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">What is CIF?</summary><div class="mt-2 text-gray-700 text-sm">Cost, insurance, and freight is a term that signifies that the price invoiced by the seller for the shipment includes the insurance and other changes up to the named port of discharge.</div></details>
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">What is a Clearing Agent?</summary><div class="mt-2 text-gray-700 text-sm">A clearing agent is a person or company that handles custom clearing procedures for you at the port.</div></details>
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">What is an Invoice?</summary><div class="mt-2 text-gray-700 text-sm">It is a payment request by Autonsm to you for purchasing a product. As long as you meet the payment deadline, the invoice issued to you will mean that you have the “Exclusive Right” to purchase the product. However, it is crucial for us to confirm your payment within the deadline.</div></details>
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">What is a T/T copy?</summary><div class="mt-2 text-gray-700 text-sm">When you pay at the bank for a vehicle with an invoice issued by us, the bank will provide you a receipt of the payment called a T/T copy. It is also called a Telegraphic Transfer Copy, which you must provide within 48 hours of the invoice being issued.</div></details>
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">What is ETA?</summary><div class="mt-2 text-gray-700 text-sm">Estimated Time of Arrival: the time and date in which the shipment journey is expected to arrive at the given port.</div></details>
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">What is ETD?</summary><div class="mt-2 text-gray-700 text-sm">Estimated Time of Departure: the time and date in which the shipment journey is expected to depart from a given port.</div></details>
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">What is LOA?</summary><div class="mt-2 text-gray-700 text-sm">A letter of authority is a document required by certain governments for importing a vehicle. The South African government requires this document for importing vehicles issued by the NRCS, as well as an import permit issued by the ITAC.</div></details>
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">What is a Shipping Agent?</summary><div class="mt-2 text-gray-700 text-sm">This is the agency that is accountable for handling shipments and cargo at harbors and ports on behalf of shipping companies.</div></details>
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">What is the Port of Departure?</summary><div class="mt-2 text-gray-700 text-sm">This is the departing point of a shipment.</div></details>
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">What is the Port of Discharge?</summary><div class="mt-2 text-gray-700 text-sm">This is the point where the vessel is off-loaded and the shipments are dispersed to their respective consignees.</div></details>
+                <details class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"><summary class="cursor-pointer text-lg font-semibold text-gray-900">What is an Inspection Certificate?</summary><div class="mt-2 text-gray-700 text-sm">This is a certificate that provides proof of insurance for CIP shipment.</div></details>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-12">
+      <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-200">
+        <h2 class="text-xl font-bold text-gray-900">Still have any questions?</h2>
+        <form class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="md:col-span-2">
+            <label class="block text-sm font-medium text-gray-700 mb-1">Your Question</label>
+            <textarea class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#D53C46]" rows="4" placeholder="Type your question"></textarea>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+            <input type="email" class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#D53C46]" placeholder="you@example.com" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+            <input type="text" class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#D53C46]" placeholder="Your name" />
+          </div>
+          <div class="md:col-span-2">
+            <button type="button" class="bg-[#D53C46] hover:bg-[#D53C46] text-white px-6 py-3 rounded-xl font-semibold">Submit</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+  <script>
+    (function(){
+      var tabsContainer = document.querySelector('.tabs-container');
+      var tabs = document.querySelectorAll('.tab');
+      var contents = document.querySelectorAll('.tab-content');
+      function activate(id){
+        tabs.forEach(function(t){ t.classList.remove('active'); if(t.getAttribute('data-tab')===id) t.classList.add('active'); });
+        contents.forEach(function(c){ c.classList.remove('active'); if(c.id===id) c.classList.add('active'); });
+      }
+      tabs.forEach(function(tab){ tab.addEventListener('click', function(){ activate(tab.getAttribute('data-tab')); }); });
+      if (tabsContainer && window.innerWidth > 991) {
+        var isDown=false, startX=0, scrollLeft=0;
+        tabsContainer.addEventListener('mousedown', function(e){ isDown=true; startX=e.pageX - tabsContainer.offsetLeft; scrollLeft=tabsContainer.scrollLeft; });
+        tabsContainer.addEventListener('mouseleave', function(){ isDown=false; });
+        tabsContainer.addEventListener('mouseup', function(){ isDown=false; });
+        tabsContainer.addEventListener('mousemove', function(e){ if(!isDown) return; e.preventDefault(); var x=e.pageX - tabsContainer.offsetLeft; var walk=(x-startX)*2; tabsContainer.scrollLeft=scrollLeft - walk; });
+        tabsContainer.addEventListener('touchstart', function(e){ isDown=true; startX=e.touches[0].pageX - tabsContainer.offsetLeft; scrollLeft=tabsContainer.scrollLeft; });
+        tabsContainer.addEventListener('touchend', function(){ isDown=false; });
+        tabsContainer.addEventListener('touchmove', function(e){ if(!isDown) return; var x=e.touches[0].pageX - tabsContainer.offsetLeft; var walk=(x-startX)*2; tabsContainer.scrollLeft=scrollLeft - walk; });
+      }
+    })();
+  </script>
+
+  <footer id="footer" class="bg-[#f5f5f5] text-[#666666]">
+    <div class="max-w-7xl mx-auto px-[24px] py-[32px]">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-[32px]">
+        <div class="space-y-[10px] text-[15px] leading-[26px]">
+          <div><span class="text-[#444444]">대표자</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">카일자민파룩아마드</span></div>
+          <div><span class="text-[#444444]">사업자등록 번호</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">470-88-00357</span></div>
+          <div><span class="text-[#444444]">주소</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">인천광역시 연수구 옥련로37 씨동 306호</span></div>
+          <div class="pt-[6px] flex items-center space-x-[14px] text-[20px]">
+            <a href="https://www.instagram.com/autonsm?igsh=ZmU2M2ppZzk1ZjVv&utm_source=qr" target="_blank" rel="noopener noreferrer" class="text-[#666666] hover:text-[#111111]">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://www.facebook.com/share/1A3NGCuwXh/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="text-[#666666] hover:text-[#111111]">
+              <i class="fa-brands fa-facebook"></i>
+            </a>
+            <a href="https://www.tiktok.com/@autonsm" target="_blank" rel="noopener noreferrer" class="text-[#666666] hover:text-[#111111]">
+              <i class="fa-brands fa-tiktok"></i>
+            </a>
+          </div>
+        </div>
+        <div class="space-y-[10px] text-[15px] leading-[26px]">
+          <div><span class="text-[#444444]">Email</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">info@autonsm.com</span></div>
+          <div>
+            <span class="text-[#444444]">TEL</span>
+            <span class="text-[#666666] whitespace-pre">   +82 10-9199-9687 (English, Korean)</span>
+          </div>
+          <div><span class="text-[#444444]">TEL</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">+821098699687</span></div>
+          <div><span class="text-[#666666] whitespace-pre">306 C dong  37 Okryeon ro  Yeonsu gu Incheon South Korea</span></div>
+        </div>
+      </div>
+      <div class="mt-[28px] border-t border-[#e5e7eb] pt-[18px]">
+        <div class="flex flex-col md:flex-row items-center justify-between">
+          <div class="text-[14px] text-[#666666] space-x-[18px]">
+            <a href="private-policy.html" class="hover:text-[#111111]">Private Policy</a>
+            <a href="terms-of-service.html" class="hover:text-[#111111]">Terms of Service</a>
+          </div>
+          <div class="text-[14px] text-[#666666] mt-[12px] md:mt-0">Copyright © Auto Nsm. All rights Reserved.</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script>
+    (function(){
+      try {
+        var role = (localStorage.getItem('role') || localStorage.getItem('userRole') || '').toLowerCase();
+        if (!role || (role !== 'buyer' && role !== 'seller')) return;
+        var signInEl = document.querySelector('[data-text="sign-in"]');
+        var signUpEl = document.querySelector('[data-text="sign-up"]');
+        var container = (signInEl && signInEl.parentElement) || (signUpEl && signUpEl.parentElement);
+        if (!container) return;
+        if (signInEl) signInEl.remove();
+        if (signUpEl) signUpEl.remove();
+        var link = document.createElement('a');
+        link.textContent = role === 'buyer' ? 'Buyer Dashboard' : 'Seller Dashboard';
+        link.href = role === 'buyer' ? 'buyer-dashboard.html' : 'seller-dashboard.html';
+        link.className = 'bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-lg font-semibold transition-all transform hover:scale-105';
+        container.appendChild(link);
+      } catch(e) {}
+    })();
+  </script>
+</body></html>

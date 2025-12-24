@@ -1,0 +1,571 @@
+<!DOCTYPE html><html><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autos NSM Inspection Technology (NIT)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>window.FontAwesomeConfig = {autoReplaceSvg: 'nest'};</script>
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" rel="stylesheet">
+    <script src="scripts/api-origin.js"></script>
+    <style>
+        ::-webkit-scrollbar { display: none; }
+        * { font-family: 'Inter', sans-serif; }
+        .fade-in-up { opacity: 0; transform: translateY(12px); }
+        .fade-in-up.show { opacity: 1; transform: translateY(0); transition: opacity 2s cubic-bezier(0.25,0.46,0.45,0.94), transform 2s cubic-bezier(0.25,0.46,0.45,0.94); }
+        .sr-up{opacity:0;transform:translateY(32px);will-change:transform,opacity}
+        .sr-left{opacity:0;transform:translateX(-32px);will-change:transform,opacity}
+        .sr-right{opacity:0;transform:translateX(32px);will-change:transform,opacity}
+        .sr-top{opacity:0;transform:translateY(-24px);will-change:transform,opacity}
+        .sr-fade{opacity:0;will-change:opacity}
+        .sr-up.is-visible{opacity:1;transform:translateY(0);transition:transform 2s cubic-bezier(0.25,0.46,0.45,0.94),opacity 2s cubic-bezier(0.25,0.46,0.45,0.94)}
+        .sr-left.is-visible{opacity:1;transform:translateX(0);transition:transform 2s cubic-bezier(0.25,0.46,0.45,0.94),opacity 2s cubic-bezier(0.25,0.46,0.45,0.94)}
+        .sr-right.is-visible{opacity:1;transform:translateX(0);transition:transform 2s cubic-bezier(0.25,0.46,0.45,0.94),opacity 2s cubic-bezier(0.25,0.46,0.45,0.94)}
+        .sr-top.is-visible{opacity:1;transform:translateY(0);transition:transform 2s cubic-bezier(0.25,0.46,0.45,0.94),opacity 2s cubic-bezier(0.25,0.46,0.45,0.94)}
+        .sr-fade.is-visible{opacity:1;transition:opacity 2s cubic-bezier(0.25,0.46,0.45,0.94)}
+  </style>
+</style>
+<style>
+  .goog-te-banner-frame{display:none!important}
+  body{top:0!important}
+  #google_translate_element{display:none!important}
+  .goog-te-gadget{display:none!important}
+  .skiptranslate{display:none!important}
+</style>
+<script>
+  function googleTranslateElementInit(){ new google.translate.TranslateElement({ pageLanguage:'en', includedLanguages:'en,ar,ko,es,fr', autoDisplay:false }, 'google_translate_element'); }
+  (function(){
+    function setCookie(name,value){ var e='expires=Fri, 31 Dec 9999 23:59:59 GMT'; document.cookie=name+'='+value+';'+e+';path=/'; var host=location.hostname; if(host.indexOf('.')!==-1){ document.cookie=name+'='+value+';'+e+';path=/;domain='+host; } }
+    function applyDir(lang){ try{ document.documentElement.setAttribute('dir', lang==='ar'?'rtl':'ltr'); }catch(_){ } }
+    function triggerCombo(lang){ var sel=document.querySelector('.goog-te-combo'); if(sel){ if(lang && sel.value==lang) return true; sel.value=(lang||'en'); setTimeout(function(){ sel.dispatchEvent(new Event('change')); }, 0); return true; } return false; }
+    function openTranslateProxy(url, lang){ var sl='en'; var tl=(lang||'en'); var href='https://translate.google.com/translate?hl='+tl+'&sl='+sl+'&tl='+tl+'&u='+encodeURIComponent(url); try{ window.open(href, '_blank'); }catch(_){} }
+    function changeLanguage(lang){
+      lang = lang || 'en';
+      if(triggerCombo(lang)){
+        try{ localStorage.setItem('lang', lang); }catch(_){ }
+        applyDir(lang);
+        return;
+      }
+      var attempts = 0;
+      var interval = setInterval(function(){
+        if(triggerCombo(lang)){
+          clearInterval(interval);
+          try{ localStorage.setItem('lang', lang); }catch(_){ }
+          applyDir(lang);
+        } else {
+          attempts++;
+          if(attempts >= 50){
+            clearInterval(interval);
+            setCookie('googtrans','/en/'+lang);
+            try{ localStorage.setItem('lang', lang); }catch(_){ }
+            applyDir(lang);
+          }
+        }
+      }, 100);
+    }
+    function init(){ var saved=null; try{ saved=localStorage.getItem('lang'); }catch(_){ } applyDir(saved||'en'); }
+    function protect(){ var q='input[type=password],input[type=email],input[name=password],input[name=email],input[name=username],textarea[name=password],textarea[name=email],textarea[name=username]'; document.querySelectorAll(q).forEach(function(el){ el.classList.add('notranslate'); el.setAttribute('translate','no'); }); }
+    document.addEventListener('click', function(e){ var btn=e.target.closest('[data-lang]'); if(!btn) return; var lang=btn.getAttribute('data-lang')||'en'; changeLanguage(lang); var label=document.querySelector('#languageToggle span'); if(label) label.textContent=btn.textContent.trim(); });
+    document.addEventListener('DOMContentLoaded', function(){ protect(); init(); });
+    var st=document.createElement('style'); st.textContent='.goog-te-banner-frame{display:none!important} body{top:0!important} #google_translate_element{display:none!important} .goog-te-gadget{display:none!important} .skiptranslate{display:none!important}'; document.head.appendChild(st);
+  })();
+</script>
+<div id="google_translate_element"></div>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</head>
+<body class="bg-gray-50">
+<div class="bg-[#0D1F39] text-white font-body relative z-[60]">
+  <div class="container mx-auto px-6 py-2">
+    <div class="flex items-center justify-between">
+      <div class="relative">
+        <button id="languageToggle" class="flex items-center space-x-2 text-white/90 hover:text-white font-medium transition-colors">
+          <i class="fa-solid fa-globe text-base"></i>
+          <span class="text-sm md:text-base">English</span>
+          <i class="fa-solid fa-chevron-down text-xs"></i>
+        </button>
+        <div id="languageDropdown" class="absolute left-0 top-full mt-1 bg-white rounded-lg shadow-xl border border-gray-200 py-2 min-w-[160px] hidden z-[1000]">
+          <button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="en">
+            <img src="https://flagcdn.com/w20/us.png" alt="English" class="w-4 h-3"><span>English</span>
+          </button>
+          <button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="ar">
+            <img src="https://flagcdn.com/w20/sa.png" alt="العربية" class="w-4 h-3"><span>العربية</span>
+          </button>
+          <button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="es">
+            <img src="https://flagcdn.com/w20/es.png" alt="Español" class="w-4 h-3"><span>Español</span>
+          </button>
+        </div>
+      </div>
+      <div class="flex items-center space-x-3">
+        <button class="bg-white/10 hover:bg-white/20 text-white px-4 py-1.5 rounded-lg font-medium transition-all h-hover" data-text="sign-in" onclick="window.open('signin.html','_blank')">Login</button>
+        <button class="bg-[#D53C46] text-white hover:bg-[#D53C46] px-4 py-1.5 rounded-lg font-semibold transition-all h-hover" data-text="sign-up" onclick="window.open('signup.html','_blank')">Register</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<header id="header" class="sticky top-0 z-50 backdrop-blur">
+  <div class="w-full px-6 py-2 bg-white">
+    <div class="w-full px-4 md:px-6 py-3 flex items-center justify-between">
+      <a href="home.html" class="flex items-center space-x-3">
+        <img src="assets/images/Gemini_Generated_Image_2f4bkg2f4bkg2f4bee.png" alt="Logo" class="w-80 h-[100px] object-contain animate-logo" />
+      </a>
+      <nav class="hidden md:flex items-center space-x-8 text-gray-900 font-semibold animate-nav">
+        <a href="home.html" class="hover:text-[#0D1F39] transition-colors">Home</a>
+        <a href="inventory.html" class="hover:text-[#0D1F39] transition-colors">Inventory</a>
+        <div class="relative" id="navAbout">
+          <a href="about-us.html" id="navAboutToggle" class="hover:text-[#0D1F39] transition-colors flex items-center space-x-1">
+            <span>About Us</span>
+            <i class="fa-solid fa-chevron-down text-xs"></i>
+          </a>
+          <div id="navAboutMenu" class="absolute left-1/2 -translate-x-1/2 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg py-2 min-w-[220px] opacity-0 translate-y-1 pointer-events-none transition-all duration-300 z-50">
+            <a href="mit-info.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">MIT Info</a>
+            <a href="service-introduction.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">Service Introduction</a>
+          </div>
+        </div>
+        <a href="contact-us.html" class="hover:text-[#0D1F39] transition-colors">Contact Us</a>
+        <div class="relative" id="navMore">
+          <button id="navMoreToggle" class="hover:text-[#0D1F39] transition-colors flex items-center space-x-1">
+            <span>More</span>
+            <i class="fa-solid fa-chevron-down text-xs"></i>
+          </button>
+          <div id="navMoreMenu" class="absolute left-1/2 -translate-x-1/2 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg py-2 min-w-[220px] opacity-0 translate-y-1 pointer-events-none transition-all duration-300 z-50">
+            <a href="faq.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">FAQs</a>
+            <a href="reviews.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">Reviews</a>
+            <a href="blog.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">Blogs</a>
+          </div>
+        </div>
+      </nav>
+      <div class="flex items-center space-x-4 animate-actions">
+        <div class="hidden md:flex items-center bg-white rounded-full shadow px-3 py-1.5 border border-gray-200">
+          <i class="fa-solid fa-magnifying-glass text-gray-600 mr-2 hover:text-[#D53C46]"></i>
+          <input id="headerSearchInput" type="text" placeholder="Search" class="w-40 md:w-52 text-sm bg-transparent focus:outline-none" />
+        </div>
+        <button id="mobileSearchToggle" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition group h-hover">
+          <i class="fa-solid fa-magnifying-glass group-hover:text-[#D53C46]"></i>
+        </button>
+        <a id="headerFavorite" href="dashboard-saved.html" class="relative inline-flex items-center justify-center w-10 h-10 rounded-full border border-gray-200 hover:bg-gray-50 transition-colors group h-hover">
+          <i class="fa-regular fa-heart text-[#0D1F39] group-hover:text-[#D53C46]"></i>
+          <span class="absolute -top-1 -right-1 inline-flex items-center justify-center w-5 h-5 rounded-full bg-[#D53C46] text-white text-xs">0</span>
+        </a>
+        <button id="mobileMenuToggle" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition group h-hover">
+          <i class="fa-solid fa-bars group-hover:text-[#D53C46]"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    var h = document.getElementById('header');
+    if (h) { requestAnimationFrame(function(){ h.classList.add('header-ready'); }); }
+  });
+  (function(){
+    function setupHoverDelay(containerId, toggleId, menuId){
+      var c=document.getElementById(containerId); var t=document.getElementById(toggleId); var m=document.getElementById(menuId);
+      if(!c||!t||!m) return; var hid=null;
+      function show(){ if(hid){ clearTimeout(hid); hid=null; } m.classList.remove('opacity-0','pointer-events-none','translate-y-1'); m.classList.add('opacity-100','pointer-events-auto','translate-y-0'); }
+    function schedule(){ if(hid) clearTimeout(hid); hid=setTimeout(function(){ m.classList.remove('opacity-100','pointer-events-auto','translate-y-0'); m.classList.add('opacity-0','pointer-events-none','translate-y-1'); hid=null; },300); }
+      c.addEventListener('mouseenter', show); t.addEventListener('mouseenter', show); m.addEventListener('mouseenter', show);
+      c.addEventListener('mouseleave', schedule); t.addEventListener('mouseleave', schedule); m.addEventListener('mouseleave', schedule);
+      t.addEventListener('click', show);
+    }
+    setupHoverDelay('navAbout','navAboutToggle','navAboutMenu');
+    setupHoverDelay('navMore','navMoreToggle','navMoreMenu');
+  })();
+</script>
+
+<div id="mobileSearchContainer" class="md:hidden hidden px-6">
+  <div class="flex items-center bg-white rounded-full shadow px-3 py-2 border border-gray-200">
+    <i class="fa-solid fa-magnifying-glass text-gray-600 mr-2"></i>
+    <input id="mobileHeaderSearchInput" type="text" placeholder="Search" class="flex-1 text-sm bg-transparent focus:outline-none" />
+    <button id="mobileHeaderSearchBtn" class="ml-2 px-3 py-1 rounded-full bg-[#0D1F39] text-white text-xs">Search</button>
+  </div>
+  </div>
+
+<div id="mobileMenuOverlay" class="fixed inset-0 bg-black/40 hidden z-40 md:hidden"></div>
+<aside id="mobileDrawer" class="fixed inset-y-0 right-0 w-80 max-w-[88vw] bg-white shadow-xl border-l border-gray-200 z-50 transform translate-x-full transition-transform duration-300 ease-out md:hidden" aria-hidden="true" role="dialog">
+  <div class="flex items-center justify-between px-4 py-3 border-b border-gray-100">
+    <div class="flex items-center space-x-2">
+      <img src="assets/images/Gemini_Generated_Image_2f4bkg2f4bkg2f4bee.png" alt="Logo" class="w-64 h-16 object-contain" />
+    </div>
+    <button id="mobileDrawerClose" class="inline-flex items-center justify-center w-10 h-10 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition" aria-label="Close menu">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+  <div class="px-4 py-3">
+    <div class="flex items-center bg-white rounded-full border border-gray-200 px-3 py-2 shadow-sm">
+      <i class="fa-solid fa-magnifying-glass text-gray-600 mr-2"></i>
+      <input id="drawerSearchInput" type="text" placeholder="Search" class="flex-1 text-sm bg-transparent focus:outline-none" />
+      <button id="drawerSearchBtn" class="ml-2 px-3 py-1 rounded-full bg-[#0D1F39] text-white text-xs">Search</button>
+    </div>
+  </div>
+  <nav class="px-4 py-3 space-y-1 text-gray-900 font-semibold">
+    <a href="home.html" class="block py-2 rounded-lg hover:bg-gray-50">Home</a>
+    <a href="inventory.html" class="block py-2 rounded-lg hover:bg-gray-50">Inventory</a>
+    <div class="border-t border-gray-100 my-2"></div>
+    <button id="drawerAboutToggle" class="w-full flex items-center justify-between py-2 rounded-lg hover:bg-gray-50 text-left" aria-expanded="false">
+      <span>About Us</span>
+      <i class="fa-solid fa-chevron-down text-xs"></i>
+    </button>
+    <div id="drawerAboutMenu" class="hidden ml-3 space-y-1 text-gray-700 font-normal">
+      <a href="mit-info.html" class="block py-1.5 rounded hover:bg-gray-50">MIT Info</a>
+      <a href="service-introduction.html" class="block py-1.5 rounded hover:bg-gray-50">Service Introduction</a>
+    </div>
+    <a href="contact-us.html" class="block py-2 rounded-lg hover:bg-gray-50">Contact Us</a>
+    <button id="drawerMoreToggle" class="w-full flex items-center justify-between py-2 rounded-lg hover:bg-gray-50 text-left" aria-expanded="false">
+      <span>More</span>
+      <i class="fa-solid fa-chevron-down text-xs"></i>
+    </button>
+    <div id="drawerMoreMenu" class="hidden ml-3 space-y-1 text-gray-700 font-normal">
+      <a href="faq.html" class="block py-1.5 rounded hover:bg-gray-50">FAQs</a>
+      <a href="reviews.html" class="block py-1.5 rounded hover:bg-gray-50">Reviews</a>
+      <a href="blog.html" class="block py-1.5 rounded hover:bg-gray-50">Blogs</a>
+    </div>
+  </nav>
+</aside>
+
+<script>
+  (function(){
+    var langToggle = document.getElementById('languageToggle');
+    var langDropdown = document.getElementById('languageDropdown');
+    if (langToggle && langDropdown) {
+      langToggle.addEventListener('click', function(){ langDropdown.classList.toggle('hidden'); });
+      document.addEventListener('click', function(e){ if (!langDropdown.contains(e.target) && !langToggle.contains(e.target)) langDropdown.classList.add('hidden'); });
+    }
+    var mobileSearchToggle = document.getElementById('mobileSearchToggle');
+    var mobileSearchContainer = document.getElementById('mobileSearchContainer');
+    if (mobileSearchToggle && mobileSearchContainer) {
+      mobileSearchToggle.addEventListener('click', function(){ mobileSearchContainer.classList.toggle('hidden'); });
+    }
+    var overlay = document.getElementById('mobileMenuOverlay');
+    var drawer = document.getElementById('mobileDrawer');
+    var menuBtn = document.getElementById('mobileMenuToggle');
+    var closeBtn = document.getElementById('mobileDrawerClose');
+    function openDrawer(){ if (overlay && drawer) { overlay.classList.remove('hidden'); drawer.style.transform='translateX(0)'; } }
+    function closeDrawer(){ if (overlay && drawer) { overlay.classList.add('hidden'); drawer.style.transform=''; } }
+    if (menuBtn) menuBtn.addEventListener('click', openDrawer);
+    if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+    if (overlay) overlay.addEventListener('click', closeDrawer);
+    var drawerAboutToggle = document.getElementById('drawerAboutToggle');
+    var drawerAboutMenu = document.getElementById('drawerAboutMenu');
+    if (drawerAboutToggle && drawerAboutMenu) {
+      drawerAboutToggle.addEventListener('click', function(){
+        var hidden = drawerAboutMenu.classList.toggle('hidden');
+        drawerAboutToggle.setAttribute('aria-expanded', hidden ? 'false' : 'true');
+      });
+    }
+    var drawerMoreToggle = document.getElementById('drawerMoreToggle');
+    var drawerMoreMenu = document.getElementById('drawerMoreMenu');
+    if (drawerMoreToggle && drawerMoreMenu) {
+      drawerMoreToggle.addEventListener('click', function(){
+        var hidden = drawerMoreMenu.classList.toggle('hidden');
+        drawerMoreToggle.setAttribute('aria-expanded', hidden ? 'false' : 'true');
+      });
+    }
+  })();
+</script>
+
+<main class="max-w-7xl mx-auto px-6 md:px-8 py-10 md:py-12">
+  <section id="mit-banner" class="relative rounded-3xl bg-gradient-to-br from-[#0A2A4A] to-[#133B66] text-white overflow-hidden sr-up">
+    <div class="absolute inset-0 w-full h-full opacity-20" style="background-image:url('assets/images/about-us-banner.jpg');background-size:cover;background-position:center"></div>
+    <div class="relative px-8 py-16 md:px-12 md:py-20">
+      <div class="max-w-3xl">
+        <h1 class="text-3xl md:text-5xl font-extrabold sr-up">Autos NSM Inspection Technology (NIT)</h1>
+        <p class="mt-4 text-white/80 sr-up">Brief guide to Autos NSM Inspection Technology (NIT) service.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="mit-features" class="mt-12">
+    <div class="text-center">
+      <h2 class="text-2xl md:text-3xl font-bold text-gray-900">Three features of NIT service</h2>
+      <p class="mt-2 text-gray-600">Check the condition of your used car with Autos NSM!</p>
+    </div>
+    <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 sr-left">
+      <div class="group bg-white rounded-2xl p-6 shadow ring-1 ring-gray-200" data-animate style="opacity:0; transform:translateY(12px)">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-red-50 text-red-600 flex items-center justify-center"><i class="fa-solid fa-list-check"></i></div>
+          <div class="text-xs font-semibold text-red-700 uppercase tracking-wide">115‑point inspection</div>
+        </div>
+        <div class="mt-2 text-gray-700 text-sm">A detailed 115‑point inspection checks exterior condition, options, operational status, and accident history.</div>
+      </div>
+      <div class="group bg-white rounded-2xl p-6 shadow ring-1 ring-gray-200" data-animate style="opacity:0; transform:translateY(12px)">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-red-50 text-red-600 flex items-center justify-center"><i class="fa-solid fa-camera"></i></div>
+          <div class="text-xs font-semibold text-red-700 uppercase tracking-wide">Detailed photos & videos</div>
+        </div>
+        <div class="mt-2 text-gray-700 text-sm">Photos and videos of exterior, interior, and engine compartment provide vivid verification of condition.</div>
+      </div>
+      <div class="group bg-white rounded-2xl p-6 shadow ring-1 ring-gray-200" data-animate style="opacity:0; transform:translateY(12px)">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-red-50 text-red-600 flex items-center justify-center"><i class="fa-solid fa-mobile-screen-button"></i></div>
+          <div class="text-xs font-semibold text-red-700 uppercase tracking-wide">Convenient access</div>
+        </div>
+        <div class="mt-2 text-gray-700 text-sm">Mobile‑optimized report accessible anytime, available in English, Arabic, and Spanish.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="mit-core" class="mt-16">
+    <div class="mt-2 grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+      <div class="md:col-span-3">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 sr-right">Autos NSM Inspection Technology</h2>
+      </div>
+      <div class="md:col-span-6" data-animate style="opacity:0; transform:translateY(12px)">
+        <div class="bg-white rounded-3xl shadow-xl ring-1 ring-gray-200 p-5">
+          <div class="overflow-hidden rounded-2xl">
+            <img id="mit-main-img" src="assets/images/istockphoto-924908526-612x612.jpg" alt="Vehicle exterior" class="w-full h-56 md:h-64 object-cover transition-opacity duration-300 sr-top">
+          </div>
+          <div id="mit-main-desc" class="mt-4 text-gray-600 text-sm sr-right">The exterior condition of the vehicle is assessed, including the overall paint finish, bumpers, and other components.</div>
+        </div>
+      </div>
+      <div class="md:col-span-3" data-animate style="opacity:0; transform:translateY(12px)">
+        <div id="mit-items" class="space-y-4">
+          <button type="button" data-key="exterior" class="w-full text-left">
+            <div class="text-[12px] font-semibold text-red-500" data-num>01</div>
+            <div class="text-lg font-bold text-gray-900" data-title>Vehicle exterior</div>
+          </button>
+          <button type="button" data-key="engine" class="w-full text-left opacity-70">
+            <div class="text-[12px] font-semibold text-gray-400" data-num>02</div>
+            <div class="text-lg font-semibold text-gray-500" data-title>Engine compartment</div>
+          </button>
+          <button type="button" data-key="underbody" class="w-full text-left opacity-70">
+            <div class="text-[12px] font-semibold text-gray-400" data-num>03</div>
+            <div class="text-lg font-semibold text-gray-500" data-title>Vehicle underbody</div>
+          </button>
+          <button type="button" data-key="accident" class="w-full text-left opacity-70">
+            <div class="text-[12px] font-semibold text-gray-400" data-num>04</div>
+            <div class="text-lg font-semibold text-gray-500" data-title>Accident/Flood inspection</div>
+          </button>
+          <button type="button" data-key="interior" class="w-full text-left opacity-70">
+            <div class="text-[12px] font-semibold text-gray-400" data-num>05</div>
+            <div class="text-lg font-semibold text-gray-500" data-title>Vehicle interior</div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="mit-process" class="mt-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+      <div>
+        <h3 class="text-xl font-bold text-gray-900">Autos NSM inspection process</h3>
+        <div class="mt-4 relative sr-left" id="mit-steps">
+          <div class="absolute left-4 top-0 bottom-0 w-px bg-red-200"></div>
+          <div class="space-y-5">
+            <div class="relative pl-12" data-animate style="opacity:0; transform:translateY(12px)">
+              <div class="absolute left-0 top-1 w-7 h-7 rounded-full border-2 border-red-500 bg-white"></div>
+              <div class="text-sm font-semibold">01 Request for Inspection</div>
+              <div class="text-gray-600 text-sm">Request NIT services through Autos NSM staff.</div>
+            </div>
+            <div class="relative pl-12" data-animate style="opacity:0; transform:translateY(12px)">
+              <div class="absolute left-0 top-1 w-7 h-7 rounded-full border-2 border-red-500 bg-white"></div>
+              <div class="text-sm font-semibold">02 Inspection preparation</div>
+              <div class="text-gray-600 text-sm">Bring the vehicle to Autos NSM's yard at Incheon Port, or an inspection expert visits the storage yard.</div>
+            </div>
+            <div class="relative pl-12" data-animate style="opacity:0; transform:translateY(12px)">
+              <div class="absolute left-0 top-1 w-7 h-7 rounded-full border-2 border-red-500 bg-white"></div>
+              <div class="text-sm font-semibold">03 Vehicle inspection</div>
+              <div class="text-gray-600 text-sm">115 points including exterior, underbody, engine compartment, and options.</div>
+            </div>
+            <div class="relative pl-12" data-animate style="opacity:0; transform:translateY(12px)">
+              <div class="absolute left-0 top-1 w-7 h-7 rounded-full border-2 border-red-500 bg-white"></div>
+              <div class="text-sm font-semibold">04 Vehicle photography</div>
+              <div class="text-gray-600 text-sm">Detailed photos and videos captured for thorough verification.</div>
+            </div>
+            <div class="relative pl-12" data-animate style="opacity:0; transform:translateY(12px)">
+              <div class="absolute left-0 top-1 w-7 h-7 rounded-full border-2 border-red-500 bg-white"></div>
+              <div class="text-sm font-semibold">05 Report issuance</div>
+              <div class="text-gray-600 text-sm">Mobile‑optimized report issued; viewable on the vehicle's details page.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3 class="text-xl font-bold text-gray-900">Eligible Vehicles for Inspection</h3>
+        <div class="mt-4 grid grid-cols-1 gap-6 sr-right" id="mit-eligible">
+          <div class="bg-white rounded-2xl p-6 shadow ring-1 ring-gray-200" data-animate style="opacity:0; transform:translateY(12px)">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-red-50 text-red-600 flex items-center justify-center"><i class="fa-solid fa-car-side"></i></div>
+              <div class="text-sm font-semibold">Supported</div>
+            </div>
+            <div class="mt-2 text-gray-600 text-sm">Compact cars, sedans, SUVs, and trucks under 1.4 tons.</div>
+          </div>
+          <div class="bg-white rounded-2xl p-6 shadow ring-1 ring-gray-200" data-animate style="opacity:0; transform:translateY(12px)">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center"><i class="fa-solid fa-ban"></i></div>
+              <div class="text-sm font-semibold">Not eligible</div>
+            </div>
+            <div class="mt-2 text-gray-600 text-sm">Electric vehicles, buses, large trucks, and heavy equipment.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="mit-notes" class="mt-16">
+    <h3 class="text-xl font-bold text-gray-900 text-center">Important notes regarding NIT</h3>
+    <div class="mt-6 max-w-4xl mx-auto grid grid-cols-1 gap-4">
+      <div class="bg-white rounded-2xl p-6 shadow ring-1 ring-gray-200 text-gray-700 text-sm sr-up" data-animate style="opacity:0; transform:translateY(12px)">
+        NIT does not predict the future condition of the vehicle or guarantee its quality; it provides information to help buyers clearly understand the vehicle's current condition.
+      </div>
+      <div class="bg-white rounded-2xl p-6 shadow ring-1 ring-gray-200 text-gray-700 text-sm sr-up" data-animate style="opacity:0; transform:translateY(12px)">
+        Due to the service being conducted while stationary, functions that require driving cannot be assessed.
+      </div>
+      <div class="bg-white rounded-2xl p-6 shadow ring-1 ring-gray-200 text-gray-700 text-sm sr-up" data-animate style="opacity:0; transform:translateY(12px)">
+        Non‑inspectable items include odometer tampering, flood damage, and options that can only be verified during road operation.
+      </div>
+    </div>
+  </section>
+
+  <section id="mit-cta" class="mt-16">
+    <div class="rounded-3xl bg-[#0A2A4A] text-white p-10 md:p-12 flex flex-col md:flex-row items-center justify-between sr-up">
+      <div class="max-w-xl">
+        <h3 class="text-2xl font-extrabold">Request NIT inspection</h3>
+        <p class="mt-2 text-white/80">Talk to our staff to schedule an inspection or learn more.</p>
+      </div>
+      <div class="mt-6 md:mt-0 flex gap-3">
+        <a href="contact-us.html" class="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 transition text-white font-semibold border border-white/25">Contact Us</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function(){
+  function once(section, fn, t){ if(!section) return; var io=new IntersectionObserver(function(es){ for(var i=0;i<es.length;i++){ var e=es[i]; if(e.isIntersecting){ fn(); io.disconnect(); break; } } }, {root:null, threshold:t||0.2}); io.observe(section); }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    var banner=document.getElementById('mit-banner');
+    var h=document.querySelector('#mit-banner h1');
+    var p=document.querySelector('#mit-banner p');
+    if(banner){ banner.style.transitionDelay='0ms'; banner.classList.add('is-visible'); }
+    if(h){ h.style.transitionDelay='120ms'; h.classList.add('is-visible'); }
+    if(p){ p.style.transitionDelay='240ms'; p.classList.add('is-visible'); }
+  });
+
+  var features=document.getElementById('mit-features');
+  if(features) once(features,function(){ var grid=features.querySelector('.sr-left'); if(grid){ grid.classList.add('is-visible'); } });
+
+  var core=document.getElementById('mit-core');
+  if(core) once(core,function(){ var heading=core.querySelector('h2.sr-right'); if(heading) heading.classList.add('is-visible'); var img=document.getElementById('mit-main-img'); if(img) img.classList.add('is-visible'); var desc=document.getElementById('mit-main-desc'); if(desc) desc.classList.add('is-visible'); });
+
+  var process=document.getElementById('mit-process');
+  if(process) once(process,function(){ var left=process.querySelector('#mit-steps'); if(left) left.classList.add('is-visible'); var right=process.querySelector('#mit-eligible'); if(right) right.classList.add('is-visible'); });
+
+  var notes=document.getElementById('mit-notes');
+  if(notes) once(notes,function(){ var cards=notes.querySelectorAll('.sr-up'); Array.prototype.forEach.call(cards,function(el,i){ el.style.transitionDelay=(120*i)+'ms'; el.classList.add('is-visible'); }); });
+
+  var cta=document.getElementById('mit-cta');
+  if(cta) once(cta,function(){ var box=cta.querySelector('.sr-up'); if(box) box.classList.add('is-visible'); });
+})();
+</script>
+
+<footer id="footer" class="bg-[#f5f5f5] text-[#666666]">
+  <div class="max-w-7xl mx-auto px-[24px] py-[32px]">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-[32px]">
+      <div class="space-y-[10px] text-[15px] leading-[26px]">
+        <div><span class="text-[#444444]">대표자</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">카일자민파룩아마드</span></div>
+        <div><span class="text-[#444444]">사업자등록 번호</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">470-88-00357</span></div>
+        <div><span class="text-[#444444]">주소</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">인천광역시 연수구 옥련로37 씨동 306호</span></div>
+        <div class="pt-[6px] flex items-center space-x-[14px] text-[20px]">
+          <a href="https://www.instagram.com/autonsm?igsh=ZmU2M2ppZzk1ZjVv&utm_source=qr" target="_blank" rel="noopener noreferrer" class="text-[#666666] hover:text-[#111111]">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="https://www.facebook.com/share/1A3NGCuwXh/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="text-[#666666] hover:text-[#111111]">
+            <i class="fa-brands fa-facebook"></i>
+          </a>
+          <a href="https://www.tiktok.com/@autonsm" target="_blank" rel="noopener noreferrer" class="text-[#666666] hover:text-[#111111]">
+            <i class="fa-brands fa-tiktok"></i>
+          </a>
+        </div>
+      </div>
+      <div class="space-y-[10px] text-[15px] leading-[26px]">
+        <div><span class="text-[#444444]">Email</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">info@autonsm.com</span></div>
+        <div>
+          <span class="text-[#444444]">TEL</span>
+          <span class="text-[#666666] whitespace-pre">   +82 10-9199-9687 (English, Korean)</span>
+        </div>
+        <div><span class="text-[#444444]">TEL</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">+821098699687</span></div>
+        <div><span class="text-[#666666] whitespace-pre">306 C dong  37 Okryeon ro  Yeonsu gu Incheon South Korea</span></div>
+      </div>
+    </div>
+    <div class="mt-[28px] border-t border-[#e5e7eb] pt-[18px]">
+      <div class="flex flex-col md:flex-row items-center justify-between">
+        <div class="text-[14px] text-[#666666] space-x-[18px]">
+          <a href="private-policy.html" class="hover:text-[#111111]">Private Policy</a>
+          <a href="terms-of-service.html" class="hover:text-[#111111]">Terms of Service</a>
+        </div>
+        <div class="text-[14px] text-[#666666] mt-[12px] md:mt-0">Copyright © Auto Nsm. All rights Reserved.</div>
+      </div>
+    </div>
+  </div>
+</footer>
+<script>
+  (function(){
+    try {
+      var role = (localStorage.getItem('role') || localStorage.getItem('userRole') || '').toLowerCase();
+      if (!role || (role !== 'buyer' && role !== 'seller')) return;
+      var signInEl = document.querySelector('[data-text="sign-in"]');
+      var signUpEl = document.querySelector('[data-text="sign-up"]');
+      var container = (signInEl && signInEl.parentElement) || (signUpEl && signUpEl.parentElement);
+      if (!container) return;
+      if (signInEl) signInEl.remove();
+      if (signUpEl) signUpEl.remove();
+      var link = document.createElement('a');
+      link.textContent = role === 'buyer' ? 'Buyer Dashboard' : 'Seller Dashboard';
+      link.href = role === 'buyer' ? 'buyer-dashboard.html' : 'seller-dashboard.html';
+      link.className = 'bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-lg font-semibold transition-all transform hover:scale-105';
+      container.appendChild(link);
+    } catch(e) {}
+  })();
+</script>
+
+<script>
+  window.addEventListener('scroll', function(){
+    var header = document.getElementById('header');
+    if (!header) return;
+    if (window.scrollY > 10) header.classList.add('shadow-xl'); else header.classList.remove('shadow-xl');
+  });
+  document.querySelectorAll('.fade-in-up').forEach(function(el){ requestAnimationFrame(function(){ el.classList.add('show'); }); });
+  (function(){
+    var cards = document.querySelectorAll('[data-animate]');
+    if (!cards.length) return;
+    if (!('IntersectionObserver' in window)) { cards.forEach(function(el){ el.style.opacity='1'; el.style.transform='translateY(0)'; }); return; }
+    var io = new IntersectionObserver(function(entries){ entries.forEach(function(e){ if (e.isIntersecting){ e.target.style.transition='transform 2s cubic-bezier(0.25,0.46,0.45,0.94), opacity 2s cubic-bezier(0.25,0.46,0.45,0.94)'; e.target.style.willChange='transform, opacity'; e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; io.unobserve(e.target);} }); }, { threshold: 0.2 });
+    cards.forEach(function(el){ io.observe(el); });
+  })();
+  (function(){
+    var list = document.getElementById('mit-items');
+    var img = document.getElementById('mit-main-img');
+    var desc = document.getElementById('mit-main-desc');
+    if (!list || !img || !desc) return;
+    var data = {
+      exterior: { n:'01', t:'Vehicle exterior', i:'assets/images/istockphoto-924908526-612x612.jpg', d:'The exterior condition of the vehicle is assessed, including the overall paint finish, bumpers, and other components.' },
+      engine: { n:'02', t:'Engine compartment', i:'assets/images/istockphoto-539223762-612x612.jpg', d:'Visual and functional checks in the engine bay.' },
+      underbody: { n:'03', t:'Vehicle underbody', i:'assets/images/istockphoto-120710941-612x612.jpg', d:'Structure, corrosion, and visible mechanical components.' },
+      accident: { n:'04', t:'Accident/Flood inspection', i:'assets/images/Gemini_Generated_Image_m5zeg7m5zeg7m5ze.jpg', d:'Signs of accident repair and indicators of flood exposure.' },
+      interior: { n:'05', t:'Vehicle interior', i:'assets/images/Gemini_Generated_Image_tlgzfitlgzfitlgz.jpg', d:'Cabin condition, features, and functional checks.' }
+    };
+    function setActive(key){
+      var item = data[key] || data.exterior;
+      img.style.opacity = '0';
+      setTimeout(function(){
+        img.src = item.i; img.alt = item.t; desc.textContent = item.d; img.style.opacity = '1';
+      }, 150);
+      Array.prototype.forEach.call(list.querySelectorAll('[data-key]'), function(btn){
+        var active = btn.getAttribute('data-key') === key;
+        btn.classList.toggle('opacity-70', !active);
+        var num = btn.querySelector('[data-num]');
+        var title = btn.querySelector('[data-title]');
+        if (num) num.className = active ? 'text-[12px] font-semibold text-red-500' : 'text-[12px] font-semibold text-gray-400';
+        if (title) title.className = active ? 'text-lg font-bold text-gray-900' : 'text-lg font-semibold text-gray-500';
+      });
+    }
+    list.querySelectorAll('[data-key]').forEach(function(btn){
+      btn.addEventListener('click', function(){ setActive(btn.getAttribute('data-key')); });
+    });
+    setActive('exterior');
+  })();
+</script>
+
+</body></html>

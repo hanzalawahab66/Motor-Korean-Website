@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buyer Dashboard - My Documents</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>window.FontAwesomeConfig = {autoReplaceSvg: 'nest'};</script>
+  <script src="scripts/api-origin.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" rel="stylesheet">
+  <style>
+    ::-webkit-scrollbar { display: none; }
+    * { font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", sans-serif; }
+    .card-hover { transition: all 0.3s ease; }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+    .sticky-column { position: sticky; top: 6rem; }
+  </style>
+
+<style>
+  .goog-te-banner-frame{display:none!important}
+  body{top:0!important}
+  #google_translate_element{display:none!important}
+  .goog-te-gadget{display:none!important}
+  .skiptranslate{display:none!important}
+</style>
+<script>
+  function googleTranslateElementInit(){ new google.translate.TranslateElement({ pageLanguage:'en', includedLanguages:'en,ar,ko,es,fr', autoDisplay:false }, 'google_translate_element'); }
+  (function(){
+    function setCookie(name,value){ var e='expires=Fri, 31 Dec 9999 23:59:59 GMT'; document.cookie=name+'='+value+';'+e+';path=/'; var host=location.hostname; if(host.indexOf('.')!==-1){ document.cookie=name+'='+value+';'+e+';path=/;domain='+host; } }
+    function applyDir(lang){ try{ document.documentElement.setAttribute('dir', lang==='ar'?'rtl':'ltr'); }catch(_){ } }
+    function triggerCombo(lang){ var sel=document.querySelector('.goog-te-combo'); if(sel){ if(lang && sel.value==lang) return true; sel.value=(lang||'en'); setTimeout(function(){ sel.dispatchEvent(new Event('change')); }, 0); return true; } return false; }
+    function changeLanguage(lang){
+      lang = lang || 'en';
+      if(triggerCombo(lang)){
+        try{ localStorage.setItem('lang', lang); }catch(_){ }
+        applyDir(lang);
+        return;
+      }
+      var attempts = 0;
+      var interval = setInterval(function(){
+        if(triggerCombo(lang)){
+          clearInterval(interval);
+          try{ localStorage.setItem('lang', lang); }catch(_){ }
+          applyDir(lang);
+        } else {
+          attempts++;
+          if(attempts >= 50){
+            clearInterval(interval);
+            setCookie('googtrans','/en/'+lang);
+            try{ localStorage.setItem('lang', lang); }catch(_){ }
+            applyDir(lang);
+          }
+        }
+      }, 100);
+    }
+    function init(){ var saved=null; try{ saved=localStorage.getItem('lang'); }catch(_){ } applyDir(saved||'en'); }
+    function protect(){ var q='input[type=password],input[type=email],input[name=password],input[name=email],input[name=username],textarea[name=password],textarea[name=email],textarea[name=username]'; document.querySelectorAll(q).forEach(function(el){ el.classList.add('notranslate'); el.setAttribute('translate','no'); }); }
+    document.addEventListener('click', function(e){ var btn=e.target.closest('[data-lang]'); if(!btn) return; var lang=btn.getAttribute('data-lang')||'en'; changeLanguage(lang); var label=document.querySelector('#languageToggle span'); if(label) label.textContent=btn.textContent.trim(); });
+    document.addEventListener('DOMContentLoaded', function(){ protect(); init(); });
+    var st=document.createElement('style'); st.textContent='.goog-te-banner-frame{display:none!important} body{top:0!important} #google_translate_element{display:none!important} .goog-te-gadget{display:none!important} .skiptranslate{display:none!important}'; document.head.appendChild(st);
+  })();
+</script>
+<div id="google_translate_element"></div>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</head>
+<body class="bg-gray-50">
+
+  <div class="bg-[#0D1F39] text-white font-body relative z-[60]">
+    <div class="container mx-auto px-6 py-2">
+      <div class="flex items-center justify-between">
+        <div class="relative">
+          <button id="languageToggle" class="flex items-center space-x-2 text-white/90 hover:text-white font-medium transition-colors">
+            <i class="fa-solid fa-globe text-base"></i>
+            <span class="text-sm md:text-base">English</span>
+            <i class="fa-solid fa-chevron-down text-xs"></i>
+          </button>
+          <div id="languageDropdown" class="absolute left-0 top-full mt-1 bg-white rounded-lg shadow-xl border border-gray-200 py-2 min-w-[160px] hidden z-[1000]">
+            <button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="en">
+              <img src="https://flagcdn.com/w20/us.png" alt="English" class="w-4 h-3">
+              <span>English</span>
+            </button>
+            <button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="ko">
+              <img src="https://flagcdn.com/w20/kr.png" alt="한국어" class="w-4 h-3">
+              <span>한국어</span>
+            </button>
+            <button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="ar">
+              <img src="https://flagcdn.com/w20/sa.png" alt="العربية" class="w-4 h-3">
+              <span>العربية</span>
+            </button>
+            <button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="fr">
+              <img src="https://flagcdn.com/w20/fr.png" alt="Français" class="w-4 h-3">
+              <span>Français</span>
+            </button>
+          </div>
+        </div>
+        <div class="flex items-center space-x-3">
+          <button class="bg-white/10 hover:bg-white/20 text-white px-4 py-1.5 rounded-lg font-medium transition-all h-hover" data-text="sign-in" onclick="window.open('signin.html','_blank')">Login</button>
+          <button class="bg-[#D53C46] text-white hover:bg-[#D53C46] px-4 py-1.5 rounded-lg font-semibold transition-all h-hover" data-text="sign-up" onclick="window.open('signup.html','_blank')">Register</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <header id="header" class="sticky top-0 z-50 backdrop-blur">
+  <div class="w-full px-6 py-2 bg-white">
+    <div class="w-full px-4 md:px-6 py-3 flex items-center justify-between">
+        <a href="home.html" class="flex items-center space-x-3">
+          <img src="assets/images/Gemini_Generated_Image_2f4bkg2f4bkg2f4bee.png" alt="Logo" class="w-80 h-[100px] object-contain animate-logo" />
+        </a>
+        <nav class="hidden md:flex items-center space-x-8 text-gray-900 font-semibold animate-nav">
+          <a href="home.html" class="hover:text-[#0D1F39] transition-colors">Home</a>
+          <a href="inventory.html" class="hover:text-[#0D1F39] transition-colors">Inventory</a>
+          <div class="relative" id="navAbout">
+            <a href="about-us.html" id="navAboutToggle" class="hover:text-[#0D1F39] transition-colors flex items-center space-x-1">
+            <span>About Us</span>
+            <i class="fa-solid fa-chevron-down text-xs"></i>
+          </a>
+            <div id="navAboutMenu" class="absolute left-1/2 -translate-x-1/2 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg py-2 min-w-[220px] opacity-0 translate-y-1 pointer-events-none transition-all duration-300 z-50">
+              <a href="mit-info.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">MIT Info</a>
+              <a href="service-introduction.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">Service Introduction</a>
+            </div>
+          </div>
+          <a href="contact-us.html" class="hover:text-[#0D1F39] transition-colors">Contact Us</a>
+          <div class="relative" id="navMore">
+            <button id="navMoreToggle" class="hover:text-[#0D1F39] transition-colors flex items-center space-x-1">
+              <span>More</span>
+              <i class="fa-solid fa-chevron-down text-xs"></i>
+            </button>
+            <div id="navMoreMenu" class="absolute left-1/2 -translate-x-1/2 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg py-2 min-w-[220px] opacity-0 translate-y-1 pointer-events-none transition-all duration-300 z-50">
+              <a href="faq.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">FAQs</a>
+              <a href="reviews.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">Reviews</a>
+              <a href="blog.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">Blogs</a>
+            </div>
+          </div>
+        </nav>
+        <div class="flex items-center space-x-4 animate-actions">
+          <div class="hidden md:flex items-center bg-white rounded-full shadow px-3 py-1.5 border border-gray-200">
+            <i class="fa-solid fa-magnifying-glass text-gray-600 mr-2 hover:text-[#D53C46]"></i>
+            <input id="headerSearchInput" type="text" placeholder="Search" class="w-40 md:w-52 text-sm bg-transparent focus:outline-none" />
+          </div>
+          <button id="mobileSearchToggle" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition group h-hover">
+            <i class="fa-solid fa-magnifying-glass group-hover:text-[#D53C46]"></i>
+          </button>
+          <a id="headerFavorite" href="dashboard-saved.html" class="relative inline-flex items-center justify-center w-10 h-10 rounded-full border border-gray-200 hover:bg-gray-50 transition-colors group h-hover">
+            <i class="fa-regular fa-heart text-[#0D1F39] group-hover:text-[#D53C46]"></i>
+            <span class="absolute -top-1 -right-1 inline-flex items-center justify-center w-5 h-5 rounded-full bg-[#D53C46] text-white text-xs">0</span>
+          </a>
+          <button id="mobileMenuToggle" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition group h-hover">
+            <i class="fa-solid fa-bars group-hover:text-[#D53C46]"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      var h = document.getElementById('header');
+      if (h) { requestAnimationFrame(function(){ h.classList.add('header-ready'); }); }
+    });
+  </script>
+
+  <script>
+    (function(){
+      function setupHoverDelay(containerId, toggleId, menuId){
+        var c=document.getElementById(containerId); var t=document.getElementById(toggleId); var m=document.getElementById(menuId);
+        if(!c||!t||!m) return; var hid=null;
+        function show(){ if(hid){ clearTimeout(hid); hid=null; } m.classList.remove('opacity-0','pointer-events-none','translate-y-1'); m.classList.add('opacity-100','pointer-events-auto','translate-y-0'); }
+      function schedule(){ if(hid) clearTimeout(hid); hid=setTimeout(function(){ m.classList.remove('opacity-100','pointer-events-auto','translate-y-0'); m.classList.add('opacity-0','pointer-events-none','translate-y-1'); hid=null; },300); }
+        c.addEventListener('mouseenter', show); t.addEventListener('mouseenter', show); m.addEventListener('mouseenter', show);
+        c.addEventListener('mouseleave', schedule); t.addEventListener('mouseleave', schedule); m.addEventListener('mouseleave', schedule);
+        t.addEventListener('click', show);
+      }
+      setupHoverDelay('navAbout','navAboutToggle','navAboutMenu');
+      setupHoverDelay('navMore','navMoreToggle','navMoreMenu');
+    })();
+  </script>
+
+  <div id="mobileSearchContainer" class="md:hidden hidden px-6">
+    <div class="flex items-center bg-white rounded-full shadow px-3 py-2 border border-gray-200">
+      <i class="fa-solid fa-magnifying-glass text-gray-600 mr-2"></i>
+      <input id="mobileHeaderSearchInput" type="text" placeholder="Search" class="flex-1 text-sm bg-transparent focus:outline-none" />
+      <button id="mobileHeaderSearchBtn" class="ml-2 px-3 py-1 rounded-full bg-[#0D1F39] text-white text-xs">Search</button>
+    </div>
+  </div>
+
+  <div id="mobileMenuOverlay" class="fixed inset-0 bg-black/40 hidden z-40 md:hidden"></div>
+  <aside id="mobileDrawer" class="fixed inset-y-0 right-0 w-80 max-w-[88vw] bg-white shadow-xl border-l border-gray-200 z-50 transform translate-x-full transition-transform duration-300 ease-out md:hidden" aria-hidden="true" role="dialog">
+    <div class="flex items-center justify-between px-4 py-3 border-b border-gray-100">
+      <div class="flex items-center space-x-2">
+        <img src="assets/images/Gemini_Generated_Image_2f4bkg2f4bkg2f4bee.png" alt="Logo" class="w-64 h-16 object-contain" />
+      </div>
+      <button id="mobileDrawerClose" class="inline-flex items-center justify-center w-10 h-10 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition" aria-label="Close menu">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <div class="px-4 py-3">
+      <div class="flex items-center bg-white rounded-full border border-gray-200 px-3 py-2 shadow-sm">
+        <i class="fa-solid fa-magnifying-glass text-gray-600 mr-2"></i>
+        <input id="drawerSearchInput" type="text" placeholder="Search" class="flex-1 text-sm bg-transparent focus:outline-none" />
+        <button id="drawerSearchBtn" class="ml-2 px-3 py-1 rounded-full bg-[#0D1F39] text-white text-xs">Search</button>
+      </div>
+    </div>
+  <nav class="px-4 py-3 space-y-1 text-gray-900 font-semibold">
+    <a href="home.html" class="block py-2 rounded-lg hover:bg-gray-50">Home</a>
+    <a href="inventory.html" class="block py-2 rounded-lg hover:bg-gray-50">Inventory</a>
+    <div class="border-t border-gray-100 my-2"></div>
+    <button id="drawerAboutToggle" class="w-full flex items-center justify-between py-2 rounded-lg hover:bg-gray-50 text-left" aria-expanded="false">
+      <span>About Us</span>
+      <i class="fa-solid fa-chevron-down text-xs"></i>
+    </button>
+    <div id="drawerAboutMenu" class="hidden ml-3 space-y-1 text-gray-700 font-normal">
+      <a href="mit-info.html" class="block py-1.5 rounded hover:bg-gray-50">MIT Info</a>
+      <a href="service-introduction.html" class="block py-1.5 rounded hover:bg-gray-50">Service Introduction</a>
+    </div>
+    <a href="contact-us.html" class="block py-2 rounded-lg hover:bg-gray-50">Contact Us</a>
+    <button id="drawerMoreToggle" class="w-full flex items-center justify-between py-2 rounded-lg hover:bg-gray-50 text-left" aria-expanded="false">
+      <span>More</span>
+      <i class="fa-solid fa-chevron-down text-xs"></i>
+    </button>
+    <div id="drawerMoreMenu" class="hidden ml-3 space-y-1 text-gray-700 font-normal">
+      <a href="faq.html" class="block py-1.5 rounded hover:bg-gray-50">FAQs</a>
+      <a href="reviews.html" class="block py-1.5 rounded hover:bg-gray-50">Reviews</a>
+      <a href="blog.html" class="block py-1.5 rounded hover:bg-gray-50">Blogs</a>
+    </div>
+  </nav>
+  </aside>
+
+  <script>
+    (function(){
+      var overlay = document.getElementById('mobileMenuOverlay');
+      var drawer = document.getElementById('mobileDrawer');
+      var menuBtn = document.getElementById('mobileMenuToggle');
+      var closeBtn = document.getElementById('mobileDrawerClose');
+      function openDrawer(){ if (overlay && drawer) { overlay.classList.remove('hidden'); drawer.style.transform='translateX(0)'; } }
+      function closeDrawer(){ if (overlay && drawer) { overlay.classList.add('hidden'); drawer.style.transform=''; } }
+      if (menuBtn) menuBtn.addEventListener('click', openDrawer);
+      if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+      if (overlay) overlay.addEventListener('click', closeDrawer);
+      var drawerAboutToggle = document.getElementById('drawerAboutToggle');
+      var drawerAboutMenu = document.getElementById('drawerAboutMenu');
+      if (drawerAboutToggle && drawerAboutMenu) {
+        drawerAboutToggle.addEventListener('click', function(){
+          var hidden = drawerAboutMenu.classList.toggle('hidden');
+          drawerAboutToggle.setAttribute('aria-expanded', hidden ? 'false' : 'true');
+        });
+      }
+      var drawerMoreToggle = document.getElementById('drawerMoreToggle');
+      var drawerMoreMenu = document.getElementById('drawerMoreMenu');
+      if (drawerMoreToggle && drawerMoreMenu) {
+        drawerMoreToggle.addEventListener('click', function(){
+          var hidden = drawerMoreMenu.classList.toggle('hidden');
+          drawerMoreToggle.setAttribute('aria-expanded', hidden ? 'false' : 'true');
+        });
+      }
+    })();
+  </script>
+
+  <!-- Dashboard Content -->
+  <main class="container mx-auto px-6 py-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <!-- Sidebar -->
+      <aside class="lg:col-span-3">
+        <div class="sticky-column bg-white rounded-2xl shadow-lg p-6 border border-gray-200">
+          <h2 class="text-xl font-bold text-gray-900 mb-4">Buyer Dashboard</h2>
+          <nav class="space-y-2">
+            <a href="buyer-dashboard.html" class="flex items-center justify-between px-4 py-3 rounded-lg border text-gray-700 border-gray-200 hover:bg-gray-50 transition-all">
+              <span class="flex items-center space-x-3">
+                <i class="fa-solid fa-gauge-high text-gray-500"></i>
+                <span>Dashboard</span>
+              </span>
+              <i class="fa-solid fa-chevron-right text-gray-400"></i>
+            </a>
+            <a href="dashboard-saved.html" class="flex items-center justify-between px-4 py-3 rounded-lg border text-gray-700 border-gray-200 hover:bg-gray-50 transition-all">
+              <span class="flex items-center space-x-3">
+                <i class="fa-regular fa-heart text-gray-500"></i>
+                <span>Saved Cars</span>
+              </span>
+              <i class="fa-solid fa-chevron-right text-gray-400"></i>
+            </a>
+
+            <a href="dashboard-compare.html" class="flex items-center justify-between px-4 py-3 rounded-lg border text-gray-700 border-gray-200 hover:bg-gray-50 transition-all">
+              <span class="flex items-center space-x-3">
+                <i class="fa-solid fa-code-compare text-gray-500"></i>
+                <span>Compare Cars</span>
+              </span>
+              <i class="fa-solid fa-chevron-right text-gray-400"></i>
+            </a>
+            <a href="dashboard-messages.html" class="flex items-center justify-between px-4 py-3 rounded-lg border text-gray-700 border-gray-200 hover:bg-gray-50 transition-all">
+              <span class="flex items-center space-x-3">
+                <i class="fa-regular fa-envelope text-gray-500"></i>
+                <span>My Messages</span>
+              </span>
+              <i class="fa-solid fa-chevron-right text-gray-400"></i>
+            </a>
+            <a href="dashboard-purchases.html" class="flex items-center justify-between px-4 py-3 rounded-lg border text-gray-700 border-gray-200 hover:bg-gray-50 transition-all">
+              <span class="flex items-center space-x-3">
+                <i class="fa-solid fa-cart-shopping text-gray-500"></i>
+                <span>My Purchases</span>
+              </span>
+              <i class="fa-solid fa-chevron-right text-gray-400"></i>
+            </a>
+            <a href="dashboard-documents.html" class="flex items-center justify-between px-4 py-3 rounded-lg border text-gray-900 bg-red-50 border-red-200 hover:bg-red-100 transition-all">
+              <span class="flex items-center space-x-3">
+                <i class="fa-regular fa-file-lines text-red-500"></i>
+                <span>My Documents</span>
+              </span>
+              <i class="fa-solid fa-chevron-right text-gray-400"></i>
+            </a>
+            <a href="dashboard-notifications.html" class="flex items-center justify-between px-4 py-3 rounded-lg border text-gray-700 border-gray-200 hover:bg-gray-50 transition-all">
+              <span class="flex items-center space-x-3">
+                <i class="fa-regular fa-bell text-gray-500"></i>
+                <span>Notifications</span>
+              </span>
+              <i class="fa-solid fa-chevron-right text-gray-400"></i>
+            </a>
+            <a href="dashboard-profile.html" class="flex items-center justify-between px-4 py-3 rounded-lg border text-gray-700 border-gray-200 hover:bg-gray-50 transition-all">
+              <span class="flex items-center space-x-3">
+                <i class="fa-regular fa-user text-gray-500"></i>
+                <span>My Profile & KYC</span>
+              </span>
+              <i class="fa-solid fa-chevron-right text-gray-400"></i>
+            </a>
+          </nav>
+          <div class="mt-4">
+            <button id="signout" class="w-full px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 font-medium">Sign Out</button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main: My Documents -->
+      <section class="lg:col-span-9">
+        <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-200 mb-6">
+          <div class="flex items-center justify-between">
+            <div>
+              <h1 class="text-2xl font-bold text-gray-900">My Documents</h1>
+              <p class="text-gray-600">Invoices, receipts, and related files.</p>
+            </div>
+            <a href="buyerordersandpayments.html" class="text-sm text-blue-600 hover:text-blue-700 underline">Billing & Payments</a>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-200">
+          <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Document</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200" id="docs-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer (from home.html) -->
+  <footer id="footer" class="bg-[#f5f5f5] text-[#666666]">
+    <div class="max-w-7xl mx-auto px-[24px] py-[32px]">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-[32px]">
+        <div class="space-y-[10px] text-[15px] leading-[26px]">
+          <div><span class="text-[#444444]">대표자</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">카일자민파룩아마드</span></div>
+          <div><span class="text-[#444444]">사업자등록 번호</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">470-88-00357</span></div>
+          <div><span class="text-[#444444]">주소</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">인천광역시 연수구 옥련로37 씨동 306호</span></div>
+          <div class="pt-[6px] flex items-center space-x-[14px] text-[20px]">
+            <a href="https://www.instagram.com/autonsm?igsh=ZmU2M2ppZzk1ZjVv&utm_source=qr" target="_blank" rel="noopener noreferrer" class="text-[#666666] hover:text-[#111111]">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://www.facebook.com/share/1A3NGCuwXh/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="text-[#666666] hover:text-[#111111]">
+              <i class="fa-brands fa-facebook"></i>
+            </a>
+            <a href="https://www.tiktok.com/@autonsm" target="_blank" rel="noopener noreferrer" class="text-[#666666] hover:text-[#111111]">
+              <i class="fa-brands fa-tiktok"></i>
+            </a>
+          </div>
+        </div>
+        <div class="space-y-[10px] text-[15px] leading-[26px]">
+          <div><span class="text-[#444444]">Email</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">info@autonsm.com</span></div>
+          <div>
+            <span class="text-[#444444]">TEL</span>
+            <span class="text-[#666666] whitespace-pre">   +82 10-9199-9687 (English, Korean)</span>
+          </div>
+          <div><span class="text-[#444444]">TEL</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">+821098699687</span></div>
+          <div><span class="text-[#666666] whitespace-pre">306 C dong  37 Okryeon ro  Yeonsu gu Incheon South Korea</span></div>
+        </div>
+      </div>
+      <div class="mt-[28px] border-t border-[#e5e7eb] pt-[18px]">
+        <div class="flex flex-col md:flex-row items-center justify-between">
+          <div class="text-[14px] text-[#666666] space-x-[18px]">
+            <a href="private-policy.html" class="hover:text-[#111111]">Private Policy</a>
+            <a href="terms-of-service.html" class="hover:text-[#111111]">Terms of Service</a>
+          </div>
+          <div class="text-[14px] text-[#666666] mt-[12px] md:mt-0">Copyright © Auto Nsm. All rights Reserved.</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Language dropdown toggle
+    (function(){
+      var toggle = document.getElementById('languageToggle');
+      var dropdown = document.getElementById('languageDropdown');
+      if (toggle && dropdown) {
+        toggle.addEventListener('click', function(){ dropdown.classList.toggle('hidden'); });
+        document.addEventListener('click', function(e){ if (!dropdown.contains(e.target) && !toggle.contains(e.target)) dropdown.classList.add('hidden'); });
+      }
+    })();
+
+    (function(){
+      var API_ORIGIN = (function(){
+        try {
+          var origin = window.__apiOrigin;
+          if (origin && /^https?:\/\//i.test(origin)) return origin.replace(/\/$/, '');
+        } catch(_) {}
+        try {
+          return window.location.origin;
+        } catch(_) {
+          return '';
+        }
+      })();
+      var prevStatusMap = {};
+      function readToken(){ return localStorage.getItem('token') || ''; }
+      function parseJwt(t){ try { var p = String(t||'').split('.')[1]; var s = atob(String(p||'').replace(/-/g,'+').replace(/_/g,'/')); return JSON.parse(s||'{}'); } catch(_) { return {}; } }
+      function getUser(){ var p = parseJwt(readToken()); var id = p.id != null ? p.id : (p.userId != null ? p.userId : (p.user_id != null ? p.user_id : p.uid)); var email = p.email ? String(p.email).toLowerCase() : null; var role = (p.role||''); return { id: id != null ? String(id) : null, email: email, role: String(role||'').toLowerCase() }; }
+      function belongsToUser(o, u){ try { var byId = u.id && String(o.buyer_id) === String(u.id); var byEmail = u.email && o.buyer_email && String(o.buyer_email).toLowerCase() === u.email; var bySelectionEmail = u.email && ((o.selection && o.selection.payer && o.selection.payer.email && String(o.selection.payer.email).toLowerCase() === u.email) || (o.selection && o.selection.consignee && o.selection.consignee.email && String(o.selection.consignee.email).toLowerCase() === u.email)); return !!(byId || byEmail || bySelectionEmail); } catch(_) { return false; } }
+      function formatDate(iso){
+        var d = iso ? new Date(iso) : new Date();
+        if (isNaN(d.getTime())) d = new Date();
+        var y = d.getFullYear(); var m = String(d.getMonth()+1).padStart(2,'0'); var day = String(d.getDate()).padStart(2,'0');
+        return y+'-'+m+'-'+day;
+      }
+      function normalizeStatus(s){
+        s = String(s||'').toLowerCase();
+        if (s === 'pending' || s === 'requested') return 'requested';
+        if (s === 'in_progress' || s === 'progress') return 'in_progress';
+        if (s === 'completed' || s === 'done') return 'completed';
+        return 'requested';
+      }
+      function badgeHTML(status){
+        var s = normalizeStatus(status);
+        var cfg = s === 'completed' ? ['Completed','bg-green-100 text-green-700 border-green-200'] : (s === 'in_progress' ? ['In Progress','bg-yellow-100 text-yellow-700 border-yellow-200'] : ['Requested','bg-gray-100 text-gray-700 border-gray-200']);
+        return '<span class="inline-block px-2.5 py-1 rounded-full text-xs font-semibold border '+cfg[1]+'">'+cfg[0]+'</span>';
+      }
+      async function fetchMyOrders(){
+        var token = readToken();
+        var urls = [];
+        urls.push(API_ORIGIN + '/buyer/orders');
+        for (var i=0;i<urls.length;i++){
+          try {
+            var res = await fetch(urls[i], { headers: { 'Authorization': token ? ('Bearer '+token) : '' } });
+            if (res.ok) {
+              var data = await res.json();
+              try { var originUsed = urls[i].replace(/\/buyer\/orders.*$/, ''); window.__apiOrigin = originUsed; } catch(_){ }
+              return data;
+            }
+          } catch(_){ }
+        }
+        try {
+          var resLocal = await fetch('backend/orders.json', { cache: 'no-store' });
+          if (resLocal.ok) {
+            var arr = await resLocal.json();
+            var u = getUser();
+            var mine = (Array.isArray(arr) ? arr : []).filter(function(o){ return belongsToUser(o, u); });
+            return mine;
+          }
+        } catch(_){ }
+        return [];
+      }
+      function latestByListingId(orders){
+        var map = {};
+        (orders||[]).forEach(function(o){
+          var lid = String(o.listingId||''); if (!lid) return;
+          var prev = map[lid];
+          var prevTime = prev ? new Date(prev.updated_at||prev.created_at||0).getTime() : -1;
+          var curTime = new Date(o.updated_at||o.created_at||0).getTime();
+          if (!prev || curTime >= prevTime) map[lid] = o;
+        });
+        return map;
+      }
+      function pushNotification(notif){
+        try {
+          var arr = JSON.parse(localStorage.getItem('notifications')||'[]');
+          arr.push(notif);
+          localStorage.setItem('notifications', JSON.stringify(arr));
+        } catch(e){}
+      }
+      function maybeNotifyCompletion(items){
+        items.forEach(function(it){
+          var lid = String(it.listingId||it.id||''); if (!lid) return;
+          var prev = prevStatusMap[lid];
+          var cur = normalizeStatus(it._status||it.status);
+          if (prev !== 'completed' && cur === 'completed'){
+            var title = it._title || it.title || (it.listing && it.listing.title) || 'Vehicle';
+            pushNotification({
+              id: 'notif-'+lid+'-'+Date.now(),
+              type: 'invoice',
+              title: 'Invoice Completed',
+              message: 'Your invoice for '+title+' is completed.',
+              listingId: it.listingId || it.id || null,
+              created_at: new Date().toISOString(),
+              read: false
+            });
+          }
+          prevStatusMap[lid] = cur;
+        });
+      }
+      async function render(){
+        var tbody = document.getElementById('docs-body'); if (!tbody) return;
+        var tokenPresent = !!readToken();
+        if (!tokenPresent){
+          tbody.innerHTML = '<tr><td colspan="4" class="px-6 py-8 text-center text-red-700 bg-red-50 border border-red-200 rounded">Sign in to view completed invoices. <a href="signin.html" class="underline">Sign in</a></td></tr>';
+          return;
+        }
+        var orders = await fetchMyOrders();
+        if (!Array.isArray(orders) || orders.length === 0){
+          tbody.innerHTML = '<tr><td colspan="4" class="px-6 py-8 text-center text-gray-500">No documents yet.</td></tr>';
+          return;
+        }
+        // Only show completed
+        var completed = orders.filter(function(o){ return normalizeStatus(o.status) === 'completed'; });
+        if (completed.length === 0){
+          tbody.innerHTML = '<tr><td colspan="4" class="px-6 py-8 text-center text-gray-500">No completed invoices yet.</td></tr>';
+          return;
+        }
+        // Sort most recent by invoice_at/updated_at
+        completed.sort(function(a,b){ return new Date(b.invoice_at||b.updated_at||b.created_at||0) - new Date(a.invoice_at||a.updated_at||a.created_at||0); });
+        tbody.innerHTML = completed.map(function(o){
+          var title = (o.listing && o.listing.title) || 'Vehicle';
+          var price = (o.listing && typeof o.listing.price !== 'undefined' && o.listing.price !== null) ? ('<div class="text-xs text-gray-500">$'+o.listing.price+'</div>') : '';
+          var date = formatDate(o.invoice_at || o.updated_at || o.created_at);
+          return (
+            '<tr>'+
+              '<td class="px-6 py-4 whitespace-nowrap">'+
+                '<div class="text-sm font-semibold text-gray-900">Invoice - '+title+'</div>'+
+                '<div class="text-sm text-gray-500">Order #'+String(o.id)+'</div>'+
+                price+
+              '</td>'+
+              '<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">'+date+'</td>'+
+              '<td class="px-6 py-4 whitespace-nowrap">'+badgeHTML(o.status)+'</td>'+
+              '<td class="px-6 py-4 whitespace-nowrap flex items-center gap-2">'+
+                '<button type="button" class="btn-view-invoice inline-flex items-center bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all" data-order-id="'+String(o.id)+'">'+
+                  '<i class="fa-solid fa-file-invoice mr-2"></i> View Invoice'+
+                '</button>'+
+                '<a href="product-detail.html?id='+encodeURIComponent(o.listingId)+'" class="inline-flex items-center bg-gray-100 hover:bg-gray-200 text-gray-800 px-4 py-2 rounded-lg text-sm font-semibold transition-all">'+
+                  '<i class="fa-solid fa-receipt mr-2"></i> View Order'+
+                '</a>'+
+              '</td>'+
+            '</tr>'
+          );
+        }).join('');
+
+        maybeNotifyCompletion(orders);
+      }
+      function attachHandlers(){
+        var tbody = document.getElementById('docs-body'); if (!tbody) return;
+        tbody.addEventListener('click', function(e){
+          var btn = e.target.closest('.btn-view-invoice'); if (!btn) return;
+          var id = btn.getAttribute('data-order-id'); if (!id) return;
+          // Always navigate to relative path to avoid cross-port issues
+          var targetUrl = 'buyer-invoice.html?orderId=' + encodeURIComponent(String(id));
+ window.open(targetUrl, '_blank');
+        });
+      }
+      document.addEventListener('DOMContentLoaded', function(){ render(); attachHandlers(); });
+      // Periodic auto-refresh for live updates
+      // Periodic auto-refresh for live updates
+      setInterval(function(){ render(); }, 15000);
+    })();
+  </script>
+
+  <!-- Header role-based replacement: show Dashboard link when signed in -->
+  <script>
+    (function(){
+      try {
+        var role = (localStorage.getItem('role') || localStorage.getItem('userRole') || '').toLowerCase();
+        if (!role || (role !== 'buyer' && role !== 'seller')) return;
+        var signInEl = document.querySelector('[data-text="sign-in"]');
+        var signUpEl = document.querySelector('[data-text="sign-up"]');
+        var container = (signInEl && signInEl.parentElement) || (signUpEl && signUpEl.parentElement);
+        if (!container) return;
+        if (signInEl) signInEl.remove();
+        if (signUpEl) signUpEl.remove();
+        var link = document.createElement('a');
+        link.textContent = role === 'buyer' ? 'Buyer Dashboard' : 'Seller Dashboard';
+        link.href = role === 'buyer' ? 'buyer-dashboard.html' : 'seller-dashboard.html';
+        link.className = 'bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-lg font-semibold transition-all transform hover:scale-105';
+        container.appendChild(link);
+      } catch(e) { /* no-op */ }
+    })();
+  </script>
+
+  <!-- Sign out handler: same as buyer-dashboard -->
+  <script>
+    (function(){
+      var btn = document.getElementById('signout');
+      if (btn) {
+        btn.addEventListener('click', function(){
+          try {
+            localStorage.removeItem('token');
+            localStorage.removeItem('role');
+            localStorage.removeItem('user');
+            localStorage.removeItem('userRole');
+          } catch(_){ }
+          window.open('signin.html', '_blank');
+        });
+      }
+    })();
+  </script>
+  </body>
+  </html>

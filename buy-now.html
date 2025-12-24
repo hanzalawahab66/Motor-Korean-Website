@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buy Now - NSM Autos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>window.FontAwesomeConfig = {autoReplaceSvg: 'nest'};</script>
+    <script src="scripts/api-origin.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" rel="stylesheet">
+    <style>
+        ::-webkit-scrollbar { display: none; }
+        * { font-family: 'Inter', sans-serif; }
+        .sticky-right { position: sticky; top: 6rem; }
+        .card-hover { transition: all .3s ease; }
+        .card-hover:hover { transform: translateY(-6px); box-shadow: 0 25px 50px -12px rgba(0,0,0,.25); }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <div class="bg-[#0D1F39] text-white font-body relative z-[60]">
+      <div class="container mx-auto px-6 py-2">
+        <div class="flex items-center justify-between">
+          <div class="relative">
+            <button id="languageToggle" class="flex items-center space-x-2 text-white/90 hover:text-white font-medium transition-colors">
+              <i class="fa-solid fa-globe text-base"></i>
+              <span class="text-sm md:text-base">English</span>
+              <i class="fa-solid fa-chevron-down text-xs"></i>
+            </button>
+            <div id="languageDropdown" class="absolute left-0 top-full mt-1 bg-white rounded-lg shadow-xl border border-gray-200 py-2 min-w-[160px] hidden z-[1000]">
+              <button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="en">
+                <img src="https://flagcdn.com/w20/us.png" alt="English" class="w-4 h-3"><span>English</span>
+              </button>
+              <button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="ko">
+                <img src="https://flagcdn.com/w20/kr.png" alt="한국어" class="w-4 h-3"><span>한국어</span>
+              </button>
+              <button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="ar">
+                <img src="https://flagcdn.com/w20/sa.png" alt="العربية" class="w-4 h-3"><span>العربية</span>
+              </button>
+              <button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="fr">
+                <img src="https://flagcdn.com/w20/fr.png" alt="Français" class="w-4 h-3"><span>Français</span>
+              </button>
+            </div>
+          </div>
+          <div class="flex items-center space-x-3">
+            <button class="bg-white/10 hover:bg-white/20 text-white px-4 py-1.5 rounded-lg font-medium transition-all h-hover" data-text="sign-in" onclick="window.open('signin.html','_blank')">Login</button>
+            <button class="bg-[#D53C46] text-white hover:bg-[#D53C46] px-4 py-1.5 rounded-lg font-semibold transition-all h-hover" data-text="sign-up" onclick="window.open('signup.html','_blank')">Register</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <header id="header" class="sticky top-0 z-50 backdrop-blur">
+  <div class="w-full px-6 py-2 bg-white">
+      <div class="w-full px-4 md:px-6 py-3 flex items-center justify-between">
+          <a href="home.html" class="flex items-center space-x-3">
+            <img src="assets/images/Gemini_Generated_Image_2f4bkg2f4bkg2f4bee.png" alt="Logo" class="w-80 h-[100px] object-contain animate-logo" />
+          </a>
+          <nav class="hidden md:flex items-center space-x-8 text-gray-900 font-semibold animate-nav">
+            <a href="home.html" class="hover:text-[#0D1F39] transition-colors">Home</a>
+            <a href="inventory.html" class="hover:text-[#0D1F39] transition-colors">Inventory</a>
+            <div class="relative" id="navAbout">
+              <a href="about-us.html" id="navAboutToggle" class="hover:text-[#0D1F39] transition-colors flex items-center space-x-1">
+            <span>About Us</span>
+            <i class="fa-solid fa-chevron-down text-xs"></i>
+          </a>
+              <div id="navAboutMenu" class="absolute left-1/2 -translate-x-1/2 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg py-2 min-w-[220px] opacity-0 translate-y-1 pointer-events-none transition-all duration-300 z-50">
+                <a href="mit-info.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">MIT Info</a>
+                <a href="service-introduction.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">Service Introduction</a>
+              </div>
+            </div>
+            <div class="relative" id="navMore">
+              <button id="navMoreToggle" class="hover:text-[#0D1F39] transition-colors flex items-center space-x-1">
+                <span>More</span>
+                <i class="fa-solid fa-chevron-down text-xs"></i>
+              </button>
+              <div id="navMoreMenu" class="absolute left-1/2 -translate-x-1/2 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg py-2 min-w-[220px] opacity-0 translate-y-1 pointer-events-none transition-all duration-300 z-50">
+                <a href="faq.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">FAQs</a>
+                <a href="reviews.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">Reviews</a>
+                <a href="blog.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">Blogs</a>
+              </div>
+            </div>
+            <a href="contact-us.html" class="hover:text-[#0D1F39] transition-colors">Contact Us</a>
+          </nav>
+          <div class="flex items-center space-x-4 animate-actions">
+            <div class="hidden md:flex items-center bg-white rounded-full shadow px-3 py-1.5 border border-gray-200">
+              <i class="fa-solid fa-magnifying-glass text-gray-600 mr-2 hover:text-[#D53C46]"></i>
+              <input id="headerSearchInput" type="text" placeholder="Search" class="w-40 md:w-52 text-sm bg-transparent focus:outline-none" />
+            </div>
+            <button id="mobileSearchToggle" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition group h-hover">
+              <i class="fa-solid fa-magnifying-glass group-hover:text-[#D53C46]"></i>
+            </button>
+            <a id="headerFavorite" href="dashboard-saved.html" class="relative inline-flex items-center justify-center w-10 h-10 rounded-full border border-gray-200 hover:bg-gray-50 transition-colors group h-hover">
+              <i class="fa-regular fa-heart text-[#0D1F39] group-hover:text-[#D53C46]"></i>
+              <span class="absolute -top-1 -right-1 inline-flex items-center justify-center w-5 h-5 rounded-full bg-[#D53C46] text-white text-xs">0</span>
+            </a>
+            <button id="mobileMenuToggle" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition group h-hover">
+              <i class="fa-solid fa-bars group-hover:text-[#D53C46]"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        var h = document.getElementById('header');
+        if (h) { requestAnimationFrame(function(){ h.classList.add('header-ready'); }); }
+      });
+    </script>
+    <script>(function(){function setupHoverDelay(containerId,toggleId,menuId){var c=document.getElementById(containerId);var t=document.getElementById(toggleId);var m=document.getElementById(menuId);if(!c||!t||!m)return;var hid=null;function show(){if(hid){clearTimeout(hid);hid=null;}m.classList.remove('opacity-0','pointer-events-none','translate-y-1');m.classList.add('opacity-100','pointer-events-auto','translate-y-0');}function schedule(){if(hid)clearTimeout(hid);hid=setTimeout(function(){m.classList.remove('opacity-100','pointer-events-auto','translate-y-0');m.classList.add('opacity-0','pointer-events-none','translate-y-1');hid=null;},300);}c.addEventListener('mouseenter',show);t.addEventListener('mouseenter',show);m.addEventListener('mouseenter',show);c.addEventListener('mouseleave',schedule);t.addEventListener('mouseleave',schedule);m.addEventListener('mouseleave',schedule);t.addEventListener('click',show);}setupHoverDelay('navAbout','navAboutToggle','navAboutMenu');setupHoverDelay('navMore','navMoreToggle','navMoreMenu');})();</script>
+    <script>
+      (function(){
+        var langToggle = document.getElementById('languageToggle');
+        var langDropdown = document.getElementById('languageDropdown');
+        if (langToggle && langDropdown) {
+          langToggle.addEventListener('click', function(){ langDropdown.classList.toggle('hidden'); });
+          document.addEventListener('click', function(e){ if (!langDropdown.contains(e.target) && !langToggle.contains(e.target)) langDropdown.classList.add('hidden'); });
+        }
+        var mobileSearchToggle = document.getElementById('mobileSearchToggle');
+        var mobileSearchContainer = document.getElementById('mobileSearchContainer');
+        if (mobileSearchToggle && mobileSearchContainer) {
+          mobileSearchToggle.addEventListener('click', function(){ mobileSearchContainer.classList.toggle('hidden'); });
+        }
+        var overlay = document.getElementById('mobileMenuOverlay');
+        var drawer = document.getElementById('mobileDrawer');
+        var menuBtn = document.getElementById('mobileMenuToggle');
+        var closeBtn = document.getElementById('mobileDrawerClose');
+        function openDrawer(){ if (overlay && drawer) { overlay.classList.remove('hidden'); drawer.style.transform='translateX(0)'; } }
+        function closeDrawer(){ if (overlay && drawer) { overlay.classList.add('hidden'); drawer.style.transform=''; } }
+        if (menuBtn) menuBtn.addEventListener('click', openDrawer);
+        if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+        if (overlay) overlay.addEventListener('click', closeDrawer);
+        var drawerAboutToggle = document.getElementById('drawerAboutToggle');
+        var drawerAboutMenu = document.getElementById('drawerAboutMenu');
+        if (drawerAboutToggle && drawerAboutMenu) {
+          drawerAboutToggle.addEventListener('click', function(){
+            var hidden = drawerAboutMenu.classList.toggle('hidden');
+            drawerAboutToggle.setAttribute('aria-expanded', hidden ? 'false' : 'true');
+          });
+        }
+        var drawerMoreToggle = document.getElementById('drawerMoreToggle');
+        var drawerMoreMenu = document.getElementById('drawerMoreMenu');
+        if (drawerMoreToggle && drawerMoreMenu) {
+          drawerMoreToggle.addEventListener('click', function(){
+            var hidden = drawerMoreMenu.classList.toggle('hidden');
+            drawerMoreToggle.setAttribute('aria-expanded', hidden ? 'false' : 'true');
+          });
+        }
+      })();
+    </script>
+    <div id="mobileSearchContainer" class="md:hidden hidden px-6">
+      <div class="flex items-center bg-white rounded-full shadow px-3 py-2 border border-gray-200">
+        <i class="fa-solid fa-magnifying-glass text-gray-600 mr-2"></i>
+        <input id="mobileHeaderSearchInput" type="text" placeholder="Search" class="flex-1 text-sm bg-transparent focus:outline-none" />
+        <button id="mobileHeaderSearchBtn" class="ml-2 px-3 py-1 rounded-full bg-[#0D1F39] text-white text-xs">Search</button>
+      </div>
+    </div>
+    <div id="mobileMenuOverlay" class="fixed inset-0 bg-black/40 hidden z-40 md:hidden"></div>
+    <aside id="mobileDrawer" class="fixed inset-y-0 right-0 w-80 max-w-[88vw] bg-white shadow-xl border-l border-gray-200 z-50 transform translate-x-full transition-transform duration-300 ease-out md:hidden" aria-hidden="true" role="dialog">
+      <div class="flex items-center justify-between px-4 py-3 border-b border-gray-100">
+        <div class="flex items-center space-x-2">
+          <img src="assets/images/Gemini_Generated_Image_2f4bkg2f4bkg2f4bee.png" alt="Logo" class="w-64 h-16 object-contain" />
+        </div>
+        <button id="mobileDrawerClose" class="inline-flex items-center justify-center w-10 h-10 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition" aria-label="Close menu">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="px-4 py-3">
+        <div class="flex items-center bg-white rounded-full border border-gray-200 px-3 py-2 shadow-sm">
+          <i class="fa-solid fa-magnifying-glass text-gray-600 mr-2"></i>
+          <input id="drawerSearchInput" type="text" placeholder="Search" class="flex-1 text-sm bg-transparent focus:outline-none" />
+          <button id="drawerSearchBtn" class="ml-2 px-3 py-1 rounded-full bg-[#0D1F39] text-white text-xs">Search</button>
+        </div>
+      </div>
+  <nav class="px-4 py-3 space-y-1 text-gray-900 font-semibold">
+    <a href="home.html" class="block py-2 rounded-lg hover:bg-gray-50">Home</a>
+    <a href="inventory.html" class="block py-2 rounded-lg hover:bg-gray-50">Inventory</a>
+    <div class="border-t border-gray-100 my-2"></div>
+    <button id="drawerAboutToggle" class="w-full flex items-center justify-between py-2 rounded-lg hover:bg-gray-50 text-left" aria-expanded="false">
+      <span>About Us</span>
+      <i class="fa-solid fa-chevron-down text-xs"></i>
+    </button>
+    <div id="drawerAboutMenu" class="hidden ml-3 space-y-1 text-gray-700 font-normal">
+      <a href="mit-info.html" class="block py-1.5 rounded hover:bg-gray-50">MIT Info</a>
+      <a href="service-introduction.html" class="block py-1.5 rounded hover:bg-gray-50">Service Introduction</a>
+    </div>
+    <a href="contact-us.html" class="block py-2 rounded-lg hover:bg-gray-50">Contact Us</a>
+    <button id="drawerMoreToggle" class="w-full flex items-center justify-between py-2 rounded-lg hover:bg-gray-50 text-left" aria-expanded="false">
+      <span>More</span>
+      <i class="fa-solid fa-chevron-down text-xs"></i>
+    </button>
+    <div id="drawerMoreMenu" class="hidden ml-3 space-y-1 text-gray-700 font-normal">
+      <a href="faq.html" class="block py-1.5 rounded hover:bg-gray-50">FAQs</a>
+      <a href="reviews.html" class="block py-1.5 rounded hover:bg-gray-50">Reviews</a>
+      <a href="blog.html" class="block py-1.5 rounded hover:bg-gray-50">Blogs</a>
+    </div>
+  </nav>
+    </aside>
+
+    <main class="container mx-auto px-6 py-10">
+        <div id="vehicle-summary" class="mb-6"></div>
+
+        <div id="option-select" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <button id="opt-personal" class="bg-white rounded-2xl shadow-lg p-6 text-left card-hover hover:-translate-y-1 hover:shadow-xl">
+                <h2 class="text-xl font-semibold mb-2">For Personal Use</h2>
+                <p class="text-sm text-gray-600">Purchase for personal ownership and use.</p>
+            </button>
+            <button id="opt-business" class="bg-white rounded-2xl shadow-lg p-6 text-left card-hover hover:-translate-y-1 hover:shadow-xl">
+                <h2 class="text-xl font-semibold mb-2">For Business</h2>
+                <p class="text-sm text-gray-600">Purchase for commercial use or resale.</p>
+            </button>
+        </div>
+
+        <div id="flow-container" class="hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <section id="flow-left" class="lg:col-span-2"></section>
+                <aside id="flow-right" class="lg:col-span-1"></aside>
+            </div>
+        </div>
+    </main>
+
+    <!-- Order Review Modal -->
+    <div id="order-modal" class="fixed inset-0 bg-black bg-opacity-40 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl p-6">
+            <div class="flex items-center mb-4">
+                <div class="w-10 h-10 rounded-full bg-red-100 text-red-600 flex items-center justify-center mr-3">
+                    <i class="fa-solid fa-list-check"></i>
+                </div>
+                <div>
+                    <div class="text-lg font-bold text-gray-900">Review Your Order</div>
+                    <div class="text-sm text-gray-500">Confirm details before placing the order</div>
+                </div>
+            </div>
+            <div id="order-modal-details" class="space-y-3 text-sm text-gray-800"></div>
+            <div class="mt-6 flex justify-end gap-3">
+                <button id="order-modal-edit" class="px-4 py-2 border rounded-lg text-gray-700 hover:bg-gray-50">Edit Info</button>
+                <button id="order-modal-confirm" class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg font-semibold">Confirm Order</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const listingId = urlParams.get('id');
+        const selectedCountry = urlParams.get('country');
+        // Backend API origin: prefer global api-origin.js resolution, fall back to window.location.origin
+        const API_ORIGIN = (function() {
+            try {
+                var origin = window.__apiOrigin;
+                if (origin && /^https?:\/\//i.test(origin)) return origin.replace(/\/$/, '');
+            } catch (e) {
+                /* ignore */
+            }
+            try {
+                return window.location.origin;
+            } catch (_) {
+                return '';
+            }
+        })();
+
+        const PORTS_BY_COUNTRY = {
+            "United States": ["New York (NYC)", "Los Angeles (LAX)", "Houston (HOU)", "Baltimore"],
+            "Canada": ["Vancouver", "Toronto", "Montreal"],
+            "United Kingdom": ["London (Tilbury)", "Southampton", "Liverpool"],
+            "Australia": ["Sydney", "Melbourne", "Brisbane"],
+        };
+
+        const COUNTRY_DIAL_CODE = {
+            "United States": "+1",
+            "Canada": "+1",
+            "United Kingdom": "+44",
+            "Australia": "+61",
+        };
+
+        function displayTitle(data) {
+            const t = (data.title || '').trim();
+            if (t) return t;
+            const year = data.year || '';
+            const make = data.make || data.brand || '';
+            const model = data.model || '';
+            return [year, make, model].filter(Boolean).join(' ').trim() || 'Vehicle';
+        }
+
+        function normalizePhotoUrl(photo) {
+            if (!photo) return null;
+            if (typeof photo === 'string') {
+                if (photo.startsWith('http://') || photo.startsWith('https://')) return photo;
+                if (photo.startsWith('data:image')) return photo;
+                return (window.__apiOrigin || API_ORIGIN) + '/' + photo.replace(/^\/?/, '');
+            }
+            if (photo.dataUrl) return photo.dataUrl;
+            if (photo.url) return photo.url.startsWith('http') ? (function(u){ try { return u.replace(/^https?:\/\/localhost:3000\//, (window.__apiOrigin || API_ORIGIN) + '/'); } catch(_) { return u; } })(photo.url) : (window.__apiOrigin || API_ORIGIN) + '/' + photo.url.replace(/^\/?/, '');
+            return null;
+        }
+
+        async function fetchVehicleData(id) {
+            const token = localStorage.getItem('authToken');
+            const headers = token ? { 'Authorization': `Bearer ${token}` } : {};
+            try {
+                const adminRes = await fetch(`${API_ORIGIN}/admin/listing-details/${id}`, { headers });
+                if (adminRes.ok) {
+                    try {
+                        window.__apiOrigin = API_ORIGIN;
+                    } catch (_) {}
+                    return await adminRes.json();
+                }
+            } catch (e) {}
+            try {
+                const publicRes2 = await fetch(`${API_ORIGIN}/public/listings/${id}`);
+                if (publicRes2.ok) {
+                    try {
+                        window.__apiOrigin = API_ORIGIN;
+                    } catch (_) {}
+                    return await publicRes2.json();
+                }
+            } catch (e) {}
+            try {
+                const jsonRes = await fetch(`backend/listings.json`);
+                if (jsonRes.ok) {
+                    const data = await jsonRes.json();
+                    const match = Array.isArray(data) ? data.find(item => String(item.id) === String(id) || String(item.product_id_number) === String(id)) : null;
+                    if (match) return match;
+                }
+            } catch (e) {}
+            return null;
+        }
+
+        function renderVehicleSummary(vehicle) {
+            const container = document.getElementById('vehicle-summary');
+            const title = displayTitle(vehicle);
+            const img = (function(u){ try { const origin = window.__apiOrigin || API_ORIGIN; return /^https?:\/\/localhost:3000\//.test(String(u)) ? origin + '/' + String(u).replace(/^https?:\/\/localhost:3000\//, '') : u; } catch(_) { return u; } })(normalizePhotoUrl((vehicle.photos || [])[0]));
+            const price = vehicle.price || vehicle.sellingPrice || vehicle.listedPrice || vehicle.reservePrice || '—';
+            container.innerHTML = `
+                <div class="bg-white rounded-2xl shadow-lg p-6 flex items-center">
+                    <img src="${img || 'images/placeholder_car.png'}" alt="${title}" class="w-28 h-20 object-cover rounded mr-6">
+                    <div class="flex-1">
+                        <div class="text-xl font-bold text-gray-900">${title}</div>
+                        <div class="text-sm text-gray-600">Selected Country: ${selectedCountry ? decodeURIComponent(selectedCountry) : '—'}</div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-gray-500 text-xs">Price</div>
+                        <div class="text-2xl font-bold text-gray-900">${typeof price === 'number' ? '$' + price.toLocaleString() : price}</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderRightSticky(vehicle) {
+            const right = document.getElementById('flow-right');
+            const price = vehicle.price || vehicle.sellingPrice || vehicle.listedPrice || vehicle.reservePrice || '—';
+            right.innerHTML = `
+                <div class="bg-white rounded-2xl shadow-lg p-6 sticky-right">
+                    <h3 class="text-lg font-semibold mb-4 text-gray-900">Vehicle Info</h3>
+                    <div class="flex justify-between mb-2">
+                        <span>Price</span>
+                        <span>${typeof price === 'number' ? '$' + price.toLocaleString() : price}</span>
+                    </div>
+                    <div class="flex justify-between mb-2">
+                        <span>Shipping Price</span>
+                        <a href="#" id="shipping-quote" class="text-red-600 hover:underline">Get a Quote</a>
+                    </div>
+                    <div class="flex justify-between mb-4">
+                        <span>Total</span>
+                        <a href="#" id="total-quote" class="text-red-600 hover:underline">Get a Quote</a>
+                    </div>
+                    <button id="place-order" class="w-full bg-red-500 hover:bg-red-600 text-white py-3 rounded-lg font-bold transition-colors">Place an Order</button>
+                </div>
+            `;
+            const showQuote = (type) => alert(`${type} quote request submitted. We will contact you.`);
+            document.getElementById('shipping-quote').addEventListener('click', (e) => { e.preventDefault(); showQuote('Shipping'); });
+            document.getElementById('total-quote').addEventListener('click', (e) => { e.preventDefault(); showQuote('Total'); });
+
+            // Disable ordering when the listing is unavailable (sold/booked)
+            try {
+                const statusLower = String(vehicle.status || vehicle.listStatus || '').toLowerCase();
+                const isSold = statusLower === 'sold';
+                const isBooked = statusLower === 'booked';
+                const btn = document.getElementById('place-order');
+                const token = localStorage.getItem('token') || sessionStorage.getItem('token') || '';
+                const role = (localStorage.getItem('userRole') || localStorage.getItem('role') || '').toLowerCase();
+                const isBuyer = !!token && role === 'buyer';
+                if (btn && (isSold || isBooked || !isBuyer)) {
+                    btn.disabled = true;
+                    btn.classList.remove('bg-red-500','hover:bg-red-600');
+                    btn.classList.add('bg-gray-300','cursor-not-allowed','opacity-60');
+                    if (!isBuyer) {
+                      btn.textContent = 'Sign in to Order';
+                      btn.title = 'Please sign in with a buyer account to place an order.';
+                    } else {
+                      btn.textContent = isSold ? 'Sold Out' : 'Unavailable (Booked)';
+                      btn.title = isSold ? 'This vehicle is sold and cannot be ordered.' : 'This vehicle is booked and cannot be ordered.';
+                    }
+                }
+            } catch (_) { /* no-op */ }
+        }
+
+        function renderPersonalLeft(vehicle) {
+            const left = document.getElementById('flow-left');
+            const title = displayTitle(vehicle);
+            const country = selectedCountry ? decodeURIComponent(selectedCountry) : '';
+            left.innerHTML = `
+                <div class="bg-white rounded-2xl shadow-lg p-6 space-y-6">
+                    <div>
+                        <h2 class="text-xl font-semibold mb-2">${title}</h2>
+                        <div class="text-sm text-gray-600">Country: ${country || '—'}</div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm text-gray-700 mb-1">Name</label>
+                            <input id="personal-name" type="text" class="w-full p-3 border rounded" placeholder="Your name" />
+                        </div>
+                        <div>
+                            <label class="block text-sm text-gray-700 mb-1">Telephone Number</label>
+                            <div class="flex">
+                                <select id="personal-tel-code" class="p-3 border rounded-l w-28">
+                                    <option value="">Code</option>
+                                    ${Object.entries(COUNTRY_DIAL_CODE).map(([c,code]) => `<option value="${code}" ${country===c?'selected':''}>${code}</option>`).join('')}
+                                </select>
+                                <input id="personal-tel" type="tel" class="w-full p-3 border rounded-r" placeholder="Phone number" />
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-700 mb-1">Request Memo</label>
+                        <textarea id="personal-memo" class="w-full p-3 border rounded" rows="4" placeholder="Any additional requests or notes..."></textarea>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderBusinessLeft(vehicle) {
+            const left = document.getElementById('flow-left');
+            const title = displayTitle(vehicle);
+            const country = selectedCountry ? decodeURIComponent(selectedCountry) : '';
+            const ports = PORTS_BY_COUNTRY[country] || [];
+            left.innerHTML = `
+                <div class="bg-white rounded-2xl shadow-lg p-6 space-y-6">
+                    <div>
+                        <h2 class="text-xl font-semibold mb-2">${title}</h2>
+                        <div class="text-sm text-gray-600">Country: ${country || '—'}</div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm text-gray-700 mb-1">Port</label>
+                            ${ports.length ? `
+                                <select id="biz-port" class="w-full p-3 border rounded">
+                                    ${ports.map(p => `<option>${p}</option>`).join('')}
+                                </select>
+                            ` : `
+                                <input id="biz-port" type="text" class="w-full p-3 border rounded" placeholder="Enter relevant port" />
+                                <p class="text-xs text-gray-500 mt-1">No preset ports for ${country || 'selected country'}.</p>
+                            `}
+                        </div>
+                        <div>
+                            <label class="block text-sm text-gray-700 mb-1">Ship Type</label>
+                            <select id="biz-ship-type" class="w-full p-3 border rounded">
+                                <option>RoRo</option>
+                                <option>Container</option>
+                                <option>Consultation Needed</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm text-gray-700 mb-1">Name</label>
+                            <input id="biz-name" type="text" class="w-full p-3 border rounded" placeholder="Your name" />
+                        </div>
+                        <div>
+                            <label class="block text-sm text-gray-700 mb-1">Telephone Number</label>
+                            <div class="flex">
+                                <select id="biz-tel-code" class="p-3 border rounded-l w-28">
+                                    <option value="">Code</option>
+                                    ${Object.entries(COUNTRY_DIAL_CODE).map(([c,code]) => `<option value="${code}" ${country===c?'selected':''}>${code}</option>`).join('')}
+                                </select>
+                                <input id="biz-tel" type="tel" class="w-full p-3 border rounded-r" placeholder="Phone number" />
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-2">Consignee Information</h3>
+                        <p class="text-xs text-gray-600 mb-3">Please enter the information of the person who will physically receive the vehicle. This information will be recorded on the Bill of Lading (BL).</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm mb-1">Name*</label>
+                                <input id="consignee-name" type="text" class="w-full p-3 border rounded" />
+                            </div>
+                            <div>
+                                <label class="block text-sm mb-1">Email*</label>
+                                <input id="consignee-email" type="email" class="w-full p-3 border rounded" />
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="block text-sm mb-1">Address*</label>
+                                <input id="consignee-address" type="text" class="w-full p-3 border rounded" />
+                            </div>
+                            <div>
+                                <label class="block text-sm mb-1">Tel*</label>
+                                <input id="consignee-tel" type="tel" class="w-full p-3 border rounded" />
+                            </div>
+                            <div>
+                                <label class="block text-sm mb-1">Personal or tax Number (optional)</label>
+                                <input id="consignee-tax" type="text" class="w-full p-3 border rounded" />
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-2">Payer Information</h3>
+                        <p class="text-xs text-gray-600 mb-3">Enter the information of the person sending the remittance receipt for the vehicle purchase. The sender's name must match the receipt and transfer fees are the sender's responsibility.</p>
+                        <div class="flex items-center space-x-4 mb-3">
+                            <label class="inline-flex items-center space-x-2">
+                                <input id="payer-new" type="checkbox" class="form-checkbox"> <span>New information</span>
+                            </label>
+                            <label class="inline-flex items-center space-x-2">
+                                <input id="payer-same" type="checkbox" class="form-checkbox"> <span>Same as consignee information</span>
+                            </label>
+                        </div>
+                        <div id="payer-fields" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm mb-1">(Business) Name*</label>
+                                <input id="payer-name" type="text" class="w-full p-3 border rounded" />
+                            </div>
+                            <div>
+                                <label class="block text-sm mb-1">Email*</label>
+                                <input id="payer-email" type="email" class="w-full p-3 border rounded" />
+                            </div>
+                            <div>
+                                <label class="block text-sm mb-1">Tel*</label>
+                                <input id="payer-tel" type="tel" class="w-full p-3 border rounded" />
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-2">Receipt of B/L</h3>
+                        <div class="space-y-2">
+                            <label class="flex items-center space-x-2"><input type="checkbox" id="bl-surrendered" class="form-checkbox"> <span>Surrendered B/L</span></label>
+                            <label class="flex items-center space-x-2"><input type="checkbox" id="bl-original" class="form-checkbox"> <span>Original B/L</span></label>
+                            <p class="text-xs text-gray-600">The surrender B/L will be sent via email without an original copy.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-700 mb-1">Request Memo</label>
+                        <textarea id="biz-memo" class="w-full p-3 border rounded" rows="4" placeholder="Any additional requests or notes..."></textarea>
+                    </div>
+                </div>
+            `;
+
+            // Enforce mutually exclusive B/L checkboxes
+            const surr = document.getElementById('bl-surrendered');
+            const orig = document.getElementById('bl-original');
+            const toggleExclusive = (changed) => {
+                if (changed === surr && surr.checked) orig.checked = false;
+                if (changed === orig && orig.checked) surr.checked = false;
+            };
+            surr.addEventListener('change', () => toggleExclusive(surr));
+            orig.addEventListener('change', () => toggleExclusive(orig));
+
+            // Payer info helper: copy from consignee when selected
+            const payerSame = document.getElementById('payer-same');
+            payerSame.addEventListener('change', () => {
+                if (!payerSame.checked) return;
+                document.getElementById('payer-name').value = document.getElementById('consignee-name').value;
+                document.getElementById('payer-email').value = document.getElementById('consignee-email').value;
+                document.getElementById('payer-tel').value = document.getElementById('consignee-tel').value;
+            });
+        }
+
+        // ----- Helpers for modal & invoice -----
+        function formatMoney(n) {
+            if (typeof n !== 'number') return n || '—';
+            return '$' + n.toLocaleString();
+        }
+
+        function openOrderModal(vehicle, type, selection) {
+            const price = vehicle.price || vehicle.sellingPrice || vehicle.listedPrice || vehicle.reservePrice || null;
+            const vin = vehicle.product_id_number || vehicle.vin || (vehicle.vehicle && vehicle.vehicle.vin) || (vehicle.insuranceHistory && vehicle.insuranceHistory.licensePlate) || 'N/A';
+            const country = selectedCountry ? decodeURIComponent(selectedCountry) : '';
+            const title = displayTitle(vehicle);
+
+            const detailsHtml = `
+                <div class="bg-gray-50 border rounded-xl p-4">
+                    <div class="font-semibold text-gray-900 mb-2">Vehicle</div>
+                    <div class="grid grid-cols-2 gap-2 text-sm">
+                        <div><span class="text-gray-500">Title:</span> ${title}</div>
+                        <div><span class="text-gray-500">VIN:</span> ${vin}</div>
+                        <div><span class="text-gray-500">Country:</span> ${country || '—'}</div>
+                        <div><span class="text-gray-500">Type:</span> ${type}</div>
+                        <div><span class="text-gray-500">Price:</span> ${formatMoney(price)}</div>
+                        <div><span class="text-gray-500">Total:</span> ${formatMoney(price)} + Shipping Fee</div>
+                    </div>
+                </div>
+                ${type === 'business' ? `
+                <div class="bg-gray-50 border rounded-xl p-4">
+                    <div class="font-semibold text-gray-900 mb-2">Business / Shipping</div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div><span class="text-gray-500">Port:</span> ${selection.port || '—'}</div>
+                        <div><span class="text-gray-500">Ship Type:</span> ${selection.shipType || '—'}</div>
+                        <div class="col-span-2"><span class="text-gray-500">B/L:</span> ${selection.bl || '—'}</div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 border rounded-xl p-4">
+                    <div class="font-semibold text-gray-900 mb-2">Consignee</div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div><span class="text-gray-500">Name:</span> ${selection.consignee?.name || '—'}</div>
+                        <div><span class="text-gray-500">Tel:</span> ${selection.consignee?.tel || '—'}</div>
+                        <div class="col-span-2"><span class="text-gray-500">Email:</span> ${selection.consignee?.email || '—'}</div>
+                        <div class="col-span-2"><span class="text-gray-500">Address:</span> ${selection.consignee?.address || '—'}</div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 border rounded-xl p-4">
+                    <div class="font-semibold text-gray-900 mb-2">Payer</div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div><span class="text-gray-500">Name:</span> ${selection.payer?.name || '—'}</div>
+                        <div><span class="text-gray-500">Tel:</span> ${selection.payer?.tel || '—'}</div>
+                        <div class="col-span-2"><span class="text-gray-500">Email:</span> ${selection.payer?.email || '—'}</div>
+                    </div>
+                </div>
+                ` : `
+                <div class="bg-gray-50 border rounded-xl p-4">
+                    <div class="font-semibold text-gray-900 mb-2">Buyer</div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div><span class="text-gray-500">Name:</span> ${selection.name || '—'}</div>
+                        <div><span class="text-gray-500">Tel:</span> ${(selection.telCode||'') + (selection.tel||'')}</div>
+                        <div class="col-span-2"><span class="text-gray-500">Memo:</span> ${selection.memo || '—'}</div>
+                    </div>
+                </div>
+                `}
+            `;
+
+            const modal = document.getElementById('order-modal');
+            const details = document.getElementById('order-modal-details');
+            details.innerHTML = detailsHtml;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+
+            document.getElementById('order-modal-edit').onclick = () => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            };
+
+            document.getElementById('order-modal-confirm').onclick = async () => {
+                const token = localStorage.getItem('authToken') || localStorage.getItem('token');
+                const country = selectedCountry ? decodeURIComponent(selectedCountry) : '';
+                try {
+                    const res = await fetch(`${API_ORIGIN}/orders`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json', ...(token ? { 'Authorization': `Bearer ${token}` } : {}) },
+                        body: JSON.stringify({ listingId, country, type, selection })
+                    });
+                    const data = await res.json().catch(() => ({}));
+                    if (!res.ok) {
+                        // Friendlier error for unavailable listing
+                        if (res.status === 409) {
+                            throw new Error('This vehicle is already sold or booked.');
+                        }
+                        if (res.status === 401 || res.status === 403) {
+                            throw new Error('Please sign in with a buyer account to place an order.');
+                        }
+                        throw new Error(data.error || `Order failed (HTTP ${res.status})`);
+                    }
+
+                    const created = new Date(data.createdAt || Date.now());
+                    const y = String(created.getFullYear()).slice(2);
+                    const m = String(created.getMonth() + 1).padStart(2, '0');
+                    const d = String(created.getDate()).padStart(2, '0');
+                    const suffix = String(data.id).slice(-8).padStart(8, '0');
+                    const orderNo = `BUY_${y}${m}${d}_${suffix}`;
+
+                    const latestOrder = {
+                        id: data.id,
+                        orderNo,
+                        listingId,
+                        title,
+                        vin,
+                        price,
+                        country,
+                        type,
+                        selection,
+                        createdAt: data.createdAt || new Date().toISOString()
+                    };
+                    // Persist latest order and append to purchases list for My Purchases
+                    localStorage.setItem('latestOrder', JSON.stringify(latestOrder));
+                    try {
+                        const purchases = JSON.parse(localStorage.getItem('purchases') || '[]');
+                        purchases.push(latestOrder);
+                        localStorage.setItem('purchases', JSON.stringify(purchases));
+                    } catch (e) {
+                        console.warn('Failed to persist purchases list', e);
+                    }
+                    // Show success message, then redirect to Inventory
+                    try {
+                        const modal = document.getElementById('order-modal');
+                        if (modal) { modal.classList.add('hidden'); modal.classList.remove('flex'); }
+                        const banner = document.createElement('div');
+                        banner.className = 'fixed inset-0 flex items-center justify-center z-50';
+                        banner.innerHTML = `
+                          <div class="bg-white rounded-2xl shadow-2xl p-6 text-center">
+                            <div class="text-red-600 text-3xl mb-2"><i class="fa-solid fa-circle-check"></i></div>
+                            <div class="text-lg font-bold text-gray-900">Thank you, your order has been confirmed.</div>
+                          </div>
+                        `;
+                        document.body.appendChild(banner);
+                        setTimeout(() => { window.location.href = 'inventory.html'; }, 600);
+                    } catch(_) {
+                        // Fallback in case of any rendering issue
+                        alert('Thank you, your order has been confirmed.');
+                        window.location.href = 'inventory.html';
+                    }
+                } catch (err) {
+                    console.error('Order error:', err);
+                    alert('Failed to place order: ' + err.message);
+                }
+            };
+        }
+
+        function mountFlow(type, vehicle) {
+            document.getElementById('option-select').classList.add('hidden');
+            document.getElementById('flow-container').classList.remove('hidden');
+            renderRightSticky(vehicle);
+            if (type === 'personal') renderPersonalLeft(vehicle);
+            else renderBusinessLeft(vehicle);
+
+            // Handle order placement: open review modal (POST happens on Confirm)
+            const btn = document.getElementById('place-order');
+            if (btn && btn.disabled) return;
+            btn.addEventListener('click', () => {
+                const country = selectedCountry ? decodeURIComponent(selectedCountry) : '';
+                const selection = type === 'personal' ? {
+                    name: document.getElementById('personal-name').value,
+                    telCode: document.getElementById('personal-tel-code').value,
+                    tel: document.getElementById('personal-tel').value,
+                    memo: document.getElementById('personal-memo').value,
+                } : {
+                    port: document.getElementById('biz-port').value,
+                    shipType: document.getElementById('biz-ship-type').value,
+                    name: document.getElementById('biz-name').value,
+                    telCode: document.getElementById('biz-tel-code').value,
+                    tel: document.getElementById('biz-tel').value,
+                    consignee: {
+                        name: document.getElementById('consignee-name').value,
+                        address: document.getElementById('consignee-address').value,
+                        tel: document.getElementById('consignee-tel').value,
+                        email: document.getElementById('consignee-email').value,
+                        tax: document.getElementById('consignee-tax').value,
+                    },
+                    payer: {
+                        name: document.getElementById('payer-name').value,
+                        tel: document.getElementById('payer-tel').value,
+                        email: document.getElementById('payer-email').value,
+                    },
+                    bl: document.getElementById('bl-surrendered').checked ? 'Surrendered' : (document.getElementById('bl-original').checked ? 'Original' : ''),
+                    memo: document.getElementById('biz-memo').value,
+                };
+                openOrderModal(vehicle, type, selection);
+            });
+        }
+
+        async function init() {
+            if (!listingId) {
+                alert('No vehicle ID provided');
+ window.open('inventory.html', '_blank');
+                return;
+            }
+            const vehicle = await fetchVehicleData(listingId);
+            if (!vehicle) {
+                alert('Vehicle not found');
+ window.open('inventory.html', '_blank');
+                return;
+            }
+            renderVehicleSummary(vehicle);
+            const optPersonal = document.getElementById('opt-personal');
+            const optBusiness = document.getElementById('opt-business');
+            optPersonal.addEventListener('click', () => mountFlow('personal', vehicle));
+            optBusiness.addEventListener('click', () => mountFlow('business', vehicle));
+        }
+
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+
+    <!-- Header role-based replacement: show Dashboard link when signed in -->
+    <script>
+      (function(){
+        try {
+          var role = (localStorage.getItem('role') || localStorage.getItem('userRole') || '').toLowerCase();
+          if (!role || (role !== 'buyer' && role !== 'seller')) return;
+          var signInEl = document.querySelector('[data-text="sign-in"]');
+          var signUpEl = document.querySelector('[data-text="sign-up"]');
+          var container = (signInEl && signInEl.parentElement) || (signUpEl && signUpEl.parentElement);
+          if (!container) return;
+          if (signInEl) signInEl.remove();
+          if (signUpEl) signUpEl.remove();
+          var link = document.createElement('a');
+          link.textContent = role === 'buyer' ? 'Buyer Dashboard' : 'Seller Dashboard';
+          link.href = role === 'buyer' ? 'buyer-dashboard.html' : 'seller-dashboard.html';
+          link.className = 'bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-lg font-semibold transition-all transform hover:scale-105';
+          container.appendChild(link);
+        } catch(e) { /* no-op */ }
+      })();
+    </script>
+</body>
+</html>

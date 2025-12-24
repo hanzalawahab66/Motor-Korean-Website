@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Listings - NSM Autos</title>
+  <!-- Page Protection: redirect non-sellers to signin -->
+  <script>
+    (function () {
+      try {
+        var role = localStorage.getItem('userRole') || localStorage.getItem('role');
+        if (role !== 'seller') {
+ window.open('signin.html', '_blank');
+        }
+      } catch (e) {
+ window.open('signin.html', '_blank');
+      }
+    })();
+  </script>
+  <!-- Tailwind CDN script (avoids blocked CSS fetch) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { heading: ['Inter','sans-serif'], body: ['Inter','sans-serif'] }
+        }
+      }
+    };
+  </script>
+  <script>window.FontAwesomeConfig = {autoReplaceSvg: 'nest'};</script>
+  <script src="scripts/api-origin.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" rel="stylesheet">
+    <!-- Removed external Google Fonts to avoid net::ERR_ABORTED in preview env -->
+  <style>
+    ::-webkit-scrollbar { display: none; }
+    * { font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", sans-serif; }
+    .status-pill { padding: 0.25rem 0.5rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; }
+    .status-pending { background-color: #FEF3C7; color: #92400E; }
+    .status-approved { background-color: #DCFCE7; color: #166534; }
+    .status-rejected { background-color: #FEE2E2; color: #991B1B; }
+  </style>
+  
+</head>
+<body class="bg-gray-50">
+  <div class="bg-[#0D1F39] text-white font-body relative z-[60]">
+    <div class="container mx-auto px-6 py-2">
+      <div class="flex items-center justify-between">
+        <div class="relative">
+          <button id="languageToggle" class="flex items-center space-x-2 text-white/90 hover:text-white font-medium transition-colors"><i class="fa-solid fa-globe text-base"></i><span class="text-sm md:text-base">English</span><i class="fa-solid fa-chevron-down text-xs"></i></button>
+          <div id="languageDropdown" class="absolute left-0 top-full mt-1 bg-white rounded-lg shadow-xl border border-gray-200 py-2 min-w-[160px] hidden z-[1000]">
+            <button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="en"><img src="https://flagcdn.com/w20/us.png" alt="English" class="w-4 h-3"><span>English</span></button>
+            <button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="ko"><img src="https://flagcdn.com/w20/kr.png" alt="한국어" class="w-4 h-3"><span>한국어</span></button>
+            <button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="ar"><img src="https://flagcdn.com/w20/sa.png" alt="العربية" class="w-4 h-3"><span>العربية</span></button>
+            <button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="fr"><img src="https://flagcdn.com/w20/fr.png" alt="Français" class="w-4 h-3"><span>Français</span></button>
+          </div>
+        </div>
+        <div class="flex items-center space-x-3"><button class="bg-white/10 hover:bg-white/20 text-white px-4 py-1.5 rounded-lg font-medium transition-all h-hover" data-text="sign-in" onclick="window.open('signin.html','_blank')">Login</button><button class="bg-[#D53C46] text-white hover:bg-[#D53C46] px-4 py-1.5 rounded-lg font-semibold transition-all h-hover" data-text="sign-up" onclick="window.open('signup.html','_blank')">Register</button></div>
+      </div>
+    </div>
+  </div>
+  <header id="header" class="sticky top-0 z-50 backdrop-blur">
+  <div class="w-full px-6 py-2 bg-white">
+    <div class="w-full px-4 md:px-6 py-3 flex items-center justify-between">
+        <a href="home.html" class="flex items-center space-x-3"><img src="assets/images/Gemini_Generated_Image_2f4bkg2f4bkg2f4bee.png" alt="Logo" class="w-80 h-[100px] object-contain animate-logo" /></a>
+        <nav class="hidden md:flex items-center space-x-8 text-gray-900 font-semibold animate-nav">
+          <a href="home.html" class="hover:text-[#0D1F39] transition-colors">Home</a>
+          <a href="inventory.html" class="hover:text-[#0D1F39] transition-colors">Inventory</a>
+          <a href="about-us.html" id="navAboutToggle" class="hover:text-[#0D1F39] transition-colors flex items-center space-x-1"><span>About Us</span><i class="fa-solid fa-chevron-down text-xs"></i></a><div id="navAboutMenu" class="absolute left-1/2 -translate-x-1/2 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg py-2 min-w-[220px] opacity-0 translate-y-1 pointer-events-none transition-all duration-300 z-50"><a href="mit-info.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">MIT Info</a><a href="service-introduction.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">Service Introduction</a></div></div>
+          <a href="contact-us.html" class="hover:text-[#0D1F39] transition-colors">Contact Us</a>
+          <div class="relative" id="navMore"><button id="navMoreToggle" class="hover:text-[#0D1F39] transition-colors flex items-center space-x-1"><span>More</span><i class="fa-solid fa-chevron-down text-xs"></i></button><div id="navMoreMenu" class="absolute left-1/2 -translate-x-1/2 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg py-2 min-w-[220px] opacity-0 translate-y-1 pointer-events-none transition-all duration-300 z-50"><a href="faq.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">FAQs</a><a href="reviews.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">Reviews</a><a href="blog.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">Blogs</a></div></div>
+        </nav>
+        <div class="flex items-center space-x-4 animate-actions">
+          <div class="hidden md:flex items-center bg-white rounded-full shadow px-3 py-1.5 border border-gray-200"><i class="fa-solid fa-magnifying-glass text-gray-600 mr-2 hover:text-[#D53C46]"></i><input id="headerSearchInput" type="text" placeholder="Search" class="w-40 md:w-52 text-sm bg-transparent focus:outline-none" /></div>
+          <button id="mobileSearchToggle" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition group h-hover"><i class="fa-solid fa-magnifying-glass group-hover:text-[#D53C46]"></i></button>
+          <a id="headerFavorite" href="dashboard-saved.html" class="relative inline-flex items-center justify-center w-10 h-10 rounded-full border border-gray-200 hover:bg-gray-50 transition-colors group h-hover"><i class="fa-regular fa-heart text-[#0D1F39] group-hover:text-[#D53C46]"></i><span class="absolute -top-1 -right-1 inline-flex items-center justify-center w-5 h-5 rounded-full bg-[#D53C46] text-white text-xs">0</span></a>
+          <button id="mobileMenuToggle" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition group h-hover"><i class="fa-solid fa-bars group-hover:text-[#D53C46]"></i></button>
+        </div>
+      </div>
+    </div>
+ </header>
+  <script>document.addEventListener('DOMContentLoaded',function(){var h=document.getElementById('header');if(h){requestAnimationFrame(function(){h.classList.add('header-ready');});}});</script>
+  <script>(function(){function setupHoverDelay(containerId,toggleId,menuId){var c=document.getElementById(containerId);var t=document.getElementById(toggleId);var m=document.getElementById(menuId);if(!c||!t||!m)return;var hid=null;function show(){if(hid){clearTimeout(hid);hid=null;}m.classList.remove('opacity-0','pointer-events-none','translate-y-1');m.classList.add('opacity-100','pointer-events-auto','translate-y-0');}function schedule(){if(hid)clearTimeout(hid);hid=setTimeout(function(){m.classList.remove('opacity-100','pointer-events-auto','translate-y-0');m.classList.add('opacity-0','pointer-events-none','translate-y-1');hid=null;},300);}c.addEventListener('mouseenter',show);t.addEventListener('mouseenter',show);m.addEventListener('mouseenter',show);c.addEventListener('mouseleave',schedule);t.addEventListener('mouseleave',schedule);m.addEventListener('mouseleave',schedule);t.addEventListener('click',show);}setupHoverDelay('navAbout','navAboutToggle','navAboutMenu');setupHoverDelay('navMore','navMoreToggle','navMoreMenu');})();</script>
+  <div id="mobileSearchContainer" class="md:hidden hidden px-6"><div class="flex items-center bg-white rounded-full shadow px-3 py-2 border border-gray-200"><i class="fa-solid fa-magnifying-glass text-gray-600 mr-2"></i><input id="mobileHeaderSearchInput" type="text" placeholder="Search" class="flex-1 text-sm bg-transparent focus:outline-none" /><button id="mobileHeaderSearchBtn" class="ml-2 px-3 py-1 rounded-full bg-[#0D1F39] text-white text-xs">Search</button></div></div>
+  <div id="mobileMenuOverlay" class="fixed inset-0 bg-black/40 hidden z-40 md:hidden"></div>
+  <aside id="mobileDrawer" class="fixed inset-y-0 right-0 w-80 max-w-[88vw] bg-white shadow-xl border-l border-gray-200 z-50 transform translate-x-full transition-transform duration-300 ease-out md:hidden" aria-hidden="true" role="dialog"><div class="flex items-center justify-between px-4 py-3 border-b border-gray-100"><div class="flex items-center space-x-2"><img src="assets/images/Gemini_Generated_Image_2f4bkg2f4bkg2f4bee.png" alt="Logo" class="w-64 h-16 object-contain" /></div><button id="mobileDrawerClose" class="inline-flex items-center justify-center w-10 h-10 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button></div><div class="px-4 py-3"><div class="flex items-center bg-white rounded-full border border-gray-200 px-3 py-2 shadow-sm"><i class="fa-solid fa-magnifying-glass text-gray-600 mr-2"></i><input id="drawerSearchInput" type="text" placeholder="Search" class="flex-1 text-sm bg-transparent focus:outline-none" /><button id="drawerSearchBtn" class="ml-2 px-3 py-1 rounded-full bg-[#0D1F39] text-white text-xs">Search</button></div></div><nav class="px-4 py-3 space-y-1 text-gray-900 font-semibold"><a href="home.html" class="block py-2 rounded-lg hover:bg-gray-50">Home</a><a href="inventory.html" class="block py-2 rounded-lg hover:bg-gray-50">Inventory</a><div class="border-t border-gray-100 my-2"></div><button id="drawerAboutToggle" class="w-full flex items-center justify-between py-2 rounded-lg hover:bg-gray-50 text-left" aria-expanded="false"><span>About Us</span><i class="fa-solid fa-chevron-down text-xs"></i></button><div id="drawerAboutMenu" class="hidden ml-3 space-y-1 text-gray-700 font-normal"><a href="mit-info.html" class="block py-1.5 rounded hover:bg-gray-50">MIT Info</a><a href="service-introduction.html" class="block py-1.5 rounded hover:bg-gray-50">Service Introduction</a></div><a href="contact-us.html" class="block py-2 rounded-lg hover:bg-gray-50">Contact Us</a><button id="drawerMoreToggle" class="w-full flex items-center justify-between py-2 rounded-lg hover:bg-gray-50 text-left" aria-expanded="false"><span>More</span><i class="fa-solid fa-chevron-down text-xs"></i></button><div id="drawerMoreMenu" class="hidden ml-3 space-y-1 text-gray-700 font-normal"><a href="faq.html" class="block py-1.5 rounded hover:bg-gray-50">FAQs</a><a href="reviews.html" class="block py-1.5 rounded hover:bg-gray-50">Reviews</a><a href="blog.html" class="block py-1.5 rounded hover:bg-gray-50">Blogs</a></div></nav></aside>
+  <script>(function(){var overlay=document.getElementById('mobileMenuOverlay');var drawer=document.getElementById('mobileDrawer');var menuBtn=document.getElementById('mobileMenuToggle');var closeBtn=document.getElementById('mobileDrawerClose');function openDrawer(){if(overlay&&drawer){overlay.classList.remove('hidden');drawer.style.transform='translateX(0)';}}function closeDrawer(){if(overlay&&drawer){overlay.classList.add('hidden');drawer.style.transform='';}}if(menuBtn)menuBtn.addEventListener('click',openDrawer);if(closeBtn)closeBtn.addEventListener('click',closeDrawer);if(overlay)overlay.addEventListener('click',closeDrawer);var drawerAboutToggle=document.getElementById('drawerAboutToggle');var drawerAboutMenu=document.getElementById('drawerAboutMenu');if(drawerAboutToggle&&drawerAboutMenu){drawerAboutToggle.addEventListener('click',function(){var hidden=drawerAboutMenu.classList.toggle('hidden');drawerAboutToggle.setAttribute('aria-expanded',hidden?'false':'true');});}var drawerMoreToggle=document.getElementById('drawerMoreToggle');var drawerMoreMenu=document.getElementById('drawerMoreMenu');if(drawerMoreToggle&&drawerMoreMenu){drawerMoreToggle.addEventListener('click',function(){var hidden=drawerMoreMenu.classList.toggle('hidden');drawerMoreToggle.setAttribute('aria-expanded',hidden?'false':'true');});}})();</script>
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="mb-4">
+      <h1 class="text-2xl font-bold text-gray-900">Manage My Listings</h1>
+      <p class="text-sm text-gray-600 mt-1">Track and manage all your vehicle listings</p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <div class="bg-white rounded-lg border p-4 flex items-center justify-between">
+        <div>
+          <div class="text-xs uppercase text-gray-500">Total Listings</div>
+          <div id="stat-total" class="text-xl font-semibold text-gray-900">0</div>
+        </div>
+        <div class="w-9 h-9 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center">
+          <i class="fa-solid fa-car"></i>
+        </div>
+      </div>
+      <div class="bg-white rounded-lg border p-4 flex items-center justify-between">
+        <div>
+          <div class="text-xs uppercase text-gray-500">Active Ads</div>
+          <div id="stat-active" class="text-xl font-semibold text-gray-900">0</div>
+        </div>
+        <div class="w-9 h-9 rounded-full bg-green-50 text-green-600 flex items-center justify-center">
+          <i class="fa-solid fa-circle-check"></i>
+        </div>
+      </div>
+      <div class="bg-white rounded-lg border p-4 flex items-center justify-between">
+        <div>
+          <div class="text-xs uppercase text-gray-500">Total Views</div>
+          <div id="stat-views" class="text-xl font-semibold text-gray-900">0</div>
+        </div>
+        <div class="w-9 h-9 rounded-full bg-purple-50 text-purple-600 flex items-center justify-center">
+          <i class="fa-solid fa-eye"></i>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-4">
+      <div class="flex-1">
+        <div class="relative">
+          <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+          <input id="search-input" type="text" placeholder="Search by make, model, or ID..." class="w-full pl-10 pr-4 py-2.5 border rounded-md text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"/>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <select id="sort-select" class="px-3 py-2 border rounded-md text-sm bg-white">
+          <option value="newest">Newest First</option>
+          <option value="oldest">Oldest First</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="mileage-asc">Mileage: Low to High</option>
+          <option value="mileage-desc">Mileage: High to Low</option>
+        </select>
+        <a href="sell-my-car.html" class="inline-flex items-center px-4 py-2 rounded-md text-sm font-medium bg-indigo-600 text-white hover:bg-indigo-700">
+          <i class="fa-solid fa-plus mr-2"></i> Add New Car
+        </a>
+      </div>
+    </div>
+    <div class="flex items-center gap-2 mb-4">
+      <button data-filter="all" class="filter-pill active">All</button>
+      <button data-filter="active" class="filter-pill">Active</button>
+      <button data-filter="pending" class="filter-pill">Pending Approval</button>
+      <button data-filter="sold" class="filter-pill">Sold</button>
+    </div>
+    <style>
+      .filter-pill { padding: 0.5rem 0.75rem; border: 1px solid #E5E7EB; border-radius: 0.5rem; background:#fff; font-size:0.875rem; color:#374151; }
+      .filter-pill.active { background:#111827; color:#fff; border-color:#111827; }
+      .card-status-badge { padding:0.375rem 0.625rem; border-radius:9999px; font-size:0.75rem; font-weight:600; }
+      .badge-active { background:#DCFCE7; color:#166534; }
+      .badge-pending { background:#FEF3C7; color:#92400E; }
+      .badge-sold { background:#E5E7EB; color:#374151; }
+      .btn { display:inline-flex; align-items:center; gap:0.5rem; padding:0.5rem 0.75rem; border-radius:0.5rem; font-size:0.875rem; border:1px solid #E5E7EB; }
+      .btn-primary { background:#fff; color:#374151; }
+      .btn-green { color:#166534; border-color:#86EFAC; background:#ECFDF5; }
+      .btn-orange { color:#991B1B; border-color:#FCA5A5; background:#FEF2F2; }
+      .btn-red { color:#991B1B; border-color:#FCA5A5; background:#FEF2F2; }
+      .btn-gray { color:#6B7280; border-color:#D1D5DB; background:#F3F4F6; }
+    </style>
+    <div id="cards-container" class="space-y-4"></div>
+    <div id="empty-state" class="px-6 py-4 text-sm text-gray-600 hidden">No listings found yet.</div>
+    <div id="error-state" class="px-6 py-4 text-sm text-red-600 hidden"></div>
+    <div id="pagination" class="flex items-center justify-center gap-2 mt-6"></div>
+  </main>
+
+  <footer class="bg-white border-t">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-sm text-gray-600 flex items-center justify-between">
+      <span>© 2025 NSM Autos</span>
+      <div class="space-x-4">
+        <a href="about-us.html" class="hover:text-black">About</a>
+        <a href="contact-us.html" class="hover:text-black">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      const API_ORIGIN = (() => {
+        try {
+          const origin = window.__apiOrigin;
+          if (origin && /^https?:\/\//i.test(origin)) return origin.replace(/\/$/, '');
+        } catch(_) {}
+        try {
+          return window.location.origin;
+        } catch(_) {
+          return '';
+        }
+      })();
+
+      function resolveAssetUrl(s){
+        if (!s || typeof s !== 'string') return '';
+        if (s.startsWith('data:')) return s; // data URL
+        // Replace legacy localhost origins with current origin
+        if (/^https?:\/\/localhost:(3000|3003)/.test(s)) {
+          return API_ORIGIN + s.replace(/^https?:\/\/localhost:(3000|3003)/, '');
+        }
+        if (/^https?:\/\/127\.0\.0\.1:(3000|3003)/.test(s)) {
+          return API_ORIGIN + s.replace(/^https?:\/\/127\.0\.0\.1:(3000|3003)/, '');
+        }
+        // Avoid broken uploads when backend is not running in preview
+        if (s.startsWith('/uploads/')) return '/placeholder-car.svg';
+        if (s.startsWith('/')) return s; // serve from current origin
+        return s;
+      }
+      const cardsEl = document.getElementById('cards-container');
+      const emptyState = document.getElementById('empty-state');
+      const errorState = document.getElementById('error-state');
+      const searchEl = document.getElementById('search-input');
+      const sortEl = document.getElementById('sort-select');
+      const paginationEl = document.getElementById('pagination');
+      const filterBtns = Array.from(document.querySelectorAll('.filter-pill'));
+      const statTotal = document.getElementById('stat-total');
+      const statActive = document.getElementById('stat-active');
+      const statViews = document.getElementById('stat-views');
+
+      const state = {
+        raw: [],
+        search: '',
+        filter: 'all',
+        sort: 'newest',
+        page: 1,
+        pageSize: 3
+      };
+
+      function normalize(item){
+        const id = item.id || item._id || item.listingId || item.listing_id;
+        const title = item.title || item.carLabel || [item.make, item.model].filter(Boolean).join(' ') || '—';
+        const price = Number(item.price || item.listing_price || 0) || 0;
+        // Derive mileage from the most reliable fields; parse strings like "91,391 km"
+        const rawMileage = (item.vehicle && (item.vehicle.mileageKm ?? item.vehicle.mileage))
+          ?? (item.mileageKm ?? item.mileage)
+          ?? (item.insuranceHistory && item.insuranceHistory.mileage);
+        let mileage = 0;
+        if (typeof rawMileage === 'number') {
+          mileage = Math.max(0, rawMileage);
+        } else if (typeof rawMileage === 'string') {
+          const num = Number(String(rawMileage).replace(/[^0-9.]/g, ''));
+          mileage = Number.isFinite(num) ? Math.max(0, Math.round(num)) : 0;
+        }
+        let createdAt = item.createdAt || item.created_at || item.dateSubmitted || item.date_submitted;
+        try { createdAt = new Date(createdAt).getTime(); } catch(_) { createdAt = Date.now(); }
+        const views = (item.views ?? (item.metrics && item.metrics.views));
+        const saves = (item.saves ?? (item.metrics && item.metrics.saves));
+        const messages = (item.messages ?? item.messagesCount);
+        const statusRaw = String(item.status || item.approval_status || (item.pending_approval ? 'pending' : '')).toLowerCase();
+        let status = 'pending';
+        if (['approved','active'].includes(statusRaw)) status = 'active';
+        else if (['sold','closed'].includes(statusRaw)) status = 'sold';
+        else if (['expired'].includes(statusRaw)) status = 'expired';
+        const thumb = typeof item.imageUrl === 'string' ? item.imageUrl
+          : (typeof item.thumbnail === 'string' ? item.thumbnail : '');
+        return { id, title, price, mileage, createdAt, views, saves, messages, status, thumb };
+      }
+
+      function formatCurrency(n){ try { return n ? new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(n) : '$0'; } catch(_) { return `$${n}`; } }
+      function timeAgo(ts){
+        const diff = Math.max(0, Date.now() - (ts || Date.now()));
+        const days = Math.floor(diff / 86400000);
+        if (days <= 0) return 'Listed today';
+        if (days === 1) return 'Listed 1 day ago';
+        return `Listed ${days} days ago`;
+      }
+      function statusBadge(status){
+        if (status === 'active') return '<span class="card-status-badge badge-active">Active</span>';
+        if (status === 'sold') return '<span class="card-status-badge badge-sold">Sold</span>';
+        return '<span class="card-status-badge badge-pending">Pending Review</span>';
+      }
+      function statIconText(icon, text){ return `<div class="flex items-center text-sm text-gray-600"><i class="${icon} mr-2 text-gray-500"></i>${text}</div>`; }
+      function cardHTML(item){
+        const disabled = item.status === 'sold';
+        const buttons = disabled
+          ? `<button class="btn btn-gray" disabled><i class="fa-solid fa-circle-check"></i> Sold</button>
+             <button class="btn btn-primary" data-action="relist" data-id="${item.id}"><i class="fa-solid fa-rotate"></i> Relist</button>`
+          : `<a class="btn btn-primary" href="edit-listing.html?id=${encodeURIComponent(item.id)}"><i class="fa-solid fa-pencil"></i> Edit</a>
+             <button class="btn btn-green" data-action="mark-sold" data-id="${item.id}"><i class="fa-solid fa-check"></i> Mark as Sold</button>
+             <button class="btn btn-red" data-action="delete" data-id="${item.id}"><i class="fa-solid fa-trash"></i> Delete</button>`;
+        const thumbnail = item.thumb ? `<img src="${item.thumb}" class="w-40 h-28 object-cover rounded-lg">` : `<div class="w-40 h-28 bg-gray-200 rounded-lg flex items-center justify-center text-gray-500"><i class="fa-solid fa-car-side text-2xl"></i></div>`;
+        const mileageText = Number.isFinite(item.mileage) && item.mileage > 0 ? `${Math.round(item.mileage).toLocaleString()} km` : 'N/A';
+        const viewsText = Number.isFinite(item.views) ? statIconText('fa-regular fa-eye', `${item.views} ${item.views===1?'view':'views'}`) : '';
+        const savesText = Number.isFinite(item.saves) ? statIconText('fa-regular fa-bookmark', `${item.saves} ${item.saves===1?'save':'saves'}`) : '';
+        const secondRow = (viewsText || savesText) ? `<div class="flex items-center gap-6 mt-2">${viewsText}${savesText}</div>` : '';
+        return `<div class="bg-white border rounded-xl p-4 flex items-start justify-between">
+          <div class="flex items-start gap-4">
+            ${thumbnail}
+            <div>
+              <div class="flex items-center gap-3">
+                <h3 class="text-lg font-semibold text-gray-900">${item.title}</h3>
+              </div>
+              <div class="text-xl font-bold text-gray-900">${formatCurrency(item.price)}</div>
+              <div class="flex items-center gap-4 mt-2">
+                ${statIconText('fa-solid fa-road', mileageText)}
+                ${statIconText('fa-regular fa-clock', timeAgo(item.createdAt))}
+              </div>
+              ${secondRow}
+              <div class="flex items-center gap-2 mt-4">${buttons}</div>
+            </div>
+          </div>
+          <div>${statusBadge(item.status)}</div>
+        </div>`;
+      }
+
+      function applyFilters(){
+        const q = state.search.trim().toLowerCase();
+        let list = state.raw.slice();
+        if (q) {
+          list = list.filter(it => [it.title, String(it.id)].join(' ').toLowerCase().includes(q));
+        }
+        if (state.filter !== 'all') {
+          list = list.filter(it => {
+            if (state.filter === 'active') return it.status === 'active';
+            if (state.filter === 'pending') return it.status === 'pending';
+            if (state.filter === 'sold') return it.status === 'sold';
+            if (state.filter === 'expired') return it.status === 'expired';
+            return true;
+          });
+        }
+        list.sort((a,b)=>{
+          if (state.sort === 'newest') return b.createdAt - a.createdAt;
+          if (state.sort === 'oldest') return a.createdAt - b.createdAt;
+          if (state.sort === 'price-asc') return a.price - b.price;
+          if (state.sort === 'price-desc') return b.price - a.price;
+          if (state.sort === 'mileage-asc') return a.mileage - b.mileage;
+          if (state.sort === 'mileage-desc') return b.mileage - a.mileage;
+          return 0;
+        });
+        return list;
+      }
+
+      function render(){
+        const list = applyFilters();
+        const totalPages = Math.max(1, Math.ceil(list.length / state.pageSize));
+        state.page = Math.min(state.page, totalPages);
+        const start = (state.page - 1) * state.pageSize;
+        const pageItems = list.slice(start, start + state.pageSize);
+        if (pageItems.length === 0) { emptyState.classList.remove('hidden'); cardsEl.innerHTML = ''; }
+        else { emptyState.classList.add('hidden'); cardsEl.innerHTML = pageItems.map(cardHTML).join(''); }
+        renderPagination(totalPages);
+      }
+
+      async function hydrateThumbnails(){
+        try {
+          const res = await fetch(API_ORIGIN + '/backend/listings.json', { headers:{'Accept':'application/json'} });
+          const all = await res.json().catch(()=>[]);
+          const map = new Map();
+          const mileageMap = new Map();
+          (Array.isArray(all) ? all : []).forEach(l => {
+            const id = l.id;
+            let src = '';
+            const photos = Array.isArray(l.photos) ? l.photos : [];
+            const first = photos[0];
+            if (first && typeof first === 'object') {
+              const d = first.dataUrl || '';
+              const u = first.url || '';
+              src = resolveAssetUrl(d) || resolveAssetUrl(u ? `${u}` : '');
+            }
+            if (!src && typeof l.image_url === 'string') src = resolveAssetUrl(l.image_url);
+            if (!src && typeof l.imageUrl === 'string') src = l.imageUrl;
+            if (!src && typeof l.thumbnail === 'string') src = l.thumbnail;
+            if (src) map.set(String(id), resolveAssetUrl(src));
+            // Extract mileage from JSON store for accuracy
+            const v = l.vehicle || {};
+            const rawM = (v.mileageKm ?? v.mileage) ?? (l.mileageKm ?? l.mileage) ?? (l.insuranceHistory && l.insuranceHistory.mileage);
+            let m = 0;
+            if (typeof rawM === 'number') m = Math.max(0, rawM);
+            else if (typeof rawM === 'string') {
+              const num = Number(String(rawM).replace(/[^0-9.]/g, ''));
+              m = Number.isFinite(num) ? Math.max(0, Math.round(num)) : 0;
+            }
+            if (m > 0) mileageMap.set(String(id), m);
+          });
+          state.raw = state.raw.map(it => {
+            const src = map.get(String(it.id));
+            const km = mileageMap.get(String(it.id));
+            const next = { ...it };
+            if (src) next.thumb = src;
+            if (Number.isFinite(km)) next.mileage = km;
+            return next;
+          });
+        } catch (_){ /* keep placeholders if fetch fails */ }
+      }
+
+      function renderPagination(totalPages){
+        const btn = (p, active=false) => `<button data-page="${p}" class="px-3 py-2 border rounded-md ${active?'bg-gray-900 text-white border-gray-900':'bg-white text-gray-700'}">${p}</button>`;
+        const prev = `<button data-nav="prev" class="px-3 py-2 border rounded-md bg-white text-gray-700"><i class="fa-solid fa-chevron-left"></i></button>`;
+        const next = `<button data-nav="next" class="px-3 py-2 border rounded-md bg-white text-gray-700"><i class="fa-solid fa-chevron-right"></i></button>`;
+        const pages = [];
+        pages.push(prev);
+        for (let p=1; p<=totalPages; p++) pages.push(btn(p, p===state.page));
+        pages.push(next);
+        paginationEl.innerHTML = pages.join('');
+      }
+
+      function updateMetrics(){
+        const list = state.raw;
+        const activeCount = list.filter(it => it.status === 'active').length;
+        const viewsSum = list.reduce((s,it)=> s + (it.views||0), 0);
+        statTotal.textContent = String(list.length);
+        statActive.textContent = String(activeCount);
+        statViews.textContent = String(viewsSum);
+      }
+
+      async function load(){
+        const token = localStorage.getItem('token');
+        if (!token){ window.open('signin.html', '_blank'); return; }
+        try{
+          const res = await fetch(API_ORIGIN + '/my-listings',{
+            method:'GET',
+            headers:{ 'Accept':'application/json', 'Authorization': `Bearer ${token}` }
+          });
+          const data = await res.json().catch(()=>({listings:[]}));
+          if(!res.ok){ throw new Error(data.error || `Request failed: ${res.status}`); }
+          const list = Array.isArray(data.listings) ? data.listings : [];
+          state.raw = list.map(normalize);
+          await hydrateThumbnails();
+          updateMetrics();
+          render();
+        }catch(err){
+          errorState.textContent = err.message || 'Error loading listings';
+          errorState.classList.remove('hidden');
+        }
+      }
+
+      // Interactions
+      searchEl.addEventListener('input', (e)=> { state.search = e.target.value || ''; state.page = 1; render(); });
+      sortEl.addEventListener('change', (e)=> { state.sort = e.target.value; state.page = 1; render(); });
+      filterBtns.forEach(btn=> btn.addEventListener('click', ()=>{
+        filterBtns.forEach(b=> b.classList.remove('active'));
+        btn.classList.add('active');
+        state.filter = btn.getAttribute('data-filter');
+        state.page = 1;
+        render();
+      }));
+      paginationEl.addEventListener('click', (e)=>{
+        const pBtn = e.target.closest('[data-page],[data-nav]');
+        if(!pBtn) return;
+        if (pBtn.hasAttribute('data-page')) {
+          state.page = Number(pBtn.getAttribute('data-page')) || 1;
+        } else {
+          const nav = pBtn.getAttribute('data-nav');
+          const totalPages = Math.max(1, Math.ceil(applyFilters().length / state.pageSize));
+          if (nav === 'prev') state.page = Math.max(1, state.page - 1);
+          if (nav === 'next') state.page = Math.min(totalPages, state.page + 1);
+        }
+        render();
+      });
+      cardsEl.addEventListener('click', async (e)=>{
+        const el = e.target.closest('[data-action]');
+        if (!el) return;
+        const action = el.getAttribute('data-action');
+        const id = el.getAttribute('data-id');
+        if (!id) return;
+        if (action === 'delete') {
+          const ok = confirm('Are you sure you want to delete this listing?');
+          if (!ok) return;
+          const token = localStorage.getItem('token');
+          if (!token) { window.open('signin.html', '_blank'); return; }
+          try{
+            const res = await fetch(API_ORIGIN + '/listings/' + encodeURIComponent(id), {
+              method: 'DELETE',
+              headers: { 'Accept': 'application/json', 'Authorization': `Bearer ${token}` }
+            });
+            const out = await res.json().catch(()=>({}));
+            if (!res.ok) throw new Error(out.error || `Delete failed: ${res.status}`);
+            state.raw = state.raw.filter(it => String(it.id) !== String(id));
+            updateMetrics();
+            render();
+          }catch(err){
+            alert(err.message || 'Failed to delete listing');
+          }
+        } else if (action === 'mark-sold') {
+          // Optimistic UI update; backend route may be admin-only
+          state.raw = state.raw.map(it => String(it.id) === String(id) ? {...it, status:'sold'} : it);
+          updateMetrics();
+          render();
+        } else if (action === 'boost') {
+          alert('Boost feature is coming soon.');
+        } else if (action === 'relist') {
+          state.raw = state.raw.map(it => String(it.id) === String(id) ? {...it, status:'active'} : it);
+          updateMetrics();
+          render();
+        }
+      });
+
+      load();
+    })();
+  </script>
+  <script>
+    (function(){
+      try {
+        var role = (localStorage.getItem('role') || localStorage.getItem('userRole') || '').toLowerCase();
+        if (!role || (role !== 'buyer' && role !== 'seller')) return;
+        var signInEl = document.querySelector('[data-text="sign-in"]');
+        var signUpEl = document.querySelector('[data-text="sign-up"]');
+        var container = (signInEl && signInEl.parentElement) || (signUpEl && signUpEl.parentElement);
+        if (!container) return;
+        if (signInEl) signInEl.remove();
+        if (signUpEl) signUpEl.remove();
+        var link = document.createElement('a');
+        link.textContent = role === 'buyer' ? 'Buyer Dashboard' : 'Seller Dashboard';
+        link.href = role === 'buyer' ? 'buyer-dashboard.html' : 'seller-dashboard.html';
+        link.className = 'bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-lg font-semibold transition-all transform hover:scale-105';
+        container.appendChild(link);
+      } catch(e) {}
+    })();
+  </script>
+</body>
+</html>

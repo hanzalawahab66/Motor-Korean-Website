@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Buyer Invoice — NAWISAJAD MUMAND CO., LTD</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { fontFamily: { sans: ['Inter','system-ui','Segoe UI','Roboto','Helvetica Neue','Arial','sans-serif'] } } }
+    };
+  </script>
+  <style>
+    @media print { .no-print { display: none !important; } body { background: white; } main { box-shadow: none; border: none; } }
+  </style>
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" rel="stylesheet">
+  <!-- html2pdf.js for high-fidelity PDF export (same as manual invoice) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-YcsIPdXaeBi3kA1OKyIa47Zrg6HTpkBvH6Z9ftH29yTz+8Qp8nyzgneij0FfcX66yZLLN1CT0rTIEvVQwjKfug==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="scripts/api-origin.js"></script>
+
+    // Static company letterhead
+    const COMPANY = {
+      name: 'NAWISAJAD MUMAND CO., LTD',
+      logo: 'assets/images/20251210_0043_image.png',
+      phone: '010-9199-9687',
+      email: 'khaialzamin@nsm-koreacars.com',
+      address: '306 # 37 OKRYEON RO YEONSU-GU INCHEON SOUTH KOREA',
+      website: 'http://autonsm.com',
+      fax: '032-833-9687'
+    };
+    // Shipper / Exporter block (as specified)
+    const SHIPPER = {
+      name: 'NAWISAJAD MUMAND,LTD',
+      address: '306 # 37 OKRYEON RO YEONSU-GU INCHEON SOUTH KOREA',
+      email: 'khaialzamin@nsm-koreacars.com',
+      phone: '010-9199-9687',
+      website: 'http://autonsm.com',
+      fax: '032-833-9687'
+    };
+    // Bank details
+    const BANK = {
+      beneficiary: 'NAWISAJAD MUMAND CO., LTD',
+      bank: 'IBK INDUSTRIAL BANK OF KOREA',
+      account: '338-064901-56-00017',
+      branch: 'SONGDO',
+      swift: 'IBKOKRSE'
+    };
+
+    function qs(key){ try { return new URLSearchParams(location.search).get(key); } catch(e){ return null; } }
+    function qsAny(keys){ for (var i=0;i<keys.length;i++){ var v = qs(keys[i]); if (v!=null && v!=='') return v; } return null; }
+    function readToken(){ try { return localStorage.getItem('token'); } catch(e){ return null; } }
+    function formatMoney(n){ const num = (typeof n === 'number') ? n : Number(n||0) || 0; return '$' + num.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'); }
+    function parseMoney(s){ if (s==null) return 0; const t = String(s).replace(/[^0-9.\-]/g,''); const n = Number(t); return Number.isFinite(n) ? n : 0; }
+    function safe(v){ return v==null || v==='' ? '—' : String(v); }
+    function setText(id, value){ const el = document.getElementById(id); if (el) el.textContent = value; }
+    function showStatus(kind, message){
+      const el = document.getElementById('status-banner');
+      if (!el) return;
+      el.textContent = message;
+      el.classList.remove('hidden','bg-red-100','text-red-800','border-red-300','bg-yellow-100','text-yellow-800','border-yellow-300','bg-green-100','text-green-800','border-green-300');
+      const apply = (classes) => classes.forEach(c => el.classList.add(c));
+      if (kind === 'error') apply(['bg-red-100','text-red-800','border','border-red-300']);
+      else if (kind === 'success') apply(['bg-green-100','text-green-800','border','border-green-300']);
+      else apply(['bg-yellow-100','text-yellow-800','border','border-yellow-300']);
+    }
+
+    async function fetchMyOrders(){
+      const token = readToken();
+      // Try authenticated buyer orders first when token is present
+      if (token) {
+        try {
+          const primary = (window.__apiOrigin || (location.origin));
+          try {
+            const r = await fetch(primary + '/buyer/orders', { headers: { 'Authorization': 'Bearer '+token }, cache: 'no-store' });
+            if (r.ok){
+              return await r.json();
+            }
+          } catch(_){}
+          const host=(location && location.hostname)?location.hostname:'localhost';
+          const fallback='http://'+host+':3003';
+          const r2 = await fetch(fallback + '/buyer/orders', { headers: { 'Authorization': 'Bearer '+token }, cache: 'no-store' });
+          if (r2.ok){
+            return await r2.json();
+          }
+        } catch(e) { }
+      }
+      // Fallback to static orders for preview and non-auth contexts
+      try {
+        const r2 = await fetch('backend/orders.json', { cache: 'no-store' });
+        return r2.ok ? await r2.json() : [];
+      } catch(e){ return []; }
+    }
+    async function fetchListing(listingId){
+      if (!listingId) return null;
+      try { const r = await fetch('backend/listings.json', { cache: 'no-store' }); if (!r.ok) return null; const list = await r.json(); const idStr = String(listingId); return Array.isArray(list) ? list.find(l => String(l.id) === idStr) : null; } catch(e){ return null; }
+    }
+    function carTitle(listing){
+      if (!listing) return '';
+      if (listing.title) return listing.title;
+      const maker=(listing.insuranceHistory&&listing.insuranceHistory.manufacturer)||'';
+      const model=(listing.insuranceHistory&&listing.insuranceHistory.model)||'';
+      const year=(listing.vehicle&&listing.vehicle.year)||(listing.insuranceHistory&&listing.insuranceHistory.year)||'';
+      return [year,maker,model].filter(Boolean).join(' ');
+    }
+    function chassis(listing){
+      return (listing && (listing.product_id_number || listing.vin || (listing.vehicle&&listing.vehicle.vin))) || '—';
+    }
+    // Display-friendly invoice number like #INV-YYYY-MMDD based on created date
+    function computeInvoiceNumber(order){
+      const created = new Date(order && (order.created_at || order.createdAt) || Date.now());
+      const yyyy = String(created.getFullYear());
+      const mm = String(created.getMonth()+1).padStart(2,'0');
+      const dd = String(created.getDate()).padStart(2,'0');
+      return `#INV-${yyyy}-${mm}${dd}`;
+    }
+    function recalcTotals(){
+      const up = document.getElementById('unit-price');
+      const sc = document.getElementById('shipping-cost');
+      const unit = parseMoney(up ? up.textContent : 0);
+      const ship = parseMoney(sc ? sc.textContent : 0);
+      const total = unit + ship;
+      setText('total-item', formatMoney(total));
+      setText('total-price', formatMoney(total));
+    }
+    function deriveBuyer(order){
+      const selection = order?.selection || {};
+      const byBusiness = selection.consignee || selection.payer || {};
+      const user = JSON.parse(localStorage.getItem('user')||'{}');
+      return {
+        name: user?.name || byBusiness.name || selection.name || '—',
+        email: user?.email || byBusiness.email || '—',
+        phone: user?.phone || user?.tel || byBusiness.tel || [selection.telCode||'', selection.tel||''].filter(Boolean).join(' ').trim() || '—',
+        country: order?.country || '—'
+      };
+    }
+
+    async function resolveOrderId(){
+      // 1) Try common param names
+      let oid = qsAny(['orderId','order_id','id','order']);
+      if (oid) return oid;
+      // 2) Fallback: pick most recent completed order (prefer matching current buyer email)
+      const orders = await fetchMyOrders();
+      const arr = Array.isArray(orders) ? orders.slice() : [];
+      const completed = arr.filter(o => String(o.status||'').toLowerCase() === 'completed');
+      if (completed.length === 0) return null;
+      const user = JSON.parse(localStorage.getItem('user')||'{}');
+      const email = String(user?.email||'').toLowerCase();
+      let chosen = null;
+      if (email) {
+        const mine = completed.filter(o => String(o.buyer_email||'').toLowerCase() === email);
+        if (mine.length > 0) {
+          mine.sort((a,b) => new Date(b.invoice_at||b.updated_at||b.created_at||0) - new Date(a.invoice_at||a.updated_at||a.created_at||0));
+          chosen = mine[0];
+        }
+      }
+      if (!chosen) {
+        completed.sort((a,b) => new Date(b.invoice_at||b.updated_at||b.created_at||0) - new Date(a.invoice_at||a.updated_at||a.created_at||0));
+        chosen = completed[0];
+      }
+      return chosen ? chosen.id : null;
+    }
+
+    async function init(){
+      const orderId = await resolveOrderId();
+      const banner = document.getElementById('auth-banner');
+      const token = readToken();
+      if (!orderId) {
+        if (!token && banner) banner.style.display = '';
+        showStatus('error', 'Missing order ID — cannot determine which invoice to show.');
+        return;
+      }
+      const orders = await fetchMyOrders();
+      if (!Array.isArray(orders) || orders.length === 0) {
+        if (!token && banner) banner.style.display = '';
+        showStatus('error', 'No orders available to display.');
+        return;
+      }
+      const order = orders.find(o => String(o.id) === String(orderId));
+      if (!order) { showStatus('error', 'Order not found for your account.'); return; }
+      if (String(order.status||'').toLowerCase() !== 'completed') { showStatus('info', 'Invoice is not yet available for this order.'); return; }
+
+      const listing = await fetchListing(order.listingId);
+      const buyer = deriveBuyer(order);
+      const invDate = new Date(order?.invoice_at || order?.updated_at || order?.created_at || Date.now()).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+      const title = carTitle(listing) || 'Vehicle Purchase';
+      const chs = chassis(listing);
+      const unitPriceBase = (listing && (listing.price ?? listing.sellingPrice ?? listing.listedPrice ?? listing.reservePrice)) ?? order?.price ?? 0;
+      const unitPrice = (order?.price_override != null) ? Number(order.price_override)||0 : unitPriceBase;
+      const shipping = (order?.shipping_fee != null) ? Number(order.shipping_fee)||0 : 0;
+      const total = unitPrice + shipping;
+
+      // Company letterhead
+      setText('co-address', COMPANY.address);
+      setText('co-phone', COMPANY.phone);
+      setText('co-website', COMPANY.website);
+      setText('co-fax', COMPANY.fax);
+      const logoEl = document.getElementById('co-logo'); if (logoEl) logoEl.src = COMPANY.logo;
+
+      // Invoice meta
+      setText('inv-date', invDate);
+      setText('inv-number', computeInvoiceNumber(order));
+      setText('product-number', String(order.listingId||'—'));
+      setText('product-id', safe(chs));
+
+      // Buyer
+      setText('buyer-name', safe(buyer.name));
+      setText('buyer-email', safe(buyer.email));
+      setText('buyer-country', safe(buyer.country));
+      setText('buyer-phone', safe(buyer.phone));
+
+      // Shipper
+      setText('shipper-name', SHIPPER.name);
+      setText('shipper-address', SHIPPER.address);
+      setText('shipper-email', SHIPPER.email);
+      setText('shipper-phone', SHIPPER.phone);
+      setText('shipper-website', SHIPPER.website);
+      setText('shipper-fax', SHIPPER.fax);
+
+      // Vehicle table
+      setText('product-title', safe(title));
+      setText('chassis-no', safe(chs));
+      setText('unit-price', formatMoney(unitPrice));
+      setText('shipping-cost', formatMoney(shipping));
+      setText('total-item', formatMoney(total));
+
+      // Grand Total
+      setText('total-price', formatMoney(total));
+
+      // Bank
+      setText('bank-beneficiary', BANK.beneficiary);
+      setText('bank-name', BANK.bank);
+      setText('bank-account', BANK.account);
+      setText('bank-branch', BANK.branch);
+      setText('bank-swift', BANK.swift);
+
+      // Apply previously saved overrides if present
+      const ov = order.invoice_overrides || null;
+      if (ov && typeof ov === 'object') {
+        if (ov.meta && ov.meta.inv_date) setText('inv-date', ov.meta.inv_date);
+        if (ov.company) { setText('co-address', ov.company.address||COMPANY.address); setText('co-phone', ov.company.phone||COMPANY.phone); setText('co-website', ov.company.website||COMPANY.website); setText('co-fax', ov.company.fax||COMPANY.fax); }
+        if (ov.buyer) { setText('buyer-name', ov.buyer.name||buyer.name); setText('buyer-email', ov.buyer.email||buyer.email); setText('buyer-country', ov.buyer.country||buyer.country); }
+        if (ov.shipper) {
+          setText('shipper-name', ov.shipper.name||SHIPPER.name);
+          setText('shipper-address', ov.shipper.address||SHIPPER.address);
+          setText('shipper-email', ov.shipper.email||SHIPPER.email);
+          setText('shipper-phone', ov.shipper.phone||SHIPPER.phone);
+          setText('shipper-website', ov.shipper.website||SHIPPER.website);
+          setText('shipper-fax', ov.shipper.fax||SHIPPER.fax);
+        }
+        if (ov.item) {
+          if (ov.item.title) setText('product-title', ov.item.title);
+          if (ov.item.chassis) setText('chassis-no', ov.item.chassis);
+          const upv = (typeof ov.item.unit_price !== 'undefined') ? ov.item.unit_price : unitPrice;
+          const scv = (typeof ov.item.shipping_fee !== 'undefined') ? ov.item.shipping_fee : shipping;
+          setText('unit-price', formatMoney(upv));
+          setText('shipping-cost', formatMoney(scv));
+          setText('total-item', formatMoney(parseMoney(upv) + parseMoney(scv)));
+          setText('total-price', formatMoney(parseMoney(upv) + parseMoney(scv)));
+        }
+        if (ov.bank) { setText('bank-beneficiary', ov.bank.beneficiary||BANK.beneficiary); setText('bank-name', ov.bank.bank||BANK.bank); setText('bank-account', ov.bank.account||BANK.account); setText('bank-branch', ov.bank.branch||BANK.branch); setText('bank-swift', ov.bank.swift||BANK.swift); }
+      }
+
+      // Actions — match manual invoice's Save as PDF behavior
+      const btnPrint = document.getElementById('btn-print');
+      if (btnPrint) {
+        btnPrint.textContent = 'Save as PDF';
+        btnPrint.title = 'Download PDF with screen design';
+        btnPrint.onclick = async () => {
+          // Ensure html2pdf is available (CDN fallback)
+          const ensureHtml2Pdf = () => new Promise((resolve, reject) => {
+            if (window.html2pdf) return resolve();
+            const urls = [
+              'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js',
+              'https://unpkg.com/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js'
+            ];
+            let i = 0;
+            const tryNext = () => {
+              if (i >= urls.length) return reject(new Error('html2pdf unavailable'));
+              const s = document.createElement('script');
+              s.src = urls[i++];
+              s.async = true;
+              s.onload = () => setTimeout(() => { if (window.html2pdf) resolve(); else tryNext(); }, 0);
+              s.onerror = tryNext;
+              document.head.appendChild(s);
+            };
+            tryNext();
+          });
+
+          const root = document.getElementById('invoice-root') || document.body;
+          const hidden = Array.from(document.querySelectorAll('.no-print'));
+          hidden.forEach(el => { el.setAttribute('data-prev-display', el.style.display || ''); el.style.display = 'none'; });
+          // Ensure totals and meta are stable
+          recalcTotals();
+          const invEl = document.getElementById('inv-number');
+          if (invEl && (!invEl.textContent || invEl.textContent.trim() === '')) {
+            // recompute if missing
+            try {
+              const orders = await fetchMyOrders();
+              const resolvedId = await resolveOrderId();
+              const order = Array.isArray(orders) ? orders.find(o => String(o.id) === String(resolvedId)) : null;
+              setText('inv-number', computeInvoiceNumber(order||{}));
+            } catch(_) {}
+          }
+          // Temporarily disable contentEditable if present
+          const editableEls = Array.from(root.querySelectorAll('[contenteditable="true"]'));
+          editableEls.forEach(el => { el.setAttribute('data-prev-ce', 'true'); el.contentEditable = false; });
+          const inv = (document.getElementById('inv-number')?.textContent || 'Buyer_Invoice').replace(/[^A-Za-z0-9_\-#]/g,'_');
+          let logoDataUrl = null;
+          async function toDataUrl(src){
+            try{
+              const r = await fetch(src, { cache: 'no-store' });
+              if (!r.ok) return null;
+              const b = await r.blob();
+              return await new Promise(function(resolve, reject){
+                const fr = new FileReader();
+                fr.onload = function(){ resolve(fr.result); };
+                fr.onerror = function(){ reject(fr.error||new Error('read error')); };
+                fr.readAsDataURL(b);
+              });
+            }catch(_){ return null; }
+          }
+          try {
+            const logoEl = document.getElementById('co-logo');
+            const src = logoEl ? logoEl.src : (COMPANY && COMPANY.logo ? COMPANY.logo : null);
+            if (src) {
+              logoDataUrl = await toDataUrl(src);
+            }
+            if (!logoDataUrl && logoEl && logoEl.complete && logoEl.naturalWidth && logoEl.naturalHeight) {
+              const cv = document.createElement('canvas');
+              cv.width = logoEl.naturalWidth;
+              cv.height = logoEl.naturalHeight;
+              const ctx = cv.getContext('2d');
+              ctx.drawImage(logoEl, 0, 0);
+              logoDataUrl = cv.toDataURL('image/png');
+            }
+          } catch(_){ }
+          let opt = {
+            margin: 10,
+            filename: inv + '.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: {
+              scale: 2,
+              useCORS: true,
+              allowTaint: true,
+              backgroundColor: '#ffffff',
+              logging: false,
+              scrollX: 0,
+              scrollY: 0,
+              letterRendering: false,
+              foreignObjectRendering: true,
+              onclone: (doc) => {
+                try {
+                  const invSrc = document.getElementById('inv-number');
+                  const totalSrc = document.getElementById('total-price');
+                  const invClone = doc.getElementById('inv-number');
+                  const totalClone = doc.getElementById('total-price');
+                  if (invClone && invSrc) invClone.textContent = invSrc.textContent || invClone.textContent;
+                  if (totalClone && totalSrc) totalClone.textContent = totalSrc.textContent || totalClone.textContent;
+                  // Force reliable colors
+                  if (invClone) { invClone.style.color = '#111827'; invClone.style.opacity = '1'; }
+                  if (totalClone) {
+                    totalClone.style.color = '#ffffff';
+                    const wrap = totalClone.parentElement;
+                    if (wrap) {
+                      wrap.style.color = '#ffffff';
+                      wrap.style.backgroundColor = '#1E3A8A';
+                      wrap.style.display = 'inline-flex';
+                      wrap.style.alignItems = 'center';
+                    }
+                  }
+                  // Ensure inline SVG icons render by converting them to data URL images in the clone
+                  const origSvgs = Array.from(document.querySelectorAll('#invoice-root svg'));
+                  const cloneSvgs = Array.from(doc.querySelectorAll('#invoice-root svg'));
+                  cloneSvgs.forEach((svg, i) => {
+                    try {
+                      const source = (origSvgs[i] ? origSvgs[i].outerHTML : svg.outerHTML);
+                      const dataUrl = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(source);
+                      const img = doc.createElement('img');
+                      img.src = dataUrl;
+                      img.style.width = '20px';
+                      img.style.height = '20px';
+                      img.style.display = 'inline-block';
+                      svg.parentNode.replaceChild(img, svg);
+                    } catch(_e) {}
+                  });
+                  // Convert Font Awesome <i> icons to inline images
+                  try {
+                    const faToDataUrl = function(kind, color){
+                      if (kind === 'car') {
+                        const svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><g fill="'+color+'"><path d="M3 12.5l1-3c.5-1.5 2-3 4-3h8c2 0 3.5 1.5 4 3l1 3H3z"/><circle cx="8" cy="17" r="2"/><circle cx="16" cy="17" r="2"/></g></svg>';
+                        return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+                      }
+                      if (kind === 'bank') {
+                        const svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><g fill="'+color+'"><path d="M4 10L12 4l8 6H4z"/><rect x="5" y="10" width="2" height="8"/><rect x="9" y="10" width="2" height="8"/><rect x="13" y="10" width="2" height="8"/><rect x="17" y="10" width="2" height="8"/><rect x="4" y="18" width="16" height="2"/></g></svg>';
+                        return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+                      }
+                      if (kind === 'location') {
+                        const svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><g fill="'+color+'"><path d="M12 2C8.686 2 6 4.686 6 8c0 5.25 6 12 6 12s6-6.75 6-12c0-3.314-2.686-6-6-6zm0 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></g></svg>';
+                        return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+                      }
+                      if (kind === 'phone') {
+                        const svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><g fill="'+color+'"><path d="M6.62 10.79a15.053 15.053 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V21a1 1 0 0 1-1 1C10.28 22 2 13.72 2 3a1 1 0 0 1 1-1h3.49a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58a1 1 0 0 1-.24 1.01l-2.2 2.2z"/></g></svg>';
+                        return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+                      }
+                      if (kind === 'envelope') {
+                        const svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><g fill="'+color+'"><path d="M2 6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6zm2 0l8 5 8-5H4zm16 12V8l-8 5-8-5v10h16z"/></g></svg>';
+                        return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+                      }
+                      if (kind === 'globe') {
+                        const svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><g fill="'+color+'"><circle cx="12" cy="12" r="10"/><path d="M12 2c2.5 3 4 6.5 4 10s-1.5 7-4 10c-2.5-3-4-6.5-4-10s1.5-7 4-10z" fill="#fff" opacity=".2"/></g></svg>';
+                        return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+                      }
+                      if (kind === 'fax') {
+                        const svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><g fill="'+color+'"><rect x="5" y="8" width="14" height="10" rx="2"/><rect x="7" y="2" width="10" height="5" rx="1"/><rect x="8" y="10" width="8" height="2"/><rect x="8" y="13" width="5" height="2"/></g></svg>';
+                        return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+                      }
+                      return null;
+                    };
+                    const faIcons = Array.from(doc.querySelectorAll('#invoice-root i.fa-solid'));
+                    faIcons.forEach(el => {
+                      let kind = null;
+                      if (el.classList.contains('fa-location-dot')) kind = 'location';
+                      else if (el.classList.contains('fa-phone')) kind = 'phone';
+                      else if (el.classList.contains('fa-envelope')) kind = 'envelope';
+                      else if (el.classList.contains('fa-globe')) kind = 'globe';
+                      else if (el.classList.contains('fa-fax')) kind = 'fax';
+                      else if (el.classList.contains('fa-car')) kind = 'car';
+                      else if (el.classList.contains('fa-building-columns')) kind = 'bank';
+                      if (!kind) return;
+                      let color = '#111827';
+                      try {
+                        const styleAttr = el.getAttribute('style') || '';
+                        const m = /color:\s*([^;]+)/i.exec(styleAttr);
+                        if (m) color = m[1].trim();
+                      } catch(_) {}
+                      const dataUrl = faToDataUrl(kind, color);
+                      if (!dataUrl) return;
+                      const img = doc.createElement('img');
+                      img.src = dataUrl;
+                      try {
+                        const fs = doc.defaultView.getComputedStyle(el).fontSize;
+                        const px = (fs ? parseInt(fs) : 20) || 20;
+                        img.style.width = px + 'px';
+                        img.style.height = px + 'px';
+                      } catch(_) { img.style.width = '20px'; img.style.height = '20px'; }
+                      img.style.display = 'inline-block';
+                      img.style.verticalAlign = 'middle';
+                      el.parentNode.replaceChild(img, el);
+                    });
+                    try {
+                      const logoClone = doc.getElementById('co-logo');
+                      if (logoClone && logoDataUrl) {
+                        logoClone.src = logoDataUrl;
+                      }
+                    } catch(_e) {}
+                  } catch(_e) {}
+                } catch(_) {}
+              }
+            },
+            jsPDF: { unit: 'pt', format: 'a4', orientation: 'portrait' },
+            pagebreak: { mode: ['css', 'legacy'] }
+          };
+          try {
+            await ensureHtml2Pdf();
+            if (document.fonts && document.fonts.ready) { try { await document.fonts.ready; } catch(_) {} }
+            await waitForImages(root);
+            // Recompute logo data URL after images are loaded; temporarily swap into DOM
+            try {
+              const logoEl2 = document.getElementById('co-logo');
+              const src2 = logoEl2 ? logoEl2.src : (COMPANY && COMPANY.logo ? COMPANY.logo : null);
+              if (src2) {
+                const du = await toDataUrl(src2);
+                if (du) logoDataUrl = du;
+              }
+              if (!logoDataUrl && logoEl2 && logoEl2.complete && logoEl2.naturalWidth && logoEl2.naturalHeight) {
+                const cv = document.createElement('canvas');
+                cv.width = logoEl2.naturalWidth;
+                cv.height = logoEl2.naturalHeight;
+                const ctx = cv.getContext('2d');
+                ctx.drawImage(logoEl2, 0, 0);
+                logoDataUrl = cv.toDataURL('image/png');
+              }
+              if (logoEl2 && logoDataUrl) {
+                try { logoEl2.setAttribute('data-prev-src', logoEl2.src||''); } catch(_){}
+                logoEl2.src = logoDataUrl;
+              }
+            } catch(_){ }
+            window.scrollTo(0, 0);
+            await new Promise(r => setTimeout(r, 20));
+            const fixedWidth = 1200;
+            const fixedHeight = Math.ceil(root.scrollHeight || root.getBoundingClientRect().height);
+            const ptPerPx = 72 / 96;
+            const pdfWidth = Math.max(1, Math.ceil(fixedWidth * ptPerPx));
+            const pdfHeight = Math.max(1, Math.ceil(fixedHeight * ptPerPx));
+            opt.margin = 0;
+            opt.jsPDF.format = [pdfWidth, pdfHeight];
+            opt.html2canvas.windowWidth = fixedWidth;
+            opt.html2canvas.windowHeight = fixedHeight;
+            opt.html2canvas.width = fixedWidth;
+            await html2pdf().set(opt).from(root).save();
+          } catch (e) {
+            console.error('Save as PDF error:', e);
+            alert('PDF generation failed; falling back to browser Print.');
+            window.print();
+          } finally {
+            hidden.forEach(el => { el.style.display = el.getAttribute('data-prev-display'); el.removeAttribute('data-prev-display'); });
+            editableEls.forEach(el => { if (el.getAttribute('data-prev-ce')) { el.contentEditable = true; el.removeAttribute('data-prev-ce'); } });
+            try {
+              const logoEl3 = document.getElementById('co-logo');
+              const prev = logoEl3 ? logoEl3.getAttribute('data-prev-src') : null;
+              if (logoEl3 && prev != null) { logoEl3.src = prev; logoEl3.removeAttribute('data-prev-src'); }
+            } catch(_){ }
+          }
+        };
+      }
+      // Ensure Font Awesome icons render in printed/PDF output by converting to inline SVG images
+      const faToDataUrl = function(kind, color){
+        if (kind === 'car') {
+          const svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><g fill="'+color+'"><path d="M3 12.5l1-3c.5-1.5 2-3 4-3h8c2 0 3.5 1.5 4 3l1 3H3z"/><circle cx="8" cy="17" r="2"/><circle cx="16" cy="17" r="2"/></g></svg>';
+          return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+        }
+        if (kind === 'bank') {
+          const svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><g fill="'+color+'"><path d="M4 10L12 4l8 6H4z"/><rect x="5" y="10" width="2" height="8"/><rect x="9" y="10" width="2" height="8"/><rect x="13" y="10" width="2" height="8"/><rect x="17" y="10" width="2" height="8"/><rect x="4" y="18" width="16" height="2"/></g></svg>';
+          return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+        }
+        if (kind === 'location') {
+          const svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><g fill="'+color+'"><path d="M12 2C8.686 2 6 4.686 6 8c0 5.25 6 12 6 12s6-6.75 6-12c0-3.314-2.686-6-6-6zm0 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></g></svg>';
+          return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+        }
+        if (kind === 'phone') {
+          const svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><g fill="'+color+'"><path d="M6.62 10.79a15.053 15.053 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V21a1 1 0 0 1-1 1C10.28 22 2 13.72 2 3a1 1 0 0 1 1-1h3.49a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58a1 1 0 0 1-.24 1.01l-2.2 2.2z"/></g></svg>';
+          return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+        }
+        if (kind === 'envelope') {
+          const svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><g fill="'+color+'"><path d="M2 6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6zm2 0l8 5 8-5H4zm16 12V8l-8 5-8-5v10h16z"/></g></svg>';
+          return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+        }
+        if (kind === 'globe') {
+          const svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><g fill="'+color+'"><circle cx="12" cy="12" r="10"/><path d="M12 2c2.5 3 4 6.5 4 10s-1.5 7-4 10c-2.5-3-4-6.5-4-10s1.5-7 4-10z" fill="#fff" opacity=".2"/></g></svg>';
+          return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+        }
+        if (kind === 'fax') {
+          const svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><g fill="'+color+'"><rect x="5" y="8" width="14" height="10" rx="2"/><rect x="7" y="2" width="10" height="5" rx="1"/><rect x="8" y="10" width="8" height="2"/><rect x="8" y="13" width="5" height="2"/></g></svg>';
+          return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+        }
+        return null;
+      };
+      const convertFAIconsForPrint = function(){
+        const doc = document;
+        const icons = Array.from(doc.querySelectorAll('#__invoice_root i.fa-solid, .mb-4 i.fa-solid'));
+        icons.forEach(function(el){
+          let kind = null;
+          if (el.classList.contains('fa-location-dot')) kind = 'location';
+          else if (el.classList.contains('fa-phone')) kind = 'phone';
+          else if (el.classList.contains('fa-envelope')) kind = 'envelope';
+          else if (el.classList.contains('fa-globe')) kind = 'globe';
+          else if (el.classList.contains('fa-fax')) kind = 'fax';
+          else if (el.classList.contains('fa-car')) kind = 'car';
+          else if (el.classList.contains('fa-building-columns')) kind = 'bank';
+          if (!kind) return;
+          let color = '#111827';
+          try {
+            const styleAttr = el.getAttribute('style')||'';
+            const m = /color:\s*([^;]+)/i.exec(styleAttr);
+            if (m) color = m[1].trim();
+          } catch(_) {}
+          const dataUrl = faToDataUrl(kind, color);
+          if (!dataUrl) return;
+          const img = doc.createElement('img');
+          img.src = dataUrl;
+          try {
+            const fs = doc.defaultView.getComputedStyle(el).fontSize;
+            const px = (fs ? parseInt(fs) : 20) || 20;
+            img.style.width = px + 'px';
+            img.style.height = px + 'px';
+          } catch(_) {
+            img.style.width = '20px'; img.style.height = '20px';
+          }
+          img.style.display = 'inline-block';
+          img.style.verticalAlign = 'middle';
+          el.parentNode.replaceChild(img, el);
+        });
+      };
+      window.addEventListener('beforeprint', convertFAIconsForPrint);
+      // Utility: wait for all images within a container to be decodable/loaded
+      async function waitForImages(container) {
+        try {
+          const imgs = Array.from(container.querySelectorAll('img'));
+          const waiters = imgs.map(img => {
+            if (img.decode) {
+              return img.decode().catch(() => {});
+            }
+            return new Promise((resolve) => {
+              if (img.complete) return resolve();
+              img.onload = img.onerror = () => resolve();
+            });
+          });
+          await Promise.all(waiters);
+        } catch (_) {}
+      }
+      const btnBack = document.getElementById('btn-back'); if (btnBack) btnBack.onclick = () => window.open('dashboard-documents.html', '_blank');
+    }
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+</head>
+<body class="bg-white text-gray-800 font-sans leading-normal">
+  <div id="auth-banner" class="no-print hidden">
+    <div class="max-w-5xl mx-auto mt-6 mb-0 px-6">
+      <div class="bg-red-50 border border-red-200 text-red-700 rounded-xl p-4 text-sm">
+        Please sign in to your buyer account to view invoices.
+        <a href="signin.html" class="underline font-semibold">Sign in</a>
+      </div>
+    </div>
+  </div>
+  <div id="invoice-root" class="max-w-5xl mx-auto p-8">
+    <div id="status-banner" class="no-print hidden mb-4 p-3 rounded-sm text-sm"></div>
+    <!-- Header -->
+      <div class="mb-4 text-white rounded-sm" style="background-color:#1E3A8A;">
+        <div class="flex justify-between items-start px-4 pt-[30px] pb-3">
+          <div class="flex flex-col items-start" style="margin-left:15px;">
+            <img id="co-logo" src="assets/images/20251210_0043_image.png" alt="Logo" class="h-12 mb-2" crossorigin="anonymous">
+            <div>
+              <h1 class="text-xl font-extrabold uppercase tracking-widest leading-tight">NAWISAJAD MUMAND CO., LTD</h1>
+              <div class="text-xs" style="padding-top:10px; padding-bottom:20px;">
+                <p class="mb-1 flex items-center gap-2">
+                  <i class="fa-solid fa-location-dot" style="color:#ffffff;"></i>
+                  <span id="co-address">306 # 37 OKRYEON RO YEONSU-GU INCHEON SOUTH KOREA</span>
+                </p>
+                <div class="space-y-1">
+                  <p class="flex items-center gap-2"><i class="fa-solid fa-phone" style="color:#ffffff;"></i><span>Mobile:</span> <span id="co-phone">010-9199-9687</span></p>
+                  <p class="flex items-center gap-2"><i class="fa-solid fa-envelope" style="color:#ffffff;"></i><span>Email:</span> <span id="co-email">info@autonsm.com</span></p>
+                  <p class="flex items-center gap-2"><i class="fa-solid fa-globe" style="color:#ffffff;"></i><span>Website:</span> <span id="co-website">http://autonsm.com</span></p>
+                  <p class="flex items-center gap-2"><i class="fa-solid fa-fax" style="color:#ffffff;"></i><span>Fax:</span> <span id="co-fax">032-833-9687</span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="text-right">
+            <div class="text-3xl font-medium uppercase tracking-wide text-white">COMMERCIAL INVOICE</div>
+            <div class="bg-white text-gray-800 rounded-md shadow-sm inline-block mt-2 px-4 py-3 text-left w-64">
+              <div class="text-xs text-gray-500">Invoice Date:</div>
+              <div id="inv-date" class="text-xs mt-1 opacity-90">—</div>
+              <div class="text-xs text-gray-500 mt-2">Invoice Number:</div>
+              <div id="inv-number" class="text-xs mt-1 font-semibold">#INV-—</div>
+            </div>
+            <!-- hidden placeholders to preserve data wiring -->
+            <div class="hidden"><span id="product-number"></span><span id="product-id"></span></div>
+          </div>
+        </div>
+      </div>
+
+    <!-- Buyer and Shipper -->
+    <div class="grid grid-cols-2 gap-6 mb-6">
+      <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+        <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background-color:#1E3A8A;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-white"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0 2c-4.418 0-8 3.134-8 7h2a6 6 0 0 1 12 0h2c0-3.866-3.582-7-8-7z"/></svg>
+          </div>
+          <h3 class="text-lg font-bold uppercase tracking-wide text-gray-900">Buyer Information</h3>
+        </div>
+        <div class="space-y-3">
+          <div>
+            <div class="text-[11px] font-semibold uppercase text-gray-500">Name</div>
+            <div class="text-sm text-gray-900">[<span id="buyer-name">—</span>]</div>
+          </div>
+          <div>
+            <div class="text-[11px] font-semibold uppercase text-gray-500">Email</div>
+            <div class="text-sm text-gray-900">[<span id="buyer-email">—</span>]</div>
+          </div>
+          <div>
+            <div class="text-[11px] font-semibold uppercase text-gray-500">Country</div>
+            <div class="text-sm text-gray-900">[<span id="buyer-country">—</span>]</div>
+          </div>
+          <div>
+            <div class="text-[11px] font-semibold uppercase text-gray-500">Phone</div>
+            <div class="text-sm text-gray-900">[<span id="buyer-phone">—</span>]</div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-blue-50 border border-blue-100 rounded-xl p-6 shadow-sm">
+        <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background-color:#1E3A8A;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-white"><path d="M20 21H4a1 1 0 0 1-1-1v-2l4-1 3 1 3-1 3 1 4-1v3a1 1 0 0 1-1 1zm-1.5-8.5a3.5 3.5 0 1 0-7 0v.5h7v-.5zM12 4a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/></svg>
+          </div>
+          <h3 class="text-lg font-bold uppercase tracking-wide text-gray-900">Shipper / Exporter</h3>
+        </div>
+        <div class="space-y-3">
+          <div>
+            <div class="text-[11px] font-semibold uppercase text-gray-600">Company</div>
+            <div class="text-sm text-gray-900" id="shipper-name">—</div>
+          </div>
+          <div>
+            <div class="text-[11px] font-semibold uppercase text-gray-600">Address</div>
+            <div class="text-sm text-gray-900"><span id="shipper-address">—</span></div>
+          </div>
+          <div>
+            <div class="text-[11px] font-semibold uppercase text-gray-600">Email</div>
+            <div class="text-sm text-gray-900"><span id="shipper-email">—</span></div>
+          </div>
+          <div>
+            <div class="text-[11px] font-semibold uppercase text-gray-600">Phone</div>
+            <div class="text-sm text-gray-900"><span id="shipper-phone">—</span></div>
+          </div>
+          <div>
+            <div class="text-[11px] font-semibold uppercase text-gray-600">Website</div>
+            <div class="text-sm text-gray-900"><span id="shipper-website">http://autonsm.com</span></div>
+          </div>
+          <div>
+            <div class="text-[11px] font-semibold uppercase text-gray-600">Fax</div>
+            <div class="text-sm text-gray-900"><span id="shipper-fax">—</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vehicle Details -->
+    <div class="mb-6">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-8 h-8 rounded-full flex items-center justify-center" style="background-color:#1E3A8A;">
+          <i class="fa-solid fa-car" style="color: #ffffff;"></i>
+        </div>
+        <h3 class="text-lg font-bold uppercase tracking-wide text-gray-900">Vehicle Details</h3>
+      </div>
+      <table class="w-full text-xs">
+        <thead>
+        <tr class="text-white uppercase tracking-wide" style="background-color:#1E3A8A;">
+            <th class="p-2 text-left font-semibold">Title</th>
+            <th class="p-2 text-left font-semibold">Chassis Number</th>
+            <th class="p-2 text-right font-semibold">Vehicle Price</th>
+            <th class="p-2 text-right font-semibold">Shipping Fee</th>
+            <th class="p-2 text-right font-semibold">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="bg-white">
+            <td class="p-2 border-b border-gray-300 text-black font-normal text-base" id="product-title">—</td>
+            <td class="p-2 border-b border-gray-300 text-black font-normal text-base" id="chassis-no">—</td>
+            <td class="p-2 border-b border-gray-300 text-right text-black font-normal text-base" id="unit-price">$0.00</td>
+            <td class="p-2 border-b border-gray-300 text-right text-black font-normal text-base" id="shipping-cost">$0.00</td>
+            <td class="p-2 border-b border-gray-300 text-right text-black font-normal text-base" id="total-item">$0.00</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Grand Total (Styled Pill) -->
+    <div class="text-right mb-6">
+      <div class="inline-flex items-center gap-4 text-white px-6 py-3 rounded-lg text-lg font-bold uppercase" style="background-color:#1E3A8A;">
+        <span>Grand Total</span>
+        <span id="total-price">$0.00</span>
+      </div>
+    </div>
+
+    <!-- Bank Information (Styled Card) -->
+    <div class="mb-6">
+      <div class="bg-blue-50 border border-blue-100 rounded-t-xl p-6 shadow-sm">
+        <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background-color:#1E3A8A;">
+            <i class="fa-solid fa-building-columns" style="color: #ffffff;"></i>
+          </div>
+          <h3 class="text-lg font-bold uppercase tracking-wide text-gray-900">Bank Information</h3>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="space-y-3">
+            <div>
+              <div class="text-[11px] font-semibold uppercase text-gray-600">Beneficiary</div>
+              <div class="text-sm font-semibold text-gray-900"><span id="bank-beneficiary">NAWISAJAD MUMAND CO., LTD</span></div>
+            </div>
+            <div>
+              <div class="text-[11px] font-semibold uppercase text-gray-600">Account Number</div>
+              <div class="text-sm font-semibold text-gray-900"><span id="bank-account">338-064901-56-00017</span></div>
+            </div>
+            <div>
+              <div class="text-[11px] font-semibold uppercase text-gray-600">Swift Code</div>
+              <div class="text-sm font-semibold text-gray-900"><span id="bank-swift">IBKOKRSE</span></div>
+            </div>
+          </div>
+          <div class="space-y-3">
+            <div>
+              <div class="text-[11px] font-semibold uppercase text-gray-600">Bank Name</div>
+              <div class="text-sm font-semibold text-gray-900"><span id="bank-name">IBK INDUSTRIAL BANK OF KOREA</span></div>
+            </div>
+            <div>
+              <div class="text-[11px] font-semibold uppercase text-gray-600">Branch</div>
+              <div class="text-sm font-semibold text-gray-900"><span id="bank-branch">SONGDO</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-white text-center text-xs py-3 rounded-b-xl" style="background-color:#1E3A8A;">
+        Thank you for your business. For any inquiries, please contact us at <span class="font-semibold">khaialzamin@nsm-koreacars.com</span><br>
+        © 2025 NAWISAJAD MUMAND CO., LTD. All rights reserved.
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="no-print mt-4 text-right">
+      <button id="btn-back" class="px-3 py-1 bg-gray-300 text-gray-800 rounded text-sm mr-2">Back</button>
+      <button id="btn-print" class="px-3 py-1 bg-blue-700 text-white rounded text-sm">Save as PDF</button>
+    </div>
+  </div>
+
+</body>
+</html>

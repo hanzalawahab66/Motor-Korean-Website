@@ -1,0 +1,391 @@
+<!DOCTYPE html><html><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Private Policy - NSM Autos</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>window.FontAwesomeConfig = {autoReplaceSvg: 'nest'};</script>
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" rel="stylesheet">
+  <script src="scripts/api-origin.js"></script>
+  <style>
+    ::-webkit-scrollbar { display: none; }
+    * { font-family: 'Inter', sans-serif; }
+  </style>
+  <style>
+    .goog-te-banner-frame{display:none!important}
+    body{top:0!important}
+    #google_translate_element{display:none!important}
+    .goog-te-gadget{display:none!important}
+    .skiptranslate{display:none!important}
+  </style>
+  <script>
+    function googleTranslateElementInit(){ new google.translate.TranslateElement({ pageLanguage:'en', includedLanguages:'en,ar,ko,es,fr', autoDisplay:false }, 'google_translate_element'); }
+    (function(){
+      function setCookie(name,value){ var e='expires=Fri, 31 Dec 9999 23:59:59 GMT'; document.cookie=name+'='+value+';'+e+';path=/'; var host=location.hostname; if(host.indexOf('.')!==-1){ document.cookie=name+'='+value+';'+e+';path=/;domain='+host; } }
+      function applyDir(lang){ try{ document.documentElement.setAttribute('dir', lang==='ar'?'rtl':'ltr'); }catch(_){ } }
+      function triggerCombo(lang){ var sel=document.querySelector('.goog-te-combo'); if(sel){ if(lang && sel.value==lang) return true; sel.value=(lang||'en'); setTimeout(function(){ sel.dispatchEvent(new Event('change')); }, 0); return true; } return false; }
+      function changeLanguage(lang){
+        lang = lang || 'en';
+        if(triggerCombo(lang)){
+          try{ localStorage.setItem('lang', lang); }catch(_){ }
+          applyDir(lang);
+          return;
+        }
+        var attempts = 0;
+        var interval = setInterval(function(){
+          if(triggerCombo(lang)){
+            clearInterval(interval);
+            try{ localStorage.setItem('lang', lang); }catch(_){ }
+            applyDir(lang);
+          } else {
+            attempts++;
+            if(attempts >= 50){
+              clearInterval(interval);
+              setCookie('googtrans','/en/'+lang);
+              try{ localStorage.setItem('lang', lang); }catch(_){ }
+              applyDir(lang);
+            }
+          }
+        }, 100);
+      }
+      function init(){ var saved=null; try{ saved=localStorage.getItem('lang'); }catch(_){ } applyDir(saved||'en'); }
+      function protect(){ var q='input[type=password],input[type=email],input[name=password],input[name=email],input[name=username],textarea[name=password],textarea[name=email],textarea[name=username]'; document.querySelectorAll(q).forEach(function(el){ el.classList.add('notranslate'); el.setAttribute('translate','no'); }); }
+      document.addEventListener('click', function(e){ var btn=e.target.closest('[data-lang]'); if(!btn) return; var lang=btn.getAttribute('data-lang')||'en'; changeLanguage(lang); var label=document.querySelector('#languageToggle span'); if(label) label.textContent=btn.textContent.trim(); });
+      document.addEventListener('DOMContentLoaded', function(){ protect(); init(); });
+      var st=document.createElement('style'); st.textContent='.goog-te-banner-frame{display:none!important} body{top:0!important} #google_translate_element{display:none!important} .goog-te-gadget{display:none!important} .skiptranslate{display:none!important}'; document.head.appendChild(st);
+    })();
+  </script>
+  <div id="google_translate_element"></div>
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</head>
+<body class="bg-gray-50">
+
+<div class="bg-[#0D1F39] text-white font-body relative z-[60]">
+  <div class="container mx-auto px-6 py-2">
+    <div class="flex items-center justify-between">
+      <div class="relative">
+        <button id="languageToggle" class="flex items-center space-x-2 text-white/90 hover:text-white font-medium transition-colors">
+          <i class="fa-solid fa-globe text-base"></i>
+          <span class="text-sm md:text-base">English</span>
+          <i class="fa-solid fa-chevron-down text-xs"></i>
+        </button>
+        <div id="languageDropdown" class="absolute left-0 top-full mt-1 bg-white rounded-lg shadow-xl border border-gray-200 py-2 min-w-[160px] hidden z-[1000]">
+          <button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="en">
+            <img src="https://flagcdn.com/w20/us.png" alt="English" class="w-4 h-3"><span>English</span>
+          </button>
+          <button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="ko">
+            <img src="https://flagcdn.com/w20/kr.png" alt="한국어" class="w-4 h-3"><span>한국어</span>
+          </button>
+          <button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="ar">
+            <img src="https://flagcdn.com/w20/sa.png" alt="العربية" class="w-4 h-3"><span>العربية</span>
+          </button>
+          <button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="fr">
+            <img src="https://flagcdn.com/w20/fr.png" alt="Français" class="w-4 h-3"><span>Français</span>
+          </button>
+        </div>
+      </div>
+      <div class="flex items-center space-x-3">
+        <button class="bg.white/10 hover:bg-white/20 text.white px-4 py-1.5 rounded-lg font-medium transition-all h-hover" data-text="sign-in" onclick="window.open('signin.html','_blank')">Login</button>
+        <button class="bg-[#D53C46] text-white hover:bg-[#D53C46] px-4 py-1.5 rounded-lg font-semibold transition-all h-hover" data-text="sign-up" onclick="window.open('signup.html','_blank')">Register</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<header id="header" class="sticky top-0 z-50 backdrop-blur">
+  <div class="w-full px-6 py-2 bg-white">
+    <div class="w-full px-4 md:px-6 py-3 flex items-center justify-between">
+      <a href="home.html" class="flex items-center space-x-3">
+        <img src="assets/images/Gemini_Generated_Image_2f4bkg2f4bkg2f4bee.png" alt="Logo" class="w-80 h-[100px] object-contain" />
+      </a>
+      <nav class="hidden md:flex items-center space-x-8 text-gray-900 font-semibold">
+        <a href="home.html" class="hover:text-[#0D1F39] transition-colors">Home</a>
+        <a href="inventory.html" class="hover:text-[#0D1F39] transition-colors">Inventory</a>
+        <div class="relative" id="navAbout">
+          <a href="about-us.html" id="navAboutToggle" class="hover:text-[#0D1F39] transition-colors flex items-center space-x-1">
+            <span>About Us</span>
+            <i class="fa-solid fa-chevron-down text-xs"></i>
+          </a>
+          <div id="navAboutMenu" class="absolute left-1/2 -translate-x-1/2 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg py-2 min-w-[220px] opacity-0 translate-y-1 pointer-events-none transition-all duration-300 z-50">
+            <a href="mit-info.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">MIT Info</a>
+            <a href="service-introduction.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">Service Introduction</a>
+          </div>
+        </div>
+        <a href="contact-us.html" class="hover:text-[#0D1F39] transition-colors">Contact Us</a>
+        <div class="relative" id="navMore">
+          <button id="navMoreToggle" class="hover:text-[#0D1F39] transition-colors flex items-center space-x-1">
+            <span>More</span>
+            <i class="fa-solid fa-chevron-down text-xs"></i>
+          </button>
+          <div id="navMoreMenu" class="absolute left-1/2 -translate-x-1/2 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg py-2 min-w-[220px] opacity-0 translate-y-1 pointer-events-none transition-all duration-300 z-50">
+            <a href="faq.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">FAQs</a>
+            <a href="reviews.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">Reviews</a>
+            <a href="blog.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">Blogs</a>
+          </div>
+        </div>
+      </nav>
+      <div class="flex items-center space-x-4">
+        <div class="hidden md:flex items-center bg-white rounded-full shadow px-3 py-1.5 border border-gray-200">
+          <i class="fa-solid fa-magnifying-glass text-gray-600 mr-2"></i>
+          <input id="headerSearchInput" type="text" placeholder="Search" class="w-40 md:w-52 text-sm bg-transparent focus:outline-none" />
+        </div>
+        <button id="mobileSearchToggle" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+        <a id="headerFavorite" href="dashboard-saved.html" class="relative inline-flex items-center justify-center w-10 h-10 rounded-full border border-gray-200 hover:bg-gray-50 transition-colors">
+          <i class="fa-regular fa-heart text-[#0D1F39]"></i>
+          <span class="absolute -top-1 -right-1 inline-flex items-center justify-center w-5 h-5 rounded-full bg-[#D53C46] text-white text-xs">0</span>
+        </a>
+        <button id="mobileMenuToggle" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function(){ var h=document.getElementById('header'); if(h){ requestAnimationFrame(function(){ h.classList.add('header-ready'); }); } });
+  (function(){
+    function setupHoverDelay(containerId,toggleId,menuId){ var c=document.getElementById(containerId); var t=document.getElementById(toggleId); var m=document.getElementById(menuId); if(!c||!t||!m) return; var hid=null; function show(){ if(hid){ clearTimeout(hid); hid=null; } m.classList.remove('opacity-0','pointer-events-none','translate-y-1'); m.classList.add('opacity-100','pointer-events-auto','translate-y-0'); } function schedule(){ if(hid) clearTimeout(hid); hid=setTimeout(function(){ m.classList.remove('opacity-100','pointer-events-auto','translate-y-0'); m.classList.add('opacity-0','pointer-events-none','translate-y-1'); hid=null; },300); } c.addEventListener('mouseenter', show); t.addEventListener('mouseenter', show); m.addEventListener('mouseenter', show); c.addEventListener('mouseleave', schedule); t.addEventListener('mouseleave', schedule); m.addEventListener('mouseleave', schedule); t.addEventListener('click', show); }
+    setupHoverDelay('navAbout','navAboutToggle','navAboutMenu');
+    setupHoverDelay('navMore','navMoreToggle','navMoreMenu');
+  })();
+</script>
+
+<div id="mobileSearchContainer" class="md:hidden hidden px-6">
+  <div class="flex items-center bg-white rounded-full shadow px-3 py-2 border border-gray-200">
+    <i class="fa-solid fa-magnifying-glass text-gray-600 mr-2"></i>
+    <input id="mobileHeaderSearchInput" type="text" placeholder="Search" class="flex-1 text-sm bg-transparent focus:outline-none" />
+    <button id="mobileHeaderSearchBtn" class="ml-2 px-3 py-1 rounded-full bg-[#0D1F39] text-white text-xs">Search</button>
+  </div>
+</div>
+
+<div id="mobileMenuOverlay" class="fixed inset-0 bg-black/40 hidden z-40 md:hidden"></div>
+<aside id="mobileDrawer" class="fixed inset-y-0 right-0 w-80 max-w-[88vw] bg-white shadow-xl border-l border-gray-200 z-50 transform translate-x-full transition-transform duration-300 ease-out md:hidden" aria-hidden="true" role="dialog">
+  <div class="flex items-center justify-between px-4 py-3 border-b border-gray-100">
+    <div class="flex items-center space-x-2">
+      <img src="assets/images/Gemini_Generated_Image_2f4bkg2f4bkg2f4bee.png" alt="Logo" class="w-64 h-16 object-contain" />
+    </div>
+    <button id="mobileDrawerClose" class="inline-flex items-center justify-center w-10 h-10 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition" aria-label="Close menu">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+  <div class="px-4 py-3">
+    <div class="flex items-center bg-white rounded-full border border-gray-200 px-3 py-2 shadow-sm">
+      <i class="fa-solid fa-magnifying-glass text-gray-600 mr-2"></i>
+      <input id="drawerSearchInput" type="text" placeholder="Search" class="flex-1 text-sm bg-transparent focus:outline-none" />
+      <button id="drawerSearchBtn" class="ml-2 px-3 py-1 rounded-full bg-[#0D1F39] text-white text-xs">Search</button>
+    </div>
+  </div>
+  <nav class="px-4 py-3 space-y-1 text-gray-900 font-semibold">
+    <a href="home.html" class="block py-2 rounded-lg hover:bg-gray-50">Home</a>
+    <a href="inventory.html" class="block py-2 rounded-lg hover:bg-gray-50">Inventory</a>
+    <div class="border-t border-gray-100 my-2"></div>
+    <button id="drawerAboutToggle" class="w-full flex items-center justify-between py-2 rounded-lg hover:bg-gray-50 text-left" aria-expanded="false">
+      <span>About Us</span>
+      <i class="fa-solid fa-chevron-down text-xs"></i>
+    </button>
+    <div id="drawerAboutMenu" class="hidden ml-3 space-y-1 text-gray-700 font-normal">
+      <a href="mit-info.html" class="block py-1.5 rounded hover:bg-gray-50">MIT Info</a>
+      <a href="service-introduction.html" class="block py-1.5 rounded hover:bg-gray-50">Service Introduction</a>
+    </div>
+    <a href="contact-us.html" class="block py-2 rounded-lg hover:bg-gray-50">Contact Us</a>
+    <button id="drawerMoreToggle" class="w-full flex items-center justify-between py-2 rounded-lg hover:bg-gray-50 text-left" aria-expanded="false">
+      <span>More</span>
+      <i class="fa-solid fa-chevron-down text-xs"></i>
+    </button>
+    <div id="drawerMoreMenu" class="hidden ml-3 space-y-1 text-gray-700 font-normal">
+      <a href="faq.html" class="block py-1.5 rounded hover:bg-gray-50">FAQs</a>
+      <a href="reviews.html" class="block py-1.5 rounded hover:bg-gray-50">Reviews</a>
+      <a href="blog.html" class="block py-1.5 rounded hover:bg-gray-50">Blogs</a>
+    </div>
+  </nav>
+</aside>
+
+<main class="max-w-7xl mx-auto px-6 md:px-8 py-10 md:py-12">
+  <section class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#0A2A4A] to-[#133B66] text-white">
+    <img src="assets/images/about-us-banner.jpg" alt="Banner" class="absolute inset-0 w-full h-full object-cover opacity-20">
+    <div class="relative px-8 py-16 md:px-12 md:py-20">
+      <div class="max-w-3xl">
+        <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight">Privacy Policy</h1>
+        <p class="mt-4 text-white/80">Please read this policy carefully.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-12">
+    <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 md:p-8">
+      <div class="prose max-w-none">
+        <h2 class="text-2xl font-semibold text-gray-900">NAWISAJAD MUMAND LTD. – PRIVACY POLICY</h2>
+        <p class="text-sm text-gray-600">Last Updated: 28-12-2025</p>
+        <div class="space-y-6 leading-relaxed text-gray-800">
+          <p>⸻</p>
+          <p>IMPORTANT NOTICE (NO SECURITY GUARANTEE)</p>
+          <p>NawiSajad Mumand Ltd. makes reasonable efforts to protect personal information; however, no internet-based system is completely secure. By using our services, users expressly acknowledge and agree that NawiSajad Mumand Ltd. shall NOT be liable for hacking, cyberattacks, data breaches, leaks, unauthorized access, service interruption, or system failure, to the maximum extent permitted by law.</p>
+          <p>⸻</p>
+          <p>1. Purpose of This Privacy Policy</p>
+          <p>This Privacy Policy explains how NawiSajad Mumand Ltd. (“Company,” “we,” “us”) collects, uses, stores, and discloses personal information in connection with the use of our vehicle sales, inspection, and export services.</p>
+          <p>This Policy applies to all users, including registered and non-registered users, and must be read together with the Terms of Service.</p>
+          <p>⸻</p>
+          <p>2. Information We Collect</p>
+          <p>2.1 Information Provided by Users</p>
+          <ul class="list-disc ml-6">
+            <li>• Full name or company name</li>
+            <li>• Email address and phone number</li>
+            <li>• Account login credentials</li>
+            <li>• Billing and payment-related information</li>
+            <li>• Shipping, export, or customs-related information</li>
+          </ul>
+          <p>The Company does NOT independently verify the accuracy or legality of user-provided information.</p>
+          <p>⸻</p>
+          <p>2.2 Automatically Collected Information</p>
+          <ul class="list-disc ml-6">
+            <li>• IP address</li>
+            <li>• Device and browser information</li>
+            <li>• Access logs and usage records</li>
+            <li>• Cookies and similar technologies</li>
+          </ul>
+          <p>⸻</p>
+          <p>3. Prohibition on Using Third-Party Information</p>
+          <p>Users must NOT:</p>
+          <ul class="list-disc ml-6">
+            <li>• Use another person’s name, identity documents, phone number, email address, or payment information</li>
+            <li>• Register, sign in, or transact using false, stolen, or third-party information</li>
+          </ul>
+          <p>NawiSajad Mumand Ltd. is NOT responsible for any loss, damage, suspension, termination, or legal consequences arising from:</p>
+          <ul class="list-disc ml-6">
+            <li>• Identity misuse</li>
+            <li>• Fraudulent registration</li>
+            <li>• Unauthorized account access</li>
+          </ul>
+          <p>⸻</p>
+          <p>4. Purpose of Use</p>
+          <p>Collected personal information is used solely for:</p>
+          <ul class="list-disc ml-6">
+            <li>• Account creation and management</li>
+            <li>• Vehicle sales, inspection coordination, and export processing</li>
+            <li>• Payment processing</li>
+            <li>• Customer support and communication</li>
+            <li>• Legal compliance and dispute handling</li>
+          </ul>
+          <p>The Company does NOT sell personal information.</p>
+          <p>⸻</p>
+          <p>5. Data Retention</p>
+          <p>Personal information is retained only for as long as necessary to:</p>
+          <ul class="list-disc ml-6">
+            <li>• Provide services</li>
+            <li>• Comply with applicable laws</li>
+            <li>• Resolve disputes</li>
+          </ul>
+          <p>The Company is NOT responsible for data loss resulting from lawful deletion or retention expiry.</p>
+          <p>⸻</p>
+          <p>6. Sharing of Information & Third Parties</p>
+          <p>The Company may share information with:</p>
+          <ul class="list-disc ml-6">
+            <li>• Payment processors</li>
+            <li>• Logistics, shipping, or inspection partners</li>
+            <li>• IT service providers and hosting platforms</li>
+            <li>• Government authorities where legally required</li>
+          </ul>
+          <p>All third parties operate independently. The Company is NOT liable for third-party actions, omissions, or data security practices.</p>
+          <p>⸻</p>
+          <p>7. International Data Transfers</p>
+          <p>User information may be transferred to or processed in other countries, including the Republic of Korea.</p>
+          <p>By using the services, users explicitly consent to international data transfers and acknowledge related risks.</p>
+          <p>⸻</p>
+          <p>8. Data Security Disclaimer</p>
+          <p>The Company applies reasonable safeguards; however:</p>
+          <ul class="list-disc ml-6">
+            <li>• No guarantee of security or encryption is provided</li>
+            <li>• No guarantee of uninterrupted service is provided</li>
+          </ul>
+          <p>The Company shall NOT be liable for:</p>
+          <ul class="list-disc ml-6">
+            <li>• Hacking or cyber incidents</li>
+            <li>• Malware, ransomware, or viruses</li>
+            <li>• Unauthorized access or disclosure</li>
+            <li>• Data loss, corruption, or alteration</li>
+            <li>• System outages or service disruptions</li>
+          </ul>
+          <p>Users assume all online transmission risks.</p>
+          <p>⸻</p>
+          <p>9. Cookies & Tracking</p>
+          <p>Cookies may be used to enhance functionality. Disabling cookies may limit certain features.</p>
+          <p>The Company is NOT responsible for cookies or tracking used by third-party websites.</p>
+          <p>⸻</p>
+          <p>10. User Rights & Responsibilities</p>
+          <p>Users may request:</p>
+          <ul class="list-disc ml-6">
+            <li>• Access to personal data</li>
+            <li>• Correction of inaccurate information</li>
+            <li>• Account deletion (subject to legal obligations)</li>
+          </ul>
+          <p>Users are solely responsible for:</p>
+          <ul class="list-disc ml-6">
+            <li>• Protecting login credentials</li>
+            <li>• All activities performed under their account</li>
+          </ul>
+          <p>⸻</p>
+          <p>11. Limitation of Liability</p>
+          <p>To the maximum extent permitted by law:</p>
+          <ul class="list-disc ml-6">
+            <li>• The Company shall NOT be liable for indirect, incidental, or consequential damages</li>
+            <li>• The Company shall NOT be liable for loss of data, profits, or business</li>
+            <li>• Total liability, if any, shall not exceed the amount paid by the user to the Company</li>
+          </ul>
+          <p>⸻</p>
+          <p>12. Changes to This Policy</p>
+          <p>This Privacy Policy may be updated at any time. Continued use of the services constitutes acceptance of the revised policy.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="footer" class="bg-[#f5f5f5] text-[#666666]">
+  <div class="max-w-7xl mx-auto px-[24px] py-[32px]">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-[32px]">
+      <div class="space-y-[10px] text-[15px] leading-[26px]">
+        <div><span class="text-[#444444]">대표자</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">카일자민파룩아마드</span></div>
+        <div><span class="text-[#444444]">사업자등록 번호</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">470-88-00357</span></div>
+        <div><span class="text-[#444444]">주소</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">인천광역시 연수구 옥련로37 씨동 306호</span></div>
+        <div class="pt-[6px] flex items-center space-x-[14px] text-[20px]">
+          <a href="https://www.instagram.com/autonsm?igsh=ZmU2M2ppZzk1ZjVv&utm_source=qr" target="_blank" rel="noopener noreferrer" class="text-[#666666] hover:text-[#111111]">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="https://www.facebook.com/share/1A3NGCuwXh/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="text-[#666666] hover:text-[#111111]">
+            <i class="fa-brands fa-facebook"></i>
+          </a>
+          <a href="https://www.tiktok.com/@autonsm" target="_blank" rel="noopener noreferrer" class="text-[#666666] hover:text-[#111111]">
+            <i class="fa-brands fa-tiktok"></i>
+          </a>
+        </div>
+      </div>
+      <div class="space-y-[10px] text-[15px] leading-[26px]">
+        <div><span class="text-[#444444]">Email</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">info@autonsm.com</span></div>
+        <div><span class="text-[#444444]">TEL</span><span class="text-[#666666] whitespace-pre">   +82 10-9199-9687 (English, Korean)</span></div>
+        <div><span class="text-[#444444]">TEL</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">+821098699687</span></div>
+        <div><span class="text-[#666666] whitespace-pre">306 C dong  37 Okryeon ro  Yeonsu gu Incheon South Korea</span></div>
+      </div>
+    </div>
+    <div class="mt-[28px] border-t border-[#e5e7eb] pt-[18px]">
+      <div class="flex flex-col md:flex-row items-center justify-between">
+        <div class="text-[14px] text-[#666666] space-x-[18px]">
+          <a href="private-policy.html" class="hover:text-[#111111]">Private Policy</a>
+          <a href="terms-of-service.html" class="hover:text-[#111111]">Terms of Service</a>
+        </div>
+        <div class="text-[14px] text-[#666666] mt-[12px] md:mt-0">Copyright © Auto Nsm. All rights Reserved.</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  window.addEventListener('scroll', function(){ var header=document.getElementById('header'); if(!header) return; if(window.scrollY>10) header.classList.add('shadow-xl'); else header.classList.remove('shadow-xl'); });
+</script>
+
+<script>
+  (function(){ try { var role=(localStorage.getItem('role')||localStorage.getItem('userRole')||'').toLowerCase(); if(!role||(role!=='buyer'&&role!=='seller')) return; var signInEl=document.querySelector('[data-text="sign-in"]'); var signUpEl=document.querySelector('[data-text="sign-up"]'); var container=(signInEl&&signInEl.parentElement)||(signUpEl&&signUpEl.parentElement); if(!container) return; if(signInEl) signInEl.remove(); if(signUpEl) signUpEl.remove(); var link=document.createElement('a'); link.textContent=role==='buyer'?'Buyer Dashboard':'Seller Dashboard'; link.href=role==='buyer'?'buyer-dashboard.html':'seller-dashboard.html'; link.className='bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-lg font-semibold transition-all'; container.appendChild(link); } catch(e) {} })();
+</script>
+
+</body></html>

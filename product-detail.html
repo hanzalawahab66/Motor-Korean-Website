@@ -1,0 +1,1648 @@
+<!DOCTYPE html>
+<html>
+<head> 
+     <meta charset="UTF-8"> 
+     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+     <title>2022 Toyota RAV4 Hybrid - AutoNSM Premium Used Car Dealership</title> 
+     <script src="https://cdn.tailwindcss.com"></script> 
+     <script>window.FontAwesomeConfig = {autoReplaceSvg: 'nest'};</script> 
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" rel="stylesheet"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="scripts/api-origin.js"></script>
+     
+     <style> 
+         ::-webkit-scrollbar { display: none;} 
+        :root { --heading-font: 'Montserrat', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; --body-font: 'Roboto', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; }
+        html { font-size: 16px; }
+        @media (max-width: 640px) { html { font-size: 14.5px; } }
+        body { font-family: var(--body-font); font-weight: 400; line-height: 1.6; letter-spacing: 0.2px; }
+        h1, h2, h3, h4, h5, h6 { font-family: var(--heading-font); font-weight: 600; font-size: clamp(18px, 2.2vw, 22px) !important; line-height: 1.4; letter-spacing: 0.2px; margin-bottom: 0.5rem; }
+        p { font-family: var(--body-font); font-weight: 400; line-height: 1.6; letter-spacing: 0.2px; }
+        button, .cta-button { font-family: var(--heading-font); font-weight: 700; letter-spacing: 0.8px; font-size: clamp(12px, 1.8vw, 16px) !important; line-height: 1.4; }
+        .cta-button { text-transform: uppercase; font-size: 14px !important; font-weight: 700 !important; padding-left: 2.5rem !important; padding-right: 2.5rem !important; text-align: center; white-space: nowrap; }
+        small, #image-counter, #vehicle-stock, #vehicle-location, .tab-button { font-family: var(--heading-font); font-weight: 500; line-height: 1.35; letter-spacing: 0.2px; font-size: clamp(12px, 1.6vw, 14px); }
+        nav a { font-family: var(--heading-font); }
+        input, select, textarea, label { font-family: var(--heading-font); font-weight: 500; letter-spacing: 0.2px; font-size: clamp(12px, 1.6vw, 14px); line-height: 1.3; }
+          
+         .sticky-column { 
+             position: sticky; 
+             top: 120px; 
+             height: fit-content; 
+         } 
+          
+         .image-transition { 
+             transition: opacity 0.3s ease-in-out; 
+         } 
+          
+         .thumbnail-active { 
+             border: 3px solid #ef4444; 
+             opacity: 1; 
+         } 
+          
+         .thumbnail-inactive { 
+             opacity: 0.7; 
+             border: 2px solid transparent; 
+         } 
+          
+         .thumbnail-inactive:hover { 
+             opacity: 1; 
+             border: 2px solid #ef4444; 
+         } 
+          
+         .cta-button { 
+             transition: all 0.3s ease; 
+         } 
+          
+         .cta-button:hover { 
+             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); 
+             filter: brightness(1.05); 
+         } 
+          
+         .cta-button:active { 
+             transform: scale(0.98); 
+         } 
+          
+         .fade-in-up { 
+             opacity: 0; 
+             transform: translateY(30px); 
+             animation: fadeInUp 0.6s ease-out forwards; 
+         } 
+          
+         @keyframes fadeInUp { 
+             to { 
+                 opacity: 1; 
+                 transform: translateY(0); 
+             } 
+         } 
+          
+         .vehicle-card-hover { 
+             transition: all 0.3s ease; 
+         } 
+          
+         .vehicle-card-hover:hover { 
+             transform: translateY(-5px); 
+             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); 
+         } 
+          
+         .tab-active { 
+             background-color: #ef4444; 
+             color: white; 
+             border-bottom: 3px solid #dc2626; 
+         } 
+          
+         .tab-inactive { 
+             background-color: #f3f4f6; 
+             color: #6b7280; 
+             border-bottom: 3px solid transparent; 
+         } 
+          
+         .tab-inactive:hover { 
+             background-color: #e5e7eb; 
+             color: #374151; 
+         } 
+          
+         .feature-highlight { 
+             background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); 
+             -webkit-background-clip: text; 
+             -webkit-text-fill-color: transparent; 
+             background-clip: text; 
+         } 
+          
+        .pulse-dot { 
+            animation: pulse 2s infinite; 
+        } 
+         
+        @keyframes pulse { 
+            0%, 100% { opacity: 1; } 
+            50% { opacity: 0.5; } 
+        } 
+        #vehicle-info-actions-section .sticky-column { border-radius: 16px; border: 1px solid #e5e7eb; box-shadow: 0 1px 2px rgba(0,0,0,0.04); }
+        #sidebar-title { font-family: var(--heading-font); font-weight: 700; font-size: clamp(22px, 2.6vw, 26px); line-height: 1.3; }
+        #sidebar-specs { font-family: var(--heading-font); color: #6b7280; font-weight: 500; font-size: clamp(13px, 1.7vw, 15px); line-height: 1.4; letter-spacing: 0.2px; text-transform: uppercase; }
+        #sidebar-location { font-family: var(--heading-font); color: #6b7280; font-weight: 500; font-size: clamp(12px, 1.6vw, 14px); line-height: 1.4; letter-spacing: 0.2px; }
+        #country-select { appearance: none; -webkit-appearance: none; border: 1.5px solid #e5e7eb; border-radius: 12px; height: 52px; padding: 0 48px 0 16px; font-family: var(--heading-font); font-weight: 600; font-size: clamp(14px, 1.8vw, 16px); color: #9ca3af; background-color: #fff; background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%236b7280"><path d="M7 10l5 5 5-5"/></svg>'); background-repeat: no-repeat; background-position: right 16px center; background-size: 18px; }
+        #price-breakdown-section h3 { font-family: var(--heading-font); font-weight: 600; font-size: clamp(16px, 2vw, 18px); }
+        #price-breakdown-section .flex span:first-child { color: #6b7280; font-weight: 500; }
+        #price-breakdown-section .flex span:last-child { color: #111827; font-weight: 600; }
+        #price-breakdown-section hr { border-color: #e5e7eb; }
+        #total-price { font-family: var(--heading-font); color: #ef4444; font-weight: 700; font-size: clamp(22px, 2.6vw, 26px); }
+        @media (max-width: 640px) {
+            #inquiry-btn, #buy-now-btn, #add-to-compare-btn { padding-left: 2.5rem; padding-right: 2.5rem; white-space: nowrap; font-size: 13px !important; }
+            #thumbnail-carousel { display: none; }
+        }
+    </style> 
+    <style>
+      .goog-te-banner-frame{display:none!important}
+      body{top:0!important}
+      #google_translate_element{display:none!important}
+      .goog-te-gadget{display:none!important}
+      .skiptranslate{display:none!important}
+    </style>
+    <script>
+      function googleTranslateElementInit(){ new google.translate.TranslateElement({ pageLanguage:'en', includedLanguages:'en,ar,ko,es,fr', autoDisplay:false }, 'google_translate_element'); }
+      (function(){
+        function setCookie(name,value){ var e='expires=Fri, 31 Dec 9999 23:59:59 GMT'; document.cookie=name+'='+value+';'+e+';path=/'; var host=location.hostname; if(host.indexOf('.')!==-1){ document.cookie=name+'='+value+';'+e+';path=/;domain='+host; } }
+        function applyDir(lang){ try{ document.documentElement.setAttribute('dir', lang==='ar'?'rtl':'ltr'); }catch(_){ }
+        }
+        function triggerCombo(lang){ var sel=document.querySelector('.goog-te-combo'); if(sel){ if(lang && sel.value==lang) return true; sel.value=(lang||'en'); setTimeout(function(){ sel.dispatchEvent(new Event('change')); }, 0); return true; } return false; }
+        function openTranslateProxy(url, lang){ var sl='en'; var tl=(lang||'en'); var href='https://translate.google.com/translate?hl='+tl+'&sl='+sl+'&tl='+tl+'&u='+encodeURIComponent(url); try{ window.open(href, '_blank'); }catch(_){} }
+        function changeLanguage(lang){
+          lang = lang || 'en';
+          if(triggerCombo(lang)){
+            try{ localStorage.setItem('lang', lang); }catch(_){ }
+            applyDir(lang);
+            return;
+          }
+          var attempts = 0;
+          var interval = setInterval(function(){
+            if(triggerCombo(lang)){
+              clearInterval(interval);
+              try{ localStorage.setItem('lang', lang); }catch(_){ }
+              applyDir(lang);
+            } else {
+              attempts++;
+              if(attempts >= 50){
+                clearInterval(interval);
+                setCookie('googtrans','/en/'+lang);
+                try{ localStorage.setItem('lang', lang); }catch(_){ }
+                applyDir(lang);
+              }
+            }
+          }, 100);
+        }
+        function init(){ var saved=null; try{ saved=localStorage.getItem('lang'); }catch(_){ } applyDir(saved||'en'); }
+        function protect(){ var q='input[type=password],input[type=email],input[name=password],input[name=email],input[name=username],textarea[name=password],textarea[name=email],textarea[name=username]'; document.querySelectorAll(q).forEach(function(el){ el.classList.add('notranslate'); el.setAttribute('translate','no'); }); }
+        document.addEventListener('click', function(e){ var btn=e.target.closest('[data-lang]'); if(!btn) return; var lang=btn.getAttribute('data-lang')||'en'; changeLanguage(lang); var label=document.querySelector('#languageToggle span'); if(label) label.textContent=btn.textContent.trim(); });
+        document.addEventListener('DOMContentLoaded', function(){ protect(); init(); var dd=document.getElementById('languageDropdown'); if(dd){ var hasEs=dd.querySelector('[data-lang="es"]'); if(!hasEs){ dd.insertAdjacentHTML('beforeend','<button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="es"><img src="https://flagcdn.com/w20/es.png" alt="Español" class="w-4 h-3"><span>Español</span></button>'); } } });
+        var st=document.createElement('style'); st.textContent='.goog-te-banner-frame{display:none!important} body{top:0!important} #google_translate_element{display:none!important} .goog-te-gadget{display:none!important} .skiptranslate{display:none!important}'; document.head.appendChild(st);
+      })();
+    </script>
+    <div id="google_translate_element"></div>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</head> 
+ <body class="bg-gray-50"> 
+  
+<div class="bg-[#0D1F39] text-white font-body relative z-[60]">
+  <div class="container mx-auto px-6 py-2">
+    <div class="flex items-center justify-between">
+      <div class="relative">
+        <button id="languageToggle" class="flex items-center space-x-2 text-white/90 hover:text-white font-medium transition-colors">
+          <i class="fa-solid fa-globe text-base"></i>
+          <span class="text-sm md:text-base">English</span>
+          <i class="fa-solid fa-chevron-down text-xs"></i>
+        </button>
+        <div id="languageDropdown" class="absolute left-0 top-full mt-1 bg-white rounded-lg shadow-xl border border-gray-200 py-2 min-w-[160px] hidden z-[1000]">
+          <button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="en">
+            <img src="https://flagcdn.com/w20/us.png" alt="English" class="w-4 h-3"><span>English</span>
+          </button>
+          <button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="ko">
+            <img src="https://flagcdn.com/w20/kr.png" alt="한국어" class="w-4 h-3"><span>한국어</span>
+          </button>
+          <button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="ar">
+            <img src="https://flagcdn.com/w20/sa.png" alt="العربية" class="w-4 h-3"><span>العربية</span>
+          </button>
+          <button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="fr">
+            <img src="https://flagcdn.com/w20/fr.png" alt="Français" class="w-4 h-3"><span>Français</span>
+          </button>
+        </div>
+      </div>
+      <div class="flex items-center space-x-3">
+        <button class="bg-white/10 hover:bg-white/20 text-white px-4 py-1.5 rounded-lg font-medium transition-all h-hover" data-text="sign-in" onclick="window.open('signin.html','_blank')">Login</button>
+        <button class="bg-[#D53C46] text-white hover:bg-[#D53C46] px-4 py-1.5 rounded-lg font-semibold transition-all h-hover" data-text="sign-up" onclick="window.open('signup.html','_blank')">Register</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<header id="header" class="sticky top-0 z-50 backdrop-blur">
+  <div class="w-full px-6 py-2 bg-white">
+    <div class="w-full px-4 md:px-6 py-3 flex items-center justify-between">
+      <a href="home.html" class="flex items-center space-x-3">
+        <img src="assets/images/Gemini_Generated_Image_2f4bkg2f4bkg2f4bee.png" alt="Logo" class="w-80 h-[100px] object-contain animate-logo" />
+      </a>
+      <nav class="hidden md:flex items-center space-x-8 text-gray-900 font-semibold animate-nav">
+        <a href="home.html" class="hover:text-[#0D1F39] transition-colors">Home</a>
+        <a href="inventory.html" class="hover:text-[#0D1F39] transition-colors">Inventory</a>
+        <div class="relative" id="navAbout">
+          <a href="about-us.html" id="navAboutToggle" class="hover:text-[#0D1F39] transition-colors flex items-center space-x-1">
+            <span>About Us</span>
+            <i class="fa-solid fa-chevron-down text-xs"></i>
+          </a>
+          <div id="navAboutMenu" class="absolute left-1/2 -translate-x-1/2 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg py-2 min-w-[220px] opacity-0 translate-y-1 pointer-events-none transition-all duration-300 z-50">
+            <a href="mit-info.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">MIT Info</a>
+            <a href="service-introduction.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">Service Introduction</a>
+          </div>
+        </div>
+        <a href="contact-us.html" class="hover:text-[#0D1F39] transition-colors">Contact Us</a>
+        <div class="relative" id="navMore">
+          <button id="navMoreToggle" class="hover:text-[#0D1F39] transition-colors flex items-center space-x-1">
+            <span>More</span>
+            <i class="fa-solid fa-chevron-down text-xs"></i>
+          </button>
+          <div id="navMoreMenu" class="absolute left-1/2 -translate-x-1/2 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg py-2 min-w-[220px] opacity-0 translate-y-1 pointer-events-none transition-all duration-300 z-50">
+            <a href="faq.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">FAQs</a>
+            <a href="reviews.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">Reviews</a>
+            <a href="blog.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">Blogs</a>
+          </div>
+        </div>
+      </nav>
+      <div class="flex items-center space-x-4 animate-actions">
+        <div class="hidden md:flex items-center bg-white rounded-full shadow px-3 py-1.5 border border-gray-200">
+          <i class="fa-solid fa-magnifying-glass text-gray-600 mr-2 hover:text-[#D53C46]"></i>
+          <input id="headerSearchInput" type="text" placeholder="Search" class="w-40 md:w-52 text-sm bg-transparent focus:outline-none" />
+        </div>
+        <button id="mobileSearchToggle" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition group h-hover">
+          <i class="fa-solid fa-magnifying-glass group-hover:text-[#D53C46]"></i>
+        </button>
+        <a id="headerFavorite" href="dashboard-saved.html" class="relative inline-flex items-center justify-center w-10 h-10 rounded-full border border-gray-200 hover:bg-gray-50 transition-colors group h-hover">
+          <i class="fa-regular fa-heart text-[#0D1F39] group-hover:text-[#D53C46]"></i>
+          <span class="absolute -top-1 -right-1 inline-flex items-center justify-center w-5 h-5 rounded-full bg-[#D53C46] text-white text-xs">0</span>
+        </a>
+        <button id="mobileMenuToggle" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition group h-hover">
+          <i class="fa-solid fa-bars group-hover:text-[#D53C46]"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    var h = document.getElementById('header');
+    if (h) { requestAnimationFrame(function(){ h.classList.add('header-ready'); }); }
+  });
+</script>
+<script>
+  (function(){
+    function setupHoverDelay(containerId, toggleId, menuId){
+      var c=document.getElementById(containerId); var t=document.getElementById(toggleId); var m=document.getElementById(menuId);
+      if(!c||!t||!m) return; var hid=null;
+      function show(){ if(hid){ clearTimeout(hid); hid=null; } m.classList.remove('opacity-0','pointer-events-none','translate-y-1'); m.classList.add('opacity-100','pointer-events-auto','translate-y-0'); }
+    function schedule(){ if(hid) clearTimeout(hid); hid=setTimeout(function(){ m.classList.remove('opacity-100','pointer-events-auto','translate-y-0'); m.classList.add('opacity-0','pointer-events-none','translate-y-1'); hid=null; },300); }
+      c.addEventListener('mouseenter', show); t.addEventListener('mouseenter', show); m.addEventListener('mouseenter', show);
+      c.addEventListener('mouseleave', schedule); t.addEventListener('mouseleave', schedule); m.addEventListener('mouseleave', schedule);
+      t.addEventListener('click', show);
+    }
+    setupHoverDelay('navAbout','navAboutToggle','navAboutMenu');
+    setupHoverDelay('navMore','navMoreToggle','navMoreMenu');
+  })();
+</script>
+  <script>
+    (function(){
+      try {
+        var role = (localStorage.getItem('role') || localStorage.getItem('userRole') || '').toLowerCase();
+        if (!role || (role !== 'buyer' && role !== 'seller')) return;
+        var signInEl = document.querySelector('[data-text="sign-in"]');
+        var signUpEl = document.querySelector('[data-text="sign-up"]');
+        var container = (signInEl && signInEl.parentElement) || (signUpEl && signUpEl.parentElement);
+        if (!container) return;
+        if (signInEl) signInEl.remove();
+        if (signUpEl) signUpEl.remove();
+        var link = document.createElement('a');
+        link.textContent = role === 'buyer' ? 'Buyer Dashboard' : 'Seller Dashboard';
+        link.href = role === 'buyer' ? 'buyer-dashboard.html' : 'seller-dashboard.html';
+        link.className = 'bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-lg font-semibold transition-all transform hover:scale-105';
+        container.appendChild(link);
+      } catch(e) {}
+    })();
+  </script>
+
+<div id="mobileSearchContainer" class="md:hidden hidden px-6">
+  <div class="flex items-center bg-white rounded-full shadow px-3 py-2 border border-gray-200">
+    <i class="fa-solid fa-magnifying-glass text-gray-600 mr-2"></i>
+    <input id="mobileHeaderSearchInput" type="text" placeholder="Search" class="flex-1 text-sm bg-transparent focus:outline-none" />
+    <button id="mobileHeaderSearchBtn" class="ml-2 px-3 py-1 rounded-full bg-[#0D1F39] text-white text-xs">Search</button>
+  </div>
+  </div>
+
+<div id="mobileMenuOverlay" class="fixed inset-0 bg-black/40 hidden z-40 md:hidden"></div>
+<aside id="mobileDrawer" class="fixed inset-y-0 right-0 w-80 max-w-[88vw] bg-white shadow-xl border-l border-gray-200 z-50 transform translate-x-full transition-transform duration-300 ease-out md:hidden" aria-hidden="true" role="dialog">
+  <div class="flex items-center justify-between px-4 py-3 border-b border-gray-100">
+    <div class="flex items-center space-x-2">
+      <img src="assets/images/Gemini_Generated_Image_2f4bkg2f4bkg2f4bee.png" alt="Logo" class="w-64 h-16 object-contain" />
+    </div>
+    <button id="mobileDrawerClose" class="inline-flex items-center justify-center w-10 h-10 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition" aria-label="Close menu">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+  <div class="px-4 py-3">
+    <div class="flex items-center bg-white rounded-full border border-gray-200 px-3 py-2 shadow-sm">
+      <i class="fa-solid fa-magnifying-glass text-gray-600 mr-2"></i>
+      <input id="drawerSearchInput" type="text" placeholder="Search" class="flex-1 text-sm bg-transparent focus:outline-none" />
+      <button id="drawerSearchBtn" class="ml-2 px-3 py-1 rounded-full bg-[#0D1F39] text-white text-xs">Search</button>
+    </div>
+  </div>
+  <nav class="px-4 py-3 space-y-1 text-gray-900 font-semibold">
+    <a href="home.html" class="block py-2 rounded-lg hover:bg-gray-50">Home</a>
+    <a href="inventory.html" class="block py-2 rounded-lg hover:bg-gray-50">Inventory</a>
+    <div class="border-t border-gray-100 my-2"></div>
+    <button id="drawerAboutToggle" class="w-full flex items-center justify-between py-2 rounded-lg hover:bg-gray-50 text-left" aria-expanded="false">
+      <span>About Us</span>
+      <i class="fa-solid fa-chevron-down text-xs"></i>
+    </button>
+    <div id="drawerAboutMenu" class="hidden ml-3 space-y-1 text-gray-700 font-normal">
+      <a href="mit-info.html" class="block py-1.5 rounded hover:bg-gray-50">MIT Info</a>
+      <a href="service-introduction.html" class="block py-1.5 rounded hover:bg-gray-50">Service Introduction</a>
+    </div>
+    <a href="contact-us.html" class="block py-2 rounded-lg hover:bg-gray-50">Contact Us</a>
+    <button id="drawerMoreToggle" class="w-full flex items-center justify-between py-2 rounded-lg hover:bg-gray-50 text-left" aria-expanded="false">
+      <span>More</span>
+      <i class="fa-solid fa-chevron-down text-xs"></i>
+    </button>
+    <div id="drawerMoreMenu" class="hidden ml-3 space-y-1 text-gray-700 font-normal">
+      <a href="faq.html" class="block py-1.5 rounded hover:bg-gray-50">FAQs</a>
+      <a href="reviews.html" class="block py-1.5 rounded hover:bg-gray-50">Reviews</a>
+      <a href="blog.html" class="block py-1.5 rounded hover:bg-gray-50">Blogs</a>
+    </div>
+  </nav>
+</aside>
+
+<script>
+  (function(){
+    var langToggle = document.getElementById('languageToggle');
+    var langDropdown = document.getElementById('languageDropdown');
+    if (langToggle && langDropdown) {
+      langToggle.addEventListener('click', function(){ langDropdown.classList.toggle('hidden'); });
+      document.addEventListener('click', function(e){ if (!langDropdown.contains(e.target) && !langToggle.contains(e.target)) langDropdown.classList.add('hidden'); });
+    }
+    var mobileSearchToggle = document.getElementById('mobileSearchToggle');
+    var mobileSearchContainer = document.getElementById('mobileSearchContainer');
+    if (mobileSearchToggle && mobileSearchContainer) {
+      mobileSearchToggle.addEventListener('click', function(){ mobileSearchContainer.classList.toggle('hidden'); });
+    }
+    var overlay = document.getElementById('mobileMenuOverlay');
+    var drawer = document.getElementById('mobileDrawer');
+    var menuBtn = document.getElementById('mobileMenuToggle');
+    var closeBtn = document.getElementById('mobileDrawerClose');
+    function openDrawer(){ if (overlay && drawer) { overlay.classList.remove('hidden'); drawer.style.transform='translateX(0)'; } }
+    function closeDrawer(){ if (overlay && drawer) { overlay.classList.add('hidden'); drawer.style.transform=''; } }
+    if (menuBtn) menuBtn.addEventListener('click', openDrawer);
+    if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+    if (overlay) overlay.addEventListener('click', closeDrawer);
+  var drawerAboutToggle = document.getElementById('drawerAboutToggle');
+  var drawerAboutMenu = document.getElementById('drawerAboutMenu');
+  if (drawerAboutToggle && drawerAboutMenu) {
+    drawerAboutToggle.addEventListener('click', function(){
+      var hidden = drawerAboutMenu.classList.toggle('hidden');
+      drawerAboutToggle.setAttribute('aria-expanded', hidden ? 'false' : 'true');
+    });
+  }
+  var drawerMoreToggle = document.getElementById('drawerMoreToggle');
+  var drawerMoreMenu = document.getElementById('drawerMoreMenu');
+  if (drawerMoreToggle && drawerMoreMenu) {
+    drawerMoreToggle.addEventListener('click', function(){
+      var hidden = drawerMoreMenu.classList.toggle('hidden');
+      drawerMoreToggle.setAttribute('aria-expanded', hidden ? 'false' : 'true');
+    });
+  }
+  })();
+</script>
+  
+ <section id="breadcrumbs-section" class="bg-gray-100 py-4"> 
+     <div class="container mx-auto px-6"> 
+         <nav class="flex items-center space-x-2 text-sm"> 
+            <span class="text-red-500 hover:text-red-600 cursor-pointer">Home</span> 
+             <i class="fa-solid fa-chevron-right text-gray-400 text-xs"></i> 
+            <span class="text-red-500 hover:text-red-600 cursor-pointer">Inventory</span> 
+             <i class="fa-solid fa-chevron-right text-gray-400 text-xs"></i> 
+            <span class="text-red-500 hover:text-red-600 cursor-pointer">SUVs</span> 
+             <i class="fa-solid fa-chevron-right text-gray-400 text-xs"></i> 
+             <span class="text-gray-600" id="breadcrumb-vehicle">2022 Toyota RAV4 Hybrid</span> 
+         </nav> 
+ <div class="mt-4 flex items-center justify-between"> 
+     <div> 
+         <h1 class="text-3xl lg:text-4xl font-bold text-gray-900" id="vehicle-title">2022 Toyota RAV4 Hybrid XLE Premium</h1> 
+         <p class="text-gray-600 mt-2" id="vehicle-stock">Stock #: MC2024-RAV4-001 • VIN: 2T3F1RFV8NC123456</p> 
+     </div> 
+     <div class="hidden md:flex items-center space-x-4"> 
+        <button class="flex items-center text-gray-600 hover:text-red-500 transition-colors"> 
+                     <i class="fa-solid fa-share mr-2"></i> 
+                     Share 
+                 </button> 
+                <button class="flex items-center text-gray-600 hover:text-red-500 transition-colors"> 
+                     <i class="fa-solid fa-print mr-2"></i> 
+                     Print 
+                 </button> 
+                <button class="flex items-center text-gray-600 hover:text-red-500 transition-colors"> 
+                     <i class="fa-regular fa-heart mr-2"></i> 
+                     Save 
+                 </button> 
+             </div> 
+         </div> 
+     </div> 
+ </section> 
+  
+ <main class="container mx-auto px-6 py-8"> 
+     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8"> 
+          
+         <div id="media-gallery-section" class="lg:col-span-2"> 
+             <div class="bg-white rounded-2xl shadow-lg overflow-hidden"> 
+                 <div class="relative"> 
+                    <div id="main-image-container" class="relative h-96 lg:h-[500px] bg-gray-100 overflow-hidden"> 
+                         <div id="main-image" class="lg:col-span-2"> 
+     <div class="bg-white rounded-2xl shadow-lg overflow-hidden"> 
+        <div class="relative bg-black h-full flex items-center justify-center"> 
+           <img class="w-full h-full object-contain image-transition" id="main-vehicle-image" src="/placeholder-car.svg" alt="Vehicle main image"> 
+           <div class="absolute bottom-4 right-4 flex items-center space-x-2"> 
+               <button class="w-12 h-12 bg-gray-800 bg-opacity-70 hover:bg-opacity-90 rounded-full flex items-center justify-center transition-transform transform hover:scale-110 shadow-lg" title="Download"> 
+                   <i class="fa-solid fa-download text-white"></i> 
+               </button> 
+           </div> 
+           <button id="main-prev" class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-gray-800 bg-opacity-70 hover:bg-opacity-90 rounded-full flex items-center justify-center transition-transform hover:scale-110 shadow-lg z-10" title="Previous"> 
+             <i class="fa-solid fa-chevron-left text-white text-lg"></i> 
+           </button> 
+           <button id="main-next" class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-gray-800 bg-opacity-70 hover:bg-opacity-90 rounded-full flex items-center justify-center transition-transform hover:scale-110 shadow-lg z-10" title="Next"> 
+             <i class="fa-solid fa-chevron-right text-white text-lg"></i> 
+           </button> 
+        </div> 
+         <div id="thumbnail-carousel" class="hidden p-4 bg-gray-100"> 
+             <div class="grid grid-cols-5 gap-3 max-h-[400px] overflow-y-auto pr-2" id="thumbnail-grid"> 
+                 <!-- Thumbnails will be populated dynamically -->
+             </div> 
+         </div> 
+     </div> 
+ </div> 
+                          
+                         <div class="absolute top-4 left-4 flex flex-col space-y-2" id="vehicle-badges"> 
+                             <!-- Badges will be populated dynamically -->
+                         </div> 
+                          
+                         
+                          
+                         <div class="absolute bottom-4 right-4 bg-black bg-opacity-75 text-white px-4 py-2 rounded-lg"> 
+                             <span id="image-counter">1 / 24 Photos</span> 
+                         </div> 
+                     </div> 
+                      
+                     <div id="thumbnail-carousel-bottom" class="p-6 bg-gray-50"> 
+                    <div class="flex gap-3 md:flex-wrap overflow-x-auto md:overflow-x-visible pb-2" id="bottom-thumbnails"> 
+                         <!-- Bottom thumbnails will be populated dynamically -->
+                     </div> 
+                 </div> 
+                 </div> 
+             </div> 
+              
+             <div id="vehicle-details-tabs-section" class="mt-8"> 
+                 <div class="bg-white rounded-2xl shadow-lg overflow-hidden"> 
+                     <div class="flex border-b border-gray-200"> 
+                         <button class="tab-button tab-active px-8 py-4 font-semibold transition-all" data-tab="overview"> 
+                             Vehicle Info 
+                         </button> 
+                         <button class="tab-button tab-inactive px-8 py-4 font-semibold transition-all" data-tab="features"> 
+                             Option Info 
+                         </button> 
+                         <button class="tab-button tab-inactive px-8 py-4 font-semibold transition-all" data-tab="history"> 
+                             Insurance History 
+                         </button> 
+                     </div> 
+                      
+                     <div id="overview-tab" class="tab-content p-8"> 
+     <h2 class="text-3xl font-bold text-gray-800 mb-8">Vehicle Info</h2> 
+      
+     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-5 text-base border-b border-gray-200 pb-8" id="vehicle-specs"> 
+         <!-- Vehicle specs will be populated dynamically -->
+     </div> 
+      
+     <div class="mt-8"> 
+         <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center"> 
+             Relevant information 
+             <i class="fa-regular fa-circle-question text-gray-400 ml-2 cursor-pointer"></i> 
+         </h3> 
+          
+         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-5 text-base" id="insurance-info"> 
+             <!-- Insurance info will be populated dynamically -->
+         </div> 
+     </div> 
+ </div> 
+                      
+                     <div id="features-tab" class="tab-content p-8 hidden"> 
+                         <div class="mb-8"> 
+                             <h3 class="text-2xl font-bold text-gray-900 mb-6">Option Info</h3> 
+                             <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-8" id="feature-icons"> 
+                                 <!-- Feature icons will be populated dynamically -->
+                             </div> 
+                         </div> 
+  
+                         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8" id="feature-categories"> 
+                             <!-- Feature categories will be populated dynamically -->
+                         </div> 
+                     </div> 
+                      
+                     <div id="history-tab" class="tab-content p-8 hidden"> 
+                         <div class="space-y-8" id="insurance-history"> 
+                             <!-- Insurance history will be populated dynamically -->
+                         </div> 
+                     </div> 
+                 </div> 
+             </div> 
+         </div> 
+          
+         <div id="vehicle-info-actions-section" class="lg:col-span-1"> 
+             <div class="sticky-column bg-white rounded-2xl shadow-lg p-6 border border-gray-200"> 
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-900" id="sidebar-title">2015 New A3 35 TDI Dynamic</h2> 
+                <p class="text-gray-600 mt-1" id="sidebar-specs">91,391 km | Diesel | 1,968cc | AUTO</p> 
+               <p class="text-gray-600 mt-2 mb-6" id="sidebar-location">Location: <img src="https://flagcdn.com/w20/kr.png" alt="South Korea" class="inline-block w-4 h-3 mr-2 align-middle"> South Korea</p> 
+  
+                <div class="text-right mb-6"> 
+                </div> 
+  
+                 <div class="mb-6"> 
+                   <select id="country-select" class="w-full p-3 border border-gray-300 rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-red-500"> 
+                        <option value="">Select Country</option> 
+                    </select> 
+                 </div> 
+  
+                 <div id="price-breakdown-section" class="mb-6"> 
+                     <h3 class="text-lg font-semibold text-gray-800 mb-4">Expected Purchase Price</h3> 
+                     <div class="space-y-3"> 
+                        <div class="flex justify-between items-center text-gray-700"> 
+                            <span>Vehicle Price</span> 
+                            <span class="font-medium" id="base-price">$ 8,100</span> 
+                        </div> 
+                        <div class="flex justify-between items-center text-gray-700"> 
+                            <span>Shipping Fee</span> 
+                            <span class="font-medium text-gray-900">Please contact us</span> 
+                        </div> 
+                     </div> 
+                     <hr class="my-4 border-gray-200"> 
+                     <div class="flex justify-between items-center"> 
+                         <span class="text-lg font-bold text-gray-900">Total Price</span> 
+                         <span class="text-3xl font-bold text-red-500" id="total-price">$7,500</span> 
+                     </div> 
+                 </div> 
+  
+                 <div class="bg-gray-100 p-4 rounded-lg mb-6 text-xs text-gray-600 space-y-2"> 
+                     <p>* Shipping costs can be checked through inquiry and will be finalized after the issuance of the invoice.</p> 
+                     <p>* Sales are processed in the order of applications.</p> 
+                 </div> 
+  
+               <div id="primary-cta-section" class="space-y-4"> 
+                   <div class="grid grid-cols-2 gap-4"> 
+                       <button class="w-full bg-red-500 hover:bg-red-600 text-white py-4 px-8 rounded-lg font-bold text-lg cta-button" id="inquiry-btn"> 
+                           Inquiry 
+                       </button> 
+                       <button id="buy-now-btn" class="w-full bg-red-300 text-white py-4 px-8 rounded-lg font-bold text-lg cta-button opacity-50 cursor-not-allowed" disabled> 
+                           Sign in to Buy 
+                       </button> 
+                   </div> 
+                   <div class="flex justify-center"> 
+                        <button id="add-to-compare-btn" class="w-full bg-blue-500 hover:bg-blue-600 text-white py-4 px-8 rounded-lg font-bold text-lg cta-button text-center" title="Add this car to Compare"> 
+                            Add to Compare 
+                        </button> 
+                   </div> 
+               </div> 
+             </div> 
+         </div> 
+     </div> 
+      
+     <section id="related-vehicles-section" class="mt-16 relative"> 
+    <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-8">AutoNSM Pick!</h2> 
+      
+     <div class="absolute inset-y-0 left-0 flex items-center -ml-6 z-10"> 
+         <button class="bg-white/80 hover:bg-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg transition-all"> 
+             <i class="fa-solid fa-chevron-left text-gray-600"></i> 
+         </button> 
+     </div> 
+      
+     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="related-vehicles"> 
+         <!-- Related vehicles will be populated dynamically -->
+     </div> 
+      
+     <div class="absolute inset-y-0 right-0 flex items-center -mr-6 z-10"> 
+         <button class="bg-white/80 hover:bg-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg transition-all"> 
+             <i class="fa-solid fa-chevron-right text-gray-600"></i> 
+         </button> 
+     </div> 
+ </section> 
+      
+      
+    
+ </main> 
+  
+<footer id="footer" class="bg-[#f5f5f5] text-[#666666]">
+  <div class="max-w-7xl mx-auto px-[24px] py-[32px]">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-[32px]">
+      <div class="space-y-[10px] text-[15px] leading-[26px]">
+        <div><span class="text-[#444444]">대표자</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">카일자민파룩아마드</span></div>
+        <div><span class="text-[#444444]">사업자등록 번호</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">470-88-00357</span></div>
+        <div><span class="text-[#444444]">주소</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">인천광역시 연수구 옥련로37 씨동 306호</span></div>
+        <div class="pt-[6px] flex items-center space-x-[14px] text-[20px]">
+          <a href="https://www.instagram.com/autonsm?igsh=ZmU2M2ppZzk1ZjVv&utm_source=qr" target="_blank" rel="noopener noreferrer" class="text-[#666666] hover:text-[#111111]">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="https://www.facebook.com/share/1A3NGCuwXh/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="text-[#666666] hover:text-[#111111]">
+            <i class="fa-brands fa-facebook"></i>
+          </a>
+          <a href="https://www.tiktok.com/@autonsm" target="_blank" rel="noopener noreferrer" class="text-[#666666] hover:text-[#111111]">
+            <i class="fa-brands fa-tiktok"></i>
+          </a>
+        </div>
+      </div>
+      <div class="space-y-[10px] text-[15px] leading-[26px]">
+        <div><span class="text-[#444444]">Email</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">info@autonsm.com</span></div>
+        <div>
+          <span class="text-[#444444]">TEL</span>
+          <span class="text-[#666666] whitespace-pre">   +82 10-9199-9687 (English, Korean)</span>
+        </div>
+        <div><span class="text-[#444444]">TEL</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">+821098699687</span></div>
+        <div><span class="text-[#666666] whitespace-pre">306 C dong  37 Okryeon ro  Yeonsu gu Incheon South Korea</span></div>
+      </div>
+    </div>
+    <div class="mt-[28px] border-t border-[#e5e7eb] pt-[18px]">
+      <div class="flex flex-col md:flex-row items-center justify-between">
+        <div class="text-[14px] text-[#666666] space-x-[18px]">
+          <a href="private-policy.html" class="hover:text-[#111111]">Private Policy</a>
+          <a href="terms-of-service.html" class="hover:text-[#111111]">Terms of Service</a>
+        </div>
+        <div class="text-[14px] text-[#666666] mt-[12px] md:mt-0">Copyright © Auto Nsm. All rights Reserved.</div>
+      </div>
+    </div>
+  </div>
+</footer>
+  
+ <script> 
+     // Get listing ID from URL parameters (support common aliases)
+     const urlParams = new URLSearchParams(window.location.search);
+     const listingId = urlParams.get('id') || urlParams.get('listingId') || urlParams.get('listing_id') || urlParams.get('vehicleId') || urlParams.get('vehicle_id');
+     
+     let currentVehicleData = null;
+     let currentImages = [];
+     let currentImageIndex = 0;
+
+    // Fetch vehicle data from backend (prefer fast public, then admin if token, then fallbacks)
+    async function fetchVehicleData(id) {
+        try {
+            const apiOrigin = window.__apiOrigin || ('http://' + ((location && location.hostname) ? location.hostname : 'localhost') + ':3003');
+            const token = localStorage.getItem('token') || sessionStorage.getItem('token') || '';
+            const adminHeaders = token ? { 'Accept': 'application/json', 'Authorization': 'Bearer ' + token } : { 'Accept': 'application/json' };
+
+            const endpoints = [
+                // Public details endpoint is fastest and doesn’t require auth
+                { url: `${apiOrigin}/public/listings/${id}`, headers: { 'Accept': 'application/json' }, kind: 'object' },
+                // Try admin details only if we have a token (may be slower)
+                ...(!token ? [] : [{ url: `${apiOrigin}/admin/listing-details/${id}`, headers: adminHeaders, kind: 'object' }]),
+                // As a resilient fallback, load all and look up locally
+                { url: `${apiOrigin}/public/listings`, headers: { 'Accept': 'application/json' }, kind: 'collection' },
+                { url: 'backend/listings.json', headers: { 'Accept': 'application/json' }, kind: 'array' }
+            ];
+
+            let data = null;
+            for (const ep of endpoints) {
+                try {
+                    const res = await fetch(ep.url, { headers: ep.headers, cache: 'no-store' });
+                    if (!res.ok) throw new Error('HTTP ' + res.status);
+                    const json = await res.json();
+                    if (ep.kind === 'array') {
+                        const list = Array.isArray(json) ? json : [];
+                        data = list.find(l => String(l.id) === String(id))
+                            || list.find(l => String(l.product_id_number) === String(id))
+                            || null;
+                    } else if (ep.kind === 'collection') {
+                        const arr = Array.isArray(json?.listings) ? json.listings : (Array.isArray(json) ? json : []);
+                        data = arr.find(l => String(l.id) === String(id))
+                            || arr.find(l => String(l.product_id_number) === String(id))
+                            || null;
+                    } else {
+                        data = json;
+                    }
+                    if (data) break;
+                } catch (e) {
+                    console.warn('Vehicle endpoint failed:', ep.url, e.message);
+                }
+            }
+            if (!data) {
+                throw new Error('Vehicle not found');
+            }
+
+             // Normalize photos to absolute/data URLs
+            const rawPhotos = Array.isArray(data.photos) ? data.photos : (Array.isArray(data.Images) ? data.Images : []);
+            const images = rawPhotos.map(p => {
+                const src = p?.dataUrl || p?.url || p?.name || p?.path || p?.src || '';
+                if (!src) return '';
+                // Rewrite legacy 3000-hosted URLs to current origin
+                if (/^https?:\/\/localhost:3000\//.test(src)) {
+                    return (window.__apiOrigin || (location.origin)) + '/' + src.replace(/^https?:\/\/localhost:3000\//, '');
+                }
+                if (src.startsWith('http://') || src.startsWith('https://') || src.startsWith('data:')) return src;
+                if (src.startsWith('/')) return src; // serve from current origin
+                return '/' + String(src).replace(/^\/+/, '');
+            }).filter(Boolean);
+
+             // Transform data structure to match frontend expectations
+             const transformedData = {
+                 id: Number(data.id || id),
+                 title: data.title || data.name || '',
+                 year: data.vehicle?.year || data.insuranceHistory?.year || data.year || 'N/A',
+                 make: data.vehicle?.manufacturer || data.insuranceHistory?.manufacturer || data.make || 'N/A',
+                 model: data.vehicle?.model || data.insuranceHistory?.model || data.model || 'N/A',
+                 trim: data.trim || '',
+                 mileage: data.vehicle?.mileageKm || data.vehicle?.mileage || data.insuranceHistory?.mileage || 'N/A',
+                 fuelType: data.vehicle?.fuel || data.insuranceHistory?.fuel || data.fuelType || 'N/A',
+                 engineSize: data.vehicle?.displacementL || data.engineSize || 'N/A',
+                 transmission: data.vehicle?.transmission || data.transmission || 'N/A',
+                 price: data.price || 0,
+                 location: data.vehicle?.location || data.location || 'Korea',
+                 color: data.vehicle?.color || data.color || 'N/A',
+                 stockNumber: data.product_id_number || data.stockNumber || data.id,
+                 vin: data.insuranceHistory?.licensePlate || data.vin || 'N/A',
+                 images,
+                 tags: data.tags || data.tagNames || [],
+                 tagIds: data.tagIds || [],
+                 safetyFeatures: data.safety || data.safetyFeatures || [],
+                 insuranceHistory: data.insuranceHistory || {},
+                 passengerCapacity: data.vehicle?.passengerCapacity || data.passengerCapacity || 'N/A',
+                 driveType: data.vehicle?.driveType || data.driveType || 'N/A',
+                 firstRegDate: data.vehicle?.firstRegDate || data.firstRegDate || 'N/A',
+                 // Extended fields from create/sell listing forms
+                 categoryId: data.categoryId || null,
+                 relevant: data.relevant || [],
+                 options: data.options || [],
+                 interior: data.interior || [],
+                 convenience: data.convenience || []
+             };
+
+             return transformedData;
+         } catch (error) {
+             console.error('Error fetching vehicle data:', error);
+             return null;
+         }
+     }
+
+     // Inline error display helper (avoid redirect loops)
+     function showLoadError(message) {
+         try {
+             const titleEl = document.getElementById('vehicle-title');
+             const crumbEl = document.getElementById('breadcrumb-vehicle');
+             const mainImage = document.getElementById('main-vehicle-image');
+             if (titleEl) titleEl.textContent = 'Vehicle';
+             if (crumbEl) crumbEl.textContent = 'Vehicle';
+             if (mainImage) mainImage.alt = 'Vehicle';
+             const container = document.getElementById('vehicle-specs');
+             if (container) {
+                 container.innerHTML = `<div class="p-6 bg-yellow-50 border border-yellow-200 rounded-lg text-yellow-800">${String(message || 'Failed to load vehicle')}</div>`;
+             }
+         } catch (_) { /* noop */ }
+     }
+
+     // Normalize a raw listing into lightweight card fields for Related section
+    function transformListingToCard(listing) {
+        if (!listing) return null;
+        const rawPhotos = Array.isArray(listing.photos) ? listing.photos : (Array.isArray(listing.Images) ? listing.Images : []);
+       const images = rawPhotos.map(p => {
+           const src = p?.dataUrl || p?.url || p?.name || p?.path || p?.src || '';
+           if (!src) return '';
+           // Rewrite legacy 3000-hosted URLs to current origin
+           if (/^https?:\/\/localhost:(3000|3003)\//.test(src)) {
+               return (window.__apiOrigin || (location.origin)) + '/' + src.replace(/^https?:\/\/localhost:(3000|3003)\//, '');
+           }
+           if (/^https?:\/\/127\.0\.0\.1:(3000|3003)\//.test(src)) {
+               return (window.__apiOrigin || (location.origin)) + '/' + src.replace(/^https?:\/\/127\.0\.0\.1:(3000|3003)\//, '');
+           }
+           if (String(src).startsWith('/uploads/')) return 'placeholder-car.svg';
+           if (src.startsWith('http://') || src.startsWith('https://') || src.startsWith('data:')) return src;
+           if (src.startsWith('/')) return src; // serve from current origin
+           return '/' + String(src).replace(/^\/+/, '');
+       }).filter(Boolean);
+
+        return {
+            id: Number(listing.id),
+            title: listing.title || listing.name || '',
+            year: listing.vehicle?.year || listing.insuranceHistory?.year || listing.year || 'N/A',
+            make: listing.vehicle?.manufacturer || listing.insuranceHistory?.manufacturer || listing.make || 'N/A',
+            model: listing.vehicle?.model || listing.insuranceHistory?.model || listing.model || 'N/A',
+            trim: listing.trim || '',
+            mileage: listing.vehicle?.mileageKm || listing.vehicle?.mileage || listing.insuranceHistory?.mileage || 'N/A',
+            fuelType: listing.vehicle?.fuel || listing.insuranceHistory?.fuel || 'N/A',
+            engineSize: listing.vehicle?.displacementL || listing.engineSize || 'N/A',
+            transmission: listing.vehicle?.transmission || listing.transmission || 'N/A',
+            location: listing.vehicle?.location || listing.location || 'Korea',
+            price: listing.price || 0,
+            images,
+            tags: listing.tags || listing.tagNames || []
+        };
+    }
+
+     // Fetch related vehicles
+    async function fetchRelatedVehicles() {
+        const apiOrigin = window.__apiOrigin || (window.location.origin);
+        const endpoints = [
+            apiOrigin + '/public/listings',
+            'backend/listings.json'
+        ];
+        for (const url of endpoints) {
+            try {
+                const res = await fetch(url, { cache: 'no-store' });
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                const data = await res.json();
+                const listings = Array.isArray(data.listings) ? data.listings : (Array.isArray(data) ? data : []);
+                const approved = (Array.isArray(listings) ? listings : []).filter(l => !l.status || String(l.status).toLowerCase() === 'approved');
+                const cards = approved
+                    .filter(l => String(l.id) !== String(listingId))
+                    .map(transformListingToCard)
+                    .filter(Boolean)
+                    .slice(0, 4);
+                return cards;
+            } catch (e) {
+                console.warn('Related vehicles endpoint failed:', url, e.message);
+            }
+        }
+        console.error('All related vehicle endpoints failed');
+        return [];
+    }
+
+     // Update page title and meta information
+     function updatePageMeta(vehicle) {
+         const displayTitle = (vehicle.title && vehicle.title.trim()) ? vehicle.title : `${vehicle.year} ${vehicle.make} ${vehicle.model}`.trim();
+        document.title = `${displayTitle} - AutoNSM Premium Used Car Dealership`;
+         
+         // Update breadcrumb
+         document.getElementById('breadcrumb-vehicle').textContent = displayTitle;
+         
+         // Update main title
+         document.getElementById('vehicle-title').textContent = `${displayTitle} ${vehicle.trim || ''}`.trim();
+         
+         // Update stock info
+         document.getElementById('vehicle-stock').textContent = `Stock #: ${vehicle.stockNumber || 'N/A'} • VIN: ${vehicle.vin || 'N/A'}`;
+     }
+
+     // Update vehicle images
+     function updateVehicleImages(vehicle) {
+         const mainImage = document.getElementById('main-vehicle-image');
+         const thumbnailGrid = document.getElementById('thumbnail-grid');
+         const bottomThumbnails = document.getElementById('bottom-thumbnails');
+         
+         currentImages = vehicle.images || [];
+         
+         if (currentImages.length > 0) {
+             const displayTitle = (vehicle.title && vehicle.title.trim()) ? vehicle.title : `${vehicle.year} ${vehicle.make} ${vehicle.model}`.trim();
+            mainImage.src = currentImages[0];
+            mainImage.alt = displayTitle;
+            if (mainImage) { mainImage.onerror = function(){ this.src = '/placeholder-car.svg'; }; }
+             
+             // Update thumbnail grid
+             thumbnailGrid.innerHTML = '';
+             currentImages.forEach((image, index) => {
+                 const thumbnail = document.createElement('div');
+                 thumbnail.className = 'rounded-lg overflow-hidden cursor-pointer group';
+                 thumbnail.innerHTML = `
+                    <img class="w-full h-24 md:h-28 lg:h-32 object-cover transition-transform group-hover:scale-105" 
+                         src="${image}" onerror="this.src='/placeholder-car.svg'" 
+                         alt="${displayTitle} - Image ${index + 1}"
+                         data-index="${index}">
+                 `;
+                 thumbnail.addEventListener('click', () => switchImage(index));
+                 thumbnailGrid.appendChild(thumbnail);
+             });
+             
+             // Update bottom thumbnails
+            bottomThumbnails.innerHTML = '';
+            currentImages.forEach((image, index) => {
+                const thumbnail = document.createElement('img');
+                thumbnail.className = `w-20 h-20 object-cover rounded-lg cursor-pointer transition-all ${index === 0 ? 'thumbnail-active' : 'thumbnail-inactive'}`;
+                thumbnail.src = image;
+                thumbnail.onerror = function(){ this.src = '/placeholder-car.svg'; };
+                const displayTitle = (vehicle.title && vehicle.title.trim()) ? vehicle.title : `${vehicle.year} ${vehicle.make} ${vehicle.model}`.trim();
+                thumbnail.alt = `${displayTitle} - Thumbnail ${index + 1}`;
+                thumbnail.setAttribute('data-index', index);
+                thumbnail.addEventListener('click', () => switchImage(index));
+                bottomThumbnails.appendChild(thumbnail);
+            });
+             
+             // Update image counter
+            document.getElementById('image-counter').textContent = `1 / ${currentImages.length} Photos`;
+            var mp = document.getElementById('main-prev');
+            var mn = document.getElementById('main-next');
+            if (mp) mp.classList.toggle('hidden', currentImages.length <= 1);
+            if (mn) mn.classList.toggle('hidden', currentImages.length <= 1);
+        }
+     }
+
+     // Switch main image
+     function switchImage(index) {
+         if (index >= 0 && index < currentImages.length) {
+             const mainImage = document.getElementById('main-vehicle-image');
+             const imageCounter = document.getElementById('image-counter');
+             
+             mainImage.style.opacity = '0';
+            setTimeout(() => {
+                mainImage.src = currentImages[index];
+                if (mainImage) { mainImage.onerror = function(){ this.src = '/placeholder-car.svg'; }; }
+                imageCounter.textContent = `${index + 1} / ${currentImages.length} Photos`;
+                mainImage.style.opacity = '1';
+            }, 150);
+             
+             // Update thumbnail states
+             document.querySelectorAll('#bottom-thumbnails img').forEach((thumb, i) => {
+                 thumb.classList.remove('thumbnail-active');
+                 thumb.classList.add('thumbnail-inactive');
+                 if (i === index) {
+                     thumb.classList.remove('thumbnail-inactive');
+                     thumb.classList.add('thumbnail-active');
+                 }
+             });
+             
+             currentImageIndex = index;
+         }
+     }
+
+     // Image modal helpers
+    function openImageModal(index) {
+        try {
+            const modal = document.getElementById('image-modal');
+            const modalImg = document.getElementById('image-modal-img');
+            if (!modal || !modalImg) return;
+            const idx = Number.isFinite(index) ? index : (Number.isFinite(currentImageIndex) ? currentImageIndex : 0);
+            const src = (currentImages && currentImages.length) ? currentImages[Math.max(0, Math.min(idx, currentImages.length - 1))] : null;
+            if (!src) return;
+            modalImg.src = src;
+            modalImg.onerror = function(){ this.src = '/placeholder-car.svg'; };
+            currentImageIndex = idx;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        } catch (e) { console.warn('openImageModal error:', e); }
+    }
+     function closeImageModal() {
+         const modal = document.getElementById('image-modal');
+         if (modal) {
+             modal.classList.add('hidden');
+             modal.classList.remove('flex');
+         }
+     }
+     function setupImageModalBindings() {
+         const mainImage = document.getElementById('main-vehicle-image');
+         const zoomBtn = document.getElementById('zoom-btn');
+         const closeBtn = document.getElementById('image-modal-close');
+        const modal = document.getElementById('image-modal');
+        if (mainImage) {
+            mainImage.style.cursor = 'zoom-in';
+            mainImage.addEventListener('click', () => openImageModal(currentImageIndex));
+        }
+        if (zoomBtn) {
+            zoomBtn.addEventListener('click', () => openImageModal(currentImageIndex));
+        }
+        if (closeBtn) {
+            closeBtn.addEventListener('click', closeImageModal);
+        }
+        if (modal) {
+            modal.addEventListener('click', (e) => { if (e.target === modal) closeImageModal(); });
+        }
+        const prevBtn = document.getElementById('image-modal-prev');
+        const nextBtn = document.getElementById('image-modal-next');
+        const mainPrev = document.getElementById('main-prev');
+        const mainNext = document.getElementById('main-next');
+        if (prevBtn) {
+            prevBtn.addEventListener('click', function(){
+                if (!currentImages || !currentImages.length) return;
+                var next = (currentImageIndex - 1 + currentImages.length) % currentImages.length;
+                switchImage(next);
+                var mi = document.getElementById('image-modal-img');
+                if (mi) mi.src = currentImages[next];
+                currentImageIndex = next;
+            });
+        }
+        if (nextBtn) {
+            nextBtn.addEventListener('click', function(){
+                if (!currentImages || !currentImages.length) return;
+                var next = (currentImageIndex + 1) % currentImages.length;
+                switchImage(next);
+                var mi = document.getElementById('image-modal-img');
+                if (mi) mi.src = currentImages[next];
+                currentImageIndex = next;
+            });
+        }
+        if (mainPrev) {
+            mainPrev.addEventListener('click', function(){
+                if (!currentImages || !currentImages.length) return;
+                var next = (currentImageIndex - 1 + currentImages.length) % currentImages.length;
+                switchImage(next);
+            });
+        }
+        if (mainNext) {
+            mainNext.addEventListener('click', function(){
+                if (!currentImages || !currentImages.length) return;
+                var next = (currentImageIndex + 1) % currentImages.length;
+                switchImage(next);
+            });
+        }
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeImageModal();
+            else if (e.key === 'ArrowLeft') {
+                if (!currentImages || !currentImages.length) return;
+                var next = (currentImageIndex - 1 + currentImages.length) % currentImages.length;
+                switchImage(next);
+                var mi = document.getElementById('image-modal-img');
+                if (mi) mi.src = currentImages[next];
+                currentImageIndex = next;
+            }
+            else if (e.key === 'ArrowRight') {
+                if (!currentImages || !currentImages.length) return;
+                var next = (currentImageIndex + 1) % currentImages.length;
+                switchImage(next);
+                var mi = document.getElementById('image-modal-img');
+                if (mi) mi.src = currentImages[next];
+                currentImageIndex = next;
+            }
+        });
+     }
+     // Update vehicle badges
+     function updateVehicleBadges(vehicle) {
+         const badgesContainer = document.getElementById('vehicle-badges');
+         badgesContainer.innerHTML = '';
+         
+         if (vehicle.tags && vehicle.tags.length > 0) {
+             vehicle.tags.forEach(tag => {
+                 const badge = document.createElement('div');
+                 badge.className = 'bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold';
+                 badge.textContent = tag;
+                 badgesContainer.appendChild(badge);
+             });
+         }
+     }
+
+     // Update vehicle specifications
+     function updateVehicleSpecs(vehicle) {
+         const specsContainer = document.getElementById('vehicle-specs');
+         specsContainer.innerHTML = `
+             <div class="flex justify-between">
+                 <span class="text-gray-500">Year</span>
+                 <span class="font-bold text-gray-900">${vehicle.year}</span>
+             </div>
+             <div class="flex justify-between">
+                 <span class="text-gray-500">Transmission</span>
+                 <span class="font-bold text-gray-900">${vehicle.transmission || 'N/A'}</span>
+             </div>
+             <div class="flex justify-between">
+                 <span class="text-gray-500">Fuel</span>
+                 <span class="font-bold text-gray-900">${vehicle.fuelType || 'N/A'}</span>
+             </div>
+             <div class="flex justify-between">
+                 <span class="text-gray-500">Color</span>
+                 <span class="font-bold text-gray-900">${vehicle.color || 'N/A'}</span>
+             </div>
+             <div class="flex justify-between">
+                 <span class="text-gray-500">Displacement</span>
+                 <span class="font-bold text-gray-900">${vehicle.engineSize || 'N/A'}</span>
+             </div>
+             <div class="flex justify-between">
+                 <span class="text-gray-500">Passenger Capacity</span>
+                 <span class="font-bold text-gray-900">${vehicle.passengerCapacity || 'N/A'}</span>
+             </div>
+             <div class="flex justify-between">
+                 <span class="text-gray-500">Drive Type</span>
+                 <span class="font-bold text-gray-900">${vehicle.driveType || 'N/A'}</span>
+             </div>
+             <div class="flex justify-between">
+                 <span class="text-gray-500">First Registration Date</span>
+                 <span class="font-bold text-gray-900">${vehicle.firstRegDate || 'N/A'}</span>
+             </div>
+             <div class="flex justify-between">
+                 <span class="text-gray-500">Mileage</span>
+                 <span class="font-bold text-gray-900">${vehicle.mileage || 'N/A'}</span>
+             </div>
+             <div class="flex justify-between">
+                 <span class="text-gray-500">Location</span>
+                 <span class="font-bold text-gray-900">${vehicle.location || 'N/A'}</span>
+             </div>
+         `;
+     }
+
+     // Update insurance information
+    function updateInsuranceInfo(vehicle) {
+        const insuranceContainer = document.getElementById('insurance-info');
+        const insurance = vehicle.insuranceHistory || {};
+        const relevant = Array.isArray(vehicle.relevant) ? vehicle.relevant : [];
+        const norm = (s) => String(s || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+        const selected = new Set(relevant.map(norm));
+
+        const hasRelevant = (syns) => syns.some(s => selected.has(norm(s)));
+
+        const totalLoss = (typeof insurance.totalLoss === 'boolean') ? insurance.totalLoss : hasRelevant(['total loss','total loss insurance']);
+        const floodDamage = (typeof insurance.floodDamage === 'boolean') ? insurance.floodDamage : hasRelevant(['flood damage','flood']);
+        const theft = (typeof insurance.theft === 'boolean') ? insurance.theft : hasRelevant(['theft','theft insurance']);
+        const governmentUsage = (typeof insurance.governmentUsage === 'boolean') ? insurance.governmentUsage : hasRelevant(['government usage','government']);
+
+        const commercialGeneral = (typeof insurance.commercialGeneral === 'boolean') ? insurance.commercialGeneral : false;
+        const commercialRent = (typeof insurance.commercialRent === 'boolean') ? insurance.commercialRent : false;
+        const fuelModification = (typeof insurance.fuelModification === 'boolean') ? insurance.fuelModification : false;
+        const seatModification = (typeof insurance.seatModification === 'boolean') ? insurance.seatModification : false;
+
+        const yn = (v) => v ? 'Yes' : 'No';
+
+        insuranceContainer.innerHTML = `
+            <div class="flex justify-between">
+                <span class="text-gray-500">Total Loss Insurance</span>
+                <span class="font-bold text-gray-900">${yn(totalLoss)}</span>
+            </div>
+            <div class="flex justify-between">
+                <span class="text-gray-500">Flood damage insurance</span>
+                <span class="font-bold text-gray-900">${yn(floodDamage)}</span>
+            </div>
+            <div class="flex justify-between">
+                <span class="text-gray-500">Theft insurance</span>
+                <span class="font-bold text-gray-900">${yn(theft)}</span>
+            </div>
+            <div class="flex justify-between">
+                <span class="text-gray-500">Government usage</span>
+                <span class="font-bold text-gray-900">${yn(governmentUsage)}</span>
+            </div>
+            <div class="flex justify-between">
+                <span class="text-gray-500">Record of use (general) for commercial purposes</span>
+                <span class="font-bold text-gray-900">${yn(commercialGeneral)}</span>
+            </div>
+            <div class="flex justify-between">
+                <span class="text-gray-500">Record of use (rent) for commercial purposes</span>
+                <span class="font-bold text-gray-900">${yn(commercialRent)}</span>
+            </div>
+            <div class="flex justify-between">
+                <span class="text-gray-500">Fuel system modification</span>
+                <span class="font-bold text-gray-900">${yn(fuelModification)}</span>
+            </div>
+            <div class="flex justify-between">
+                <span class="text-gray-500">Seat Modification</span>
+                <span class="font-bold text-gray-900">${yn(seatModification)}</span>
+            </div>
+        `;
+    }
+
+     // Update sidebar information
+     function updateSidebar(vehicle) {
+         const displayTitle = (vehicle.title && vehicle.title.trim()) ? vehicle.title : `${vehicle.year} ${vehicle.make} ${vehicle.model}`.trim();
+         document.getElementById('sidebar-title').textContent = `${displayTitle} ${vehicle.trim || ''}`.trim();
+         const mileageRaw = vehicle.mileage || vehicle.mileageKm || 'N/A';
+         let mileageText = (mileageRaw === 'N/A') ? 'N/A' : String(mileageRaw).trim();
+         if (mileageText !== 'N/A') {
+             const num = Number(String(mileageText).replace(/[^0-9.]/g, ''));
+             if (Number.isFinite(num)) {
+                 mileageText = `${Math.round(num).toLocaleString()} km`;
+             } else if (!/\bkm\b/i.test(mileageText)) {
+                 mileageText = `${mileageText} km`;
+             }
+         }
+
+         const engineRaw = vehicle.engineSize || vehicle.displacementL || 'N/A';
+         let engineText = (engineRaw === 'N/A') ? 'N/A' : String(engineRaw).trim();
+         if (engineText !== 'N/A') {
+             const litersMatch = engineText.match(/^\s*([0-9]+(?:\.[0-9]+)?)\s*l?\s*$/i);
+             if (litersMatch) {
+                 const liters = parseFloat(litersMatch[1]);
+                 if (Number.isFinite(liters)) engineText = `${Math.round(liters * 1000).toLocaleString()}cc`;
+             } else {
+                 const num = Number(String(engineText).replace(/[^0-9.]/g, ''));
+                 if (Number.isFinite(num)) {
+                     engineText = `${Math.round(num).toLocaleString()}cc`;
+                 } else if (!/\bcc\b/i.test(engineText)) {
+                     engineText = `${engineText} cc`;
+                 }
+             }
+         }
+
+        var specsEl = document.getElementById('sidebar-specs');
+        if (specsEl) {
+            specsEl.textContent = `${mileageText} | ${vehicle.fuelType || 'N/A'} | ${engineText} | ${vehicle.transmission || 'N/A'}`;
+        }
+        var locEl = document.getElementById('sidebar-location');
+        if (locEl) {
+            var locText = 'South Korea';
+            locEl.innerHTML = `Location: <img src="https://flagcdn.com/w20/kr.png" alt="South Korea" class="inline-block w-4 h-3 mr-2 align-middle"> ${locText}`;
+        }
+        var vp = document.getElementById('vehicle-price');
+        if (vp) vp.textContent = `$ ${vehicle.price ? vehicle.price.toLocaleString() : 'N/A'}`;
+         
+        // Update price breakdown
+        const basePrice = vehicle.price ? Math.round(vehicle.price) : 0;
+        document.getElementById('base-price').textContent = `$ ${basePrice.toLocaleString()}`;
+        document.getElementById('total-price').textContent = `$${vehicle.price ? vehicle.price.toLocaleString() : 'N/A'}`;
+     }
+
+    // Update features tab
+    function updateFeatures(vehicle) {
+        const options = Array.isArray(vehicle.options) ? vehicle.options : [];
+        const interior = Array.isArray(vehicle.interior) ? vehicle.interior : [];
+        const safety = Array.isArray(vehicle.safety) ? vehicle.safety : (vehicle.safetyFeatures || []);
+        const convenience = Array.isArray(vehicle.convenience) ? vehicle.convenience : [];
+
+        const featureIconsContainer = document.getElementById('feature-icons');
+        const featureCategoriesContainer = document.getElementById('feature-categories');
+
+        // Normalizer for matching synonyms
+        const norm = (s) => String(s || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+        const selectedSet = new Set([...options, ...interior, ...safety, ...convenience].map(norm));
+
+        // Canonical option list with icons and synonyms
+        const OPTION_DEFS = [
+            { label: 'Sunroof', icon: 'fa-solar-panel', synonyms: ['sunroof'] },
+            { label: '4WD', icon: 'fa-gears', synonyms: ['4wd','awd','4 wheel drive','four wheel drive'] },
+            { label: 'Leather Seat', icon: 'fa-chair', synonyms: ['leather seat','leather seats','leather'] },
+            { label: 'Heated Seat(Front Seat)', icon: 'fa-fire', synonyms: ['heated seat','heated seats','heated front seat','heated front seats'] },
+            { label: 'Ventilated Seat(Front Seat)', icon: 'fa-fan', synonyms: ['ventilated seat','ventilated seats','cooled seat','cooled seats'] },
+            { label: 'Rear Camera', icon: 'fa-camera', synonyms: ['rear camera','backup camera','rearview camera','parking camera'] },
+            { label: '360° Around View', icon: 'fa-camera-rotate', synonyms: ['360 view','360° view','around view','avm'] },
+            { label: 'SmartKey(AfterMarket)', icon: 'fa-key', synonyms: ['smart key aftermarket','smartkey aftermarket'] },
+            { label: 'Navigation(Aftermarket)', icon: 'fa-map', synonyms: ['navigation aftermarket','gps aftermarket'] },
+            { label: 'Smart Key', icon: 'fa-key', synonyms: ['smart key','smartkey'] },
+            { label: 'Navigation', icon: 'fa-location-dot', synonyms: ['navigation','gps','navi'] },
+            { label: 'Automatic air conditioner', icon: 'fa-snowflake', synonyms: ['automatic air conditioner','auto ac','auto a c','auto a/c','auto air conditioner'] }
+        ];
+
+        // Render feature icons grid with availability styling
+        featureIconsContainer.innerHTML = '';
+        OPTION_DEFS.forEach(def => {
+            const isAvailable = selectedSet.has(norm(def.label)) || def.synonyms.some(s => selectedSet.has(norm(s)));
+            const block = document.createElement('div');
+            block.className = isAvailable
+               ? 'flex flex-col items-center p-4 bg-white rounded-lg ring-1 ring-red-300 shadow-sm'
+                : 'flex flex-col items-center p-4 bg-gray-100 rounded-lg opacity-60';
+            block.innerHTML = `
+               <i class="fa-solid ${def.icon} ${isAvailable ? 'text-red-500' : 'text-gray-400'} text-2xl mb-2"></i>
+                <span class="block w-full px-1 text-sm ${isAvailable ? 'text-gray-900 font-semibold' : 'text-gray-400'} text-center whitespace-nowrap truncate leading-tight">${def.label}</span>
+            `;
+            featureIconsContainer.appendChild(block);
+        });
+
+        // Render feature categories from listing data
+        const toList = (arr) => (Array.isArray(arr) && arr.length)
+            ? arr.map(item => `<li class="flex items-center"><i class="fa-solid fa-check text-green-500 mr-2"></i>${item}</li>`).join('')
+            : '<li class="text-gray-400">No items</li>';
+
+        featureCategoriesContainer.innerHTML = `
+            <div>
+                <h3 class="text-xl font-bold text-gray-900 mb-4 feature-highlight">Interior/Exterior</h3>
+                <ul class="space-y-2 text-gray-700">${toList(interior)}</ul>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold text-gray-900 mb-4 feature-highlight">Safety</h3>
+                <ul class="space-y-2 text-gray-700">${toList(safety)}</ul>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold text-gray-900 mb-4 feature-highlight">Convenience/Other</h3>
+                <ul class="space-y-2 text-gray-700">${toList(convenience)}</ul>
+            </div>
+        `;
+    }
+
+    // Update insurance history tab
+    function updateInsuranceHistory(vehicle) {
+        const historyContainer = document.getElementById('insurance-history');
+        const insurance = vehicle.insuranceHistory || {};
+        const relevant = Array.isArray(vehicle.relevant) ? vehicle.relevant : [];
+        const norm = (s) => String(s || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+        const selected = new Set(relevant.map(norm));
+        const hasRelevant = (syns) => syns.some(s => selected.has(norm(s)));
+        const totalLoss = (typeof insurance.totalLoss === 'boolean') ? insurance.totalLoss : hasRelevant(['total loss','total loss insurance']);
+        const floodDamage = (typeof insurance.floodDamage === 'boolean') ? insurance.floodDamage : hasRelevant(['flood damage','flood']);
+        const theft = (typeof insurance.theft === 'boolean') ? insurance.theft : hasRelevant(['theft','theft insurance']);
+        const yn = (v) => v ? 'Yes' : 'No';
+
+        historyContainer.innerHTML = `
+            <div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-6">Insurance History</h3>
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
+                    <h4 class="font-bold text-blue-800 mb-2">Used Car Accident Summary</h4>
+                    <p class="text-blue-700 text-sm mb-3">Inquiry Date: ${new Date().toLocaleDateString()}</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <span class="text-blue-700 font-semibold">Manufacturer:</span> ${vehicle.make}
+                        </div>
+                        <div>
+                            <span class="text-blue-700 font-semibold">Record of Change of usage purpose:</span> N
+                        </div>
+                        <div>
+                            <span class="text-blue-700 font-semibold">Car ownership change record:</span> 0 times / 2 times
+                        </div>
+                        <div>
+                            <span class="text-blue-700 font-semibold">Record of specific accidents:</span> Total Loss ${yn(totalLoss)} / Flood ${yn(floodDamage)} / Theft ${yn(theft)}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="text-lg font-bold text-gray-900 mb-4">Information on unusual accidents in car insurance record</h4>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-green-50 border border-green-200 rounded-lg p-4 text-center">
+                        <h5 class="font-semibold text-green-800">Total Loss Insurance</h5>
+                        <p class="text-green-700">${yn(totalLoss)}</p>
+                    </div>
+                    <div class="bg-green-50 border border-green-200 rounded-lg p-4 text-center">
+                        <h5 class="font-semibold text-green-800">Flood damage insurance</h5>
+                        <p class="text-green-700">${yn(floodDamage)}</p>
+                    </div>
+                    <div class="bg-green-50 border border-green-200 rounded-lg p-4 text-center">
+                        <h5 class="font-semibold text-green-800">Theft insurance</h5>
+                        <p class="text-green-700">${yn(theft)}</p>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+     // Update related vehicles
+     function updateRelatedVehicles(vehicles) {
+         const relatedContainer = document.getElementById('related-vehicles');
+         relatedContainer.innerHTML = '';
+         if (!Array.isArray(vehicles) || vehicles.length === 0) {
+             relatedContainer.innerHTML = '<div class="col-span-4 text-center text-gray-500">No related vehicles available.</div>';
+             return;
+         }
+         
+         vehicles.forEach(vehicle => {
+             const vehicleCard = document.createElement('div');
+             vehicleCard.className = 'bg-white rounded-xl shadow-lg overflow-hidden vehicle-card-hover transition-all duration-300 cursor-pointer';
+             vehicleCard.onclick = () => window.open(`product-detail.html?id=${vehicle.id}`, '_blank');
+            const displayTitle = (vehicle.title && vehicle.title.trim()) ? vehicle.title : `${vehicle.year} ${vehicle.make} ${vehicle.model}`.trim();
+             
+             vehicleCard.innerHTML = `
+                 <div class="relative">
+                    <img class="w-full h-56 object-cover" src="${vehicle.images?.[0] || 'placeholder-car.svg'}" alt="${displayTitle}">
+                     <button class="absolute top-3 right-3 bg-black/30 hover:bg-black/50 w-8 h-8 rounded-full flex items-center justify-center transition-all">
+                         <i class="fa-regular fa-heart text-white"></i>
+                     </button>
+                 </div>
+                 <div class="p-5">
+                     <p class="text-sm text-gray-500">${vehicle.year} ${vehicle.make}</p>
+                    <h3 class="font-bold text-lg text-gray-900 mt-1 mb-3">${displayTitle}</h3>
+                     <div class="grid grid-cols-3 gap-y-2 text-sm text-gray-600 mb-4">
+                         <div class="flex items-center"><i class="fa-solid fa-gauge-high mr-1.5 text-gray-400"></i>${vehicle.mileage || 'N/A'}</div>
+                         <div class="flex items-center"><i class="fa-solid fa-gas-pump mr-1.5 text-gray-400"></i>${vehicle.fuelType || 'N/A'}</div>
+                         <div class="flex items-center"><i class="fa-solid fa-cogs mr-1.5 text-gray-400"></i>${vehicle.engineSize || 'N/A'}</div>
+                         <div class="flex items-center"><i class="fa-solid fa-gears mr-1.5 text-gray-400"></i>${vehicle.transmission || 'N/A'}</div>
+                         <div class="flex items-center col-span-2"><i class="fa-solid fa-location-dot mr-1.5 text-gray-400"></i>${vehicle.location || 'Korea'}</div>
+                     </div>
+                     <div class="flex items-center space-x-2 mb-4">
+                         ${vehicle.tags ? vehicle.tags.map(tag => `<button class="px-3 py-1 text-xs font-semibold text-gray-700 border border-gray-300 rounded-full hover:bg-gray-100 transition-colors">${tag}</button>`).join('') : ''}
+                     </div>
+                     <div class="text-right">
+                         <span class="text-2xl font-bold text-red-500">$ ${vehicle.price ? vehicle.price.toLocaleString() : 'N/A'}</span>
+                     </div>
+                 </div>
+             `;
+             
+             relatedContainer.appendChild(vehicleCard);
+         });
+     }
+
+     // Initialize page
+     async function initializePage() {
+         if (!listingId) {
+             console.warn('No vehicle ID provided in URL');
+             showLoadError('No vehicle ID provided.');
+             return;
+         }
+         // Fetch vehicle and related listings concurrently for faster overall load
+         const [vehicleData, relatedVehicles] = await Promise.all([
+             fetchVehicleData(listingId),
+             fetchRelatedVehicles()
+         ]);
+         if (!vehicleData) {
+             console.warn('Vehicle not found for ID:', listingId);
+             showLoadError('Vehicle not found.');
+             return;
+         }
+         
+         currentVehicleData = vehicleData;
+         
+         // Update all sections with vehicle data
+         updatePageMeta(vehicleData);
+         updateVehicleImages(vehicleData);
+         setupImageModalBindings();
+         updateVehicleBadges(vehicleData);
+         updateVehicleSpecs(vehicleData);
+        updateInsuranceInfo(vehicleData);
+        updateSidebar(vehicleData);
+        populateCountrySelect();
+        updateFeatures(vehicleData);
+        updateInsuranceHistory(vehicleData);
+        setupBuyNowFlow(vehicleData);
+        updateRelatedVehicles(relatedVehicles);
+    }
+     
+     // Tab functionality
+     const tabButtons = document.querySelectorAll('.tab-button');
+     const tabContents = document.querySelectorAll('.tab-content');
+     
+     tabButtons.forEach(button => {
+         button.addEventListener('click', () => {
+             const targetTab = button.getAttribute('data-tab');
+             
+             tabButtons.forEach(btn => {
+                 btn.classList.remove('tab-active');
+                 btn.classList.add('tab-inactive');
+             });
+             
+             button.classList.remove('tab-inactive');
+             button.classList.add('tab-active');
+             
+             tabContents.forEach(content => {
+                 content.classList.add('hidden');
+             });
+             
+             const targetContent = document.getElementById(`${targetTab}-tab`);
+             if (targetContent) {
+                 targetContent.classList.remove('hidden');
+             }
+         });
+     });
+     
+     // Scroll effects
+     window.addEventListener('scroll', () => {
+         const header = document.getElementById('header');
+         if (window.scrollY > 10) {
+             header.classList.add('shadow-xl');
+         } else {
+             header.classList.remove('shadow-xl');
+         }
+     });
+     
+     // Initialize page when DOM is loaded
+     document.addEventListener('DOMContentLoaded', initializePage);
+
+    const COUNTRIES = [
+        "Afghanistan","Albania","Algeria","Andorra","Angola","Antigua and Barbuda","Argentina","Armenia","Australia","Austria","Azerbaijan",
+        "Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bhutan","Bolivia","Bosnia and Herzegovina","Botswana","Brazil","Brunei","Bulgaria","Burkina Faso","Burundi",
+        "Cabo Verde","Cambodia","Cameroon","Canada","Central African Republic","Chad","Chile","China","Colombia","Comoros","Congo (Congo-Brazzaville)","Costa Rica","Côte d’Ivoire","Croatia","Cuba","Cyprus","Czechia","Democratic Republic of the Congo","Denmark","Djibouti","Dominica","Dominican Republic",
+        "Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Eswatini","Ethiopia",
+        "Fiji","Finland","France",
+        "Gabon","Gambia","Georgia","Germany","Ghana","Greece","Grenada","Guatemala","Guinea","Guinea-Bissau","Guyana",
+        "Haiti","Holy See","Honduras","Hungary",
+        "Iceland","India","Indonesia","Iran","Iraq","Ireland","Israel","Italy",
+        "Jamaica","Japan","Jordan",
+        "Kazakhstan","Kenya","Kiribati","Kuwait","Kyrgyzstan",
+        "Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg",
+        "Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Morocco","Mozambique","Myanmar",
+        "Namibia","Nauru","Nepal","Netherlands","New Zealand","Nicaragua","Niger","Nigeria","North Korea","North Macedonia","Norway",
+        "Oman",
+        "Pakistan","Palau","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal",
+        "Qatar",
+        "Romania","Russia","Rwanda",
+        "Saint Kitts and Nevis","Saint Lucia","Saint Vincent and the Grenadines","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Korea","South Sudan","Spain","Sri Lanka","Sudan","Suriname","Sweden","Switzerland","Syria",
+        "Taiwan","Tajikistan","Tanzania","Thailand","Timor-Leste","Togo","Tonga","Trinidad and Tobago","Tunisia","Turkey","Turkmenistan","Tuvalu",
+        "Uganda","Ukraine","United Arab Emirates","United Kingdom","United States","Uruguay","Uzbekistan",
+        "Vanuatu","Venezuela","Vietnam",
+        "Yemen",
+        "Zambia","Zimbabwe"
+    ];
+    function populateCountrySelect(){
+        const select = document.getElementById('country-select');
+        if (!select) return;
+        const ph = document.createElement('option');
+        ph.value = '';
+        ph.textContent = 'Select Country';
+        select.innerHTML = '';
+        select.appendChild(ph);
+        COUNTRIES.forEach(name => {
+            const opt = document.createElement('option');
+            opt.value = name;
+            opt.textContent = name;
+            select.appendChild(opt);
+        });
+    }
+    // Buy Now flow: require country selection and navigate with params
+    function setupBuyNowFlow(vehicle) {
+         const countrySelect = document.getElementById('country-select');
+         const buyBtn = document.getElementById('buy-now-btn');
+         if (!countrySelect || !buyBtn) return;
+        const statusLower = String(vehicle?.status || vehicle?.listStatus || vehicle?.listingStatus || '').toLowerCase();
+        const isSold = statusLower === 'sold';
+        const isBooked = statusLower === 'booked';
+        const unavailable = isSold || isBooked;
+        const token = localStorage.getItem('token') || sessionStorage.getItem('token') || '';
+        const role = (localStorage.getItem('userRole') || localStorage.getItem('role') || '').toLowerCase();
+        const authOk = !!token && role === 'buyer';
+
+         const updateState = () => {
+             const country = (countrySelect.value || '').trim();
+            const enabled = country.length > 0 && !unavailable && authOk;
+             buyBtn.disabled = !enabled;
+             buyBtn.classList.toggle('opacity-50', !enabled);
+             buyBtn.classList.toggle('cursor-not-allowed', !enabled);
+           buyBtn.classList.toggle('hover:bg-red-400', enabled);
+            if (unavailable) {
+                buyBtn.textContent = isSold ? 'Sold Out' : 'Booked';
+                buyBtn.title = isSold ? 'This vehicle is sold and cannot be purchased.' : 'This vehicle is booked and cannot be purchased.';
+            } else if (!authOk) {
+                buyBtn.textContent = 'Sign in to Buy';
+                buyBtn.title = 'Please sign in with a buyer account to continue.';
+            } else {
+                buyBtn.textContent = 'Buy Now';
+                buyBtn.title = '';
+            }
+         };
+
+         countrySelect.addEventListener('change', updateState);
+         updateState();
+
+         buyBtn.addEventListener('click', (e) => {
+             if (buyBtn.disabled) {
+                 e.preventDefault();
+                if (!authOk) { window.location.href = 'signin.html?redirect=' + encodeURIComponent(window.location.pathname + window.location.search); }
+                 return;
+             }
+             const country = encodeURIComponent((countrySelect.value || '').trim());
+             const url = `buy-now.html?id=${encodeURIComponent(listingId)}&country=${country}`;
+  window.open(url, '_blank');
+         });
+     }
+
+     // Compare list helpers
+     function getCompareList(){
+         try { return JSON.parse(localStorage.getItem('compareList')||'[]'); } catch(e){ return []; }
+     }
+     function setCompareList(list){
+         localStorage.setItem('compareList', JSON.stringify(list));
+     }
+     function existsInCompare(id){
+         return getCompareList().some(v=>String(v.id)===String(id));
+     }
+     function addCurrentToCompare(){
+         if(!currentVehicleData){ alert('Vehicle data not loaded yet.'); return; }
+         const list=getCompareList();
+         // Prevent duplicates
+         const id=currentVehicleData.id;
+         if(list.some(v=>String(v.id)===String(id))){
+             toast('Already in Compare list');
+             return;
+         }
+         // Limit to 4 items
+         if(list.length>=4){
+             // remove oldest
+             list.shift();
+         }
+         const snapshot={...currentVehicleData, addedAt: Date.now()};
+         list.push(snapshot);
+         setCompareList(list);
+         updateCompareButtonState();
+         toast('Added to Compare');
+     }
+     function removeCurrentFromCompare(){
+         const id=currentVehicleData?.id; if(!id) return;
+         const list=getCompareList().filter(v=>String(v.id)!==String(id));
+         setCompareList(list);
+         updateCompareButtonState();
+         toast('Removed from Compare');
+     }
+     function updateCompareButtonState(){
+         const btn=document.getElementById('add-to-compare-btn'); if(!btn) return;
+         const inList=existsInCompare(currentVehicleData?.id);
+         btn.textContent = inList ? 'Remove from Compare' : 'Add to Compare';
+         btn.classList.toggle('bg-blue-500', !inList);
+         btn.classList.toggle('hover:bg-blue-600', !inList);
+         btn.classList.toggle('bg-red-500', inList);
+         btn.classList.toggle('hover:bg-red-600', inList);
+     }
+    function wireCompareButton(){
+        const btn=document.getElementById('add-to-compare-btn'); if(!btn) return;
+        btn.addEventListener('click', ()=>{
+            const inList=existsInCompare(currentVehicleData?.id);
+            if(inList) removeCurrentFromCompare(); else addCurrentToCompare();
+        });
+    }
+    function wireInquiryButton(){
+        const btn = document.getElementById('inquiry-btn'); if(!btn) return;
+        btn.addEventListener('click', function(){
+            window.open('https://wa.me/821091999687', '_blank');
+        });
+    }
+     function toast(msg){
+         try{
+             const el=document.createElement('div');
+             el.className='fixed bottom-6 left-1/2 -translate-x-1/2 bg-black/80 text-white px-4 py-2 rounded-lg shadow-lg z-50';
+             el.textContent=msg;
+             document.body.appendChild(el);
+             setTimeout(()=>{ el.style.opacity='0'; el.style.transition='opacity 300ms'; setTimeout(()=>el.remove(),300); }, 1200);
+         }catch(e){ alert(msg); }
+     }
+
+     // Re-run button state after initialize
+    document.addEventListener('DOMContentLoaded', ()=>{
+        wireCompareButton();
+        wireInquiryButton();
+        // Update state after vehicle loads
+        const origInit = initializePage;
+        // We cannot reassign function declared with function keyword; instead rely on event timing:
+        // attach a small interval to wait for currentVehicleData then update button state
+        const iv=setInterval(()=>{
+            if(currentVehicleData){ updateCompareButtonState(); clearInterval(iv); }
+        }, 200);
+    });
+ </script> 
+ 
+ <!-- Image Modal -->
+<div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50">
+  <button id="image-modal-close" class="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/80 hover:bg-white flex items-center justify-center shadow">
+    <i class="fa-solid fa-xmark text-gray-800 text-lg"></i>
+  </button>
+  <button id="image-modal-prev" class="absolute left-6 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 hover:bg-white flex items-center justify-center shadow">
+    <i class="fa-solid fa-chevron-left text-gray-800 text-lg"></i>
+  </button>
+  <button id="image-modal-next" class="absolute right-6 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 hover:bg-white flex items-center justify-center shadow">
+    <i class="fa-solid fa-chevron-right text-gray-800 text-lg"></i>
+  </button>
+  <img id="image-modal-img" class="max-w-[90vw] max-h-[90vh] object-contain rounded-xl shadow-2xl" alt="Zoomed image">
+</div>
+  
+  
+
+ </body>
+</html>

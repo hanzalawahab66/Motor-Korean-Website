@@ -1,0 +1,2793 @@
+<!DOCTYPE html><html><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autos NSM - Premium Used Car Dealership</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              mango: '#D53C46',
+              navy: '#1B2951',
+              charcoal: '#2D3748',
+              orange: {
+                50: '#D53C46',
+                100: '#D53C46',
+                200: '#D53C46',
+                300: '#D53C46',
+                400: '#D53C46',
+                500: '#D53C46',
+                600: '#D53C46',
+                700: '#D53C46',
+                800: '#D53C46',
+                900: '#D53C46'
+              },
+              red: {
+                50: '#D53C46',
+                100: '#D53C46',
+                200: '#D53C46',
+                300: '#D53C46',
+                400: '#D53C46',
+                500: '#D53C46',
+                600: '#D53C46',
+                700: '#D53C46',
+                800: '#D53C46',
+                900: '#D53C46'
+              }
+            },
+            fontFamily: {
+              heading: ['Inter', 'sans-serif'],
+              body: ['Inter', 'sans-serif'],
+            },
+          },
+        },
+      };
+    </script>
+    <script>window.FontAwesomeConfig = {autoReplaceSvg: 'nest'};</script>
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" rel="stylesheet">
+    <script src="scripts/api-origin.js"></script>
+    <script>
+      (function(){
+        var PLACEHOLDER = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1' height='1'/>";
+        var BAD_HOSTS = ['storage.googleapis.com','appspot.com','googleusercontent.com'];
+        function photoPath(name){
+          try{
+            if(!name) return PLACEHOLDER;
+            var s = String(name).trim();
+            if(/^data:/i.test(s)) return s;
+            if(/^blob:/i.test(s)) return s;
+            if(/^https?:\/\//i.test(s)){
+              if(s.indexOf('http://localhost:3000/uploads')===0) return s.replace('http://localhost:3000','');
+              if(s.indexOf('http://localhost:3003/uploads')===0) return s.replace('http://localhost:3003','');
+              return s;
+            }
+            if(s.indexOf('/')===0) return s;
+            if(s.indexOf('uploads/')===0) return '/uploads/' + s.replace(/^uploads\/+/, '');
+            return '/uploads/' + s.replace(/^\/+/, '');
+          }catch(_){ return PLACEHOLDER; }
+        }
+        function normalizeImageSrc(src){
+          try{
+            var s = String(src||'').trim();
+            if(!s) return PLACEHOLDER;
+            if(/^data:/i.test(s) || /^blob:/i.test(s)) return s;
+            if(s.indexOf('http://localhost:3000/uploads')===0) return s.replace('http://localhost:3000','');
+            if(s.indexOf('http://localhost:3003/uploads')===0) return s.replace('http://localhost:3003','');
+            if(s.indexOf('/uploads/')===0 || s.indexOf('uploads/')===0) return photoPath(s);
+            if(/^https?:\/\//i.test(s)){
+              try{
+                var u = new URL(s, window.location.origin);
+                for(var i=0;i<BAD_HOSTS.length;i++){ if(u.hostname.indexOf(BAD_HOSTS[i])!==-1) return PLACEHOLDER; }
+              }catch(_){ return PLACEHOLDER; }
+              return s;
+            }
+            return photoPath(s);
+          }catch(_){ return PLACEHOLDER; }
+        }
+        if(typeof window.normalizeImageSrc!=='function') window.normalizeImageSrc = normalizeImageSrc;
+        if(typeof window.photoPath!=='function') window.photoPath = photoPath;
+      })();
+    </script>
+<!-- Removed external Google Fonts to avoid net::ERR_ABORTED in preview env -->
+    <style>
+        ::-webkit-scrollbar { display: none;}
+        * { font-family: 'Inter', sans-serif; }
+        
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+        
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .brand-logo {
+            filter: grayscale(100%);
+            transition: filter 0.3s ease;
+        }
+        
+        .brand-logo:hover {
+            filter: grayscale(0%);
+        }
+        /* Make white image backgrounds visually blend into the circular card */
+        .blend-car { mix-blend-mode: multiply; filter: contrast(105%) brightness(102%); }
+        /* Brand hover effect for the category section and cards */
+        .category-circle { transition: background-color 200ms, box-shadow 200ms; }
+        .group:hover .category-circle { background-color: #D53C46; box-shadow: inset 0 0 0 1px rgba(213, 60, 70, 0.5); }
+        .group:hover h3 { color: #D53C46; }
+        
+        .ken-burns {
+            animation: kenBurns 20s ease-in-out infinite alternate;
+        }
+        
+        @keyframes kenBurns {
+            0% { transform: scale(1) translateX(0); }
+            100% { transform: scale(1.1) translateX(-2%); }
+        }
+        
+        .pulse-offer {
+            animation: pulseOffer 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulseOffer {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+        
+        .stagger-animation {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: staggerIn 0.6s ease-out forwards;
+        }
+        
+        @keyframes staggerIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-slide-up {
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeSlideUp 0.8s ease-out forwards;
+        }
+        
+        @keyframes fadeSlideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        #header .animate-logo { opacity: 0; transform: translateY(-6px); transition: opacity .6s ease, transform .6s ease; }
+        #header.header-ready .animate-logo { opacity: 1; transform: translateY(0); }
+        #header .animate-nav { opacity: 0; transform: translateY(-10px); transition: opacity .6s ease .1s, transform .6s ease .1s; }
+        #header.header-ready .animate-nav { opacity: 1; transform: translateY(0); }
+        #header .animate-actions { opacity: 0; transform: translateY(-10px); transition: opacity .6s ease .2s, transform .6s ease .2s; }
+        #header.header-ready .animate-actions { opacity: 1; transform: translateY(0); }
+        #header .h-hover { transition: color .2s ease, background-color .2s ease, transform .2s ease, box-shadow .2s ease; }
+        #header .h-hover:hover { transform: translateY(-1px) scale(1.03); }
+        #header nav a { transition: color .2s ease, transform .2s ease; }
+        #header nav a:hover { transform: translateY(-1px); }
+        @media (prefers-reduced-motion: reduce) {
+          #header .animate-logo, #header .animate-nav, #header .animate-actions, #header .h-hover, #header nav a { transition: none !important; transform: none !important; }
+          #header.header-ready .animate-logo, #header.header-ready .animate-nav, #header.header-ready .animate-actions { opacity: 1; }
+        }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+    <style>
+      .goog-te-banner-frame{display:none!important}
+      body{top:0!important}
+      #google_translate_element{display:none!important}
+      .goog-te-gadget{display:none!important}
+      .skiptranslate{display:none!important}
+    </style>
+    <script>
+      function googleTranslateElementInit(){ new google.translate.TranslateElement({ pageLanguage:'en', includedLanguages:'en,ar,ko,es,fr', autoDisplay:false }, 'google_translate_element'); }
+      (function(){
+        function setCookie(name,value){ var e='expires=Fri, 31 Dec 9999 23:59:59 GMT'; document.cookie=name+'='+value+';'+e+';path=/'; var host=location.hostname; if(host.indexOf('.')!==-1){ document.cookie=name+'='+value+';'+e+';path=/;domain='+host; } }
+        function applyDir(lang){ try{ document.documentElement.setAttribute('dir', lang==='ar'?'rtl':'ltr'); }catch(_){ } }
+        function triggerCombo(lang){ var sel=document.querySelector('.goog-te-combo'); if(sel){ if(lang && sel.value==lang) return true; sel.value=(lang||'en'); setTimeout(function(){ sel.dispatchEvent(new Event('change')); }, 0); return true; } return false; }
+        function openTranslateProxy(url, lang){ try{ var sl='en'; var tl=(lang||'en'); var href='https://translate.google.com/translate?hl='+tl+'&sl='+sl+'&tl='+tl+'&u='+encodeURIComponent(url); window.open(href, '_blank'); }catch(_){} }
+        function changeLanguage(lang){
+        lang = lang || 'en';
+        if(triggerCombo(lang)){
+          try{ localStorage.setItem('lang', lang); }catch(_){ }
+          applyDir(lang);
+          return;
+        }
+        var attempts = 0;
+        var interval = setInterval(function(){
+          if(triggerCombo(lang)){
+            clearInterval(interval);
+            try{ localStorage.setItem('lang', lang); }catch(_){ }
+            applyDir(lang);
+          } else {
+            attempts++;
+            if(attempts >= 50){
+              clearInterval(interval);
+              setCookie('googtrans','/en/'+lang);
+              try{ localStorage.setItem('lang', lang); }catch(_){ }
+              applyDir(lang);
+            }
+          }
+        }, 100);
+      }
+        function init(){ var saved=null; try{ saved=localStorage.getItem('lang'); }catch(_){ } applyDir(saved||'en'); }
+        function protect(){ var q='input[type=password],input[type=email],input[name=password],input[name=email],input[name=username],textarea[name=password],textarea[name=email],textarea[name=username]'; document.querySelectorAll(q).forEach(function(el){ el.classList.add('notranslate'); el.setAttribute('translate','no'); }); }
+        document.addEventListener('click', function(e){ var btn=e.target.closest('[data-lang]'); if(!btn) return; var lang=btn.getAttribute('data-lang')||'en'; changeLanguage(lang); var label=document.querySelector('#languageToggle span'); if(label) label.textContent=btn.textContent.trim(); });
+        document.addEventListener('DOMContentLoaded', function(){ protect(); init(); var dd=document.getElementById('languageDropdown'); if(dd){ var hasEs=dd.querySelector('[data-lang="es"]'); if(!hasEs){ dd.insertAdjacentHTML('beforeend','<button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="es"><img src="https://flagcdn.com/w20/es.png" alt="Español" class="w-4 h-3"><span>Español</span></button>'); } }
+        });
+        var st=document.createElement('style'); st.textContent='.goog-te-banner-frame{display:none!important} body{top:0!important} #google_translate_element{display:none!important} .goog-te-gadget{display:none!important} .skiptranslate{display:none!important}'; document.head.appendChild(st);
+      })();
+    </script>
+    <div id="google_translate_element"></div>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</head>
+<body class="bg-gray-50">
+
+<div class="bg-[#0D1F39] text-white font-body relative z-[60]">
+  <div class="container mx-auto px-6 py-2">
+    <div class="flex items-center justify-between">
+      <div class="relative">
+        <button id="languageToggle" class="flex items-center space-x-2 text-white/90 hover:text-white font-medium transition-colors">
+          <i class="fa-solid fa-globe text-base"></i>
+          <span class="text-sm md:text-base">English</span>
+          <i class="fa-solid fa-chevron-down text-xs"></i>
+        </button>
+        <div id="languageDropdown" class="absolute left-0 top-full mt-1 bg-white rounded-lg shadow-xl border border-gray-200 py-2 min-w-[160px] hidden z-[1000]">
+          <button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="en">
+            <img src="https://flagcdn.com/w20/us.png" alt="English" class="w-4 h-3">
+            <span>English</span>
+          </button>
+          <button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="ko">
+            <img src="https://flagcdn.com/w20/kr.png" alt="한국어" class="w-4 h-3">
+            <span>한국어</span>
+          </button>
+          <button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="ar">
+            <img src="https://flagcdn.com/w20/sa.png" alt="العربية" class="w-4 h-3">
+            <span>العربية</span>
+          </button>
+          <button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="fr">
+            <img src="https://flagcdn.com/w20/fr.png" alt="Français" class="w-4 h-3">
+            <span>Français</span>
+          </button>
+        </div>
+      </div>
+      <div class="flex items-center space-x-3">
+        <button class="bg-white/10 hover:bg-white/20 text-white px-4 py-1.5 rounded-lg font-medium transition-all h-hover" data-text="sign-in" onclick="window.open('signin.html','_blank')">Login</button>
+        <button class="bg-[#D53C46] text-white hover:bg-[#D53C46] px-4 py-1.5 rounded-lg font-semibold transition-all h-hover" data-text="sign-up" onclick="window.open('signup.html','_blank')">Register</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<header id="header" class="sticky top-0 z-50 backdrop-blur">
+  <div class="w-full px-6 py-2 bg-white">
+    <div class="w-full px-4 md:px-6 py-3 flex items-center justify-between">
+      <a href="home.html" class="flex items-center space-x-3">
+        <img src="assets/images/Gemini_Generated_Image_2f4bkg2f4bkg2f4bee.png" alt="Logo" class="w-80 h-[100px] object-contain animate-logo" />
+      </a>
+      <nav class="hidden md:flex items-center space-x-8 text-gray-900 font-semibold animate-nav">
+        <a href="home.html" class="hover:text-[#0D1F39] transition-colors">Home</a>
+        <a href="inventory.html" class="hover:text-[#0D1F39] transition-colors">Inventory</a>
+        <div class="relative" id="navAbout">
+          <a href="about-us.html" id="navAboutToggle" class="hover:text-[#0D1F39] transition-colors flex items-center space-x-1">
+            <span>About Us</span>
+            <i class="fa-solid fa-chevron-down text-xs"></i>
+          </a>
+          <div id="navAboutMenu" class="absolute left-1/2 -translate-x-1/2 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg py-2 min-w-[220px] opacity-0 translate-y-1 pointer-events-none transition-all duration-300 z-50">
+            <a href="mit-info.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">MIT Info</a>
+            <a href="service-introduction.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">Service Introduction</a>
+          </div>
+        </div>
+        <a href="contact-us.html" class="hover:text-[#0D1F39] transition-colors">Contact Us</a>
+        <div class="relative" id="navMore">
+          <button id="navMoreToggle" class="hover:text-[#0D1F39] transition-colors flex items-center space-x-1">
+            <span>More</span>
+            <i class="fa-solid fa-chevron-down text-xs"></i>
+          </button>
+          <div id="navMoreMenu" class="absolute left-1/2 -translate-x-1/2 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg py-2 min-w-[220px] opacity-0 translate-y-1 pointer-events-none transition-all duration-300 z-50">
+            <a href="faq.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">FAQs</a>
+            <a href="reviews.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">Reviews</a>
+            <a href="blog.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">Blogs</a>
+          </div>
+        </div>
+      </nav>
+      <div class="flex items-center space-x-4 animate-actions">
+        <div class="hidden md:flex items-center bg-white rounded-full shadow px-3 py-1.5 border border-gray-200">
+          <i class="fa-solid fa-magnifying-glass text-gray-600 mr-2 hover:text-[#D53C46]"></i>
+          <input id="headerSearchInput" type="text" placeholder="Search" class="w-40 md:w-52 text-sm bg-transparent focus:outline-none" />
+        </div>
+        <button id="mobileSearchToggle" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition group h-hover">
+          <i class="fa-solid fa-magnifying-glass group-hover:text-[#D53C46]"></i>
+        </button>
+        <a id="headerFavorite" href="dashboard-saved.html" class="relative inline-flex items-center justify-center w-10 h-10 rounded-full border border-gray-200 hover:bg-gray-50 transition-colors group h-hover">
+          <i class="fa-regular fa-heart text-[#0D1F39] group-hover:text-[#D53C46]"></i>
+          <span class="absolute -top-1 -right-1 inline-flex items-center justify-center w-5 h-5 rounded-full bg-[#D53C46] text-white text-xs">0</span>
+        </a>
+        <button id="mobileMenuToggle" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition group h-hover">
+          <i class="fa-solid fa-bars group-hover:text-[#D53C46]"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    var h = document.getElementById('header');
+    if (h) { requestAnimationFrame(function(){ h.classList.add('header-ready'); }); }
+  });
+</script>
+<script>
+  function __fav_read(){ try{ var raw=localStorage.getItem('favorites')||''; var obj=raw?JSON.parse(raw):{items:[]}; if(!Array.isArray(obj.items)) obj.items=[]; return obj; }catch(e){ return {items:[]}; } }
+  function __fav_write(items){ try{ localStorage.setItem('favorites', JSON.stringify({items:items})); }catch(_){ } }
+  function isFavorite(id){ var f=__fav_read(); return f.items.some(function(it){ return String(it.id||it)===String(id); }); }
+  function updateFavoriteIconStates(){ try{ var bs=document.querySelectorAll('button[data-fav][data-id]'); bs.forEach(function(btn){ var id=btn.getAttribute('data-id'); var saved=isFavorite(id); var icon=btn.querySelector('i'); btn.setAttribute('aria-pressed', saved?'true':'false'); if(icon){ icon.classList.toggle('fa-solid', saved); icon.classList.toggle('fa-regular', !saved); icon.classList.toggle('text-red-500', saved); } }); }catch(e){} }
+  function toggleFavorite(listingId){ try{ var f=__fav_read(); var i=f.items.findIndex(function(it){ return String(it.id||it)===String(listingId); }); if(i>=0){ f.items.splice(i,1); } else { f.items.push({id:listingId}); } __fav_write(f.items); updateFavoriteIconStates(); }catch(e){} }
+</script>
+<script>
+  (function(){
+    function setupHoverDelay(containerId, toggleId, menuId){
+      var c=document.getElementById(containerId); var t=document.getElementById(toggleId); var m=document.getElementById(menuId);
+      if(!c||!t||!m) return; var hid=null;
+      function show(){ if(hid){ clearTimeout(hid); hid=null; } m.classList.remove('opacity-0','pointer-events-none','translate-y-1'); m.classList.add('opacity-100','pointer-events-auto','translate-y-0'); }
+    function schedule(){ if(hid) clearTimeout(hid); hid=setTimeout(function(){ m.classList.remove('opacity-100','pointer-events-auto','translate-y-0'); m.classList.add('opacity-0','pointer-events-none','translate-y-1'); hid=null; },300); }
+      c.addEventListener('mouseenter', show); t.addEventListener('mouseenter', show); m.addEventListener('mouseenter', show);
+      c.addEventListener('mouseleave', schedule); t.addEventListener('mouseleave', schedule); m.addEventListener('mouseleave', schedule);
+      t.addEventListener('click', show);
+    }
+    setupHoverDelay('navAbout','navAboutToggle','navAboutMenu');
+    setupHoverDelay('navMore','navMoreToggle','navMoreMenu');
+  })();
+</script>
+<style>
+  @keyframes catFadeUp {
+    0% { opacity: 0; transform: translateY(20px) scale(0.98); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .cat-prep { opacity: 0; transform: translateY(20px) scale(0.98); will-change: opacity, transform; }
+  .cat-animate { animation: catFadeUp 2s ease-out forwards; }
+  @media (prefers-reduced-motion: reduce) {
+    .cat-prep, .cat-animate { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  }
+</style>
+<div id="mobileSearchContainer" class="md:hidden hidden px-6">
+  <div class="flex items-center bg-white rounded-full shadow px-3 py-2 border border-gray-200">
+    <i class="fa-solid fa-magnifying-glass text-gray-600 mr-2"></i>
+    <input id="mobileHeaderSearchInput" type="text" placeholder="Search" class="flex-1 text-sm bg-transparent focus:outline-none" />
+    <button id="mobileHeaderSearchBtn" class="ml-2 px-3 py-1 rounded-full bg-[#0D1F39] text-white text-xs">Search</button>
+  </div>
+</div>
+<div id="mobileMenuOverlay" class="fixed inset-0 bg-black/40 hidden z-40 md:hidden"></div>
+<aside id="mobileDrawer" class="fixed inset-y-0 right-0 w-80 max-w-[88vw] bg-white shadow-xl border-l border-gray-200 z-50 transform translate-x-full transition-transform duration-300 ease-out md:hidden" aria-hidden="true" role="dialog">
+  <div class="flex items-center justify-between px-4 py-3 border-b border-gray-100">
+    <div class="flex items-center space-x-2">
+      <img src="assets/images/Gemini_Generated_Image_2f4bkg2f4bkg2f4bee.png" alt="Logo" class="w-64 h-16 object-contain" />
+    </div>
+    <button id="mobileDrawerClose" class="inline-flex items-center justify-center w-10 h-10 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition" aria-label="Close menu">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+  <div class="px-4 py-3">
+    <div class="flex items-center bg-white rounded-full border border-gray-200 px-3 py-2 shadow-sm">
+      <i class="fa-solid fa-magnifying-glass text-gray-600 mr-2"></i>
+      <input id="drawerSearchInput" type="text" placeholder="Search" class="flex-1 text-sm bg-transparent focus:outline-none" />
+      <button id="drawerSearchBtn" class="ml-2 px-3 py-1 rounded-full bg-[#0D1F39] text-white text-xs">Search</button>
+    </div>
+  </div>
+  <nav class="px-4 py-3 space-y-1 text-gray-900 font-semibold">
+    <a href="home.html" class="block py-2 rounded-lg hover:bg-gray-50">Home</a>
+    <a href="inventory.html" class="block py-2 rounded-lg hover:bg-gray-50">Inventory</a>
+    <div class="border-t border-gray-100 my-2"></div>
+    <button id="drawerAboutToggle" class="w-full flex items-center justify-between py-2 rounded-lg hover:bg-gray-50 text-left" aria-expanded="false">
+      <span>About Us</span>
+      <i class="fa-solid fa-chevron-down text-xs"></i>
+    </button>
+    <div id="drawerAboutMenu" class="hidden ml-3 space-y-1 text-gray-700 font-normal">
+      <a href="mit-info.html" class="block py-1.5 rounded hover:bg-gray-50">MIT Info</a>
+      <a href="service-introduction.html" class="block py-1.5 rounded hover:bg-gray-50">Service Introduction</a>
+    </div>
+    <a href="contact-us.html" class="block py-2 rounded-lg hover:bg-gray-50">Contact Us</a>
+    <button id="drawerMoreToggle" class="w-full flex items-center justify-between py-2 rounded-lg hover:bg-gray-50 text-left" aria-expanded="false">
+      <span>More</span>
+      <i class="fa-solid fa-chevron-down text-xs"></i>
+    </button>
+    <div id="drawerMoreMenu" class="hidden ml-3 space-y-1 text-gray-700 font-normal">
+      <a href="faq.html" class="block py-1.5 rounded hover:bg-gray-50">FAQs</a>
+      <a href="reviews.html" class="block py-1.5 rounded hover:bg-gray-50">Reviews</a>
+      <a href="blog.html" class="block py-1.5 rounded hover:bg-gray-50">Blogs</a>
+    </div>
+  </nav>
+</aside>
+<script>
+  (function(){
+    var langToggle = document.getElementById('languageToggle');
+    var langDropdown = document.getElementById('languageDropdown');
+    if (langToggle && langDropdown) {
+      langToggle.addEventListener('click', function(){ langDropdown.classList.toggle('hidden'); });
+      document.addEventListener('click', function(e){ if (!langDropdown.contains(e.target) && !langToggle.contains(e.target)) langDropdown.classList.add('hidden'); });
+    }
+    var mobileSearchToggle = document.getElementById('mobileSearchToggle');
+    var mobileSearchContainer = document.getElementById('mobileSearchContainer');
+    if (mobileSearchToggle && mobileSearchContainer) {
+      mobileSearchToggle.addEventListener('click', function(){ mobileSearchContainer.classList.toggle('hidden'); });
+    }
+    var overlay = document.getElementById('mobileMenuOverlay');
+    var drawer = document.getElementById('mobileDrawer');
+    var menuBtn = document.getElementById('mobileMenuToggle');
+    var closeBtn = document.getElementById('mobileDrawerClose');
+    function openDrawer(){ if (overlay && drawer) { overlay.classList.remove('hidden'); drawer.style.transform='translateX(0)'; } }
+    function closeDrawer(){ if (overlay && drawer) { overlay.classList.add('hidden'); drawer.style.transform=''; } }
+    if (menuBtn) menuBtn.addEventListener('click', openDrawer);
+    if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+    if (overlay) overlay.addEventListener('click', closeDrawer);
+    var drawerAboutToggle = document.getElementById('drawerAboutToggle');
+    var drawerAboutMenu = document.getElementById('drawerAboutMenu');
+    if (drawerAboutToggle && drawerAboutMenu) {
+      drawerAboutToggle.addEventListener('click', function(){
+        var hidden = drawerAboutMenu.classList.toggle('hidden');
+        drawerAboutToggle.setAttribute('aria-expanded', hidden ? 'false' : 'true');
+      });
+    }
+    var drawerMoreToggle = document.getElementById('drawerMoreToggle');
+    var drawerMoreMenu = document.getElementById('drawerMoreMenu');
+    if (drawerMoreToggle && drawerMoreMenu) {
+      drawerMoreToggle.addEventListener('click', function(){
+        var hidden = drawerMoreMenu.classList.toggle('hidden');
+        drawerMoreToggle.setAttribute('aria-expanded', hidden ? 'false' : 'true');
+      });
+    }
+  })();
+</script>
+
+<!-- Hero slider removed per request -->
+
+<!-- COMPONENT: Secondary Banner Slider (below hero) -->
+<section id="secondary-banner" class="relative overflow-hidden py-0 my-0">
+    <div class="mx-auto max-w-[1920px] w-full h-auto relative">
+        <div id="secondary-banner-slider" class="relative w-full h-full overflow-hidden">
+            <!-- Track-based static fallback (will be replaced by API if available) -->
+            <div id="secondary-banner-track" class="w-full h-full flex transition-transform duration-700 ease-in-out" style="transform: translateX(0%)">
+                <div class="secondary-slide relative w-full h-full flex-shrink-0 bg-white">
+                    <img class="w-full h-full object-contain" src="/uploads/Gemini_Generated_Image_s0k6pes0k6pes0k6 (1).png" alt="Home banner 1">
+                </div>
+                <div class="secondary-slide relative w-full h-full flex-shrink-0 bg-white">
+                    <img class="w-full h-full object-contain" src="/uploads/Firefly_Flux.png" alt="Home banner 2">
+                </div>
+                <div class="secondary-slide relative w-full h-full flex-shrink-0 bg-white">
+                    <img class="w-full h-full object-contain" src="/uploads/Gemini_Generated_Image_9vzrp19vzrp19vzr (1) (1).png" alt="Home banner 3">
+                </div>
+                <div class="secondary-slide relative w-full h-full flex-shrink-0 bg-white">
+                    <img class="w-full h-full object-contain" src="/uploads/Gemini_Generated_Image_9vzrp19vzrp19vzr (1).png" alt="Home banner 4">
+                </div>
+            </div>
+
+            <!-- Navigation Dots -->
+            <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-3 z-20">
+                <button class="secondary-dot active w-3 h-3 rounded-full bg-white opacity-100 transition-all" data-sslide="0"></button>
+                <button class="secondary-dot w-3 h-3 rounded-full bg-white opacity-50 hover:opacity-75 transition-all" data-sslide="1"></button>
+                <button class="secondary-dot w-3 h-3 rounded-full bg-white opacity-50 hover:opacity-75 transition-all" data-sslide="2"></button>
+                <button class="secondary-dot w-3 h-3 rounded-full bg-white opacity-50 hover:opacity-75 transition-all" data-sslide="3"></button>
+            </div>
+        </div>
+
+        <!-- Navigation Arrows -->
+        <button class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white hover:text-red-400 transition-colors z-30 bg-black bg-opacity-30 rounded-full w-12 h-12 flex items-center justify-center" id="secondaryPrev">
+            <i class="fa-solid fa-chevron-left text-xl"></i>
+        </button>
+        <button class="absolute right-4 top-1/2 transform -translate-y-1/2 text-white hover:text-red-400 transition-colors z-30 bg-black bg-opacity-30 rounded-full w-12 h-12 flex items-center justify-center" id="secondaryNext">
+            <i class="fa-solid fa-chevron-right text-xl"></i>
+        </button>
+    </div>
+</section>
+
+<script>
+  (function(){
+    var track = document.getElementById('category-track');
+    var prev = document.getElementById('category-prev');
+    var next = document.getElementById('category-next');
+    if (!track) return;
+    var index = 0;
+    function update(){
+      var total = track.children.length;
+      if (prev) prev.classList.toggle('hidden', total <= 1 || index <= 0);
+      if (next) next.classList.toggle('hidden', total <= 1 || index >= total - 1);
+    }
+    function go(i){
+      var total = track.children.length;
+      index = Math.max(0, Math.min(i, total - 1));
+      var el = track.children[index];
+      if (el) track.scrollTo({ left: el.offsetLeft, behavior: 'smooth' });
+      update();
+    }
+    if (prev) prev.addEventListener('click', function(){ go(index - 1); });
+    if (next) next.addEventListener('click', function(){ go(index + 1); });
+    track.addEventListener('scroll', function(){
+      var s = track.scrollLeft;
+      var curr = 0;
+      for (var i=0;i<track.children.length;i++){
+        if (track.children[i].offsetLeft <= s + 1) curr = i;
+      }
+      index = curr;
+      update();
+    });
+    update();
+  })();
+</script>
+
+<!-- COMPONENT: Featured Collections Section (moved up) -->
+<section id="featured-collections" class="py-20 bg-white">
+    <div class="w-full px-6">
+        <div class="mb-16">
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 cat-title">Search By <span class="text-red-500">Category</span></h2>
+        </div>
+        
+        <div class="relative -mx-6">
+            <div id="category-track" class="flex overflow-x-auto no-scrollbar snap-x snap-mandatory scroll-smooth -mx-2">
+                <div class="cat-item cat-prep flex-none w-1/2 md:w-1/3 lg:w-1/6 px-2 snap-start">
+                    <a href="inventory.html" target="_blank" class="group text-center cursor-pointer block">
+                        <div class="mx-auto mb-4 w-40 h-40 md:w-48 md:h-48 rounded-full bg-[#F2F6FD] ring-1 ring-gray-200/60 flex items-center justify-center shadow-sm category-circle">
+                            <img class="blend-car h-24 md:h-28 w-auto object-contain transition-transform duration-300 group-hover:scale-110" src="/uploads/images%20(1).webp" alt="a group of three modern cars, an orange hatchback, a white crossover, and a black sedan, on a clean white background, photorealistic studio shot">
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 group-hover:text-red-600 transition-colors">All</h3>
+                    </a>
+                </div>
+                <div class="cat-item cat-prep flex-none w-1/2 md:w-1/3 lg:w-1/6 px-2 snap-start">
+                    <a href="inventory.html?model=Sedan" target="_blank" class="group text-center cursor-pointer block">
+                        <div class="mx-auto mb-4 w-40 h-40 md:w-48 md:h-48 rounded-full bg-[#F2F6FD] ring-1 ring-gray-200/60 flex items-center justify-center shadow-sm category-circle">
+                            <img class="blend-car h-24 md:h-28 w-auto object-contain transition-transform duration-300 group-hover:scale-110" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/fa83731ad4-972ad7d2d10fb0a01f31.png" alt="a modern white sedan car, side-front view, on a clean white background, photorealistic studio shot">
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 group-hover:text-red-600 transition-colors">Sedan</h3>
+                    </a>
+                </div>
+                <div class="cat-item cat-prep flex-none w-1/2 md:w-1/3 lg:w-1/6 px-2 snap-start">
+                    <a href="inventory.html?model=SUV" target="_blank" class="group text-center cursor-pointer block">
+                        <div class="mx-auto mb-4 w-40 h-40 md:w-48 md:h-48 rounded-full bg-[#F2F6FD] ring-1 ring-gray-200/60 flex items-center justify-center shadow-sm category-circle">
+                            <img class="blend-car h-24 md:h-28 w-auto object-contain transition-transform duration-300 group-hover:scale-110" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/816807c70a-933633c032f30f2147cc.png" alt="a modern white SUV, side-front view, on a clean white background, photorealistic studio shot">
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 group-hover:text-red-600 transition-colors">SUV</h3>
+                    </a>
+                </div>
+                <div class="cat-item cat-prep flex-none w-1/2 md:w-1/3 lg:w-1/6 px-2 snap-start">
+                    <a href="inventory.html?model=MPV%2FVan" target="_blank" class="group text-center cursor-pointer block">
+                        <div class="mx-auto mb-4 w-40 h-40 md:w-48 md:h-48 rounded-full bg-[#F2F6FD] ring-1 ring-gray-200/60 flex items-center justify-center shadow-sm category-circle">
+                            <img class="blend-car h-24 md:h-28 w-auto object-contain transition-transform duration-300 group-hover:scale-110" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/98ecd90221-53db375069296231823f.png" alt="a modern silver passenger van, side-front view, on a clean white background, photorealistic studio shot">
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 group-hover:text-red-600 transition-colors">MPV / Van</h3>
+                    </a>
+                </div>
+                <div class="cat-item cat-prep flex-none w-1/2 md:w-1/3 lg:w-1/6 px-2 snap-start">
+                    <a href="inventory.html?model=Truck" target="_blank" class="group text-center cursor-pointer block">
+                        <div class="mx-auto mb-4 w-40 h-40 md:w-48 md:h-48 rounded-full bg-[#F2F6FD] ring-1 ring-gray-200/60 flex items-center justify-center shadow-sm category-circle">
+                            <img class="blend-car h-24 md:h-28 w-auto object-contain transition-transform duration-300 group-hover:scale-110" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/4f88ac2781-9699d5774b1868bfc5cf.png" alt="a modern white single-cab pickup truck with an empty bed, side-front view, on a clean white background, photorealistic studio shot">
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 group-hover:text-red-600 transition-colors">Truck</h3>
+                    </a>
+                </div>
+                <div class="cat-item cat-prep flex-none w-1/2 md:w-1/3 lg:w-1/6 px-2 snap-start">
+                    <a href="inventory.html?model=Bus%2FETC" target="_blank" class="group text-center cursor-pointer block">
+                        <div class="mx-auto mb-4 w-40 h-40 md:w-48 md:h-48 rounded-full bg-[#F2F6FD] ring-1 ring-gray-200/60 flex items-center justify-center shadow-sm category-circle">
+                            <img class="blend-car h-24 md:h-28 w-auto object-contain transition-transform duration-300 group-hover:scale-110" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/5ae69d6129-d82b119be3e0a90e46aa.png" alt="a modern white minibus, side-front view, on a clean white background, photorealistic studio shot">
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 group-hover:text-red-600 transition-colors">Bus / ETC</h3>
+                    </a>
+                </div>
+            </div>
+            <button id="category-prev" class="hidden absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur shadow border border-gray-200 rounded-full w-10 h-10 flex items-center justify-center text-gray-700 hover:bg-white">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button id="category-next" class="hidden absolute right-2 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur shadow border border-gray-200 rounded-full w-10 h-10 flex items-center justify-center text-gray-700 hover:bg-white">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+</section>
+<style>
+  .cat-title{opacity:0}
+  .cat-title.is-visible{opacity:1;transition:opacity 2s ease-out}
+  .category-circle{opacity:0;transform:scale(0.5);will-change:transform,opacity}
+  @keyframes cat-scaleUp{0%{opacity:0;transform:scale(0.5)}100%{opacity:1;transform:scale(1)}}
+  .category-circle.is-visible{animation:cat-scaleUp 2s cubic-bezier(0.68,-0.55,0.27,1.55) forwards}
+</style>
+<script>
+  (function(){
+    var section=document.getElementById('featured-collections');
+    if(!section) return;
+    var title=section.querySelector('.cat-title');
+    var circles=Array.prototype.slice.call(section.querySelectorAll('#category-track .category-circle'));
+    var obs=new IntersectionObserver(function(entries){
+      for(var i=0;i<entries.length;i++){
+        var e=entries[i];
+        if(e.isIntersecting){
+          if(title) title.classList.add('is-visible');
+          for(var j=0;j<circles.length;j++){
+            var d=200*(j+1);
+            circles[j].style.animationDelay=d+'ms';
+            circles[j].classList.add('is-visible');
+          }
+          obs.disconnect();
+          break;
+        }
+      }
+    },{root:null,threshold:0.2});
+    obs.observe(section);
+  })();
+</script>
+<script>
+  (function(){
+    var section = document.getElementById('featured-collections');
+    var items = Array.prototype.slice.call(document.querySelectorAll('#category-track > .cat-item'));
+    var bestsellerItems = Array.prototype.slice.call(document.querySelectorAll('#featured-vehicles .flex.items-center.space-x-8'));
+    function prep(list){ var n = list.length; list.forEach(function(el, i){ el.classList.add('cat-prep'); el.style.animationDelay = (0.12 * (n - 1 - i)).toFixed(2) + 's'; }); }
+    prep(items);
+    prep(bestsellerItems);
+    var once = false;
+    function run(){ if (once) return; once = true; items.forEach(function(el){ el.classList.add('cat-animate'); }); bestsellerItems.forEach(function(el){ el.classList.add('cat-animate'); }); }
+    function inView(el){ if (!el) return false; var r = el.getBoundingClientRect(); return r.top < window.innerHeight && r.bottom > 0; }
+    if ('IntersectionObserver' in window) {
+      var obs = new IntersectionObserver(function(entries){ entries.forEach(function(e){ if (e.isIntersecting) { run(); obs.disconnect(); } }); }, { root: null, threshold: 0.15 });
+      if (section) obs.observe(section);
+      var fv = document.getElementById('featured-vehicles'); if (fv) obs.observe(fv);
+    } else {
+      if (inView(section) || inView(document.getElementById('featured-vehicles'))) { run(); }
+      else { var onScroll = function(){ if (inView(section) || inView(document.getElementById('featured-vehicles'))) { run(); window.removeEventListener('scroll', onScroll); } }; window.addEventListener('scroll', onScroll); }
+    }
+  })();
+</script>
+
+<!-- COMPONENT: New Arrivals Section -->
+<section id="new-arrivals" class="py-20 bg-white">
+    <div class="container mx-auto px-0">
+        <div class="flex justify-between items-center mb-10">
+            <h2 class="text-4xl font-bold text-gray-800 na-title">
+                <span class="text-red-500">NEW</span> Arrival
+            </h2>
+            <a href="reviews.html" class="text-lg font-medium text-gray-600 hover:text-red-500 transition-colors flex items-center na-link">
+                view more
+                <i class="fa-solid fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+
+        <div class="relative">
+            <div id="new-arrival-track" class="flex items-center space-x-4 overflow-x-auto no-scrollbar snap-x snap-mandatory">
+                <div class="flex-none snap-start" style="width:16rem">
+    <div class="bg-white rounded-2xl shadow-md overflow-hidden group transition-all duration-300 hover:shadow-lg na-card">
+        <div class="relative w-full h-full">
+            <img class="absolute inset-0 w-full h-full object-cover rounded-none" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1' height='1'/>" alt="2013 Hyundai Santa Fe DM silver SUV" loading="lazy" referrerpolicy="no-referrer">
+            <button class="absolute top-3 right-3 w-9 h-9 bg-black/40 rounded-full flex items-center justify-center text-white hover:bg-black/60 transition-colors" data-fav="true" data-id="" aria-pressed="false"><i class="fa-regular fa-heart"></i></button>
+        </div>
+        <div class="p-4 h-full flex flex-col">
+            <div class="flex-1 pr-1 overflow-visible">
+                <p class="text-xs text-gray-500 truncate">2013 Hyundai</p>
+                <h3 class="text-base font-semibold text-navy-900 mt-0.5 truncate">Santa Fe DM</h3>
+                <div class="mt-3 grid grid-cols-3 gap-x-3 gap-y-2 text-[10px] text-gray-600">
+                    <div class="flex items-center"><i class="fa-solid fa-tachometer-alt w-4 mr-1.5 text-gray-400"></i><span>197,572 KM</span></div>
+                    <div class="flex items-center"><i class="fa-solid fa-gas-pump w-4 mr-1.5 text-gray-400"></i><span>DIESEL</span></div>
+                    <div class="flex items-center"><i class="fa-solid fa-cogs w-4 mr-1.5 text-gray-400"></i><span>2,199cc</span></div>
+                    <div class="flex items-center"><i class="fa-solid fa-car-side w-4 mr-1.5 text-gray-400"></i><span>AUTO</span></div>
+                    <div class="flex items-center md:whitespace-nowrap capitalize"><i class="fa-solid fa-map-marker-alt w-4 mr-1.5 text-gray-400"></i><span>Korea</span></div>
+                </div>
+            </div>
+            <div class="mt-auto shrink-0 pt-1 text-right">
+                <span class="mango-price font-bold text-gray-900 text-lg">$ 4,850</span>
+            </div>
+        </div>
+    </div>
+                </div>
+
+                <div class="flex-none snap-start" style="width:16rem">
+    <div class="bg-white rounded-2xl shadow-md overflow-hidden group transition-all duration-300 hover:shadow-lg na-card">
+        <div class="relative w-full h-full">
+            <img class="absolute inset-0 w-full h-full object-cover rounded-none" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1' height='1'/>" alt="2012 Hyundai Tucson iX white SUV" loading="lazy" referrerpolicy="no-referrer">
+            <button class="absolute top-3 right-3 w-9 h-9 bg-black/40 rounded-full flex items-center justify-center text-white hover:bg-black/60 transition-colors" data-fav="true" data-id="" aria-pressed="false"><i class="fa-regular fa-heart"></i></button>
+        </div>
+        <div class="p-4 h-full flex flex-col">
+            <div class="flex-1 pr-1 overflow-visible">
+                <p class="text-xs text-gray-500 truncate">2012 Hyundai</p>
+                <h3 class="text-base font-semibold text-navy-900 mt-0.5 truncate">Tucson iX</h3>
+                <div class="mt-3 grid grid-cols-3 gap-x-3 gap-y-2 text-[10px] text-gray-600">
+                    <div class="flex items-center"><i class="fa-solid fa-tachometer-alt w-4 mr-1.5 text-gray-400"></i><span>246,373 KM</span></div>
+                    <div class="flex items-center"><i class="fa-solid fa-gas-pump w-4 mr-1.5 text-gray-400"></i><span>DIESEL</span></div>
+                    <div class="flex items-center"><i class="fa-solid fa-cogs w-4 mr-1.5 text-gray-400"></i><span>1,995cc</span></div>
+                    <div class="flex items-center"><i class="fa-solid fa-car-side w-4 mr-1.5 text-gray-400"></i><span>AUTO</span></div>
+                    <div class="flex items-center md:whitespace-nowrap capitalize"><i class="fa-solid fa-map-marker-alt w-4 mr-1.5 text-gray-400"></i><span>Korea</span></div>
+                </div>
+            </div>
+            <div class="mt-auto shrink-0 pt-1 text-right">
+                <span class="mango-price font-bold text-gray-900 text-lg">$ 2,900</span>
+            </div>
+        </div>
+    </div>
+                </div>
+
+                <div class="flex-none snap-start" style="width:16rem">
+    <div class="bg-white rounded-2xl shadow-md overflow-hidden group transition-all duration-300 hover:shadow-lg na-card">
+        <div class="relative w-full h-full">
+            <img class="absolute inset-0 w-full h-full object-cover rounded-none" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1' height='1'/>" alt="2014 Infiniti Q50 2.2D Premium dark blue sedan" loading="lazy" referrerpolicy="no-referrer">
+            <button class="absolute top-3 right-3 w-9 h-9 bg-black/40 rounded-full flex items-center justify-center text-white hover:bg-black/60 transition-colors" data-fav="true" data-id="" aria-pressed="false"><i class="fa-regular fa-heart"></i></button>
+        </div>
+        <div class="p-4 h-full flex flex-col">
+            <div class="flex-1 pr-1 overflow-visible">
+                <p class="text-xs text-gray-500 truncate">2014 Infiniti</p>
+                <h3 class="text-base font-semibold text-navy-900 mt-0.5 truncate">Q50 2.2D Premium</h3>
+                <div class="mt-3 grid grid-cols-3 gap-x-3 gap-y-2 text-[10px] text-gray-600">
+                    <div class="flex items-center"><i class="fa-solid fa-tachometer-alt w-4 mr-1.5 text-gray-400"></i><span>314,254 KM</span></div>
+                    <div class="flex items-center"><i class="fa-solid fa-gas-pump w-4 mr-1.5 text-gray-400"></i><span>DIESEL</span></div>
+                    <div class="flex items-center"><i class="fa-solid fa-cogs w-4 mr-1.5 text-gray-400"></i><span>2,143cc</span></div>
+                    <div class="flex items-center"><i class="fa-solid fa-car-side w-4 mr-1.5 text-gray-400"></i><span>AUTO</span></div>
+                    <div class="flex items-center md:whitespace-nowrap capitalize"><i class="fa-solid fa-map-marker-alt w-4 mr-1.5 text-gray-400"></i><span>Korea</span></div>
+                </div>
+            </div>
+            <div class="mt-auto shrink-0 pt-1 text-right">
+                <span class="mango-price font-bold text-gray-900 text-lg">$ 3,690</span>
+            </div>
+        </div>
+    </div>
+                </div>
+
+                <div class="flex-none snap-start" style="width:16rem">
+    <div class="bg-white rounded-2xl shadow-md overflow-hidden group transition-all duration-300 hover:shadow-lg na-card">
+        <div class="relative w-full h-full">
+            <img class="absolute inset-0 w-full h-full object-cover rounded-none" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1' height='1'/>" alt="2011 Mercedes-Benz C-Class W204 C220 CDI Avantgarde silver sedan" loading="lazy" referrerpolicy="no-referrer">
+            <button class="absolute top-3 right-3 w-9 h-9 bg-black/40 rounded-full flex items-center justify-center text-white hover:bg-black/60 transition-colors" data-fav="true" data-id="" aria-pressed="false"><i class="fa-regular fa-heart"></i></button>
+        </div>
+        <div class="p-4 h-full flex flex-col">
+            <div class="flex-1 pr-1 overflow-visible">
+                <p class="text-xs text-gray-500 truncate">2011 Benz</p>
+                <h3 class="text-base font-semibold text-navy-900 mt-0.5 truncate">C-Class W204 C220</h3>
+                <div class="mt-3 grid grid-cols-3 gap-x-3 gap-y-2 text-[10px] text-gray-600">
+                    <div class="flex items-center"><i class="fa-solid fa-tachometer-alt w-4 mr-1.5 text-gray-400"></i><span>208,588 KM</span></div>
+                    <div class="flex items-center"><i class="fa-solid fa-gas-pump w-4 mr-1.5 text-gray-400"></i><span>DIESEL</span></div>
+                    <div class="flex items-center"><i class="fa-solid fa-cogs w-4 mr-1.5 text-gray-400"></i><span>2,143cc</span></div>
+                    <div class="flex items-center"><i class="fa-solid fa-car-side w-4 mr-1.5 text-gray-400"></i><span>AUTO</span></div>
+                    <div class="flex items-center md:whitespace-nowrap capitalize"><i class="fa-solid fa-map-marker-alt w-4 mr-1.5 text-gray-400"></i><span>Korea</span></div>
+                </div>
+            </div>
+            <div class="mt-auto shrink-0 pt-1 text-right">
+                <span class="mango-price font-bold text-gray-900 text-lg">$ 4,290</span>
+            </div>
+        </div>
+    </div>
+                </div>
+            </div>
+            
+            <!-- Navigation Arrows -->
+            <button id="new-arrival-prev" class="absolute left-0 top-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-red-500 transition-all z-10">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button id="new-arrival-next" class="absolute right-0 top-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-red-500 transition-all z-10">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+</section>
+<style>
+  .na-title,.na-link{opacity:0}
+  .na-title.is-visible,.na-link.is-visible{opacity:1;transition:opacity 2s ease-out}
+  .na-card{opacity:0;transform:translateY(40px);will-change:transform,opacity}
+  @keyframes na-fadeUp{0%{opacity:0;transform:translateY(40px)}100%{opacity:1;transform:translateY(0)}}
+  .na-card.is-visible{animation:na-fadeUp 2s ease-out forwards}
+  #new-arrival-track .na-card{display:grid;grid-template-rows:55% 45%;width:16rem;height:22rem;border:1px solid rgba(226,232,240,0.8);box-shadow:0 6px 16px rgba(0,0,0,0.08);transition:transform 200ms ease, box-shadow 200ms ease}
+  #new-arrival-track > div{width:16rem}
+  #new-arrival-track .na-card:hover{transform:translateY(-2px);box-shadow:0 10px 20px rgba(0,0,0,0.12)}
+  #new-arrival-track .na-card h3{font-size:.95rem;line-height:1.25rem}
+  #new-arrival-track .na-card .mango-price{font-size:.95rem;line-height:1.25rem}
+  #new-arrival-track .na-card p{font-size:.85rem}
+  #new-arrival-track .na-card img{object-fit:cover}
+  #new-arrival-track .na-card > div:first-child{height:100%}
+  #new-arrival-track .na-card > div:nth-child(2){overflow:visible}
+  @media (max-width:640px){#new-arrival-track .na-card{grid-template-rows:calc(55% - 12px) calc(45% + 12px);height:22rem}}
+</style>
+<script>
+  (function(){
+    var section=document.getElementById('new-arrivals');
+    if(!section) return;
+    var title=section.querySelector('.na-title');
+    var link=section.querySelector('.na-link');
+    var cards=Array.prototype.slice.call(section.querySelectorAll('#new-arrival-track .na-card'));
+    var obs=new IntersectionObserver(function(entries){
+      for(var i=0;i<entries.length;i++){
+        var e=entries[i];
+        if(e.isIntersecting){
+          if(title) title.classList.add('is-visible');
+          if(link) link.classList.add('is-visible');
+          for(var j=0;j<cards.length;j++){
+            var d=200*(j+1);
+            cards[j].style.animationDelay=d+'ms';
+            cards[j].classList.add('is-visible');
+          }
+          obs.disconnect();
+          break;
+        }
+      }
+    },{root:null,threshold:0.2});
+    obs.observe(section);
+  })();
+</script>
+
+<!-- COMPONENT: Featured Vehicles Section -->
+<script>
+  (function(){
+    const track = document.getElementById('new-arrival-track');
+    if(!track) return;
+    const api = window.__apiOrigin || window.location.origin;
+    const PLACEHOLDER = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1' height='1'/>";
+    const BAD_HOSTS = ['storage.googleapis.com', 'appspot.com', 'googleusercontent.com'];
+    function fmtNum(n){ const v=Number(n||0); if(!Number.isFinite(v) || v<=0) return '—'; return v.toLocaleString(); }
+    function upper(s){ s=String(s||''); return s ? s.toUpperCase() : '—'; }
+    function safe(s){ return String(s==null?'':s); }
+    function photoPath(name){
+      try {
+        if (!name) return PLACEHOLDER;
+        const s = String(name).trim();
+        if (/^data:/i.test(s)) return s;
+        if (/^blob:/i.test(s)) return s;
+        if (/^https?:\/\//i.test(s)) {
+          if (s.startsWith('http://localhost:3000/uploads')) return s.replace('http://localhost:3000', '');
+          return s;
+        }
+        if (s.startsWith('/')) return s;
+        if (s.startsWith('uploads/')) return '/uploads/' + s.replace(/^uploads\/+/, '');
+        return '/uploads/' + s.replace(/^\/+/, '');
+      } catch (_) { return PLACEHOLDER; }
+    }
+    function normalizeImageSrc(src){
+      try {
+        const s = String(src || '').trim();
+        if (!s) return PLACEHOLDER;
+        if (/^data:/i.test(s) || /^blob:/i.test(s)) return s;
+        if (s.startsWith('http://localhost:3000/uploads')) return s.replace('http://localhost:3000', '');
+        if (s.startsWith('/uploads/') || s.startsWith('uploads/')) return photoPath(s);
+        if (/^https?:\/\//i.test(s)) {
+          try {
+            const u = new URL(s, window.location.origin);
+            if (BAD_HOSTS.some(h => u.hostname.includes(h))) return PLACEHOLDER;
+          } catch(_) { return PLACEHOLDER; }
+          return s;
+        }
+        return photoPath(s);
+      } catch(_) { return PLACEHOLDER; }
+    }
+    function chooseImage(listing, preferFeatured){
+      const featured = listing && (listing.image_url || listing.imageUrl);
+      const p0 = (Array.isArray(listing && listing.photos) && listing.photos[0]) || null;
+      const pSrc = p0 ? (p0.dataUrl || p0.url || p0.name) : null;
+      const candidate = (preferFeatured && featured) ? featured : (pSrc || featured || '');
+      return normalizeImageSrc(candidate);
+    }
+    function yearMaker(listing){
+      const y = safe(listing?.vehicle?.year || listing?.insuranceHistory?.year);
+      const m = safe(listing?.insuranceHistory?.manufacturer || listing?.vehicle?.manufacturer || listing?.vehicle?.maker || listing?.vehicle?.make);
+      const out = [y, m].filter(Boolean).join(' ');
+      return out || '—';
+    }
+    function createCardHtml(listing){
+      const targetId = (listing && (listing.id!=null ? listing.id : (listing.product_id_number || listing.productIdNumber || listing.productId))) || null;
+      const href = targetId != null ? ('product-detail.html?id=' + encodeURIComponent(String(targetId))) : 'inventory.html';
+      const imgUrl = chooseImage(listing, false);
+      const title = safe(listing.title||'');
+      const yearM = yearMaker(listing);
+      const price = Number(listing?.price||0);
+      const priceStr = price>0 ? ('$ '+price.toLocaleString()) : '$ 0';
+      
+      const mileage = (fmtNum(listing?.vehicle?.mileageKm) !== '—') ? (fmtNum(listing?.vehicle?.mileageKm)+' KM') : '—';
+      const fuel = upper(listing?.vehicle?.fuel || listing?.insuranceHistory?.fuel);
+      const dispL = Number(listing?.vehicle?.displacementL||0);
+      const dispStr = dispL>0 ? Math.round(dispL*1000)+'cc' : '—';
+      const trans = upper(listing?.vehicle?.transmission);
+      const loc = safe(listing?.vehicle?.location || listing?.insuranceHistory?.location || listing?.insuranceHistory?.country || '—');
+
+      const safeTitle = title.replace(/"/g, '&quot;');
+      const safeId = String(targetId||'');
+
+      return '<div class="flex-none snap-start" style="width:16rem">' +
+             '<div class="bg-white rounded-2xl shadow-md overflow-hidden group transition-all duration-300 hover:shadow-lg na-card" onclick="window.open(\'' + href + '\', \'_blank\')" style="cursor: pointer;">' +
+                 '<div class="relative w-full h-full">' +
+                     '<img class="absolute inset-0 w-full h-full object-cover rounded-none" src="' + imgUrl + '" alt="' + safeTitle + '" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src=\'' + PLACEHOLDER + '\'">' +
+                     '<button class="absolute top-3 right-3 w-9 h-9 bg-black/40 rounded-full flex items-center justify-center text-white hover:bg-black/60 transition-colors" data-fav="true" data-id="' + safeId + '" onclick="event.stopPropagation(); toggleFavorite(\'' + safeId + '\');"><i class="fa-regular fa-heart"></i></button>' +
+                 '</div>' +
+                 '<div class="p-4 h-full flex flex-col">' +
+                     '<div class="flex-1 pr-1 overflow-visible">' +
+                         '<p class="text-xs text-gray-500 truncate">' + yearM + '</p>' +
+                         '<h3 class="text-base font-semibold text-navy-900 mt-0.5 truncate">' + title + '</h3>' +
+                         '<div class="mt-3 grid grid-cols-3 gap-x-3 gap-y-2 text-[10px] text-gray-600">' +
+                             '<div class="flex items-center"><i class="fa-solid fa-tachometer-alt w-4 mr-1.5 text-gray-400"></i><span>' + mileage + '</span></div>' +
+                             '<div class="flex items-center"><i class="fa-solid fa-gas-pump w-4 mr-1.5 text-gray-400"></i><span>' + fuel + '</span></div>' +
+                             '<div class="flex items-center"><i class="fa-solid fa-cogs w-4 mr-1.5 text-gray-400"></i><span>' + dispStr + '</span></div>' +
+                             '<div class="flex items-center"><i class="fa-solid fa-car-side w-4 mr-1.5 text-gray-400"></i><span>' + trans + '</span></div>' +
+                             '<div class="flex items-center md:whitespace-nowrap capitalize"><i class="fa-solid fa-map-marker-alt w-4 mr-1.5 text-gray-400"></i><span>' + loc + '</span></div>' +
+                         '</div>' +
+                     '</div>' +
+                     '<div class="mt-auto shrink-0 pt-1 text-right">' +
+                         '<span class="mango-price font-bold text-gray-900 text-lg">' + priceStr + '</span>' +
+                     '</div>' +
+                 '</div>' +
+             '</div>' +
+             '</div>';
+    }
+    function idSet(arr){ const st=new Set(); (Array.isArray(arr)?arr:[]).forEach(x=>{ const n=Number(x); if(Number.isFinite(n)) st.add(n); }); return st; }
+    function hasNewArrival(listing, tagId){ const ids=idSet(listing?.tag_ids); if(ids.has(tagId)) return true; const names=(Array.isArray(listing?.tags)?listing.tags:[]).map(x=>String(x||'').toLowerCase()); return names.includes('new arrival')||names.includes('new-arrival'); }
+    function isAdminCreated(listing){ const sid = (listing && (listing.seller_id!==undefined?listing.seller_id:listing.sellerId)); return sid==null; }
+    async function loadListings(){
+      try {
+        const r2 = await fetch('backend/listings.json', { cache:'no-store' });
+        const arr2 = await r2.json().catch(()=>[]);
+        if (Array.isArray(arr2) && arr2.length) return arr2;
+      } catch(_) {}
+      try {
+        const r = await fetch(api + '/public/listings', { cache:'no-store' });
+        const data = await r.json().catch(()=>({}));
+        return Array.isArray(data?.listings) ? data.listings : (Array.isArray(data) ? data : []);
+      } catch(_) { return []; }
+    }
+    async function loadNewArrivalTagId(){
+      try{ const r=await fetch('backend/tags.json',{cache:'no-store'}); if(r && r.ok){ const tags=await r.json().catch(()=>[]); for(const t of (Array.isArray(tags)?tags:[])){ const name=String(t?.name||'').toLowerCase(); const slug=String(t?.slug||'').toLowerCase(); if(name==='new arrival' || slug==='new-arrival'){ const id=Number(t.id); if(Number.isFinite(id)) return id; } } } }catch(_){ }
+      return 106;
+    }
+    (async function(){
+      const [listings, naId] = await Promise.all([loadListings(), loadNewArrivalTagId()]);
+      const union = (Array.isArray(listings)?listings:[]).filter(l => isAdminCreated(l) || hasNewArrival(l, naId));
+      const sorted = union.slice().sort((a,b)=> new Date(b?.created_at || b?.createdAt || 0) - new Date(a?.created_at || a?.createdAt || 0));
+      const topItems = sorted.slice(0,14);
+      
+      track.innerHTML = topItems.map(createCardHtml).join('');
+      updateFavoriteIconStates();
+      
+      const newCards = track.querySelectorAll('.na-card');
+      newCards.forEach((c, i) => {
+         c.style.animationDelay = (200 * (i + 1)) + 'ms';
+         c.classList.add('is-visible');
+      });
+    })();
+  })();
+</script>
+<script>
+  (function(){
+    var track = document.getElementById('new-arrival-track');
+    var prev = document.getElementById('new-arrival-prev');
+    var next = document.getElementById('new-arrival-next');
+    if (!track) return;
+    var index = 0;
+    function update(){
+      var total = track.children.length;
+      if (prev) prev.classList.toggle('opacity-0', total <= 1 || index <= 0);
+      if (next) next.classList.toggle('opacity-0', total <= 1 || index >= total - 1);
+    }
+    function go(i){
+      var total = track.children.length;
+      index = Math.max(0, Math.min(i, total - 1));
+      var el = track.children[index];
+      if (el) track.scrollTo({ left: el.offsetLeft });
+      update();
+    }
+    if (prev) prev.addEventListener('click', function(){ go(index - 1); });
+    if (next) next.addEventListener('click', function(){ go(index + 1); });
+    track.addEventListener('scroll', function(){
+      var s = track.scrollLeft;
+      var curr = 0;
+      for (var i=0;i<track.children.length;i++){
+        if (track.children[i].offsetLeft <= s + 1) curr = i;
+      }
+      index = curr;
+      update();
+    });
+    update();
+  })();
+</script>
+<section id="buying-simple" class="mt-16 px-6">
+  <h2 class="text-4xl font-bold text-gray-800 na-title text-center">Buying Made <span class="text-red-500">Simple</span></h2>
+  <p class="text-gray-600 text-center">Four steps from search to delivery</p>
+  <div class="relative mt-10 mx-auto max-w-6xl flex flex-wrap md:flex-nowrap items-center md:items-end justify-center gap-8 sm:gap-12 md:gap-16">
+    <div class="hidden md:block absolute left-0 right-0 top-36 h-px bg-teal-200/50"></div>
+    <div class="buy-step flex flex-col items-center basis-1/2 md:basis-auto" data-step-index="0">
+      <div class="buy-card relative w-40 h-40 sm:w-48 sm:h-48">
+        <div class="absolute inset-0 rounded-full ring-2 ring-teal-300"></div>
+        <div class="absolute inset-1 rounded-full ring-2 ring-white"></div>
+        <img src="assets/images/Gemini_Generated_Image_syc50ksyc50ksyc5.jpg" alt="Car Search" class="buy-icon absolute inset-2 w-full h-full rounded-full object-cover shadow-sm" />
+      </div>
+      <div class="buy-text mt-3 text-black text-lg">Car Search</div>
+    </div>
+    <div class="buy-step flex flex-col items-center basis-1/2 md:basis-auto" data-step-index="1">
+      <div class="buy-card relative w-40 h-40 sm:w-48 sm:h-48">
+        <div class="absolute inset-0 rounded-full ring-2 ring-teal-300"></div>
+        <div class="absolute inset-1 rounded-full ring-2 ring-white"></div>
+        <img src="assets/images/Gemini_Generated_Image_axbdtnaxbdtnaxbd.jpg" alt="Get Quote" class="buy-icon absolute inset-2 w-full h-full rounded-full object-cover shadow-sm" />
+      </div>
+      <div class="buy-text mt-3 text-black text-lg">Get Quote</div>
+    </div>
+    <div class="buy-step flex flex-col items-center basis-1/2 md:basis-auto" data-step-index="2">
+      <div class="buy-card relative w-40 h-40 sm:w-48 sm:h-48">
+        <div class="absolute inset-0 rounded-full ring-2 ring-teal-300"></div>
+        <div class="absolute inset-1 rounded-full ring-2 ring-white"></div>
+        <img src="assets/images/images (1).jpeg" alt="Inspection" class="buy-icon absolute inset-2 w-full h-full rounded-full object-cover shadow-sm" />
+      </div>
+      <div class="buy-text mt-3 text-black text-lg">Inspection</div>
+    </div>
+    <div class="buy-step flex flex-col items-center basis-1/2 md:basis-auto" data-step-index="3">
+      <div id="shipping-swap" class="buy-card relative w-40 h-40 sm:w-48 sm:h-48 md:w-64 md:h-64 xl:w-72 xl:h-72">
+        <div class="absolute inset-0 rounded-full ring-[3px] ring-teal-300"></div>
+        <div class="absolute inset-1 rounded-full ring-2 ring-white"></div>
+        <img src="assets/images/download (3).jpeg" alt="Shipping" class="buy-icon absolute inset-2 w-full h-full rounded-full object-cover shadow-md transition-opacity duration-700 ease-in-out opacity-100" />
+        <img src="assets/images/immm3.png" alt="Shipping Alt" class="buy-icon absolute inset-2 w-full h-full rounded-full object-cover shadow-md transition-opacity duration-700 ease-in-out opacity-0" />
+      </div>
+      <div class="buy-text mt-4 text-black text-xl">Shipping</div>
+    </div>
+  </div>
+  <style>
+    .buy-step .buy-card,.buy-step .buy-icon,.buy-step .buy-text{opacity:0;transform:translateY(24px) scale(0.95);will-change:transform,opacity}
+    .buy-step.is-visible .buy-card{opacity:1;transform:translateY(0) scale(1);transition:transform 1.9s cubic-bezier(0.22,0.61,0.36,1),opacity 1.9s cubic-bezier(0.22,0.61,0.36,1)}
+    .buy-step.is-visible .buy-icon{opacity:1;transform:translateY(0) scale(1);transition:transform 2s cubic-bezier(0.22,0.61,0.36,1),opacity 2s cubic-bezier(0.22,0.61,0.36,1)}
+    .buy-step.is-visible .buy-text{opacity:1;transform:translateY(0) scale(1);transition:transform 2s cubic-bezier(0.22,0.61,0.36,1),opacity 2s cubic-bezier(0.22,0.61,0.36,1)}
+    .buy-step:hover .buy-card{transform:translateY(-6px) scale(1);box-shadow:0 12px 24px rgba(0,0,0,0.08);transition:transform .35s ease,box-shadow .35s ease}
+  </style>
+  <script>
+    (function(){
+      var frame = document.getElementById('shipping-swap');
+      if (!frame) return;
+      var imgs = frame.querySelectorAll('img');
+      if (imgs.length < 2) return;
+      var first = imgs[0], second = imgs[1];
+      var showingFirst = true;
+      function toSecond(){
+        first.classList.remove('opacity-100');
+        first.classList.add('opacity-0');
+        second.classList.remove('opacity-0');
+        second.classList.add('opacity-100');
+        showingFirst = false;
+      }
+      function toFirst(){
+        second.classList.remove('opacity-100');
+        second.classList.add('opacity-0');
+        first.classList.remove('opacity-0');
+        first.classList.add('opacity-100');
+        showingFirst = true;
+      }
+      function toggle(){
+        if (showingFirst) toSecond(); else toFirst();
+      }
+      setTimeout(function(){
+        toSecond();
+        var intervalMs = 1000;
+        setInterval(toggle, intervalMs);
+      }, 2000);
+    })();
+  </script>
+  <script>
+    (function(){
+      var section = document.getElementById('buying-simple');
+      if(!section) return;
+      var steps = Array.prototype.slice.call(section.querySelectorAll('.buy-step'));
+      var obs = new IntersectionObserver(function(entries){
+        for(var i=0;i<entries.length;i++){
+          var e = entries[i];
+          if(e.isIntersecting){
+            steps.forEach(function(step, idx){
+              var card = step.querySelector('.buy-card');
+              var icon = step.querySelector('.buy-icon');
+              var text = step.querySelector('.buy-text');
+              var base = 220*idx;
+              if(card) card.style.transitionDelay = base+'ms';
+              if(icon) icon.style.transitionDelay = (base+80)+'ms';
+              if(text) text.style.transitionDelay = (base+160)+'ms';
+              setTimeout(function(){ step.classList.add('is-visible'); }, base);
+            });
+            obs.disconnect();
+            break;
+          }
+        }
+      }, { root:null, threshold:0.2 });
+      obs.observe(section);
+    })();
+  </script>
+</section>
+
+<section id="featured-vehicles" class="py-20 bg-gray-50">
+    <div class="container mx-auto px-6">
+        <div class="mb-16">
+            <h2 class="text-4xl font-bold text-gray-800 na-title">
+                <span class="text-red-500">Best Sellers</span> by Type
+            </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
+          <!-- Sedan Category 1 -->
+            <div id="bestseller-sedan-1" class="bs-item flex items-center space-x-8">
+                <div class="flex-shrink-0 text-center w-52">
+                    <img class="w-full h-auto object-contain" src="/uploads/istockphoto-498580443-612x612.jpg" alt="a modern silver sedan car, side-view, on a clean white background, photorealistic studio shot">
+                    <p class="mt-2 text-lg font-semibold text-gray-700">Sedan</p>
+                </div>
+                <div class="flex-1">
+                    <ul class="space-y-4 text-lg text-gray-800">
+                        <li class="flex items-center">
+                            <span class="font-bold mr-3">1</span>
+                            <span>Hyundai Avante</span>
+                            <span class="ml-2 text-gray-500">(2,190)</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="font-bold mr-3">2</span>
+                            <span>Kia K3</span>
+                            <span class="ml-2 text-gray-500">(794)</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="font-bold mr-3">3</span>
+                            <span>Kia Forte</span>
+                            <span class="ml-2 text-gray-500">(47)</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- SUV Category -->
+            <div id="bestseller-suv" class="bs-item flex items-center space-x-8">
+                <div class="flex-shrink-0 text-center w-52">
+                    <img class="w-full h-auto object-contain" src="/uploads/istockphoto-2062732046-612x612.jpg" alt="a modern white SUV, side-view, on a clean white background, photorealistic studio shot">
+                    <p class="mt-2 text-lg font-semibold text-gray-700">SUV</p>
+                </div>
+                <div class="flex-1">
+                    <ul class="space-y-4 text-lg text-gray-800">
+                        <li class="flex items-center">
+                            <span class="font-bold mr-3">1</span>
+                            <span>Hyundai Tucson</span>
+                            <span class="ml-2 text-gray-500">(1,425)</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="font-bold mr-3">2</span>
+                            <span>Hyundai Santa Fe</span>
+                            <span class="ml-2 text-gray-500">(2,164)</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="font-bold mr-3">3</span>
+                            <span>Kia Sportage</span>
+                            <span class="ml-2 text-gray-500">(1,456)</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Sedan Category 2 -->
+            <div id="bestseller-sedan-2" class="bs-item flex items-center space-x-8">
+                <div class="flex-shrink-0 text-center w-52">
+                    <img class="w-full h-auto object-contain" src="/uploads/istockphoto-498580443-612x612.jpg" alt="a modern grey metallic sedan car, side-view, on a clean white background, photorealistic studio shot">
+                    <p class="mt-2 text-lg font-semibold text-gray-700">Sedan</p>
+                </div>
+                <div class="flex-1">
+                    <ul class="space-y-4 text-lg text-gray-800">
+                        <li class="flex items-center">
+                            <span class="font-bold mr-3">1</span>
+                            <span>Audi A6</span>
+                            <span class="ml-2 text-gray-500">(654)</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="font-bold mr-3">2</span>
+                            <span>Volkswagen Golf</span>
+                            <span class="ml-2 text-gray-500">(190)</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="font-bold mr-3">3</span>
+                            <span>Volkswagen Jetta</span>
+                            <span class="ml-2 text-gray-500">(158)</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Van Category -->
+            <div id="bestseller-van" class="bs-item flex items-center space-x-8">
+                <div class="flex-shrink-0 text-center w-52">
+                    <img class="w-full h-auto object-contain" src="/uploads/istockphoto-2149237608-612x612.jpg" alt="a modern white cargo van, side-view, on a clean white background, photorealistic studio shot">
+                    <p class="mt-2 text-lg font-semibold text-gray-700">Van</p>
+                </div>
+                <div class="flex-1">
+                    <ul class="space-y-4 text-lg text-gray-800">
+                        <li class="flex items-center">
+                            <span class="font-bold mr-3">1</span>
+                            <span>Kia Carnival</span>
+                            <span class="ml-2 text-gray-500">(3,253)</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="font-bold mr-3">2</span>
+                            <span>Hyundai Starex</span>
+                            <span class="ml-2 text-gray-500">(1,373)</span>
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <span class="font-bold mr-3">3</span>
+                            <span>-</span>
+                            <span class="ml-2">(-)</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <style>
+          .bs-item{opacity:0;transform:translateY(20px);will-change:transform,opacity}
+          .bs-item.is-visible{opacity:1;transform:translateY(0);transition:transform 2s ease-in-out,opacity 2s ease-in-out}
+        </style>
+        <script>
+          (function(){
+            var section=document.getElementById('featured-vehicles');
+            if(!section) return;
+            var heading=section.querySelector('h2.na-title');
+            var items=Array.prototype.slice.call(section.querySelectorAll('.bs-item'));
+            var delays=[0,300,600,900];
+            var obs=new IntersectionObserver(function(entries){
+              for(var i=0;i<entries.length;i++){
+                var e=entries[i];
+                if(e.isIntersecting){
+                  if(heading){ heading.classList.add('is-visible'); }
+                  items.forEach(function(el,idx){ el.style.transitionDelay=(delays[idx]||0)+'ms'; setTimeout(function(){ el.classList.add('is-visible'); }, delays[idx]||0); });
+                  obs.disconnect();
+                  break;
+                }
+              }
+            },{root:null,threshold:0.2});
+            obs.observe(section);
+          })();
+        </script>
+    </div>
+</section>
+
+<!-- COMPONENT: Why Choose Us Section -->
+<section id="why-choose-us" class="py-20 bg-gray-100">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-gray-800 wc-heading">Why Choose <span class="text-red-500">Autos NSM</span>?</h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">We're committed to providing an exceptional car buying experience with transparency, quality, and outstanding service</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="text-center bg-white p-8 rounded-2xl shadow-lg wc-card">
+                <div class="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6 wc-icon">
+                    <i class="fa-solid fa-certificate text-white text-3xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Certified Quality</h3>
+                <p class="text-gray-600">Every vehicle undergoes a comprehensive 150-point inspection by certified technicians</p>
+            </div>
+            
+            <div class="text-center bg-white p-8 rounded-2xl shadow-lg wc-card">
+                <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6 wc-icon">
+                    <i class="fa-solid fa-dollar-sign text-blue-500 text-3xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Best Price Guarantee</h3>
+                <p class="text-gray-600">We'll match any competitor's price plus give you outstanding oppourunties.</p>
+            </div>
+            
+            <div class="text-center bg-white p-8 rounded-2xl shadow-lg wc-card">
+                <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6 wc-icon">
+                    <i class="fa-solid fa-cart-shopping text-green-700 text-3xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Easy Buying Process</h3>
+                <p class="text-gray-600">Simple steps guide customers smoothly from car selection to final purchase.</p>
+            </div>
+            
+            <div class="text-center bg-white p-8 rounded-2xl shadow-lg wc-card">
+                <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6 wc-icon">
+                    <i class="fa-solid fa-handshake text-purple-500 text-3xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">No-Pressure Sales</h3>
+                <p class="text-gray-600">Our consultants are here to help, not pressure you into a decision</p>
+            </div>
+        </div>
+        <style>
+          .wc-heading{opacity:0;transform:translateY(18px);will-change:transform,opacity}
+          .wc-heading.is-visible{opacity:1;transform:translateY(0);transition:transform .8s ease-in-out,opacity .8s ease-in-out}
+          .wc-card{opacity:0;transform:translateY(20px) scale(0.95);will-change:transform,opacity}
+          .wc-card.is-visible{opacity:1;transform:translateY(0) scale(1);transition:transform .7s ease-in-out,opacity .7s ease-in-out}
+          .wc-icon{opacity:0;transform:translateY(8px) scale(0.9);will-change:transform,opacity}
+          .wc-icon.is-visible{opacity:1;transform:translateY(0) scale(1);transition:transform .4s ease-out,opacity .4s ease-out}
+        </style>
+        <script>
+          (function(){
+            var section=document.getElementById('why-choose-us');
+            if(!section) return;
+            var heading=section.querySelector('h2.wc-heading');
+            var cards=Array.prototype.slice.call(section.querySelectorAll('.wc-card'));
+            var obs=new IntersectionObserver(function(entries){
+              for(var i=0;i<entries.length;i++){
+                var e=entries[i];
+                if(e.isIntersecting){
+                  if(heading){ heading.style.transitionDelay='0ms'; setTimeout(function(){ heading.classList.add('is-visible'); },0); }
+                  for(var j=0;j<cards.length;j++){
+                    var card=cards[j];
+                    var base=150*j;
+                    card.style.transitionDelay=base+'ms';
+                    setTimeout((function(el){ return function(){ el.classList.add('is-visible'); }; })(card), base);
+                    var icon=card.querySelector('.wc-icon');
+                    if(icon){ icon.style.transitionDelay=(base+80)+'ms'; setTimeout((function(ic){ return function(){ ic.classList.add('is-visible'); }; })(icon), base+80); }
+                  }
+                  obs.disconnect();
+                  break;
+                }
+              }
+            },{root:null,threshold:0.2});
+            obs.observe(section);
+          })();
+        </script>
+    </div>
+</section>
+
+<section id="buying-process" class="py-20 bg-white">
+  <div class="container mx-auto px-6">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div class="lg:col-span-8">
+        <h2 class="text-4xl font-bold text-gray-800 pb-5">Buying <span class="text-red-500">Process</span></h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <div class="space-y-10">
+            <div class="bp-step flex items-start gap-4">
+              <i class="bp-icon fa-solid fa-globe text-[#D53C46] text-2xl mt-1"></i>
+              <div>
+                <h3 class="text-2xl font-bold text-gray-900">Car Link Check</h3>
+                <p class="text-gray-600">After receiving the car link, we check if it's <strong>available</strong> and worth buying.</p>
+              </div>
+            </div>
+            <div class="bp-step flex items-start gap-4">
+              <i class="bp-icon fa-solid fa-file-lines text-[#D53C46] text-2xl mt-1"></i>
+              <div>
+                <h3 class="text-2xl font-bold text-gray-900">Price Quote</h3>
+                <p class="text-gray-600">We create a quote for the car price... <strong>Discount Included.</strong></p>
+              </div>
+            </div>
+            <div class="bp-step flex items-start gap-4">
+              <i class="bp-icon fa-solid fa-gear text-[#D53C46] text-2xl mt-1"></i>
+              <div>
+                <h3 class="text-2xl font-bold text-gray-900">Inspection</h3>
+                <p class="text-gray-600">We inspect the car and provide you with photos, videos, and <strong>inspection report.</strong></p>
+              </div>
+            </div>
+            <div class="bp-step flex items-start gap-4">
+              <i class="bp-icon fa-solid fa-file-invoice-dollar text-[#D53C46] text-2xl mt-1"></i>
+              <div>
+                <h3 class="text-2xl font-bold text-gray-900">Proforma Invoice</h3>
+                <p class="text-gray-600">Making the invoice after checking and <strong>confirming the car.</strong></p>
+              </div>
+            </div>
+          </div>
+          <div class="space-y-10">
+            <div class="bp-step flex items-start gap-4">
+              <i class="bp-icon fa-solid fa-circle-check text-[#D53C46] text-2xl mt-1"></i>
+              <div>
+                <h3 class="text-2xl font-bold text-gray-900">Buying The Car</h3>
+                <p class="text-gray-600">Buying the car <strong>immediately</strong> after the payment is completed from your side.</p>
+              </div>
+            </div>
+            <div class="bp-step flex items-start gap-4">
+              <i class="bp-icon fa-solid fa-location-dot text-[#D53C46] text-2xl mt-1"></i>
+              <div>
+                <h3 class="text-2xl font-bold text-gray-900">Our Yard</h3>
+                <p class="text-gray-600">Your car will be in our yard <strong>as soon as</strong> we buy it.</p>
+              </div>
+            </div>
+            <div class="bp-step flex items-start gap-4">
+              <i class="bp-icon fa-solid fa-lock text-[#D53C46] text-2xl mt-1"></i>
+              <div>
+                <h3 class="text-2xl font-bold text-gray-900">Shoring & Securing</h3>
+                <p class="text-gray-600">Shoring process is an important process to <strong>secure the car</strong> during the shipping.</p>
+              </div>
+            </div>
+            <div class="bp-step flex items-start gap-4">
+              <i class="bp-icon fa-solid fa-truck text-[#D53C46] text-2xl mt-1"></i>
+              <div>
+                <h3 class="text-2xl font-bold text-gray-900">Shipping</h3>
+                <p class="text-gray-600">Fast shipping is our priority, as we want you to <strong>receive your cars ASAP.</strong></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="lg:col-span-4">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">and more...</h2>
+        <div class="space-y-4">
+          <div class="bp-feature bg-gray-50 border border-gray-200 rounded-xl shadow-sm p-4">
+            <div class="flex items-center gap-3">
+              <i class="fa-solid fa-gem text-[#D53C46]"></i>
+              <h3 class="text-lg font-bold text-gray-900">Best Inspection</h3>
+            </div>
+          </div>
+          <div class="bp-feature bg-gray-50 border border-gray-200 rounded-xl shadow-sm p-4">
+            <div class="flex items-center gap-3">
+              <i class="fa-regular fa-comment text-[#D53C46]"></i>
+              <h3 class="text-lg font-bold text-gray-900">Fast Booking</h3>
+            </div>
+          </div>
+          <div class="bp-feature bg-gray-50 border border-gray-200 rounded-xl shadow-sm p-4">
+            <div class="flex items-center gap-3 mb-2">
+              <i class="fa-solid fa-table-cells text-[#D53C46]"></i>
+              <h3 class="text-lg font-bold text-gray-900">Professional Photos</h3>
+            </div>
+            <p class="text-gray-600">We provide you with creative professional photos for each car of yours so you can sell it in an easy and fashionable way. You will have a gallery for your cars to return to at any time.</p>
+          </div>
+        </div>
+      </div>
+  </div>
+  </div>
+</section>
+<script>
+  (function(){
+    var section=document.getElementById('buying-simple');
+    if(!section) return;
+    var title=section.querySelector('.na-title');
+    var obs=new IntersectionObserver(function(entries){
+      for(var i=0;i<entries.length;i++){
+        var e=entries[i];
+        if(e.isIntersecting){
+          if(title) title.classList.add('is-visible');
+          obs.disconnect();
+          break;
+        }
+      }
+    },{root:null,threshold:0.2});
+    obs.observe(section);
+  })();
+</script>
+<style>
+  .bp-step{opacity:0;transform:translateY(20px) scale(0.96);will-change:transform,opacity}
+  .bp-step.is-visible{opacity:1;transform:translateY(0) scale(1);transition:transform .7s ease-in-out,opacity .7s ease-in-out}
+  .bp-step:hover{transform:translateY(-1px) scale(1.02);box-shadow:0 12px 24px rgba(0,0,0,.08);transition:transform .25s ease,box-shadow .25s ease}
+  .bp-icon{opacity:0;transform:translateY(6px) scale(0.9)}
+  .bp-icon.is-visible{opacity:1;animation:bp-pop .4s ease-out both}
+  @keyframes bp-pop{0%{transform:translateY(6px) scale(.9)}70%{transform:translateY(-2px) scale(1.05)}100%{transform:translateY(0) scale(1)}}
+  .bp-feature{opacity:0;transform:translateY(16px) scale(0.96);will-change:transform,opacity}
+  .bp-feature.is-visible{opacity:1;transform:translateY(0) scale(1);transition:transform .7s ease-in-out,opacity .7s ease-in-out}
+</style>
+<script>
+  (function(){
+    var section=document.getElementById('buying-process');
+    if(!section) return;
+    var steps=Array.prototype.slice.call(section.querySelectorAll('.bp-step'));
+    var features=Array.prototype.slice.call(section.querySelectorAll('.bp-feature'));
+    var obs=new IntersectionObserver(function(entries){
+      for(var i=0;i<entries.length;i++){
+        var e=entries[i];
+        if(e.isIntersecting){
+          for(var j=0;j<steps.length;j++){
+            var s=steps[j];
+            var base=150*j;
+            s.style.transitionDelay=base+'ms';
+            setTimeout((function(el){return function(){el.classList.add('is-visible');};})(s), base);
+            var ic=s.querySelector('.bp-icon');
+            if(ic){ ic.style.animationDelay=(base+80)+'ms'; setTimeout((function(ico){return function(){ico.classList.add('is-visible');};})(ic), base+80); }
+          }
+          var start=(steps.length*150)+300;
+          for(var k=0;k<features.length;k++){
+            var f=features[k];
+            var d=start+(150*k);
+            f.style.transitionDelay=d+'ms';
+            setTimeout((function(el){return function(){el.classList.add('is-visible');};})(f), d);
+          }
+          obs.disconnect();
+          break;
+        }
+      }
+    },{root:null,threshold:0.2});
+    obs.observe(section);
+  })();
+</script>
+
+<!-- COMPONENT: Featured Collections Section removed (moved above) -->
+
+<!-- COMPONENT: Search by Price Range Section -->
+<section id="price-range" class="py-20 bg-gray-100">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-gray-800 pr-title">Shop by <span class="text-red-500">Price Range</span></h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto pr-subtitle">Find quality vehicles that fit your budget perfectly</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <a href="inventory.html?priceMin=0&priceMax=15000" target="_blank" class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 text-center group block pr-card">
+                <div class="text-4xl font-bold text-red-500 mb-4 group-hover:scale-110 transition-transform">Under $15K</div>
+                <p class="text-gray-600 mb-4">Great value vehicles for budget-conscious buyers</p>
+                <div class="text-sm text-gray-500">847 vehicles available</div>
+            </a>
+            
+            <a href="inventory.html?priceMin=15000&priceMax=25000" target="_blank" class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 text-center group block pr-card">
+                <div class="text-4xl font-bold text-blue-500 mb-4 group-hover:scale-110 transition-transform">$15K - $25K</div>
+                <p class="text-gray-600 mb-4">Perfect balance of features and affordability</p>
+                <div class="text-sm text-gray-500">1,203 vehicles available</div>
+            </a>
+            
+            <a href="inventory.html?priceMin=25000&priceMax=35000" target="_blank" class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 text-center group block pr-card">
+                <div class="text-4xl font-bold text-green-500 mb-4 group-hover:scale-110 transition-transform">$25K - $35K</div>
+                <p class="text-gray-600 mb-4">Premium features with excellent reliability</p>
+                <div class="text-sm text-gray-500">542 vehicles available</div>
+            </a>
+            
+            <a href="inventory.html?priceMin=35000" target="_blank" class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 text-center group block pr-card">
+                <div class="text-4xl font-bold text-purple-500 mb-4 group-hover:scale-110 transition-transform">$35K+</div>
+                <p class="text-gray-600 mb-4">Luxury vehicles with cutting-edge technology</p>
+                <div class="text-sm text-gray-500">255 vehicles available</div>
+            </a>
+        </div>
+        <style>
+          .pr-title,.pr-subtitle{opacity:0}
+          .pr-title.is-visible,.pr-subtitle.is-visible{opacity:1;transition:opacity .8s ease-out}
+          .pr-card{opacity:0;transform:translateY(30px);will-change:transform,opacity}
+          @keyframes pr-fadeUp{0%{opacity:0;transform:translateY(30px)}100%{opacity:1;transform:translateY(0)}}
+          .pr-card.is-visible{animation:pr-fadeUp .8s ease-out forwards}
+        </style>
+        <script>
+          (function(){
+            var section=document.getElementById('price-range');
+            if(!section) return;
+            var title=section.querySelector('.pr-title');
+            var subtitle=section.querySelector('.pr-subtitle');
+            var cards=Array.prototype.slice.call(section.querySelectorAll('.pr-card'));
+            var obs=new IntersectionObserver(function(entries){
+              for(var i=0;i<entries.length;i++){
+                var e=entries[i];
+                if(e.isIntersecting){
+                  if(title) title.classList.add('is-visible');
+                  if(subtitle) subtitle.classList.add('is-visible');
+                  for(var j=0;j<cards.length;j++){
+                    var c=cards[j];
+                    var d=200*j;
+                    c.style.animationDelay=d+'ms';
+                    setTimeout((function(el){return function(){el.classList.add('is-visible');};})(c), d);
+                  }
+                  obs.disconnect();
+                  break;
+                }
+              }
+            },{root:null,threshold:0.2});
+            obs.observe(section);
+          })();
+        </script>
+    </div>
+</section>
+
+<!-- COMPONENT: Popular Car Brands Section -->
+<section id="popular-brands" class="py-20 bg-white">
+  <div class="w-full px-6">
+    <div class="mb-16">
+      <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 brands-title">Search By <span class="text-red-500">Brand</span></h2>
+    </div>
+    <div class="relative">
+      <div id="brands-slider-track" class="flex flex-nowrap items-start space-x-8 overflow-x-auto" style="scrollbar-width:none;-ms-overflow-style:none;">
+        <a href="inventory.html?make=Hyundai" target="_blank" class="group text-center cursor-pointer block flex-shrink-0 brand-card">
+          <div class="mx-auto mb-4 w-40 h-40 md:w-48 md:h-48 rounded-full bg-[#F2F6FD] ring-1 ring-gray-200/60 flex items-center justify-center shadow-sm category-circle brand-circle">
+            <img class="h-24 md:h-28 w-auto object-contain transition-transform duration-300 group-hover:scale-110" src="/uploads/Gemini_Generated_Image_d8pxpwd8pxpwd8px.png" alt="Hyundai">
+          </div>
+          <h3 class="text-xl font-semibold text-gray-800 group-hover:text-red-600 transition-colors">Hyundai</h3>
+        </a>
+        <a href="inventory.html?make=Kia" target="_blank" class="group text-center cursor-pointer block flex-shrink-0 brand-card">
+          <div class="mx-auto mb-4 w-40 h-40 md:w-48 md:h-48 rounded-full bg-[#F2F6FD] ring-1 ring-gray-200/60 flex items-center justify-center shadow-sm category-circle brand-circle">
+            <img class="h-24 md:h-28 w-auto object-contain transition-transform duration-300 group-hover:scale-110" src="/uploads/kia.png" alt="Kia">
+          </div>
+          <h3 class="text-xl font-semibold text-gray-800 group-hover:text-red-600 transition-colors">Kia</h3>
+        </a>
+        <a href="inventory.html?make=BMW" target="_blank" class="group text-center cursor-pointer block flex-shrink-0 brand-card">
+          <div class="mx-auto mb-4 w-40 h-40 md:w-48 md:h-48 rounded-full bg-[#F2F6FD] ring-1 ring-gray-200/60 flex items-center justify-center shadow-sm category-circle brand-circle">
+            <img class="h-24 md:h-28 w-auto object-contain transition-transform duration-300 group-hover:scale-110" src="/uploads/bmw.svg" alt="BMW">
+          </div>
+          <h3 class="text-xl font-semibold text-gray-800 group-hover:text-red-600 transition-colors">BMW</h3>
+        </a>
+        <a href="inventory.html?make=Mercedes-Benz" target="_blank" class="group text-center cursor-pointer block flex-shrink-0 brand-card">
+          <div class="mx-auto mb-4 w-40 h-40 md:w-48 md:h-48 rounded-full bg-[#F2F6FD] ring-1 ring-gray-200/60 flex items-center justify-center shadow-sm category-circle brand-circle">
+            <img class="h-24 md:h-28 w-auto object-contain transition-transform duration-300 group-hover:scale-110" src="/uploads/mercdies.png" alt="Mercedes-Benz">
+          </div>
+          <h3 class="text-xl font-semibold text-gray-800 group-hover:text-red-600 transition-colors">Benz</h3>
+        </a>
+        <a href="inventory.html?make=Genesis" target="_blank" class="group text-center cursor-pointer block flex-shrink-0 brand-card">
+          <div class="mx-auto mb-4 w-40 h-40 md:w-48 md:h-48 rounded-full bg-[#F2F6FD] ring-1 ring-gray-200/60 flex items-center justify-center shadow-sm category-circle brand-circle">
+            <img class="h-24 md:h-28 w-auto object-contain transition-transform duration-300 group-hover:scale-110" src="/uploads/genesis.png" alt="Genesis">
+          </div>
+          <h3 class="text-xl font-semibold text-gray-800 group-hover:text-red-600 transition-colors">Genesis</h3>
+        </a>
+        <a href="inventory.html?make=Chevrolet" target="_blank" class="group text-center cursor-pointer block flex-shrink-0 brand-card">
+          <div class="mx-auto mb-4 w-40 h-40 md:w-48 md:h-48 rounded-full bg-[#F2F6FD] ring-1 ring-gray-200/60 flex items-center justify-center shadow-sm category-circle brand-circle">
+            <img class="h-24 md:h-28 w-auto object-contain transition-transform duration-300 group-hover:scale-110" src="/uploads/chevrolet.png" alt="Chevrolet">
+          </div>
+          <h3 class="text-xl font-semibold text-gray-800 group-hover:text-red-600 transition-colors">Chevrolet</h3>
+        </a>
+        <a href="inventory.html?make=KG%20Mobility" class="group text-center cursor-pointer block flex-shrink-0 brand-card">
+          <div class="mx-auto mb-4 w-40 h-40 md:w-48 md:h-48 rounded-full bg-[#F2F6FD] ring-1 ring-gray-200/60 flex items-center justify-center shadow-sm category-circle brand-circle">
+            <img class="h-24 md:h-28 w-auto object-contain transition-transform duration-300 group-hover:scale-110" src="/uploads/kg%20mobility.png" alt="KG Mobility">
+          </div>
+          <h3 class="text-xl font-semibold text-gray-800 group-hover:text-red-600 transition-colors">KG Mobility</h3>
+        </a>
+        <a href="inventory.html?make=Renault%20Korea" class="group text-center cursor-pointer block flex-shrink-0 brand-card">
+          <div class="mx-auto mb-4 w-40 h-40 md:w-48 md:h-48 rounded-full bg-[#F2F6FD] ring-1 ring-gray-200/60 flex items-center justify-center shadow-sm category-circle brand-circle">
+            <img class="h-24 md:h-28 w-auto object-contain transition-transform duration-300 group-hover:scale-110" src="/uploads/renault%20korea.png" alt="Renault Korea">
+          </div>
+          <h3 class="text-xl font-semibold text-gray-800 group-hover:text-red-600 transition-colors">Renault Korea</h3>
+        </a>
+        <a href="inventory.html?make=Audi" class="group text-center cursor-pointer block flex-shrink-0 brand-card">
+          <div class="mx-auto mb-4 w-40 h-40 md:w-48 md:h-48 rounded-full bg-[#F2F6FD] ring-1 ring-gray-200/60 flex items-center justify-center shadow-sm category-circle brand-circle">
+            <img class="h-24 md:h-28 w-auto object-contain transition-transform duration-300 group-hover:scale-110" src="/uploads/audi.png" alt="Audi">
+          </div>
+          <h3 class="text-xl font-semibold text-gray-800 group-hover:text-red-600 transition-colors">Audi</h3>
+        </a>
+        <a href="inventory.html?make=Mini" class="group text-center cursor-pointer block flex-shrink-0 brand-card">
+          <div class="mx-auto mb-4 w-40 h-40 md:w-48 md:h-48 rounded-full bg-[#F2F6FD] ring-1 ring-gray-200/60 flex items-center justify-center shadow-sm category-circle brand-circle">
+            <img class="h-24 md:h-28 w-auto object-contain transition-transform duration-300 group-hover:scale-110" src="/uploads/mini.png" alt="Mini">
+          </div>
+          <h3 class="text-xl font-semibold text-gray-800 group-hover:text-red-600 transition-colors">Mini</h3>
+        </a>
+      </div>
+      <button id="brands-prev" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-red-500 transition-all z-10">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+      <button id="brands-next" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-red-500 transition-all z-10">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+    </div>
+    <style>
+      .brands-title{opacity:0}
+      .brands-title.is-visible{opacity:1;transition:opacity 2s cubic-bezier(0.25,0.46,0.45,0.94)}
+      .brand-circle{opacity:0;transform:scale(.8);will-change:transform,opacity}
+      @keyframes brand-fadeScale{0%{opacity:0;transform:scale(.8)}100%{opacity:1;transform:scale(1)}}
+      .brand-circle.is-visible{animation:brand-fadeScale 2s cubic-bezier(0.25,0.46,0.45,0.94) forwards}
+    </style>
+    <script>
+      (function(){
+        var section=document.getElementById('popular-brands');
+        if(!section) return;
+        var obs=new IntersectionObserver(function(entries){
+          for(var i=0;i<entries.length;i++){
+            var e=entries[i];
+            if(e.isIntersecting){
+              var title=section.querySelector('.brands-title');
+              if(title) title.classList.add('is-visible');
+              var anchors=Array.prototype.slice.call(section.querySelectorAll('#brands-slider-track > a:not([data-clone])'));
+              for(var j=0;j<anchors.length;j++){
+                var circ=anchors[j].querySelector('.brand-circle');
+                if(!circ) continue;
+                circ.style.animationDelay=(200*j)+'ms';
+                circ.classList.add('is-visible');
+              }
+              obs.disconnect();
+              break;
+            }
+          }
+        },{root:null,threshold:0.2});
+        obs.observe(section);
+      })();
+    </script>
+  </div>
+</section>
+<script>
+  (function(){
+    var track = document.getElementById('brands-slider-track');
+    var prev = document.getElementById('brands-prev');
+    var next = document.getElementById('brands-next');
+    if (!track || !prev || !next) return;
+    function items(){ return Array.from(track.children); }
+    var originals = items();
+    if (originals.length < 2) return;
+    var firstOriginal = originals[0];
+    var lastOriginal = originals[originals.length - 1];
+    var firstClone = firstOriginal.cloneNode(true); firstClone.setAttribute('data-clone','first');
+    var lastClone = lastOriginal.cloneNode(true); lastClone.setAttribute('data-clone','last');
+    track.insertBefore(lastClone, track.firstChild);
+    track.appendChild(firstClone);
+    track.scrollLeft = firstOriginal.offsetLeft;
+    function getCurrentIndex(){
+      var arr = items();
+      var left = track.scrollLeft;
+      var bestIdx = 0, bestDiff = Infinity;
+      for (var i=0;i<arr.length;i++){
+        var diff = Math.abs(left - arr[i].offsetLeft);
+        if (diff < bestDiff) { bestDiff = diff; bestIdx = i; }
+      }
+      return bestIdx;
+    }
+    function scrollToIndex(i){
+      var arr = items();
+      if (!arr.length) return;
+      var idx = ((i % arr.length) + arr.length) % arr.length;
+      var targetLeft = arr[idx].offsetLeft;
+      try{ track.scrollTo({ left: targetLeft, behavior: 'smooth' }); }catch(_){ track.scrollLeft = targetLeft; }
+      setTimeout(function(){
+        var a = items();
+        var left = track.scrollLeft;
+        var best = a[0], d = Infinity;
+        for (var j=0;j<a.length;j++){
+          var dd = Math.abs(left - a[j].offsetLeft);
+          if (dd < d) { d = dd; best = a[j]; }
+        }
+        var c = best.getAttribute('data-clone');
+        if (c === 'first') { track.scrollLeft = firstOriginal.offsetLeft; }
+        else if (c === 'last') { track.scrollLeft = lastOriginal.offsetLeft; }
+      }, 360);
+    }
+    function slideNext(){ var curr = getCurrentIndex(); scrollToIndex(curr + 1); }
+    function slidePrev(){ var curr = getCurrentIndex(); scrollToIndex(curr - 1); }
+    prev.addEventListener('click', function(){ slidePrev(); });
+    next.addEventListener('click', function(){ slideNext(); });
+    var auto = setInterval(slideNext, 2000);
+  })();
+</script>
+
+<!-- COMPONENT: Customer Testimonials Section -->
+<section id="testimonials" class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+        <div class="flex justify-between items-center mb-10">
+            <h2 class="text-4xl font-bold text-gray-800 rv-title">
+                Autos NSM <span class="text-red-500">Best Reviews</span>
+            </h2>
+            <a href="reviews.html" class="text-lg font-medium text-gray-600 hover:text-red-500 transition-colors flex items-center rv-link">
+                view more
+                <i class="fa-solid fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+        
+        <div class="relative">
+            <div id="reviewsGrid" class="flex overflow-x-auto no-scrollbar snap-x snap-mandatory scroll-smooth -mx-2">
+                <!-- Reviews will render here dynamically -->
+            </div>
+            <button id="reviews-prev" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-red-500 hover:bg-gray-50 transition-all z-10 opacity-75 hover:opacity-100" aria-label="Previous">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button id="reviews-next" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-red-500 hover:bg-gray-50 transition-all z-10 opacity-75 hover:opacity-100" aria-label="Next">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+        <style>
+          .rv-title,.rv-link{opacity:0}
+          .rv-title.is-visible,.rv-link.is-visible{opacity:1;transition:opacity 2s cubic-bezier(0.25,0.46,0.45,0.94)}
+          .rv-card{opacity:0;transform:translateY(30px);will-change:transform,opacity}
+          @keyframes rv-fadeUp{0%{opacity:0;transform:translateY(30px)}100%{opacity:1;transform:translateY(0)}}
+          .rv-card.is-visible{animation:rv-fadeUp 2s cubic-bezier(0.25,0.46,0.45,0.94) forwards}
+        </style>
+        <script>
+          (function(){
+            var section=document.getElementById('testimonials');
+            if(!section) return;
+            var grid=section.querySelector('#reviewsGrid');
+            var activated=false;
+            function animateCards(){
+              if(!grid) return;
+              var cards=Array.prototype.slice.call(grid.querySelectorAll('.rv-card'));
+              for(var i=0;i<cards.length;i++){
+                var d=300*i;
+                cards[i].style.animationDelay=d+'ms';
+                cards[i].classList.add('is-visible');
+              }
+            }
+            var obs=new IntersectionObserver(function(entries){
+              for(var i=0;i<entries.length;i++){
+                var e=entries[i];
+                if(e.isIntersecting){
+                  activated=true;
+                  var t=section.querySelector('.rv-title');
+                  var l=section.querySelector('.rv-link');
+                  if(t) t.classList.add('is-visible');
+                  if(l) l.classList.add('is-visible');
+                  animateCards();
+                  obs.disconnect();
+                  break;
+                }
+              }
+            },{root:null,threshold:0.2});
+            obs.observe(section);
+            if(grid){
+              var mo=new MutationObserver(function(){ if(activated) animateCards(); });
+              mo.observe(grid,{childList:true});
+            }
+          })();
+        </script>
+    </div>
+</section>
+
+<script>
+  (function(){
+    const grid = document.getElementById('reviewsGrid');
+    if (!grid) return;
+    function escapeHtml(s){ return String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+    function starIcons(rating){
+      const n = Math.max(0, Math.min(5, Number(rating||0)));
+      let out = '';
+      for (let i=0;i<5;i++) out += '<i class="fa-solid fa-star text-yellow-400 text-sm' + (i < n ? '' : ' opacity-30') + '"></i>';
+      return out;
+    }
+    function countryFlag(country){
+      const map = { 'United States':'us','USA':'us','Canada':'ca','Mexico':'mx','Germany':'de','United Kingdom':'gb','UK':'gb','South Korea':'kr','Korea':'kr','Japan':'jp','China':'cn','France':'fr' };
+      const code = map[String(country||'').trim()] || null;
+      return code ? ('https://flagcdn.com/w20/' + code + '.png') : null;
+    }
+    function toCard(r){
+      const api = window.__apiOrigin || (window.location.origin);
+      const normalizeImg = function(u){
+        try{
+          if(!u) return 'https://storage.googleapis.com/uxpilot-auth.appspot.com/fa6a459112-4e56cdda369556ebd935.png';
+          let s = String(u);
+          const base = String(api).replace(/\/?api\/?$/, '');
+          const uploadsBase = (function(){
+            try { return window.__uploadsBase || base; } catch(_) { return base; }
+          })();
+          s = s.replace(/^https?:\/\/localhost:(3000|3003)\//, base + '/');
+          s = s.replace(/^https?:\/\/127\.0\.0\.1:(3000|3003)\//, base + '/');
+          if (s.startsWith('/uploads/')) return uploadsBase + s;
+          if(/^https?:\/\//.test(s)) return s;
+          return s.startsWith('/') ? (base + s) : (base + '/' + s);
+        }catch(_){
+          return 'https://storage.googleapis.com/uxpilot-auth.appspot.com/fa6a459112-4e56cdda369556ebd935.png';
+        }
+      };
+      const img = normalizeImg(r.image_url);
+      const title = escapeHtml(r.title);
+      const desc = escapeHtml(r.description);
+      const parts = String(desc).trim().split(/\s+/);
+      const truncated = parts.slice(0,15).join(' ');
+      const truncatedDisplay = truncated + (parts.length > 15 ? '...' : '');
+      const country = escapeHtml(r.country);
+      const flag = countryFlag(country);
+      const link = (r.listingId != null) ? ('product-detail.html?id=' + encodeURIComponent(r.listingId)) : null;
+      return (
+        '<div class="flex-none w-11/12 sm:w-1/2 lg:w-1/3 px-2 snap-start">'
+        + '<div class="bg-white rounded-lg overflow-hidden group cursor-pointer shadow-lg hover:shadow-xl transition-all rv-card">'
+        + '<div class="overflow-hidden rounded-t-lg">'
+          +   '<img class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" src="' + img + '" alt="Review image">'
+        + '</div>'
+        + '<div class="p-6">'
+        +   '<div class="flex items-center mb-3">'
+        +     '<div class="w-12 h-12 rounded-full mr-4 bg-gray-200 flex items-center justify-center text-gray-600">' + (r.buyer_email ? escapeHtml(String(r.buyer_email).charAt(0).toUpperCase()) : 'B') + '</div>'
+        +     '<div>'
+        +       '<h4 class="font-semibold text-gray-900">' + (r.buyer_email ? escapeHtml(r.buyer_email) : 'Verified Buyer') + '</h4>'
+        +       '<div class="flex items-center space-x-1">' + starIcons(r.rating) + '</div>'
+        +     '</div>'
+        +   '</div>'
+        +   '<h3 class="text-xl font-bold text-gray-900 mb-2">' + title + '</h3>'
+        +   '<p class="text-gray-600 mb-4 review-desc" data-desc="' + desc + '" data-truncated="' + truncatedDisplay + '" data-expanded="false">' + truncatedDisplay + '</p>'
+        +   '<div class="flex items-center space-x-2 text-gray-700">'
+        +     (flag ? ('<img src="' + flag + '" alt="' + country + ' flag" class="w-5 h-auto">') : '')
+        +     '<span>' + country + '</span>'
+        +   '</div>'
+        +   (link ? ('<div class="mt-3"><a class="text-red-500 hover:underline" href="' + link + '" target="_blank">View product</a></div>') : '')
+        + '</div>'
+        + '</div>'
+        + '</div>'
+      );
+    }
+    (async function load(){
+      const api = window.__apiOrigin || (window.location.origin);
+      try {
+        const r2 = await fetch('backend/reviews.json', { cache: 'no-store' });
+        if (r2 && r2.ok) {
+          const data2 = await r2.json();
+          if (Array.isArray(data2) && data2.length > 0) { grid.innerHTML = data2.map(toCard).join(''); return; }
+        }
+      } catch(_) {}
+      try{
+        const res = await fetch(api + '/public/reviews?limit=6', { cache: 'no-store' });
+        if(res && res.ok){
+          const data = await res.json();
+          if(Array.isArray(data) && data.length > 0){ grid.innerHTML = data.map(toCard).join(''); }
+        }
+      }catch(_){ }
+    })();
+    grid.addEventListener('click', function(ev){
+      var card = ev.target.closest('.rv-card');
+      if(!card) return;
+      if (ev.target.closest('a')) return;
+      var p = card.querySelector('.review-desc');
+      if(!p) return;
+      var isExpanded = String(p.getAttribute('data-expanded')||'false') === 'true';
+      var full = String(p.getAttribute('data-desc')||'');
+      var trunc = String(p.getAttribute('data-truncated')||'');
+      if(isExpanded){
+        p.textContent = trunc;
+        p.setAttribute('data-expanded','false');
+      } else {
+        p.textContent = full;
+        p.setAttribute('data-expanded','true');
+      }
+    });
+  })();
+</script>
+
+<!-- COMPONENT: Clearance Sale Section -->
+<section id="clearance-sale" class="py-20 bg-gray-50">
+    <div class="container mx-auto px-6">
+        <div class="flex justify-between items-center mb-10">
+            <h2 class="text-4xl font-bold text-gray-800 cl-title">
+                Clearance <span class="text-red-500">Sale</span>
+            </h2>
+            <a href="inventory.html" class="text-lg font-medium text-gray-600 hover:text-red-500 transition-colors flex items-center cl-link">
+                view more
+                <i class="fa-solid fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+
+        <div class="relative">
+            <!-- Slider Container -->
+            <div id="clearance-slider" class="flex overflow-x-auto no-scrollbar snap-x snap-mandatory scroll-smooth -mx-2"></div>
+            
+            <!-- Navigation Arrows -->
+            <button id="clearance-prev" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-red-500 hover:bg-gray-50 transition-all z-10 opacity-75 hover:opacity-100" aria-label="Previous">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button id="clearance-next" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-red-500 hover:bg-gray-50 transition-all z-10 opacity-75 hover:opacity-100" aria-label="Next">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+        <style>
+          .cl-title,.cl-link{opacity:0}
+          .cl-title.is-visible,.cl-link.is-visible{opacity:1;transition:opacity 2s cubic-bezier(0.4,0,0.2,1)}
+          .cl-card{opacity:0;transform:translateY(40px);will-change:transform,opacity}
+          @keyframes cl-fadeUp{0%{opacity:0;transform:translateY(40px)}100%{opacity:1;transform:translateY(0)}}
+          .cl-card.is-visible{animation:cl-fadeUp 2s cubic-bezier(0.4,0,0.2,1) forwards}
+        </style>
+    </div>
+</section>
+
+<script>
+(function(){
+  var api = window.__apiOrigin || window.location.origin;
+  var container = document.getElementById('clearance-slider');
+  if (!container) return;
+  function norm(s){ try { return String(s||'').toLowerCase().trim(); } catch(_) { return ''; } }
+  function findTagId(){
+    return fetch('backend/tags.json',{cache:'no-store'}).then(function(r){ return r.ok?r.json():[]; }).catch(function(){ return []; }).then(function(tags){
+      for(var i=0;i<(tags||[]).length;i++){ var t=tags[i]; if(norm(t.slug)==='clearance-sale' || norm(t.name)==='clearance sale'){ var id=Number(t.id); if(Number.isFinite(id)) return id; } }
+      return 109;
+    });
+  }
+  function isAdmin(l){ return (l && (l.seller_id!==undefined?l.seller_id:l.sellerId))==null; }
+  function hasTag(l, id){
+    var ids = Array.isArray(l&&l.tag_ids)?l.tag_ids:[];
+    for(var i=0;i<ids.length;i++){ if(Number(ids[i])===Number(id)) return true; }
+    var names = Array.isArray(l&&l.tags)?l.tags:[];
+    for(var j=0;j<names.length;j++){ if(norm(names[j])==='clearance sale' || norm(names[j])==='clearance-sale') return true; }
+    return false;
+  }
+  function imgSrc(l){
+    var s = (l && (l.image_url||'')) || (Array.isArray(l&&l.photos)&&l.photos[0]&&(l.photos[0].dataUrl||l.photos[0].url||l.photos[0].name)) || '';
+    return normalizeImageSrc(s);
+  }
+  function priceText(l){ var p=Number(l&&l.price||0); return p>0?('$ '+p.toLocaleString()):'$ 0'; }
+  function title(l){ return String(l&&l.title||'').trim(); }
+  function yearMaker2(l){ var y=(l&&l.vehicle&&l.vehicle.year)||(l&&l.insuranceHistory&&l.insuranceHistory.year); var m=(l&&l.insuranceHistory&&l.insuranceHistory.manufacturer)||(l&&l.vehicle&&(l.vehicle.manufacturer||l.vehicle.maker||l.vehicle.make)); var out=[y,m].filter(Boolean).join(' '); return out||'\u2014'; }
+  function cardHtml(l){
+    return (
+      '<div class="flex-none px-2 snap-start" style="width:17rem">'+
+      '<div class="bg-white rounded-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300 cl-card">'+
+        '<div class="relative">'+
+          '<div class="absolute top-3 left-3 bg-red-500 text-white text-xs px-2 py-1 rounded-full font-bold">CLEARANCE</div>'+
+          '<img class="w-full h-[12.1rem] object-cover rounded-t-lg" src="'+imgSrc(l)+'" alt="'+title(l).replace(/"/g,'')+'">'+
+        '</div>'+
+        '<div class="p-5">'+
+          '<p class="text-sm text-gray-500 mb-1">'+yearMaker2(l)+'</p>'+
+          '<h3 class="text-lg font-bold text-gray-900 mb-4 truncate">'+title(l)+'</h3>'+
+          '<div class="grid grid-cols-6 gap-x-4 gap-y-2 text-[10px] text-gray-600 mb-4">'+
+          '<div class="flex items-center col-span-3"><i class="fa-solid fa-tachometer-alt w-4 mr-2 text-gray-400"></i><span>'+(l&&l.vehicle&&l.vehicle.mileageKm? (Number(l.vehicle.mileageKm).toLocaleString()+' KM'):'\u2014')+'</span></div>'+
+          '<div class="flex items-center col-span-3"><i class="fa-solid fa-gas-pump w-4 mr-2 text-gray-400"></i><span>'+(l&&l.vehicle&&l.vehicle.fuel? String(l.vehicle.fuel).toUpperCase() : (l&&l.insuranceHistory&&l.insuranceHistory.fuel? String(l.insuranceHistory.fuel).toUpperCase() : '\u2014'))+'</span></div>'+
+          '<div class="flex items-center col-span-2"><i class="fa-solid fa-cogs w-4 mr-2 text-gray-400"></i><span>'+(l&&l.vehicle&&l.vehicle.displacementL? Math.round(Number(l.vehicle.displacementL)*1000)+'cc':'\u2014')+'</span></div>'+
+          '<div class="flex items-center col-span-2"><i class="fa-solid fa-car-side w-4 mr-2 text-gray-400"></i><span>'+(l&&l.vehicle&&l.vehicle.transmission? String(l.vehicle.transmission).toUpperCase():'\u2014')+'</span></div>'+
+          '<div class="flex items-center col-span-2"><i class="fa-solid fa-map-marker-alt w-4 mr-2 text-gray-400"></i><span class="whitespace-nowrap">'+((l&&l.vehicle&&l.vehicle.location)||(l&&l.insuranceHistory&&(l.insuranceHistory.location||l.insuranceHistory.country))||'\u2014')+'</span></div>'+
+          '</div>'+
+          '<div class="text-right"><span class="text-2xl font-bold text-gray-900">'+priceText(l)+'</span></div>'+
+        '</div>'+
+      '</div>'+
+      '</div>'
+    );
+  }
+  function fetchLocal(tagId){
+    return fetch('backend/listings.json',{cache:'no-store'}).then(function(r){ return r.json().catch(function(){ return []; }); }).catch(function(){ return []; }).then(function(raw){ return (Array.isArray(raw)?raw:[]).filter(function(l){ return isAdmin(l) && hasTag(l, tagId); }); });
+  }
+  function fetchRemote(){
+    var url = api + '/public/listings/by-tag?tag=clearance-sale&origin=admin';
+    return fetch(url,{cache:'no-store'}).then(function(r){ return r.json().catch(function(){ return {}; }); }).then(function(data){ var arr = Array.isArray(data&&data.listings)?data.listings:(Array.isArray(data)?data:[]); return arr; }).catch(function(){ return []; });
+  }
+  findTagId().then(function(tagId){ return fetchLocal(tagId).then(function(arr){ if(!arr||!arr.length) return fetchRemote(); return arr; }); }).then(function(items){ items=(Array.isArray(items)?items:[]).filter(function(l){ return isAdmin(l); }); var top=items.slice(0,4); container.innerHTML = top.map(cardHtml).join(''); Array.prototype.forEach.call(container.querySelectorAll('div.bg-white'), function(card, i){ card.addEventListener('click', function(){ var l=top[i]; var id = (l && (l.id!=null?l.id:(l.product_id_number||l.productIdNumber||l.productId))) || ''; var href = id ? ('product-detail.html?id='+encodeURIComponent(String(id))) : 'inventory.html'; window.open(href,'_blank'); }); }); });
+
+  var section = document.getElementById('clearance-sale');
+  var activated = false;
+  function reveal(){
+    var t = section.querySelector('.cl-title');
+    var l = section.querySelector('.cl-link');
+    if(t) t.classList.add('is-visible');
+    if(l) l.classList.add('is-visible');
+    var cards = Array.prototype.slice.call(container.querySelectorAll('.cl-card'));
+    for(var i=0;i<cards.length;i++){
+      var d = 200*i;
+      cards[i].style.animationDelay = d+'ms';
+      cards[i].classList.add('is-visible');
+    }
+  }
+  var io = new IntersectionObserver(function(entries){
+    for(var i=0;i<entries.length;i++){
+      var e = entries[i];
+      if(e.isIntersecting){
+        activated = true;
+        reveal();
+        io.disconnect();
+        break;
+      }
+    }
+  }, {root:null, threshold:0.2});
+  io.observe(section);
+  var mo = new MutationObserver(function(){ if(activated) reveal(); });
+  mo.observe(container, { childList: true });
+})();
+</script>
+
+<!-- COMPONENT: Most Affordable Cars Section -->
+<section id="affordable-cars" class="py-20 bg-gray-50">
+    <div class="container mx-auto px-6">
+        <div class="flex justify-between items-center mb-10">
+            <h2 class="text-4xl font-bold text-gray-800 af-title">
+                Most <span class="text-red-500">Affordable</span>
+            </h2>
+            <a href="inventory.html" class="text-lg font-medium text-gray-600 hover:text-red-500 transition-colors flex items-center af-link">
+                view more
+                <i class="fa-solid fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+
+        <div class="relative">
+            <div id="affordable-slider" class="flex overflow-x-auto no-scrollbar snap-x snap-mandatory scroll-smooth -mx-2"></div>
+            
+            <!-- Navigation Arrows -->
+            <button id="affordable-prev" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-red-500 hover:bg-gray-50 transition-all z-10 opacity-75 hover:opacity-100">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button id="affordable-next" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-red-500 hover:bg-gray-50 transition-all z-10 opacity-75 hover:opacity-100">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+        <style>
+          .af-title,.af-link{opacity:0}
+          .af-title.is-visible,.af-link.is-visible{opacity:1;transition:opacity 2s ease-in-out}
+          .af-card{opacity:0;transform:translateY(50px);will-change:transform,opacity}
+          @keyframes af-fadeUp{0%{opacity:0;transform:translateY(50px)}100%{opacity:1;transform:translateY(0)}}
+          .af-card.is-visible{animation:af-fadeUp 2s ease-in-out forwards}
+        </style>
+    </div>
+</section>
+
+<script>
+(function(){
+  var api = window.__apiOrigin || window.location.origin;
+  var container = document.getElementById('affordable-slider');
+  if (!container) return;
+  function norm(s){ try { return String(s||'').toLowerCase().trim(); } catch(_) { return ''; } }
+  function findTagId(){
+    return fetch('backend/tags.json',{cache:'no-store'}).then(function(r){ return r.ok?r.json():[]; }).catch(function(){ return []; }).then(function(tags){
+      for(var i=0;i<(tags||[]).length;i++){ var t=tags[i]; if(norm(t.slug)==='most-affordable' || norm(t.name)==='most affordable'){ var id=Number(t.id); if(Number.isFinite(id)) return id; } }
+      return 110;
+    });
+  }
+  function hasTag(l, id){
+    var ids = Array.isArray(l&&l.tag_ids)?l.tag_ids:[];
+    for(var i=0;i<ids.length;i++){ if(Number(ids[i])===Number(id)) return true; }
+    var names = Array.isArray(l&&l.tags)?l.tags:[];
+    for(var j=0;j<names.length;j++){ if(norm(names[j])==='most affordable' || norm(names[j])==='most-affordable') return true; }
+    return false;
+  }
+  function imgSrc(l){
+    var s = (l && (l.image_url||'')) || (Array.isArray(l&&l.photos)&&l.photos[0]&&(l.photos[0].dataUrl||l.photos[0].url||l.photos[0].name)) || '';
+    return normalizeImageSrc(s);
+  }
+  function priceText(l){ var p=Number(l&&l.price||0); return p>0?('$ '+p.toLocaleString()):'$ 0'; }
+  function title(l){ return String(l&&l.title||'').trim(); }
+  function yearMaker2(l){ var y=(l&&l.vehicle&&l.vehicle.year)||(l&&l.insuranceHistory&&l.insuranceHistory.year); var m=(l&&l.insuranceHistory&&l.insuranceHistory.manufacturer)||(l&&l.vehicle&&(l.vehicle.manufacturer||l.vehicle.maker||l.vehicle.make)); var out=[y,m].filter(Boolean).join(' '); return out||'—'; }
+  function cardHtml(l){
+    return (
+      '<div class="flex-none px-2 snap-start" style="width:17rem">'+
+      '<div class="bg-white rounded-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300 af-card">'+
+        '<div class="relative">'+
+          '<div class="absolute top-3 right-3 bg-blue-500 text-white text-xs px-2 py-1 rounded-full font-bold">AFFORDABLE</div>'+
+          '<img class="w-full h-[12.1rem] object-cover rounded-t-lg" src="'+imgSrc(l)+'" alt="'+title(l).replace(/"/g,'')+'">'+
+        '</div>'+
+        '<div class="p-5">'+
+          '<p class="text-sm text-gray-500 mb-1">'+yearMaker2(l)+'</p>'+
+          '<h3 class="text-lg font-bold text-gray-900 mb-4 truncate">'+title(l)+'</h3>'+
+          '<div class="grid grid-cols-6 gap-x-4 gap-y-2 text-[10px] text-gray-600 mb-4">'+
+            '<div class="flex items-center col-span-3"><i class="fa-solid fa-tachometer-alt w-4 mr-2 text-gray-400"></i><span>'+(l&&l.vehicle&&l.vehicle.mileageKm? (Number(l.vehicle.mileageKm).toLocaleString()+' KM'):'—')+'</span></div>'+
+            '<div class="flex items-center col-span-3"><i class="fa-solid fa-gas-pump w-4 mr-2 text-gray-400"></i><span>'+(l&&l.vehicle&&l.vehicle.fuel? String(l.vehicle.fuel).toUpperCase() : (l&&l.insuranceHistory&&l.insuranceHistory.fuel? String(l.insuranceHistory.fuel).toUpperCase() : '—'))+'</span></div>'+
+            '<div class="flex items-center col-span-2"><i class="fa-solid fa-cogs w-4 mr-2 text-gray-400"></i><span>'+(l&&l.vehicle&&l.vehicle.displacementL? Math.round(Number(l.vehicle.displacementL)*1000)+'cc':'—')+'</span></div>'+
+            '<div class="flex items-center col-span-2"><i class="fa-solid fa-car-side w-4 mr-2 text-gray-400"></i><span>'+(l&&l.vehicle&&l.vehicle.transmission? String(l.vehicle.transmission).toUpperCase():'—')+'</span></div>'+
+            '<div class="flex items-center col-span-2"><i class="fa-solid fa-map-marker-alt w-4 mr-2 text-gray-400"></i><span class="whitespace-nowrap">'+((l&&l.vehicle&&l.vehicle.location)||(l&&l.insuranceHistory&&(l.insuranceHistory.location||l.insuranceHistory.country))||'—')+'</span></div>'+
+          '</div>'+
+          '<div class="text-right"><span class="text-2xl font-bold text-gray-900">'+priceText(l)+'</span></div>'+
+        '</div>'+
+      '</div>'+
+      '</div>'
+    );
+  }
+  function fetchApi(){
+    var url = api + '/public/listings/by-tag?tag=most-affordable';
+    return fetch(url,{cache:'no-store'}).then(function(r){ return r.json().catch(function(){ return {}; }); }).then(function(data){ var arr = Array.isArray(data&&data.listings)?data.listings:(Array.isArray(data)?data:[]); return arr; }).catch(function(){ return []; });
+  }
+  function fetchFallback(tagId){
+    var pub = fetch(api+'/public/listings',{cache:'no-store'}).then(function(r){ return r.json().catch(function(){ return {}; }); }).then(function(d){ return Array.isArray(d&&d.listings)?d.listings:[]; }).catch(function(){ return []; });
+    var raw = fetch('backend/listings.json',{cache:'no-store'}).then(function(r){ return r.json().catch(function(){ return []; }); }).catch(function(){ return []; });
+    return Promise.all([pub,raw]).then(function(xs){ var map=new Map(); (xs[1]||[]).forEach(function(l){ if(l&&l.id!=null) map.set(String(l.id), l); }); (xs[0]||[]).forEach(function(l){ if(l&&l.id!=null) map.set(String(l.id), l); }); var all=Array.from(map.values()); return all.filter(function(l){ return hasTag(l, tagId); }); });
+  }
+  findTagId().then(function(tagId){ return fetchApi().then(function(arr){ if(!arr||!arr.length) return fetchFallback(tagId); return arr; }); }).then(function(items){ items=(Array.isArray(items)?items:[]); var top=items.slice(0,4); container.innerHTML = top.map(cardHtml).join(''); Array.prototype.forEach.call(container.querySelectorAll('div.bg-white'), function(card, i){ card.addEventListener('click', function(){ var l=top[i]; var id = (l && (l.id!=null?l.id:(l.product_id_number||l.productIdNumber||l.productId))) || ''; var href = id ? ('product-detail.html?id='+encodeURIComponent(String(id))) : 'inventory.html'; window.open(href,'_blank'); }); }); });
+
+  var section = document.getElementById('affordable-cars');
+  var activated = false;
+  function reveal(){
+    var t = section.querySelector('.af-title');
+    var l = section.querySelector('.af-link');
+    if(t) t.classList.add('is-visible');
+    if(l) l.classList.add('is-visible');
+    var cards = Array.prototype.slice.call(container.querySelectorAll('.af-card'));
+    for(var i=0;i<cards.length;i++){
+      var d = 200*i;
+      cards[i].style.animationDelay = d+'ms';
+      cards[i].classList.add('is-visible');
+    }
+  }
+  var io = new IntersectionObserver(function(entries){
+    for(var i=0;i<entries.length;i++){
+      var e = entries[i];
+      if(e.isIntersecting){
+        activated = true;
+        reveal();
+        io.disconnect();
+        break;
+      }
+    }
+  }, {root:null, threshold:0.2});
+  io.observe(section);
+  var mo = new MutationObserver(function(){ if(activated) reveal(); });
+  mo.observe(container, { childList: true });
+})();
+</script>
+
+<!-- COMPONENT: How to Use MangoCar Section -->
+<section id="how-to-use" class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+        <div class="mb-16">
+            <h2 class="text-4xl font-bold text-gray-800 ht-title">How to use <span class="text-red-500">Autos NSM</span>?</h2>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- How to Pay Card -->
+            <div id="how-to-pay-card" class="bg-white rounded-xl border border-gray-200 p-8 flex flex-col justify-between shadow-sm hover:shadow-lg transition-shadow duration-300 h-[250px] ht-card">
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">How to Pay?</h3>
+                    <p class="text-gray-600">
+                        Purchase a reliable used car conveniently at Autos NSM.
+                        <br>
+                        Search and Choose your car, and follow simple steps.
+                    </p>
+                </div>
+                <div class="self-end">
+                     <i class="fa-solid fa-credit-card text-gray-300 text-5xl"></i>
+                </div>
+            </div>
+
+            <!-- How to Buy Card -->
+            <div id="how-to-buy-card" class="bg-white rounded-xl border border-gray-200 p-8 flex flex-col justify-between shadow-sm hover:shadow-lg transition-shadow duration-300 h-[250px] ht-card">
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">How to Buy?</h3>
+                    <p class="text-gray-600">
+                        Make a secure payment through bank transfer!
+                        <br>
+                        Confirm Autos NSM bank account, and follow some steps to pay.
+                    </p>
+                </div>
+                <div class="self-end">
+                    <i class="fa-solid fa-cart-shopping text-gray-300 text-5xl"></i>
+                </div>
+            </div>
+        </div>
+        <style>
+          .ht-title{opacity:0}
+          .ht-title.is-visible{opacity:1;transition:opacity 2s cubic-bezier(0.25,0.46,0.45,0.94)}
+          .ht-card{opacity:0;transform:translateY(40px);will-change:transform,opacity}
+          @keyframes ht-fadeUp{0%{opacity:0;transform:translateY(40px)}100%{opacity:1;transform:translateY(0)}}
+          .ht-card.is-visible{animation:ht-fadeUp 2s cubic-bezier(0.25,0.46,0.45,0.94) forwards}
+        </style>
+        <script>
+          (function(){
+            var section=document.getElementById('how-to-use');
+            if(!section) return;
+            var title=section.querySelector('.ht-title');
+            var cards=Array.prototype.slice.call(section.querySelectorAll('.ht-card'));
+            var obs=new IntersectionObserver(function(entries){
+              for(var i=0;i<entries.length;i++){
+                var e=entries[i];
+                if(e.isIntersecting){
+                  if(title) title.classList.add('is-visible');
+                  for(var j=0;j<cards.length;j++){
+                    var d=(j===0?200:500);
+                    cards[j].style.animationDelay=d+'ms';
+                    cards[j].classList.add('is-visible');
+                  }
+                  obs.disconnect();
+                  break;
+                }
+              }
+            },{root:null,threshold:0.2});
+            obs.observe(section);
+          })();
+        </script>
+    </div>
+</section>
+
+<!-- COMPONENT: From The Blog Section -->
+<section id="blog-section" class="py-20 bg-gray-50">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-gray-800 bl-title">From The <span class="text-red-500">Blog</span></h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto bl-subtitle">Stay informed with the latest automotive news, buying tips, and maintenance advice</p>
+        </div>
+        
+        <div class="relative">
+            <div id="blog-grid-home" class="flex overflow-x-auto no-scrollbar snap-x snap-mandatory scroll-smooth -mx-2"></div>
+            <button id="blog-prev" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-red-500 hover:bg-gray-50 transition-all z-10 opacity-75 hover:opacity-100" aria-label="Previous">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button id="blog-next" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-red-500 hover:bg-gray-50 transition-all z-10 opacity-75 hover:opacity-100" aria-label="Next">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+        
+        <div class="text-center mt-12">
+            <button id="blog-view-all" class="bg-red-500 hover:bg-red-600 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all bl-button">
+                View All Articles
+            </button>
+        </div>
+    </div>
+</section>
+<style>
+  .bl-title,.bl-subtitle{opacity:0}
+  .bl-title.is-visible,.bl-subtitle.is-visible{opacity:1;transition:opacity 2s ease-out}
+  .bl-card,.bl-button{opacity:0;transform:translateY(40px);will-change:transform,opacity}
+  @keyframes bl-fadeUp{0%{opacity:0;transform:translateY(40px)}100%{opacity:1;transform:translateY(0)}}
+  .bl-card.is-visible,.bl-button.is-visible{animation:bl-fadeUp 2s ease-out forwards}
+</style>
+<script>
+(function(){
+  var grid = document.getElementById('blog-grid-home');
+  if (!grid) return;
+  function normalize(u){
+    try{
+      var s = String(u||'').trim(); if(!s) return '';
+      var api = window.__apiOrigin || (window.location.origin + '/api');
+      var base = String(api).replace(/\/?api\/?$/, '');
+      var m = s.match(/^https?:\/\/(localhost|127\.0\.0\.1):(3000|3003)(\/.*)$/i);
+      if (m) return base + m[3];
+      if (s.indexOf('/uploads/') === 0) {
+        try {
+          var upBase = window.__uploadsBase || base;
+          return String(upBase).replace(/\/$/, '') + s;
+        } catch(_){
+          return base + s;
+        }
+      }
+      return s;
+    }catch(_){ return u; }
+  }
+  function strip(html){ var d=document.createElement('div'); d.innerHTML=html||''; return (d.textContent||d.innerText||'').trim(); }
+  function excerpt(t, n){ t=(t||'').trim(); return t.length>n? (t.slice(0,n).trim()+'…') : t; }
+  function fmt(d){ try { return new Date(d).toLocaleDateString(); } catch(_) { return ''; } }
+  function label(i){ var colors=['text-red-500','text-blue-500','text-green-500']; return { text:'BLOG', cls: colors[i % colors.length] }; }
+  function card(b,i){
+    var img = normalize(b && b.featured_image_url);
+    var title = (b && b.title) || '';
+    var desc = excerpt(strip(b && b.description_html), 160);
+    var date = fmt(b && b.created_at);
+    var lab = label(i);
+    return '<div class="flex-none w-11/12 sm:w-1/2 lg:w-1/3 px-2 snap-start">\n'
+      + '<article class="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-xl transition-all bl-card">\n'
+      + '<div class="relative overflow-hidden">\n'
+      + (img? '<img class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500" src="'+img+'" alt="'+title.replace(/"/g,'')+'">'
+             : '<div class="w-full h-64 bg-gray-200"></div>')
+      + '<div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-500"></div>'
+      + '</div>\n'
+      + '<div class="p-6">\n'
+      + '<div class="text-sm '+lab.cls+' font-semibold mb-2">'+lab.text+'</div>'
+      + '<h3 class="text-xl font-bold text-gray-900 mb-3">'+title+'</h3>'
+      + '<p class="text-gray-600 mb-4">'+desc+'</p>'
+      + '<div class="flex items-center justify-between">\n'
+      + '<span class="text-sm text-gray-500">'+date+'</span>'
+      + '<button class="text-red-500 hover:text-red-600 font-semibold opacity-0 group-hover:opacity-100 transition-all" onclick="window.open(\'blog-post.html?id=' + (b && b.id ? b.id : '') + '\', \'_blank\')">Read More</button>'
+      + '</div>\n'
+      + '</div>\n'
+      + '</article>\n'
+      + '</div>';
+  }
+  async function load(){
+    grid.innerHTML='';
+    var api = window.__apiOrigin || (window.location.origin + '/api');
+    try{
+      var r = await fetch(api + '/public/blogs', { headers: { 'Accept': 'application/json' }, cache:'no-store' });
+      var d = await r.json().catch(function(){return {};});
+      var arr = Array.isArray(d.blogs) ? d.blogs : (Array.isArray(d) ? d : []);
+      if (!arr.length) throw new Error('empty');
+      grid.innerHTML = arr.slice(0,6).map(function(b,i){ return card(b,i); }).join('');
+    }catch(_){
+      try{
+        var r2 = await fetch('backend/blogs.json', { headers: { 'Accept': 'application/json' } });
+        var d2 = await r2.json().catch(function(){return [];});
+        var arr2 = Array.isArray(d2.blogs) ? d2.blogs : (Array.isArray(d2) ? d2 : []);
+        grid.innerHTML = arr2.slice(0,6).map(function(b,i){ return card(b,i); }).join('');
+      }catch(__){}
+    }
+  }
+  load();
+  var section = document.getElementById('blog-section');
+  var activated = false;
+  function reveal(){
+    var title = section ? section.querySelector('.bl-title') : null;
+    var subtitle = section ? section.querySelector('.bl-subtitle') : null;
+    var button = document.getElementById('blog-view-all');
+    if(title) title.classList.add('is-visible');
+    if(subtitle) subtitle.classList.add('is-visible');
+    var cards = Array.prototype.slice.call(grid.querySelectorAll('.bl-card'));
+    for(var i=0;i<cards.length && i<2;i++){
+      var d = (i===0?300:600);
+      cards[i].style.animationDelay = d+'ms';
+      cards[i].classList.add('is-visible');
+    }
+    if(button){
+      button.style.animationDelay = '900ms';
+      button.classList.add('is-visible');
+    }
+  }
+  var obs = new IntersectionObserver(function(entries){
+    for(var i=0;i<entries.length;i++){
+      var e = entries[i];
+      if(e.isIntersecting){
+        activated = true;
+        reveal();
+        obs.disconnect();
+        break;
+      }
+    }
+  }, {root:null, threshold:0.2});
+  if(section) obs.observe(section);
+  var mo = new MutationObserver(function(){ if(activated) reveal(); });
+  mo.observe(grid, { childList: true });
+  try {
+    var viewAll = document.getElementById('blog-view-all');
+    if (viewAll) viewAll.addEventListener('click', function(){ window.location.href = 'blog.html'; });
+  } catch(_){}
+})();
+</script>
+ 
+
+<!-- COMPONENT: Footer -->
+<footer id="footer" class="bg-[#f5f5f5] text-[#666666]">
+  <div class="max-w-7xl mx-auto px-[24px] py-[32px]">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-[32px]">
+      <div class="space-y-[10px] text-[15px] leading-[26px]">
+        <div><span class="text-[#444444]">대표자</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">카일자민파룩아마드</span></div>
+        <div><span class="text-[#444444]">사업자등록 번호</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">470-88-00357</span></div>
+        <div><span class="text-[#444444]">주소</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">인천광역시 연수구 옥련로37 씨동 306호</span></div>
+        <div class="pt-[6px] flex items-center space-x-[14px] text-[20px]">
+          <a href="https://www.instagram.com/autonsm?igsh=ZmU2M2ppZzk1ZjVv&utm_source=qr" target="_blank" rel="noopener noreferrer" class="text-[#666666] hover:text-[#111111]">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="https://www.facebook.com/share/1A3NGCuwXh/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="text-[#666666] hover:text-[#111111]">
+            <i class="fa-brands fa-facebook"></i>
+          </a>
+          <a href="https://www.tiktok.com/@autonsm" target="_blank" rel="noopener noreferrer" class="text-[#666666] hover:text-[#111111]">
+            <i class="fa-brands fa-tiktok"></i>
+          </a>
+        </div>
+      </div>
+      <div class="space-y-[10px] text-[15px] leading-[26px]">
+        <div><span class="text-[#444444]">Email</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">info@autonsm.com</span></div>
+        <div>
+          <span class="text-[#444444]">TEL</span>
+          <span class="text-[#666666] whitespace-pre">   +82 10-9199-9687 (English, Korean)</span>
+        </div>
+        <div><span class="text-[#444444]">TEL</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">+821098699687</span></div>
+        <div><span class="text-[#666666] whitespace-pre">306 C dong  37 Okryeon ro  Yeonsu gu Incheon South Korea</span></div>
+      </div>
+    </div>
+    <div class="mt-[28px] border-t border-[#e5e7eb] pt-[18px]">
+      <div class="flex flex-col md:flex-row items-center justify-between">
+        <div class="text-[14px] text-[#666666] space-x-[18px]">
+          <a href="private-policy.html" class="hover:text-[#111111]">Private Policy</a>
+          <a href="terms-of-service.html" class="hover:text-[#111111]">Terms of Service</a>
+        </div>
+        <div class="text-[14px] text-[#666666] mt-[12px] md:mt-0">Copyright © Auto Nsm. All rights Reserved.</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+
+// Hero slider removed; associated JS eliminated per request
+
+// Tab functionality for Best Sellers section
+document.querySelectorAll('.tab-button').forEach(button => {
+    button.addEventListener('click', () => {
+        document.querySelectorAll('.tab-button').forEach(btn => {
+            btn.classList.remove('active', 'bg-white', 'text-gray-900');
+            btn.classList.add('text-gray-600');
+        });
+        
+        button.classList.add('active', 'bg-white', 'text-gray-900');
+        button.classList.remove('text-gray-600');
+    });
+});
+
+// Skeleton loading animation
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        document.querySelectorAll('.skeleton').forEach(skeleton => {
+            skeleton.classList.add('fade-slide-up');
+            skeleton.classList.remove('skeleton');
+        });
+    }, 1000);
+});
+
+// Sticky header shadow effect
+window.addEventListener('scroll', () => {
+    const header = document.getElementById('header');
+    if (window.scrollY > 10) {
+        header.classList.add('shadow-xl');
+    } else {
+        header.classList.remove('shadow-xl');
+    }
+});
+
+// Intersection Observer for animations
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('fade-slide-up');
+        }
+    });
+}, observerOptions);
+
+document.querySelectorAll('.stagger-animation').forEach((el, index) => {
+    el.style.animationDelay = `${index * 0.2}s`;
+    observer.observe(el);
+});
+
+// New Arrivals slider functionality
+let newArrivalSlide = 0;
+const newArrivalSlides = document.querySelectorAll('#new-arrival-slider .snap-start');
+const newArrivalTotal = newArrivalSlides.length;
+
+function showNewArrivalSlide(index) {
+    if (!newArrivalTotal || index < 0 || index >= newArrivalTotal) return;
+    // Hide all slides
+    newArrivalSlides.forEach((slide) => {
+        slide.style.opacity = '0';
+    });
+    
+    // Show current slide
+    const current = newArrivalSlides[index];
+    if (current) {
+        current.style.opacity = '1';
+        newArrivalSlide = index;
+    }
+}
+
+function nextNewArrivalSlide() {
+    if (!newArrivalTotal) return;
+    const nextIndex = (newArrivalSlide + 1) % newArrivalTotal;
+    showNewArrivalSlide(nextIndex);
+}
+
+function prevNewArrivalSlide() {
+    if (!newArrivalTotal) return;
+    const prevIndex = (newArrivalSlide - 1 + newArrivalTotal) % newArrivalTotal;
+    showNewArrivalSlide(prevIndex);
+}
+
+// Auto-slider functionality
+let newArrivalAutoInterval = null;
+if (newArrivalTotal > 0) {
+    newArrivalAutoInterval = setInterval(nextNewArrivalSlide, 4000);
+}
+
+// Navigation event listeners
+const newArrivalNextBtn = document.getElementById('new-arrival-next');
+if (newArrivalNextBtn) {
+    newArrivalNextBtn.addEventListener('click', () => {
+        if (newArrivalAutoInterval) clearInterval(newArrivalAutoInterval);
+        nextNewArrivalSlide();
+        if (newArrivalTotal > 0) {
+            newArrivalAutoInterval = setInterval(nextNewArrivalSlide, 4000);
+        }
+    });
+}
+
+const newArrivalPrevBtn = document.getElementById('new-arrival-prev');
+if (newArrivalPrevBtn) {
+    newArrivalPrevBtn.addEventListener('click', () => {
+        if (newArrivalAutoInterval) clearInterval(newArrivalAutoInterval);
+        prevNewArrivalSlide();
+        if (newArrivalTotal > 0) {
+            newArrivalAutoInterval = setInterval(nextNewArrivalSlide, 4000);
+        }
+    });
+}
+
+// Dot navigation
+const newArrivalDots = document.querySelectorAll('#new-arrival-slider .dot');
+newArrivalDots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+        if (newArrivalAutoInterval) clearInterval(newArrivalAutoInterval);
+        showNewArrivalSlide(index);
+        if (newArrivalTotal > 0) {
+            newArrivalAutoInterval = setInterval(nextNewArrivalSlide, 4000);
+        }
+    });
+});
+
+// Pause auto-slider on hover
+const newArrivalContainerEl = document.getElementById('new-arrival-slider');
+if (newArrivalContainerEl) {
+    newArrivalContainerEl.addEventListener('mouseenter', () => {
+        if (newArrivalAutoInterval) clearInterval(newArrivalAutoInterval);
+    });
+
+    newArrivalContainerEl.addEventListener('mouseleave', () => {
+        if (newArrivalTotal > 0) {
+            newArrivalAutoInterval = setInterval(nextNewArrivalSlide, 4000);
+        }
+    });
+}
+
+// Initialize first slide
+if (newArrivalTotal > 0) {
+    showNewArrivalSlide(0);
+}
+
+// Scroll-snap slider setup for Clearance and Most Affordable
+(function(){
+  function setupScrollSnapSlider(trackId, prevId, nextId){
+    var track = document.getElementById(trackId);
+    if (!track) return;
+    var prev = document.getElementById(prevId);
+    var next = document.getElementById(nextId);
+    function slideWidth(){ var first = track.firstElementChild; return first ? first.getBoundingClientRect().width : 0; }
+    function updateButtons(){
+      if (!prev || !next) return;
+      var maxScroll = track.scrollWidth - track.clientWidth;
+      var atStart = track.scrollLeft <= 2;
+      var atEnd = track.scrollLeft >= maxScroll - 2;
+      prev.disabled = atStart; next.disabled = atEnd;
+      prev.style.opacity = atStart ? '0.4' : '0.75';
+      next.style.opacity = atEnd ? '0.4' : '0.75';
+    }
+    if (prev) prev.addEventListener('click', function(){ track.scrollBy({ left: -slideWidth(), behavior: 'smooth' }); });
+    if (next) next.addEventListener('click', function(){ track.scrollBy({ left: slideWidth(), behavior: 'smooth' }); });
+    track.addEventListener('scroll', updateButtons);
+    try { new MutationObserver(function(){ updateButtons(); }).observe(track, { childList: true }); } catch(_){ }
+    updateButtons();
+  }
+  setupScrollSnapSlider('clearance-slider','clearance-prev','clearance-next');
+  setupScrollSnapSlider('affordable-slider','affordable-prev','affordable-next');
+  setupScrollSnapSlider('reviewsGrid','reviews-prev','reviews-next');
+  setupScrollSnapSlider('blog-grid-home','blog-prev','blog-next');
+  })();
+ 
+ // Homepage vehicle search: build query and navigate to inventory
+ (function(){
+   function val(el, def){
+     if(!el) return '';
+     const v = el.value && el.value.trim();
+     return (v && v !== def) ? v : '';
+   }
+   function buildQuery(){
+     const type = val(document.getElementById('filterType'), 'All Types');
+     const make = val(document.getElementById('filterMake'), 'All Makes');
+     const price = val(document.getElementById('filterPrice'), 'Any Price');
+     const year = val(document.getElementById('filterYear'), 'Any Year');
+     const params = new URLSearchParams();
+     if(type) params.set('type', type);
+     if(make) params.set('make', make);
+     if(price) params.set('price', price);
+     if(year) params.set('year', year);
+     return params.toString();
+   }
+   const btn = document.getElementById('searchVehiclesBtn');
+   if(btn){
+     btn.addEventListener('click', function(){
+       const qs = buildQuery();
+       const url = 'inventory.html' + (qs ? ('?' + qs) : '');
+   window.open(url, '_blank');
+     });
+   }
+ })();
+ 
+ // Secondary banner slider functionality with dynamic load from backend
+ (function(){
+   const container = document.getElementById('secondary-banner-slider');
+   if (!container) return;
+ 
+  function setupSecondarySlider(){
+    const track = container.querySelector('#secondary-banner-track');
+    if (!track) return;
+    const slides = Array.from(track.children);
+    const dots = Array.from(container.querySelectorAll('.secondary-dot'));
+    const nextBtn = document.getElementById('secondaryNext');
+    const prevBtn = document.getElementById('secondaryPrev');
+    let current = 0;
+    const total = slides.length;
+
+    function show(index){
+      track.style.transform = `translateX(-${index * 100}%)`;
+      dots.forEach((d, i) => {
+        if (i === index) { d.classList.add('active'); d.style.opacity = '1'; }
+        else { d.classList.remove('active'); d.style.opacity = '0.5'; }
+      });
+      current = index;
+    }
+    function next(){ show((current + 1) % total); }
+    function prev(){ show((current - 1 + total) % total); }
+
+    let autoInterval = setInterval(next, 5000);
+    if (nextBtn) nextBtn.addEventListener('click', () => { clearInterval(autoInterval); next(); autoInterval = setInterval(next, 5000); });
+    if (prevBtn) prevBtn.addEventListener('click', () => { clearInterval(autoInterval); prev(); autoInterval = setInterval(next, 5000); });
+    dots.forEach((dot, i) => dot.addEventListener('click', () => { clearInterval(autoInterval); show(i); autoInterval = setInterval(next, 5000); }));
+
+    const bannerSection = document.getElementById('secondary-banner');
+    if (bannerSection) {
+      bannerSection.addEventListener('mouseenter', () => { clearInterval(autoInterval); });
+      bannerSection.addEventListener('mouseleave', () => { autoInterval = setInterval(next, 5000); });
+    }
+
+    show(0);
+  }
+ 
+  async function loadSecondarySliderFromAPI(){
+    const apiOrigin = window.__apiOrigin || window.location.origin;
+    const LOCAL_PLACEHOLDER = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1' height='1'/>";
+    const BAD_HOSTS = ['storage.googleapis.com', 'appspot.com'];
+    async function fetchWithTimeout(url, opts = {}, timeoutMs = 2500) {
+      const controller = new AbortController();
+      const id = setTimeout(() => controller.abort(), timeoutMs);
+      try {
+        const res = await fetch(url, { ...opts, signal: controller.signal, cache: 'no-store', mode: 'cors' });
+        return res;
+      } finally {
+        clearTimeout(id);
+      }
+    }
+    const endpoints = [
+      'backend/secondary-slider.json',
+      apiOrigin + '/public/sliders/home-secondary'
+    ];
+    let data = null;
+    for (const url of endpoints) {
+      try {
+        const res = await fetchWithTimeout(url);
+        if (res && res.ok) {
+          const json = await res.json();
+          if (Array.isArray(json) && json.length > 0) { data = json; break; }
+        }
+      } catch (_) {}
+    }
+
+    if (!data) { setupSecondarySlider(); return; }
+ 
+      // Rebuild track, slides, and dots from API
+      container.innerHTML = '';
+      const track = document.createElement('div');
+      track.id = 'secondary-banner-track';
+      track.className = 'w-full h-full flex transition-transform duration-700 ease-in-out';
+      track.style.transform = 'translateX(0%)';
+      function normalizeBannerSrc(src){
+        const s = String(src || '').trim();
+        if (!s) return LOCAL_PLACEHOLDER;
+        const base = String(apiOrigin).replace(/\/?api\/?$/, '');
+        const uploadsBase = (function(){
+          try { return window.__uploadsBase || base; } catch(_) { return base; }
+        })();
+        if (s.startsWith('http://localhost:3000/uploads')) return s.replace('http://localhost:3000', uploadsBase);
+        if (s.startsWith('http://localhost:3003/uploads')) return s.replace('http://localhost:3003', uploadsBase);
+        if (s.startsWith('/uploads/')) return uploadsBase + s;
+        if (s.startsWith('uploads/')) return uploadsBase + '/' + s.replace(/^\/+/, '');
+        try {
+          const u = new URL(s, window.location.origin);
+          if (BAD_HOSTS.some(h => u.hostname.includes(h))) return LOCAL_PLACEHOLDER;
+        } catch(_) { return LOCAL_PLACEHOLDER; }
+        return s;
+      }
+      data.forEach((item) => {
+        const slide = document.createElement('div');
+    slide.className = 'secondary-slide relative w-full h-full flex-shrink-0 bg-white';
+        slide.innerHTML = `
+          <img class="w-full h-full object-contain" src="${normalizeBannerSrc(item.src)}" alt="${item.alt || 'Banner'}" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='${LOCAL_PLACEHOLDER}'">
+        `;
+        track.appendChild(slide);
+      });
+      container.appendChild(track);
+      const dotsWrap = document.createElement('div');
+      dotsWrap.className = 'absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-3 z-20';
+      data.forEach((_, idx) => {
+        const dot = document.createElement('button');
+        dot.className = 'secondary-dot w-3 h-3 rounded-full bg-white opacity-50 hover:opacity-75 transition-all';
+        dot.setAttribute('data-sslide', String(idx));
+        dotsWrap.appendChild(dot);
+      });
+      container.appendChild(dotsWrap);
+
+      setupSecondarySlider();
+  }
+  loadSecondarySliderFromAPI();
+})();
+ 
+ // Header search bar: navigate to inventory with query
+ (function(){
+   const inputEl = document.querySelector('input[data-text="search-placeholder"]');
+   const btnEl = inputEl ? inputEl.parentElement?.querySelector('button') : null;
+   function go(){
+     const q = (inputEl?.value || '').trim();
+     const url = 'inventory.html' + (q ? ('?q=' + encodeURIComponent(q)) : '');
+   window.open(url, '_blank');
+   }
+   if (inputEl) {
+     inputEl.addEventListener('keydown', (e) => { if (e.key === 'Enter') go(); });
+   }
+   if (btnEl) {
+     btnEl.addEventListener('click', go);
+   }
+ })();
+ </script>
+ 
+  <!-- Header role-based replacement: show Dashboard link when signed in -->
+  <script>
+    (function(){
+      try {
+        var role = (localStorage.getItem('role') || localStorage.getItem('userRole') || '').toLowerCase();
+        if (!role || (role !== 'buyer' && role !== 'seller')) return;
+        var signInEl = document.querySelector('[data-text="sign-in"]');
+        var signUpEl = document.querySelector('[data-text="sign-up"]');
+        var container = (signInEl && signInEl.parentElement) || (signUpEl && signUpEl.parentElement);
+        if (!container) return;
+        if (signInEl) signInEl.remove();
+        if (signUpEl) signUpEl.remove();
+        var link = document.createElement('a');
+        link.textContent = role === 'buyer' ? 'Buyer Dashboard' : 'Seller Dashboard';
+        link.href = role === 'buyer' ? 'buyer-dashboard.html' : 'seller-dashboard.html';
+        link.className = 'bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-lg font-semibold transition-all transform hover:scale-105';
+        container.appendChild(link);
+      } catch(e) { /* no-op */ }
+    })();
+  </script>
+  
+  
+  <!-- Protected header actions: Favourite and Compare -->
+  <script>
+    (function(){
+      function isSignedIn(){
+        try {
+          var role = (localStorage.getItem('role') || localStorage.getItem('userRole') || '').toLowerCase();
+          var token = localStorage.getItem('token');
+          var user = localStorage.getItem('user');
+          return !!(token || user || (role === 'buyer' || role === 'seller'));
+        } catch(_) { return false; }
+      }
+      function protectLink(id){
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.addEventListener('click', function(e){
+          if (!isSignedIn()) {
+            e.preventDefault();
+            alert('Please sign in to use this feature.');
+          }
+        });
+      }
+      protectLink('favorite-action');
+      protectLink('compare-action');
+    })();
+  </script>
+  
+  </body></html>

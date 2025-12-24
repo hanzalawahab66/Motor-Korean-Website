@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seller Dashboard - NSM Autos</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            mango: '#D53C46',
+            navy: '#1B2951',
+            charcoal: '#2D3748',
+          },
+          fontFamily: {
+            heading: ['Inter', 'sans-serif'],
+            body: ['Inter', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+    <!-- Removed external Google Fonts to avoid net::ERR_ABORTED in preview env -->
+  <script>window.FontAwesomeConfig = { autoReplaceSvg: 'nest' };</script>
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" rel="stylesheet">
+  <style>
+    ::-webkit-scrollbar { display: none; }
+    .fade-in-up { animation: fadeInUp .35s ease-out; }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(6px) } to { opacity: 1; transform: translateY(0) } }
+  </style>
+  <style>
+    .goog-te-banner-frame{display:none!important}
+    body{top:0!important}
+    #google_translate_element{display:none!important}
+    .goog-te-gadget{display:none!important}
+    .skiptranslate{display:none!important}
+  </style>
+  <script>
+    function googleTranslateElementInit(){ new google.translate.TranslateElement({ pageLanguage:'en', includedLanguages:'en,ar,ko,es,fr', autoDisplay:false }, 'google_translate_element'); }
+    (function(){
+      function setCookie(name,value){ var e='expires=Fri, 31 Dec 9999 23:59:59 GMT'; document.cookie=name+'='+value+';'+e+';path=/'; var host=location.hostname; if(host.indexOf('.')!==-1){ document.cookie=name+'='+value+';'+e+';path=/;domain='+host; } }
+      function applyDir(lang){ try{ document.documentElement.setAttribute('dir', lang==='ar'?'rtl':'ltr'); }catch(_){ } }
+      function triggerCombo(lang){ var sel=document.querySelector('.goog-te-combo'); if(sel){ if(lang && sel.value==lang) return true; sel.value=(lang||'en'); setTimeout(function(){ sel.dispatchEvent(new Event('change')); }, 0); return true; } return false; }
+      function openTranslateProxy(url, lang){ var sl='en'; var tl=(lang||'en'); var href='https://translate.google.com/translate?hl='+tl+'&sl='+sl+'&tl='+tl+'&u='+encodeURIComponent(url); try{ window.open(href, '_blank'); }catch(_){} }
+      function changeLanguage(lang){
+        lang = lang || 'en';
+        if(triggerCombo(lang)){
+          try{ localStorage.setItem('lang', lang); }catch(_){ }
+          applyDir(lang);
+          return;
+        }
+        var attempts = 0;
+        var interval = setInterval(function(){
+          if(triggerCombo(lang)){
+            clearInterval(interval);
+            try{ localStorage.setItem('lang', lang); }catch(_){ }
+            applyDir(lang);
+          } else {
+            attempts++;
+            if(attempts >= 50){
+              clearInterval(interval);
+              setCookie('googtrans','/en/'+lang);
+              try{ localStorage.setItem('lang', lang); }catch(_){ }
+              applyDir(lang);
+            }
+          }
+        }, 100);
+      }
+      function init(){ var saved=null; try{ saved=localStorage.getItem('lang'); }catch(_){ } applyDir(saved||'en'); }
+      function protect(){ var q='input[type=password],input[type=email],input[name=password],input[name=email],input[name=username],textarea[name=password],textarea[name=email],textarea[name=username]'; document.querySelectorAll(q).forEach(function(el){ el.classList.add('notranslate'); el.setAttribute('translate','no'); }); }
+      document.addEventListener('click', function(e){ var btn=e.target.closest('[data-lang]'); if(!btn) return; var lang=btn.getAttribute('data-lang')||'en'; changeLanguage(lang); var label=document.querySelector('#languageToggle span'); if(label) label.textContent=btn.textContent.trim(); });
+      document.addEventListener('DOMContentLoaded', function(){ protect(); init(); var dd=document.getElementById('languageDropdown'); if(dd){ var hasEs=dd.querySelector('[data-lang="es"]'); if(!hasEs){ dd.insertAdjacentHTML('beforeend','<button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="es"><img src="https://flagcdn.com/w20/es.png" alt="Español" class="w-4 h-3"><span>Español</span></button>'); } } });
+      var st=document.createElement('style'); st.textContent='.goog-te-banner-frame{display:none!important} body{top:0!important} #google_translate_element{display:none!important} .goog-te-gadget{display:none!important} .skiptranslate{display:none!important}'; document.head.appendChild(st);
+    })();
+  </script>
+  <div id="google_translate_element"></div>
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</head>
+<body class="font-body bg-gray-50">
+  <div class="bg-[#0D1F39] text-white font-body relative z-[60]">
+    <div class="container mx-auto px-6 py-2">
+      <div class="flex items-center justify-between">
+        <div class="relative">
+          <button id="languageToggle" class="flex items-center space-x-2 text-white/90 hover:text-white font-medium transition-colors">
+            <i class="fa-solid fa-globe text-base"></i>
+            <span class="text-sm md:text-base">English</span>
+            <i class="fa-solid fa-chevron-down text-xs"></i>
+          </button>
+          <div id="languageDropdown" class="absolute left-0 top-full mt-1 bg-white rounded-lg shadow-xl border border-gray-200 py-2 min-w-[160px] hidden z-[1000]">
+            <button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="en">
+              <img src="https://flagcdn.com/w20/us.png" alt="English" class="w-4 h-3">
+              <span>English</span>
+            </button>
+            <button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="ko">
+              <img src="https://flagcdn.com/w20/kr.png" alt="한국어" class="w-4 h-3">
+              <span>한국어</span>
+            </button>
+            <button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="ar">
+              <img src="https://flagcdn.com/w20/sa.png" alt="العربية" class="w-4 h-3">
+              <span>العربية</span>
+            </button>
+            <button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="fr">
+              <img src="https://flagcdn.com/w20/fr.png" alt="Français" class="w-4 h-3">
+              <span>Français</span>
+            </button>
+          </div>
+        </div>
+        <div class="flex items-center space-x-3">
+          <button class="bg-white/10 hover:bg-white/20 text-white px-4 py-1.5 rounded-lg font-medium transition-all h-hover" data-text="sign-in" onclick="window.open('signin.html','_blank')">Login</button>
+          <button class="bg-[#D53C46] text-white hover:bg-[#D53C46] px-4 py-1.5 rounded-lg font-semibold transition-all h-hover" data-text="sign-up" onclick="window.open('signup.html','_blank')">Register</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <header id="header" class="sticky top-0 z-50 backdrop-blur">
+  <div class="w-full px-6 py-2 bg-white">
+    <div class="w-full px-4 md:px-6 py-3 flex items-center justify-between">
+        <a href="home.html" class="flex items-center space-x-3">
+          <img src="assets/images/Gemini_Generated_Image_2f4bkg2f4bkg2f4bee.png" alt="Logo" class="w-80 h-[100px] object-contain animate-logo" />
+        </a>
+        <nav class="hidden md:flex items-center space-x-8 text-gray-900 font-semibold animate-nav">
+          <a href="home.html" class="hover:text-[#0D1F39] transition-colors">Home</a>
+          <a href="inventory.html" class="hover:text-[#0D1F39] transition-colors">Inventory</a>
+          <div class="relative" id="navAbout">
+            <a href="about-us.html" id="navAboutToggle" class="hover:text-[#0D1F39] transition-colors flex items-center space-x-1">
+            <span>About Us</span>
+            <i class="fa-solid fa-chevron-down text-xs"></i>
+          </a>
+            <div id="navAboutMenu" class="absolute left-1/2 -translate-x-1/2 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg py-2 min-w-[220px] opacity-0 translate-y-1 pointer-events-none transition-all duration-300 z-50">
+              <a href="mit-info.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">MIT Info</a>
+              <a href="service-introduction.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">Service Introduction</a>
+            </div>
+          </div>
+          <a href="contact-us.html" class="hover:text-[#0D1F39] transition-colors">Contact Us</a>
+          <div class="relative" id="navMore">
+            <button id="navMoreToggle" class="hover:text-[#0D1F39] transition-colors flex items-center space-x-1">
+              <span>More</span>
+              <i class="fa-solid fa-chevron-down text-xs"></i>
+            </button>
+            <div id="navMoreMenu" class="absolute left-1/2 -translate-x-1/2 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg py-2 min-w-[220px] opacity-0 translate-y-1 pointer-events-none transition-all duration-300 z-50">
+              <a href="faq.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">FAQs</a>
+              <a href="reviews.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">Reviews</a>
+              <a href="blog.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">Blogs</a>
+            </div>
+          </div>
+        </nav>
+        <div class="flex items-center space-x-4 animate-actions">
+          <div class="hidden md:flex items-center bg-white rounded-full shadow px-3 py-1.5 border border-gray-200">
+            <i class="fa-solid fa-magnifying-glass text-gray-600 mr-2 hover:text-[#D53C46]"></i>
+            <input id="headerSearchInput" type="text" placeholder="Search" class="w-40 md:w-52 text-sm bg-transparent focus:outline-none" />
+          </div>
+          <button id="mobileSearchToggle" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition group h-hover">
+            <i class="fa-solid fa-magnifying-glass group-hover:text-[#D53C46]"></i>
+          </button>
+          <a id="headerFavorite" href="dashboard-saved.html" class="relative inline-flex items-center justify-center w-10 h-10 rounded-full border border-gray-200 hover:bg-gray-50 transition-colors group h-hover">
+            <i class="fa-regular fa-heart text-[#0D1F39] group-hover:text-[#D53C46]"></i>
+            <span class="absolute -top-1 -right-1 inline-flex items-center justify-center w-5 h-5 rounded-full bg-[#D53C46] text-white text-xs">0</span>
+          </a>
+          <button id="mobileMenuToggle" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition group h-hover">
+            <i class="fa-solid fa-bars group-hover:text-[#D53C46]"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      var h = document.getElementById('header');
+      if (h) { requestAnimationFrame(function(){ h.classList.add('header-ready'); }); }
+    });
+  </script>
+
+  <script>
+    (function(){
+      function setupHoverDelay(containerId, toggleId, menuId){
+        var c=document.getElementById(containerId); var t=document.getElementById(toggleId); var m=document.getElementById(menuId);
+        if(!c||!t||!m) return; var hid=null;
+        function show(){ if(hid){ clearTimeout(hid); hid=null; } m.classList.remove('opacity-0','pointer-events-none','translate-y-1'); m.classList.add('opacity-100','pointer-events-auto','translate-y-0'); }
+        function schedule(){ if(hid) clearTimeout(hid); hid=setTimeout(function(){ m.classList.remove('opacity-100','pointer-events-auto','translate-y-0'); m.classList.add('opacity-0','pointer-events-none','translate-y-1'); hid=null; },300); }
+        c.addEventListener('mouseenter', show); t.addEventListener('mouseenter', show); m.addEventListener('mouseenter', show);
+        c.addEventListener('mouseleave', schedule); t.addEventListener('mouseleave', schedule); m.addEventListener('mouseleave', schedule);
+        t.addEventListener('click', show);
+      }
+      setupHoverDelay('navAbout','navAboutToggle','navAboutMenu');
+      setupHoverDelay('navMore','navMoreToggle','navMoreMenu');
+    })();
+  </script>
+
+  <div id="mobileSearchContainer" class="md:hidden hidden px-6">
+    <div class="flex items-center bg-white rounded-full shadow px-3 py-2 border border-gray-200">
+      <i class="fa-solid fa-magnifying-glass text-gray-600 mr-2"></i>
+      <input id="mobileHeaderSearchInput" type="text" placeholder="Search" class="flex-1 text-sm bg-transparent focus:outline-none" />
+      <button id="mobileHeaderSearchBtn" class="ml-2 px-3 py-1 rounded-full bg-[#0D1F39] text-white text-xs">Search</button>
+    </div>
+  </div>
+
+  <div id="mobileMenuOverlay" class="fixed inset-0 bg-black/40 hidden z-40 md:hidden"></div>
+  <aside id="mobileDrawer" class="fixed inset-y-0 right-0 w-80 max-w-[88vw] bg-white shadow-xl border-l border-gray-200 z-50 transform translate-x-full transition-transform duration-300 ease-out md:hidden" aria-hidden="true" role="dialog">
+    <div class="flex items-center justify-between px-4 py-3 border-b border-gray-100">
+      <div class="flex items-center space-x-2">
+        <img src="assets/images/Gemini_Generated_Image_2f4bkg2f4bkg2f4bee.png" alt="Logo" class="w-64 h-16 object-contain" />
+      </div>
+      <button id="mobileDrawerClose" class="inline-flex items-center justify-center w-10 h-10 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition" aria-label="Close menu">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <div class="px-4 py-3">
+      <div class="flex items-center bg-white rounded-full border border-gray-200 px-3 py-2 shadow-sm">
+        <i class="fa-solid fa-magnifying-glass text-gray-600 mr-2"></i>
+        <input id="drawerSearchInput" type="text" placeholder="Search" class="flex-1 text-sm bg-transparent focus:outline-none" />
+        <button id="drawerSearchBtn" class="ml-2 px-3 py-1 rounded-full bg-[#0D1F39] text-white text-xs">Search</button>
+      </div>
+    </div>
+  <nav class="px-4 py-3 space-y-1 text-gray-900 font-semibold">
+    <a href="home.html" class="block py-2 rounded-lg hover:bg-gray-50">Home</a>
+    <a href="inventory.html" class="block py-2 rounded-lg hover:bg-gray-50">Inventory</a>
+    <div class="border-t border-gray-100 my-2"></div>
+    <button id="drawerAboutToggle" class="w-full flex items-center justify-between py-2 rounded-lg hover:bg-gray-50 text-left" aria-expanded="false">
+      <span>About Us</span>
+      <i class="fa-solid fa-chevron-down text-xs"></i>
+    </button>
+    <div id="drawerAboutMenu" class="hidden ml-3 space-y-1 text-gray-700 font-normal">
+      <a href="mit-info.html" class="block py-1.5 rounded hover:bg-gray-50">MIT Info</a>
+      <a href="service-introduction.html" class="block py-1.5 rounded hover:bg-gray-50">Service Introduction</a>
+    </div>
+    <a href="contact-us.html" class="block py-2 rounded-lg hover:bg-gray-50">Contact Us</a>
+    <button id="drawerMoreToggle" class="w-full flex items-center justify-between py-2 rounded-lg hover:bg-gray-50 text-left" aria-expanded="false">
+      <span>More</span>
+      <i class="fa-solid fa-chevron-down text-xs"></i>
+    </button>
+    <div id="drawerMoreMenu" class="hidden ml-3 space-y-1 text-gray-700 font-normal">
+      <a href="faq.html" class="block py-1.5 rounded hover:bg-gray-50">FAQs</a>
+      <a href="reviews.html" class="block py-1.5 rounded hover:bg-gray-50">Reviews</a>
+      <a href="blog.html" class="block py-1.5 rounded hover:bg-gray-50">Blogs</a>
+    </div>
+  </nav>
+  </aside>
+
+  <script>
+    (function(){
+      var overlay = document.getElementById('mobileMenuOverlay');
+      var drawer = document.getElementById('mobileDrawer');
+      var menuBtn = document.getElementById('mobileMenuToggle');
+      var closeBtn = document.getElementById('mobileDrawerClose');
+      function openDrawer(){ if (overlay && drawer) { overlay.classList.remove('hidden'); drawer.style.transform='translateX(0)'; } }
+      function closeDrawer(){ if (overlay && drawer) { overlay.classList.add('hidden'); drawer.style.transform=''; } }
+      if (menuBtn) menuBtn.addEventListener('click', openDrawer);
+      if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+      if (overlay) overlay.addEventListener('click', closeDrawer);
+      var drawerAboutToggle = document.getElementById('drawerAboutToggle');
+      var drawerAboutMenu = document.getElementById('drawerAboutMenu');
+      if (drawerAboutToggle && drawerAboutMenu) {
+        drawerAboutToggle.addEventListener('click', function(){
+          var hidden = drawerAboutMenu.classList.toggle('hidden');
+          drawerAboutToggle.setAttribute('aria-expanded', hidden ? 'false' : 'true');
+        });
+      }
+      var drawerMoreToggle = document.getElementById('drawerMoreToggle');
+      var drawerMoreMenu = document.getElementById('drawerMoreMenu');
+      if (drawerMoreToggle && drawerMoreMenu) {
+        drawerMoreToggle.addEventListener('click', function(){
+          var hidden = drawerMoreMenu.classList.toggle('hidden');
+          drawerMoreToggle.setAttribute('aria-expanded', hidden ? 'false' : 'true');
+        });
+      }
+    })();
+  </script>
+
+  <!-- Main -->
+  <main class="container mx-auto px-6 py-10">
+    <!-- Welcome Banner -->
+    <section class="bg-white rounded-2xl shadow-lg p-8 flex items-center justify-between fade-in-up">
+      <div>
+        <h1 id="welcome-text" class="text-2xl md:text-3xl font-heading font-bold text-navy">Welcome, Seller</h1>
+        <p class="text-gray-600 mt-2">Manage your listings and add new vehicles with ease.</p>
+      </div>
+      <div class="hidden md:flex items-center space-x-4">
+        <span class="px-3 py-1 rounded-full bg-red-100 text-red-600 text-sm font-medium">Seller</span>
+      </div>
+    </section>
+
+    <!-- Actions -->
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+      <!-- Sell a New Car -->
+      <a href="sell-my-car.html" class="group bg-white rounded-2xl border border-gray-200 p-8 shadow-sm hover:shadow-md transition-all">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-4">
+            <span class="w-12 h-12 rounded-xl bg-red-100 text-red-600 flex items-center justify-center"><i class="fa-solid fa-car"></i></span>
+            <div>
+              <h2 class="text-lg font-semibold text-gray-900">Sell a New Car</h2>
+              <p class="text-gray-600 text-sm">Create a new listing with photos, details, and price.</p>
+            </div>
+          </div>
+          <i class="fa-solid fa-chevron-right text-gray-400 group-hover:text-red-500 transition-colors"></i>
+        </div>
+      </a>
+
+      <!-- Manage My Listings -->
+      <a href="my-listings.html" class="group bg-white rounded-2xl border border-gray-200 p-8 shadow-sm hover:shadow-md transition-all">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-4">
+            <span class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center"><i class="fa-solid fa-clipboard-list"></i></span>
+            <div>
+              <h2 class="text-lg font-semibold text-gray-900">Manage My Listings</h2>
+              <p class="text-gray-600 text-sm">Edit, publish, or remove your existing vehicle listings.</p>
+            </div>
+          </div>
+          <i class="fa-solid fa-chevron-right text-gray-400 group-hover:text-blue-600 transition-colors"></i>
+        </div>
+      </a>
+    </section>
+
+    <!-- Tips / Quick Info -->
+    <section class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
+        <div class="w-10 h-10 rounded-lg bg-red-100 text-red-600 flex items-center justify-center"><i class="fa-solid fa-image"></i></div>
+        <p class="mt-3 text-gray-900 font-semibold">Photos that sell</p>
+        <p class="text-gray-600 text-sm">Upload clear, well-lit photos to attract more buyers.</p>
+      </div>
+      <div class="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
+        <div class="w-10 h-10 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center"><i class="fa-solid fa-chart-line"></i></div>
+        <p class="mt-3 text-gray-900 font-semibold">Pricing insights</p>
+        <p class="text-gray-600 text-sm">Competitive pricing improves visibility and conversion.</p>
+      </div>
+      <div class="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
+        <div class="w-10 h-10 rounded-lg bg-green-100 text-green-600 flex items-center justify-center"><i class="fa-solid fa-shield"></i></div>
+        <p class="mt-3 text-gray-900 font-semibold">Trust & safety</p>
+        <p class="text-gray-600 text-sm">Be responsive and transparent to build buyer confidence.</p>
+      </div>
+    </section>
+    <section id="seller-profile-section" class="mt-10 bg-white rounded-2xl shadow-lg p-8 border border-gray-200">
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <h2 class="text-xl font-bold text-gray-900">Manage My Profile</h2>
+          <p class="text-gray-600 text-sm">View and edit your seller information</p>
+        </div>
+      </div>
+      <div id="seller-profile-gate">
+        <label for="seller-profile-password" class="block text-sm font-medium text-gray-700 mb-2">Enter your password to access</label>
+        <div class="flex items-center space-x-3">
+          <input id="seller-profile-password" type="password" class="flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#D53C46]" placeholder="Password" />
+          <button id="seller-profile-enter" class="px-5 py-3 rounded-lg bg-[#D53C46] text-white font-semibold hover:bg-[#c0343f]">Enter</button>
+        </div>
+        <div id="seller-profile-error" class="mt-2 text-sm text-red-600 hidden"></div>
+      </div>
+      <form id="seller-profile-form" class="hidden mt-6 space-y-8">
+        <div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-4">Contact Info</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label for="sp-name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+              <input id="sp-name" type="text" class="w-full px-4 py-3 rounded-lg border border-gray-300" />
+            </div>
+            <div>
+              <label for="sp-email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+              <input id="sp-email" type="email" class="w-full px-4 py-3 rounded-lg border border-gray-300" readonly />
+            </div>
+            <div>
+              <label for="sp-phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+              <input id="sp-phone" type="tel" class="w-full px-4 py-3 rounded-lg border border-gray-300" />
+            </div>
+            <div>
+              <label for="sp-country" class="block text-sm font-medium text-gray-700 mb-1">Country</label>
+              <input id="sp-country" type="text" class="w-full px-4 py-3 rounded-lg border border-gray-300" />
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-4">Company</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="md:col-span-2">
+              <label for="sp-address" class="block text-sm font-medium text-gray-700 mb-1">Company Address</label>
+              <input id="sp-address" type="text" class="w-full px-4 py-3 rounded-lg border border-gray-300" />
+            </div>
+            <div>
+              <label for="sp-city" class="block text-sm font-medium text-gray-700 mb-1">Detailed Address</label>
+              <input id="sp-city" type="text" class="w-full px-4 py-3 rounded-lg border border-gray-300" />
+            </div>
+            <div>
+              <label for="sp-logo" class="block text-sm font-medium text-gray-700 mb-1">Company Logo URL</label>
+              <input id="sp-logo" type="url" class="w-full px-4 py-3 rounded-lg border border-gray-300" />
+            </div>
+            <div>
+              <label for="sp-company-name-kr" class="block text-sm font-medium text-gray-700 mb-1">Company Name (Korean)</label>
+              <input id="sp-company-name-kr" type="text" class="w-full px-4 py-3 rounded-lg border border-gray-300" />
+            </div>
+            <div>
+              <label for="sp-company-name-en" class="block text-sm font-medium text-gray-700 mb-1">Company Name (English)</label>
+              <input id="sp-company-name-en" type="text" class="w-full px-4 py-3 rounded-lg border border-gray-300" />
+            </div>
+            <div>
+              <label for="sp-representative" class="block text-sm font-medium text-gray-700 mb-1">Representative Name</label>
+              <input id="sp-representative" type="text" class="w-full px-4 py-3 rounded-lg border border-gray-300" />
+            </div>
+            <div>
+              <label for="sp-company-tel" class="block text-sm font-medium text-gray-700 mb-1">Company Tel</label>
+              <input id="sp-company-tel" type="text" class="w-full px-4 py-3 rounded-lg border border-gray-300" />
+            </div>
+            <div>
+              <label for="sp-establishment-date" class="block text-sm font-medium text-gray-700 mb-1">Establishment Date</label>
+              <input id="sp-establishment-date" type="date" class="w-full px-4 py-3 rounded-lg border border-gray-300" />
+            </div>
+            <div class="md:col-span-2">
+              <label for="sp-company-intro" class="block text-sm font-medium text-gray-700 mb-1">Company Introduction</label>
+              <textarea id="sp-company-intro" class="w-full px-4 py-3 rounded-lg border border-gray-300" rows="3"></textarea>
+            </div>
+            <div>
+              <label for="sp-export-items" class="block text-sm font-medium text-gray-700 mb-1">Export Items</label>
+              <input id="sp-export-items" type="text" class="w-full px-4 py-3 rounded-lg border border-gray-300" />
+            </div>
+            <div>
+              <label for="sp-languages" class="block text-sm font-medium text-gray-700 mb-1">Available Languages</label>
+              <input id="sp-languages" type="text" class="w-full px-4 py-3 rounded-lg border border-gray-300" placeholder="e.g., English, Korean" />
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-4">Bank</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div>
+              <label for="sp-bank" class="block text-sm font-medium text-gray-700 mb-1">Bank Name</label>
+              <input id="sp-bank" type="text" class="w-full px-4 py-3 rounded-lg border border-gray-300" />
+            </div>
+            <div>
+              <label for="sp-account" class="block text-sm font-medium text-gray-700 mb-1">Account Number</label>
+              <input id="sp-account" type="text" class="w-full px-4 py-3 rounded-lg border border-gray-300" />
+            </div>
+            <div>
+              <label for="sp-holder" class="block text-sm font-medium text-gray-700 mb-1">Account Holder Name</label>
+              <input id="sp-holder" type="text" class="w-full px-4 py-3 rounded-lg border border-gray-300" />
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-4">Registration</h3>
+          <div class="flex items-center space-x-4">
+            <input id="sp-br-url" type="url" placeholder="Business Registration URL" class="flex-1 px-4 py-3 rounded-lg border border-gray-300" />
+            <input id="sp-br-file" type="file" accept=".pdf,.png,.jpg,.jpeg" class="hidden" />
+            <button type="button" id="sp-br-upload" class="px-5 py-3 rounded-lg bg-red-500 hover:bg-red-600 text-white font-semibold">Upload Document</button>
+            <span id="sp-br-name" class="text-sm text-gray-600">No file selected</span>
+          </div>
+        </div>
+        <div class="flex items-center justify-end">
+          <button id="sp-save" type="submit" class="inline-flex items-center bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg text-sm font-semibold">Save Changes</button>
+        </div>
+      </form>
+      <div class="mt-6">
+        <button id="signout" class="px-5 py-3 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100">Sign Out</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer id="footer" class="bg-[#f5f5f5] text-[#666666]">
+    <div class="max-w-7xl mx-auto px-[24px] py-[32px]">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-[32px]">
+        <div class="space-y-[10px] text-[15px] leading-[26px]">
+          <div><span class="text-[#444444]">대표자</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">카일자민파룩아마드</span></div>
+          <div><span class="text-[#444444]">사업자등록 번호</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">470-88-00357</span></div>
+          <div><span class="text-[#444444]">주소</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">인천광역시 연수구 옥련로37 씨동 306호</span></div>
+          <div class="pt-[6px] flex items-center space-x-[14px] text-[20px]">
+            <a href="https://www.instagram.com/autonsm?igsh=ZmU2M2ppZzk1ZjVv&utm_source=qr" target="_blank" rel="noopener noreferrer" class="text-[#666666] hover:text-[#111111]">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://www.facebook.com/share/1A3NGCuwXh/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="text-[#666666] hover:text-[#111111]">
+              <i class="fa-brands fa-facebook"></i>
+            </a>
+            <a href="https://www.tiktok.com/@autonsm" target="_blank" rel="noopener noreferrer" class="text-[#666666] hover:text-[#111111]">
+              <i class="fa-brands fa-tiktok"></i>
+            </a>
+          </div>
+        </div>
+        <div class="space-y-[10px] text-[15px] leading-[26px]">
+          <div><span class="text-[#444444]">Email</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">info@autonsm.com</span></div>
+          <div>
+            <span class="text-[#444444]">TEL</span>
+            <span class="text-[#666666] whitespace-pre">   +82 10-9199-9687 (English, Korean)</span>
+          </div>
+          <div><span class="text-[#444444]">TEL</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">+821098699687</span></div>
+          <div><span class="text-[#666666] whitespace-pre">306 C dong  37 Okryeon ro  Yeonsu gu Incheon South Korea</span></div>
+        </div>
+      </div>
+      <div class="mt-[28px] border-t border-[#e5e7eb] pt-[18px]">
+        <div class="flex flex-col md:flex-row items-center justify-between">
+          <div class="text-[14px] text-[#666666] space-x-[18px]">
+            <a href="private-policy.html" class="hover:text-[#111111]">Private Policy</a>
+            <a href="terms-of-service.html" class="hover:text-[#111111]">Terms of Service</a>
+          </div>
+          <div class="text-[14px] text-[#666666] mt-[12px] md:mt-0">Copyright © Auto Nsm. All rights Reserved.</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Page Script: populate seller name -->
+  <script>
+    (function(){
+      function decodeTokenEmail(){
+        try {
+          var token = localStorage.getItem('token') || '';
+          var parts = token.split('.');
+          if (parts.length !== 3) return null;
+          var payload = JSON.parse(atob(parts[1].replace(/-/g,'+').replace(/_/g,'/')));
+          return payload && typeof payload.email === 'string' ? payload.email : null;
+        } catch(_) { return null; }
+      }
+      try {
+        var raw = localStorage.getItem('user');
+        var name = 'Seller';
+        if (raw) {
+          var u = JSON.parse(raw);
+          if (u) name = u.name || u.email || name;
+        } else {
+          var email = decodeTokenEmail();
+          if (email) name = email;
+        }
+        var el = document.getElementById('welcome-text');
+        if (el) el.textContent = 'Welcome, ' + name;
+      } catch (_) {
+        var el2 = document.getElementById('welcome-text');
+        if (el2) {
+          var email2 = decodeTokenEmail();
+          el2.textContent = 'Welcome, ' + (email2 || 'Seller');
+        }
+      }
+    })();
+  </script>
+  <script>
+    (function(){
+      function toDataUrl(file){
+        return new Promise(function(resolve, reject){
+          var r = new FileReader();
+          r.onload = function(){ resolve(r.result); };
+          r.onerror = function(){ reject(new Error('read_error')); };
+          r.readAsDataURL(file);
+        });
+      }
+      function resolveApi(){
+        function tryBase(base){
+          return new Promise(function(resolve){
+            var url = base + '/public/tags';
+            var timer = setTimeout(function(){ resolve(null); }, 1200);
+            fetch(url, { method: 'GET', headers: { 'Accept':'application/json' } })
+              .then(function(r){ clearTimeout(timer); if (r.ok) { resolve(base); } else { resolve(null); } })
+              .catch(function(){ clearTimeout(timer); resolve(null); });
+          });
+        }
+        var origin = '';
+        try { origin = (window.__apiOrigin || (window.location && window.location.origin) || '').trim(); } catch(_) { origin = ''; }
+        if (!origin) origin = '';
+        return tryBase(origin).then(function(found){ return found ? found : origin; });
+      }
+      var gateBtn = document.getElementById('seller-profile-enter');
+      var gateInput = document.getElementById('seller-profile-password');
+      var form = document.getElementById('seller-profile-form');
+      var gate = document.getElementById('seller-profile-gate');
+      var gateError = document.getElementById('seller-profile-error');
+      function load(){
+        resolveApi().then(function(api){
+          var token = localStorage.getItem('token');
+          return fetch(api + '/seller/profile', { headers: { 'Accept':'application/json', 'Authorization':'Bearer ' + token } })
+            .then(function(r){ return r.json().catch(function(){ return {}; }); });
+        }).then(function(d){
+          var n = document.getElementById('sp-name');
+          var e = document.getElementById('sp-email');
+          var p = document.getElementById('sp-phone');
+          var co = document.getElementById('sp-country');
+          var a = document.getElementById('sp-address');
+          var c = document.getElementById('sp-city');
+          var logo = document.getElementById('sp-logo');
+          var bank = document.getElementById('sp-bank');
+          var acc = document.getElementById('sp-account');
+          var holder = document.getElementById('sp-holder');
+          var br = document.getElementById('sp-br-url');
+          var cnkr = document.getElementById('sp-company-name-kr');
+          var cnen = document.getElementById('sp-company-name-en');
+          var rep = document.getElementById('sp-representative');
+          var tel = document.getElementById('sp-company-tel');
+          var est = document.getElementById('sp-establishment-date');
+          var intro = document.getElementById('sp-company-intro');
+          var exp = document.getElementById('sp-export-items');
+          var langs = document.getElementById('sp-languages');
+          if(n) n.value = d.name || '';
+          if(e) e.value = d.email || '';
+          if(p) p.value = d.phone_number || '';
+          if(co) co.value = d.country || '';
+          if(a) a.value = d.company_address || '';
+          if(c) c.value = d.detailed_address || '';
+          if(logo) logo.value = d.company_logo_url || '';
+          if(bank) bank.value = d.bank_name || '';
+          if(acc) acc.value = d.account_number || '';
+          if(holder) holder.value = d.account_holder_name || '';
+          if(br) br.value = d.business_registration_url || '';
+          if(cnkr) cnkr.value = d.company_name_korean || '';
+          if(cnen) cnen.value = d.company_name_english || '';
+          if(rep) rep.value = d.representative_name || '';
+          if(tel) tel.value = d.company_tel || '';
+          if(est) est.value = d.establishment_date || '';
+          if(intro) intro.value = d.company_introduction || '';
+          if(exp) exp.value = d.export_items || '';
+          if(langs) langs.value = Array.isArray(d.available_languages) ? d.available_languages.join(', ') : (d.available_languages || '');
+        }).catch(function(){ });
+      }
+      if (gateBtn && gateInput && form && gate) {
+        gateBtn.addEventListener('click', function(){
+          var v = gateInput.value || '';
+          if (!v) return;
+          var token = localStorage.getItem('token');
+          if (!token) { if (gateError) { gateError.textContent = 'Please sign in to access profile'; gateError.classList.remove('hidden'); } return; }
+          resolveApi().then(function(api){
+            return fetch(api + '/seller/profile', { method:'PUT', headers:{ 'Content-Type':'application/json', 'Accept':'application/json', 'Authorization':'Bearer ' + token }, body: JSON.stringify({ password: v }) })
+              .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(d){ return { ok:r.ok, data:d }; }); });
+          }).then(function(res){ if(!res.ok){ if (gateError) { gateError.textContent = res.data.error || 'Invalid password'; gateError.classList.remove('hidden'); } return; } if (gateError) gateError.classList.add('hidden'); form.classList.remove('hidden'); gate.classList.add('hidden'); load(); })
+          .catch(function(){ if (gateError) { gateError.textContent = 'Network error'; gateError.classList.remove('hidden'); } });
+        });
+        gateInput.addEventListener('keydown', function(e){ if (e.key === 'Enter') { e.preventDefault(); gateBtn.click(); } });
+      }
+      var uploadBtn = document.getElementById('sp-br-upload');
+      var fileInput = document.getElementById('sp-br-file');
+      var fileName = document.getElementById('sp-br-name');
+      if (uploadBtn && fileInput) {
+        uploadBtn.addEventListener('click', function(){ if(fileInput) fileInput.click(); });
+        fileInput.addEventListener('change', function(){ var f = fileInput.files && fileInput.files[0]; if (fileName) fileName.textContent = f ? f.name : 'No file selected'; });
+      }
+      if (form) {
+        form.addEventListener('submit', function(e){
+          e.preventDefault();
+          var password = gateInput ? gateInput.value : '';
+          var token = localStorage.getItem('token');
+          var payload = {
+            password: password,
+            name: (document.getElementById('sp-name')||{}).value || undefined,
+            phone_number: (document.getElementById('sp-phone')||{}).value || undefined,
+            country: (document.getElementById('sp-country')||{}).value || undefined,
+            address: (document.getElementById('sp-address')||{}).value || undefined,
+            city: (document.getElementById('sp-city')||{}).value || undefined,
+            company_logo_url: (document.getElementById('sp-logo')||{}).value || undefined,
+            bank_name: (document.getElementById('sp-bank')||{}).value || undefined,
+            account_number: (document.getElementById('sp-account')||{}).value || undefined,
+            account_holder_name: (document.getElementById('sp-holder')||{}).value || undefined,
+            business_registration_url: (document.getElementById('sp-br-url')||{}).value || undefined,
+            company_name_korean: (document.getElementById('sp-company-name-kr')||{}).value || undefined,
+            company_name_english: (document.getElementById('sp-company-name-en')||{}).value || undefined,
+            representative_name: (document.getElementById('sp-representative')||{}).value || undefined,
+            company_tel: (document.getElementById('sp-company-tel')||{}).value || undefined,
+            establishment_date: (document.getElementById('sp-establishment-date')||{}).value || undefined,
+            company_introduction: (document.getElementById('sp-company-intro')||{}).value || undefined,
+            export_items: (document.getElementById('sp-export-items')||{}).value || undefined,
+            available_languages: (document.getElementById('sp-languages')||{}).value || undefined
+          };
+          var f = fileInput && fileInput.files && fileInput.files[0];
+          var run = function(data){
+            resolveApi().then(function(api){
+              return fetch(api + '/seller/profile', { method:'PUT', headers:{ 'Content-Type':'application/json', 'Accept':'application/json', 'Authorization':'Bearer ' + token }, body: JSON.stringify(data) })
+                .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(d){ return { ok:r.ok, data:d }; }); });
+            }).then(function(res){ if(!res.ok){ alert(res.data.error || 'Update failed'); return; } alert('Profile updated successfully'); })
+            .catch(function(){ alert('Network error updating profile'); });
+          };
+          if (f) {
+            toDataUrl(f)
+              .then(function(dataUrl){ return resolveApi().then(function(api){ return fetch(api + '/upload', { method:'POST', headers:{ 'Content-Type':'application/json', 'Accept':'application/json' }, body: JSON.stringify({ filename: f.name, dataUrl: dataUrl }) }); }); })
+              .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(d){ return { ok:r.ok, data:d }; }); })
+              .then(function(res){ if(res.ok && res.data && res.data.url){ payload.business_registration_document = res.data.url; } run(payload); })
+              .catch(function(){ run(payload); });
+          } else {
+            run(payload);
+          }
+        });
+      }
+    })();
+  </script>
+  <script>
+    (function(){
+      var btn = document.getElementById('signout');
+      if (btn) {
+        btn.addEventListener('click', function(){
+          try {
+            localStorage.removeItem('token');
+            localStorage.removeItem('role');
+            localStorage.removeItem('user');
+            localStorage.removeItem('userRole');
+          } catch(_){}
+ window.open('signin.html', '_blank');
+        });
+      }
+    })();
+  </script>
+  <script>
+    (function(){
+      function isSignedIn(){
+        try {
+          var role = (localStorage.getItem('role') || localStorage.getItem('userRole') || '').toLowerCase();
+          var token = localStorage.getItem('token');
+          var user = localStorage.getItem('user');
+          return !!(token || user || (role === 'buyer' || role === 'seller'));
+        } catch(_) { return false; }
+      }
+      function protectLink(id){
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.addEventListener('click', function(e){
+          if (!isSignedIn()) {
+            e.preventDefault();
+            alert('Please sign in to use this feature.');
+          }
+        });
+      }
+      protectLink('favorite-action');
+      protectLink('compare-action');
+    })();
+  </script>
+  <script>
+    (function(){
+      try {
+        var role = (localStorage.getItem('role') || localStorage.getItem('userRole') || '').toLowerCase();
+        if (!role || (role !== 'buyer' && role !== 'seller')) return;
+        var signInEl = document.querySelector('[data-text="sign-in"]');
+        var signUpEl = document.querySelector('[data-text="sign-up"]');
+        var container = (signInEl && signInEl.parentElement) || (signUpEl && signUpEl.parentElement);
+        if (!container) return;
+        if (signInEl) signInEl.remove();
+        if (signUpEl) signUpEl.remove();
+        var link = document.createElement('a');
+        link.textContent = role === 'buyer' ? 'Buyer Dashboard' : 'Seller Dashboard';
+        link.href = role === 'buyer' ? 'buyer-dashboard.html' : 'seller-dashboard.html';
+        link.className = 'bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-lg font-semibold transition-all transform hover:scale-105';
+        container.appendChild(link);
+      } catch(e) {}
+    })();
+  </script>
+</body>
+</html>

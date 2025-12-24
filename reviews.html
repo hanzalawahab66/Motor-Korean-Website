@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Reviews - MangoCar Premium Used Car Dealership</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { mango: '#D53C46', navy: '#1B2951', charcoal: '#2D3748' },
+          fontFamily: { heading: ['Inter','sans-serif'], body: ['Inter','sans-serif'] }
+        }
+      }
+    };
+  </script>
+  <script>window.FontAwesomeConfig = {autoReplaceSvg: 'nest'};</script>
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" rel="stylesheet">
+  <script src="scripts/api-origin.js"></script>
+  <style>
+    ::-webkit-scrollbar { display: none; }
+    * { font-family: 'Inter', sans-serif; }
+  </style>
+</style>
+<style>
+  .goog-te-banner-frame{display:none!important}
+  body{top:0!important}
+  #google_translate_element{display:none!important}
+  .goog-te-gadget{display:none!important}
+  .skiptranslate{display:none!important}
+</style>
+<script>
+  function googleTranslateElementInit(){ new google.translate.TranslateElement({ pageLanguage:'en', includedLanguages:'en,ar,ko,es,fr', autoDisplay:false }, 'google_translate_element'); }
+  (function(){
+    function setCookie(name,value){ var e='expires=Fri, 31 Dec 9999 23:59:59 GMT'; document.cookie=name+'='+value+';'+e+';path=/'; var host=location.hostname; if(host.indexOf('.')!==-1){ document.cookie=name+'='+value+';'+e+';path=/;domain='+host; } }
+    function applyDir(lang){ try{ document.documentElement.setAttribute('dir', lang==='ar'?'rtl':'ltr'); }catch(_){ } }
+    function triggerCombo(lang){ var sel=document.querySelector('.goog-te-combo'); if(sel){ if(lang && sel.value==lang) return true; sel.value=(lang||'en'); setTimeout(function(){ sel.dispatchEvent(new Event('change')); }, 0); return true; } return false; }
+    function openTranslateProxy(url, lang){ var sl='en'; var tl=(lang||'en'); var href='https://translate.google.com/translate?hl='+tl+'&sl='+sl+'&tl='+tl+'&u='+encodeURIComponent(url); try{ window.open(href, '_blank'); }catch(_){} }
+    function changeLanguage(lang){
+      lang = lang || 'en';
+      if(triggerCombo(lang)){
+        try{ localStorage.setItem('lang', lang); }catch(_){ }
+        applyDir(lang);
+        return;
+      }
+      var attempts = 0;
+      var interval = setInterval(function(){
+        if(triggerCombo(lang)){
+          clearInterval(interval);
+          try{ localStorage.setItem('lang', lang); }catch(_){ }
+          applyDir(lang);
+        } else {
+          attempts++;
+          if(attempts >= 50){
+            clearInterval(interval);
+            setCookie('googtrans','/en/'+lang);
+            try{ localStorage.setItem('lang', lang); }catch(_){ }
+            applyDir(lang);
+          }
+        }
+      }, 100);
+    }
+    function init(){ var saved=null; try{ saved=localStorage.getItem('lang'); }catch(_){ } applyDir(saved||'en'); }
+    function protect(){ var q='input[type=password],input[type=email],input[name=password],input[name=email],input[name=username],textarea[name=password],textarea[name=email],textarea[name=username]'; document.querySelectorAll(q).forEach(function(el){ el.classList.add('notranslate'); el.setAttribute('translate','no'); }); }
+    document.addEventListener('click', function(e){ var btn=e.target.closest('[data-lang]'); if(!btn) return; var lang=btn.getAttribute('data-lang')||'en'; changeLanguage(lang); var label=document.querySelector('#languageToggle span'); if(label) label.textContent=btn.textContent.trim(); });
+    document.addEventListener('DOMContentLoaded', function(){ protect(); init(); });
+    var st=document.createElement('style'); st.textContent='.goog-te-banner-frame{display:none!important} body{top:0!important} #google_translate_element{display:none!important} .goog-te-gadget{display:none!important} .skiptranslate{display:none!important}'; document.head.appendChild(st);
+  })();
+</script>
+<div id="google_translate_element"></div>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</head>
+<body class="bg-gray-50">
+
+  <div class="bg-[#0D1F39] text-white font-body relative z-[60]">
+    <div class="container mx-auto px-6 py-2">
+      <div class="flex items-center justify-between">
+        <div class="relative">
+          <button id="languageToggle" class="flex items-center space-x-2 text-white/90 hover:text-white font-medium transition-colors">
+            <i class="fa-solid fa-globe text-base"></i>
+            <span class="text-sm md:text-base">English</span>
+            <i class="fa-solid fa-chevron-down text-xs"></i>
+          </button>
+          <div id="languageDropdown" class="absolute left-0 top-full mt-1 bg-white rounded-lg shadow-xl border border-gray-200 py-2 min-w-[160px] hidden z-[1000]">
+            <button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="en">
+              <img src="https://flagcdn.com/w20/us.png" alt="English" class="w-4 h-3"><span>English</span>
+            </button>
+            <button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="ko">
+              <img src="https://flagcdn.com/w20/kr.png" alt="한국어" class="w-4 h-3"><span>한국어</span>
+            </button>
+            <button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="ar">
+              <img src="https://flagcdn.com/w20/sa.png" alt="العربية" class="w-4 h-3"><span>العربية</span>
+            </button>
+            <button class="w-full px-4 py-2 text-left text-sm md:text-base text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2 font-medium" data-lang="fr">
+              <img src="https://flagcdn.com/w20/fr.png" alt="Français" class="w-4 h-3"><span>Français</span>
+            </button>
+          </div>
+        </div>
+        <div class="flex items-center space-x-3">
+          <button class="bg-white/10 hover:bg-white/20 text-white px-4 py-1.5 rounded-lg font-medium transition-all h-hover" data-text="sign-in" onclick="window.open('signin.html','_blank')">Login</button>
+          <button class="bg-[#D53C46] text-white hover:bg-[#D53C46] px-4 py-1.5 rounded-lg font-semibold transition-all h-hover" data-text="sign-up" onclick="window.open('signup.html','_blank')">Register</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <header id="header" class="sticky top-0 z-50 backdrop-blur">
+  <div class="w-full px-6 py-2 bg-white">
+    <div class="w-full px-4 md:px-6 py-3 flex items-center justify-between">
+        <a href="home.html" class="flex items-center space-x-3">
+          <img src="assets/images/Gemini_Generated_Image_2f4bkg2f4bkg2f4bee.png" alt="Logo" class="w-80 h-[100px] object-contain animate-logo" />
+        </a>
+        <nav class="hidden md:flex items-center space-x-8 text-gray-900 font-semibold animate-nav">
+          <a href="home.html" class="hover:text-[#0D1F39] transition-colors">Home</a>
+          <a href="inventory.html" class="hover:text-[#0D1F39] transition-colors">Inventory</a>
+          <div class="relative" id="navAbout">
+            <a href="about-us.html" id="navAboutToggle" class="hover:text-[#0D1F39] transition-colors flex items-center space-x-1">
+            <span>About Us</span>
+            <i class="fa-solid fa-chevron-down text-xs"></i>
+          </a>
+            <div id="navAboutMenu" class="absolute left-1/2 -translate-x-1/2 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg py-2 min-w-[220px] opacity-0 translate-y-1 pointer-events-none transition-all duration-300 z-50">
+              <a href="mit-info.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">MIT Info</a>
+              <a href="service-introduction.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">Service Introduction</a>
+            </div>
+          </div>
+          <a href="contact-us.html" class="hover:text-[#0D1F39] transition-colors">Contact Us</a>
+          <div class="relative" id="navMore">
+            <button id="navMoreToggle" class="hover:text-[#0D1F39] transition-colors flex items-center space-x-1">
+              <span>More</span>
+              <i class="fa-solid fa-chevron-down text-xs"></i>
+            </button>
+            <div id="navMoreMenu" class="absolute left-1/2 -translate-x-1/2 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg py-2 min-w-[220px] opacity-0 translate-y-1 pointer-events-none transition-all duration-300 z-50">
+              <a href="faq.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">FAQs</a>
+              <a href="reviews.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">Reviews</a>
+              <a href="blog.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-[#0D1F39] transition-colors">Blogs</a>
+            </div>
+          </div>
+        </nav>
+        <div class="flex items-center space-x-4 animate-actions">
+          <div class="hidden md:flex items-center bg-white rounded-full shadow px-3 py-1.5 border border-gray-200">
+            <i class="fa-solid fa-magnifying-glass text-gray-600 mr-2 hover:text-[#D53C46]"></i>
+            <input id="headerSearchInput" type="text" placeholder="Search" class="w-40 md:w-52 text-sm bg-transparent focus:outline-none" />
+          </div>
+          <button id="mobileSearchToggle" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition group h-hover">
+            <i class="fa-solid fa-magnifying-glass group-hover:text-[#D53C46]"></i>
+          </button>
+          <a id="headerFavorite" href="dashboard-saved.html" class="relative inline-flex items-center justify-center w-10 h-10 rounded-full border border-gray-200 hover:bg-gray-50 transition-colors group h-hover">
+            <i class="fa-regular fa-heart text-[#0D1F39] group-hover:text-[#D53C46]"></i>
+            <span class="absolute -top-1 -right-1 inline-flex items-center justify-center w-5 h-5 rounded-full bg-[#D53C46] text-white text-xs">0</span>
+          </a>
+          <button id="mobileMenuToggle" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition group h-hover">
+            <i class="fa-solid fa-bars group-hover:text-[#D53C46]"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      var h = document.getElementById('header');
+      if (h) { requestAnimationFrame(function(){ h.classList.add('header-ready'); }); }
+    });
+    (function(){
+      function setupHoverDelay(containerId, toggleId, menuId){
+        var c=document.getElementById(containerId); var t=document.getElementById(toggleId); var m=document.getElementById(menuId);
+        if(!c||!t||!m) return; var hid=null;
+        function show(){ if(hid){ clearTimeout(hid); hid=null; } m.classList.remove('opacity-0','pointer-events-none','translate-y-1'); m.classList.add('opacity-100','pointer-events-auto','translate-y-0'); }
+      function schedule(){ if(hid) clearTimeout(hid); hid=setTimeout(function(){ m.classList.remove('opacity-100','pointer-events-auto','translate-y-0'); m.classList.add('opacity-0','pointer-events-none','translate-y-1'); hid=null; },300); }
+        c.addEventListener('mouseenter', show); t.addEventListener('mouseenter', show); m.addEventListener('mouseenter', show);
+        c.addEventListener('mouseleave', schedule); t.addEventListener('mouseleave', schedule); m.addEventListener('mouseleave', schedule);
+        t.addEventListener('click', show);
+      }
+      setupHoverDelay('navAbout','navAboutToggle','navAboutMenu');
+      setupHoverDelay('navMore','navMoreToggle','navMoreMenu');
+    })();
+  </script>
+
+  <div id="mobileSearchContainer" class="md:hidden hidden px-6">
+    <div class="flex items-center bg-white rounded-full shadow px-3 py-2 border border-gray-200">
+      <i class="fa-solid fa-magnifying-glass text-gray-600 mr-2"></i>
+      <input id="mobileHeaderSearchInput" type="text" placeholder="Search" class="flex-1 text-sm bg-transparent focus:outline-none" />
+      <button id="mobileHeaderSearchBtn" class="ml-2 px-3 py-1 rounded-full bg-[#0D1F39] text-white text-xs">Search</button>
+    </div>
+    </div>
+
+  <div id="mobileMenuOverlay" class="fixed inset-0 bg-black/40 hidden z-40 md:hidden"></div>
+  <aside id="mobileDrawer" class="fixed inset-y-0 right-0 w-80 max-w-[88vw] bg-white shadow-xl border-l border-gray-200 z-50 transform translate-x-full transition-transform duration-300 ease-out md:hidden" aria-hidden="true" role="dialog">
+    <div class="flex items-center justify-between px-4 py-3 border-b border-gray-100">
+      <div class="flex items-center space-x-2">
+        <img src="assets/images/Gemini_Generated_Image_2f4bkg2f4bkg2f4bee.png" alt="Logo" class="w-64 h-16 object-contain" />
+      </div>
+      <button id="mobileDrawerClose" class="inline-flex items-center justify-center w-10 h-10 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition" aria-label="Close menu">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <div class="px-4 py-3">
+      <div class="flex items-center bg-white rounded-full border border-gray-200 px-3 py-2 shadow-sm">
+        <i class="fa-solid fa-magnifying-glass text-gray-600 mr-2"></i>
+        <input id="drawerSearchInput" type="text" placeholder="Search" class="flex-1 text-sm bg-transparent focus:outline-none" />
+        <button id="drawerSearchBtn" class="ml-2 px-3 py-1 rounded-full bg-[#0D1F39] text-white text-xs">Search</button>
+      </div>
+    </div>
+  <nav class="px-4 py-3 space-y-1 text-gray-900 font-semibold">
+    <a href="home.html" class="block py-2 rounded-lg hover:bg-gray-50">Home</a>
+    <a href="inventory.html" class="block py-2 rounded-lg hover:bg-gray-50">Inventory</a>
+    <div class="border-t border-gray-100 my-2"></div>
+    <button id="drawerAboutToggle" class="w-full flex items-center justify-between py-2 rounded-lg hover:bg-gray-50 text-left" aria-expanded="false">
+      <span>About Us</span>
+      <i class="fa-solid fa-chevron-down text-xs"></i>
+    </button>
+    <div id="drawerAboutMenu" class="hidden ml-3 space-y-1 text-gray-700 font-normal">
+      <a href="mit-info.html" class="block py-1.5 rounded hover:bg-gray-50">MIT Info</a>
+      <a href="service-introduction.html" class="block py-1.5 rounded hover:bg-gray-50">Service Introduction</a>
+    </div>
+    <a href="contact-us.html" class="block py-2 rounded-lg hover:bg-gray-50">Contact Us</a>
+    <button id="drawerMoreToggle" class="w-full flex items-center justify-between py-2 rounded-lg hover:bg-gray-50 text-left" aria-expanded="false">
+      <span>More</span>
+      <i class="fa-solid fa-chevron-down text-xs"></i>
+    </button>
+    <div id="drawerMoreMenu" class="hidden ml-3 space-y-1 text-gray-700 font-normal">
+      <a href="faq.html" class="block py-1.5 rounded hover:bg-gray-50">FAQs</a>
+      <a href="reviews.html" class="block py-1.5 rounded hover:bg-gray-50">Reviews</a>
+      <a href="blog.html" class="block py-1.5 rounded hover:bg-gray-50">Blogs</a>
+    </div>
+  </nav>
+  </aside>
+
+  <script>
+    (function(){
+      var langToggle = document.getElementById('languageToggle');
+      var langDropdown = document.getElementById('languageDropdown');
+      if (langToggle && langDropdown) {
+        langToggle.addEventListener('click', function(){ langDropdown.classList.toggle('hidden'); });
+        document.addEventListener('click', function(e){ if (!langDropdown.contains(e.target) && !langToggle.contains(e.target)) langDropdown.classList.add('hidden'); });
+      }
+      var mobileSearchToggle = document.getElementById('mobileSearchToggle');
+      var mobileSearchContainer = document.getElementById('mobileSearchContainer');
+      if (mobileSearchToggle && mobileSearchContainer) {
+        mobileSearchToggle.addEventListener('click', function(){ mobileSearchContainer.classList.toggle('hidden'); });
+      }
+      var overlay = document.getElementById('mobileMenuOverlay');
+      var drawer = document.getElementById('mobileDrawer');
+      var menuBtn = document.getElementById('mobileMenuToggle');
+      var closeBtn = document.getElementById('mobileDrawerClose');
+      function openDrawer(){ if (overlay && drawer) { overlay.classList.remove('hidden'); drawer.style.transform='translateX(0)'; } }
+      function closeDrawer(){ if (overlay && drawer) { overlay.classList.add('hidden'); drawer.style.transform=''; } }
+      if (menuBtn) menuBtn.addEventListener('click', openDrawer);
+      if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+      if (overlay) overlay.addEventListener('click', closeDrawer);
+      var drawerAboutToggle = document.getElementById('drawerAboutToggle');
+      var drawerAboutMenu = document.getElementById('drawerAboutMenu');
+      if (drawerAboutToggle && drawerAboutMenu) {
+        drawerAboutToggle.addEventListener('click', function(){
+          var hidden = drawerAboutMenu.classList.toggle('hidden');
+          drawerAboutToggle.setAttribute('aria-expanded', hidden ? 'false' : 'true');
+        });
+      }
+      var drawerMoreToggle = document.getElementById('drawerMoreToggle');
+      var drawerMoreMenu = document.getElementById('drawerMoreMenu');
+      if (drawerMoreToggle && drawerMoreMenu) {
+        drawerMoreToggle.addEventListener('click', function(){
+          var hidden = drawerMoreMenu.classList.toggle('hidden');
+          drawerMoreToggle.setAttribute('aria-expanded', hidden ? 'false' : 'true');
+        });
+      }
+    })();
+  </script>
+
+  <!-- Page Title -->
+  <section class="relative bg-gradient-to-br from-[#0A2A4A] via-[#0F335C] to-[#173B6C]">
+    <div class="absolute inset-0 opacity-[0.08]" style="background-image:url('assets/images/Gemini_Generated_Image_m03oqzm03oqzm03o.jpg'); background-size:cover; background-position:center"></div>
+    <div class="container mx-auto px-6 py-16 relative">
+      <div class="flex items-center justify-between">
+        <div class="max-w-4xl">
+          <div class="inline-flex items-center px-4 py-2 rounded-full bg-white/10 text-white/90 backdrop-blur">
+            <i class="fa-solid fa-star mr-2"></i>
+            <span class="text-sm tracking-wide">Customer Feedback</span>
+          </div>
+          <h1 class="mt-4 text-4xl md:text-5xl font-extrabold text-white leading-tight">All Reviews</h1>
+          <p class="mt-3 text-lg text-white/80">Only approved customer reviews are shown.</p>
+          <div id="reviewsSummary" class="mt-4 flex items-center gap-3 text-white">
+            <div class="flex items-center"><span id="avgStars" class="inline-flex items-center gap-1"></span><span id="avgRating" class="ml-2 font-semibold">—</span></div>
+            <div class="text-white/70">•</div>
+            <div><span id="totalReviews" class="font-semibold">0</span> total reviews</div>
+          </div>
+        </div>
+        <a href="home.html#testimonials" class="text-white/90 hover:text-white underline font-semibold">Back to Home</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Controls + Reviews Grid -->
+  <section class="py-10">
+    <div class="container mx-auto px-6">
+      <div class="mb-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-1">Sort</label>
+          <select id="sortSelect" class="w-full px-3 py-2 border border-gray-300 rounded-lg bg-white">
+            <option value="latest">Latest</option>
+            <option value="highest">Highest Rating</option>
+            <option value="lowest">Lowest Rating</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-1">Filter by Category</label>
+          <select id="categorySelect" class="w-full px-3 py-2 border border-gray-300 rounded-lg bg-white">
+            <option value="">All Categories</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-1">Filter by Product</label>
+          <input id="productSearch" class="w-full px-3 py-2 border border-gray-300 rounded-lg bg-white" placeholder="Search by title or ID" />
+        </div>
+      </div>
+      <div id="reviewsGridAll" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+      <div id="reviewsEmpty" class="hidden text-center text-gray-500 py-10">No approved reviews yet.</div>
+    </div>
+  </section>
+
+  <!-- Add Review Section -->
+  <section id="add-review" class="py-8">
+    <div class="container mx-auto px-6">
+      
+    </div>
+  </section>
+
+  <script>
+    (function(){
+      const grid = document.getElementById('reviewsGridAll');
+      const empty = document.getElementById('reviewsEmpty');
+      const sortEl = document.getElementById('sortSelect');
+      const catEl = document.getElementById('categorySelect');
+      const prodEl = document.getElementById('productSearch');
+      const avgStarsEl = document.getElementById('avgStars');
+      const avgRatingEl = document.getElementById('avgRating');
+      const totalEl = document.getElementById('totalReviews');
+      const revProductSel = document.getElementById('revProduct');
+      const revSubmitBtn = document.getElementById('submitReview');
+      const revStatus = document.getElementById('reviewStatus');
+      const revRatingHidden = document.getElementById('revRating');
+      const ratingStarsWrap = document.getElementById('ratingStars');
+      let __reviews = [];
+      let __listings = [];
+      let __categories = [];
+      let __catById = {};
+      let __parentById = {};
+
+      function normalizeUrl(u){
+        try {
+          var origin = window.__apiOrigin || ('http://' + ((location && location.hostname) ? location.hostname : 'localhost') + ':3003');
+          if (!u) return '';
+          var s = String(u);
+          if (/^https?:\/\/localhost:3000\//.test(s)) return origin + '/' + s.replace(/^https?:\/\/localhost:3000\//, '');
+          if (s.startsWith('/')) return origin + s;
+          return s;
+        } catch(_) { return u; }
+      }
+      function escapeHtml(s){ return String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[c])); }
+      function starIcons(rating){
+        const n = Math.max(0, Math.min(5, Number(rating||0)));
+        let out = '';
+        for (let i=0;i<5;i++) out += '<i class="fa-solid fa-star text-yellow-400 text-sm' + (i < n ? '' : ' opacity-30') + '"></i>';
+        return out;
+      }
+      function countryFlag(country){
+        const map = { 'United States':'us','USA':'us','Canada':'ca','Mexico':'mx','Germany':'de','United Kingdom':'gb','UK':'gb','South Korea':'kr','Korea':'kr','Japan':'jp','China':'cn','France':'fr' };
+        const code = map[String(country||'').trim()] || null;
+        return code ? ('https://flagcdn.com/w20/' + code + '.png') : null;
+      }
+      function buildCategoryIndices(items){
+        __categories = Array.isArray(items) ? items : [];
+        __catById = {}; __parentById = {};
+        __categories.forEach(c => { const id = Number(c.id); __catById[id] = { id, name: String(c.name||''), parent_id: c.parent_id != null ? Number(c.parent_id) : null }; __parentById[id] = c.parent_id != null ? Number(c.parent_id) : null; });
+      }
+      function categoryPath(id){
+        const names = []; let cur = id; const guard = new Set();
+        while (cur != null && !guard.has(cur)) { guard.add(cur); const node = __catById[cur]; if (!node) break; names.unshift(node.name); cur = __parentById[cur]; }
+        return names.join(' / ');
+      }
+      function computeSummary(list){
+        const arr = Array.isArray(list)?list:[]; const n = arr.length;
+        totalEl.textContent = String(n);
+        if (!n) { avgRatingEl.textContent = '—'; avgStarsEl.innerHTML = starIcons(0); return; }
+        const avg = arr.reduce((s,r)=> s + Number(r.rating||0), 0) / n;
+        avgRatingEl.textContent = avg.toFixed(1);
+        avgStarsEl.innerHTML = starIcons(Math.round(avg));
+      }
+      function matchesFilters(r){
+        const q = String(prodEl.value||'').trim().toLowerCase();
+        const cat = String(catEl.value||'');
+        if (q){ const title = (__listings.find(l=> String(l.id)===String(r.listingId))?.title || '').toLowerCase(); const idStr = String(r.listingId||''); if (!title.includes(q) && !idStr.includes(q)) return false; }
+        if (cat){ const catId = (__listings.find(l=> String(l.id)===String(r.listingId))?.category_id); const path = categoryPath(catId != null ? Number(catId) : null); if (!path.toLowerCase().includes(cat.toLowerCase())) return false; }
+        return true;
+      }
+      function sortReviews(list){
+        const mode = String(sortEl.value||'latest'); const arr = list.slice();
+        if (mode === 'latest') arr.sort((a,b)=> new Date(b.created_at||0) - new Date(a.created_at||0));
+        else if (mode === 'highest') arr.sort((a,b)=> Number(b.rating||0) - Number(a.rating||0));
+        else if (mode === 'lowest') arr.sort((a,b)=> Number(a.rating||0) - Number(b.rating||0));
+        return arr;
+      }
+      function toCard(r){
+        const img = normalizeUrl(r.image_url || 'https://storage.googleapis.com/uxpilot-auth.appspot.com/fa6a459112-4e56cdda369556ebd935.png');
+        const title = escapeHtml(r.title);
+        const desc = escapeHtml(r.description);
+        const country = escapeHtml(r.country);
+        const flag = countryFlag(country);
+        const link = (r.listingId != null) ? ('product-detail.html?id=' + encodeURIComponent(r.listingId)) : null;
+        const date = (function(d){ try { return new Date(d).toLocaleDateString(); } catch(_) { return ''; } })(r.created_at);
+        const listingTitle = (__listings.find(l=> String(l.id)===String(r.listingId))?.title) || '';
+        return (
+          '<div class="bg-white rounded-lg overflow-hidden group cursor-pointer shadow-lg hover:shadow-xl transition-all">'
+          + '<div class="overflow-hidden rounded-t-lg">'
+          +   '<img class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" src="' + img + '" alt="Review image">'
+          + '</div>'
+          + '<div class="p-6">'
+          +   '<div class="flex items-center mb-3">'
+          +     '<div class="w-12 h-12 rounded-full mr-4 bg-gray-200 flex items-center justify-center text-gray-600">' + (r.buyer_email ? escapeHtml(String(r.buyer_email).charAt(0).toUpperCase()) : 'B') + '</div>'
+          +     '<div>'
+          +       '<h4 class="font-semibold text-gray-900">' + (r.buyer_email ? escapeHtml(r.buyer_email) : 'Verified Buyer') + '</h4>'
+          +       '<div class="flex items-center space-x-1">' + starIcons(r.rating) + '</div>'
+          +     '</div>'
+          +   '</div>'
+          +   '<h3 class="text-xl font-bold text-gray-900 mb-1">' + title + '</h3>'
+          +   (listingTitle ? ('<div class="text-sm text-gray-500 mb-2">' + escapeHtml(listingTitle) + '</div>') : '')
+          +   '<p class="text-gray-600 mb-4">' + desc + '</p>'
+          +   '<div class="flex items-center justify-between">'
+          +     '<div class="flex items-center space-x-2 text-gray-700">'
+          +       (flag ? ('<img src="' + flag + '" alt="' + country + ' flag" class="w-5 h-auto">') : '')
+          +       '<span>' + country + '</span>'
+          +     '</div>'
+          +     '<div class="text-sm text-gray-500">' + date + '</div>'
+          +   '</div>'
+          +   (link ? ('<div class="mt-3"><a class="text-red-500 hover:underline" href="' + link + '" target="_blank">View product</a></div>') : '')
+          + '</div>'
+          + '</div>'
+        );
+      }
+      function render(){
+        const filtered = (__reviews||[]).filter(matchesFilters);
+        const sorted = sortReviews(filtered);
+        grid.innerHTML = sorted.map(toCard).join('');
+        if (!sorted.length) empty.classList.remove('hidden'); else empty.classList.add('hidden');
+        computeSummary(sorted);
+      }
+      function bindControls(){
+        if (sortEl) sortEl.addEventListener('change', render);
+        if (catEl) catEl.addEventListener('change', render);
+        if (prodEl) prodEl.addEventListener('input', function(){ render(); });
+      }
+      function initRatingStars(){
+        const stars = Array.from((ratingStarsWrap||document).querySelectorAll('#ratingStars i[data-value]'));
+        stars.forEach(star=>{
+          star.addEventListener('click', function(){ const val = Number(this.getAttribute('data-value')); revRatingHidden.value = String(val); stars.forEach(s=>{ const v = Number(s.getAttribute('data-value')); s.classList.toggle('text-yellow-400', v<=val); s.classList.toggle('text-gray-300', v>val); }); });
+        });
+      }
+      async function submitReview(){
+        try{
+          const token = localStorage.getItem('token'); if (!token){ alert('Please sign in as Buyer to submit a review.'); window.open('signin.html','_blank'); return; }
+          const rating = Number(revRatingHidden.value||0);
+          const title = String(document.getElementById('revMessage').value||'').trim().slice(0,80) || 'Review';
+          const description = String(document.getElementById('revMessage').value||'').trim();
+          const country = String(document.getElementById('revCountry').value||'').trim() || 'Other';
+          const listingId = String(revProductSel.value||'').trim();
+          const missing = [];
+          if (!listingId) missing.push('product'); if (!rating || rating<1 || rating>5) missing.push('rating'); if (!description) missing.push('message');
+          if (missing.length){ revStatus.textContent = 'Please complete: ' + missing.join(', '); revStatus.className = 'text-sm text-red-600'; return; }
+          revStatus.textContent = 'Submitting…'; revStatus.className = 'text-sm text-gray-600';
+          const api = window.__apiOrigin || ('http://' + ((location && location.hostname) ? location.hostname : 'localhost') + ':3003');
+          const res = await fetch(api + '/buyer/reviews', {
+            method:'POST', headers:{ 'Content-Type':'application/json','Accept':'application/json','Authorization':'Bearer ' + token },
+            body: JSON.stringify({ listingId, rating, title, description, country })
+          });
+          const json = await res.json().catch(()=>({}));
+          if(!res.ok){ throw new Error(json && json.error ? json.error : ('HTTP ' + res.status)); }
+          revStatus.textContent = 'Review submitted. Pending approval.'; revStatus.className = 'text-sm text-green-600';
+          setTimeout(()=>{ revStatus.textContent=''; revStatus.className=''; }, 2000);
+        }catch(err){ revStatus.textContent = 'Submit failed: ' + err.message; revStatus.className = 'text-sm text-red-600'; }
+      }
+      async function loadAll(){
+        try{
+          // Reviews
+          const url = window.__apiOrigin + '/public/reviews?limit=100000';
+          let data = [];
+          try {
+            const res = await fetch(url, { cache: 'no-store' });
+            if (res.ok) data = await res.json(); else throw new Error('http');
+          } catch(_) {
+            try { const r2 = await fetch('backend/reviews.json', { cache:'no-store' }); if (r2 && r2.ok) data = await r2.json(); } catch(__){}
+          }
+          __reviews = Array.isArray(data) ? data : [];
+          // Listings (map title and category)
+          try {
+            const rL = await fetch((window.__apiOrigin || window.location.origin) + '/public/listings', { cache:'no-store' });
+            const jL = await rL.json().catch(()=>({ listings: [] }));
+            __listings = Array.isArray(jL?.listings) ? jL.listings : (Array.isArray(jL) ? jL : []);
+          } catch(_) {
+            try { const fbL = await fetch('backend/listings.json', { cache:'no-store' }); if (fbL && fbL.ok) __listings = await fbL.json(); } catch(__){}
+          }
+          // Categories (for filter)
+          try {
+            const rC = await fetch((window.__apiOrigin || window.location.origin) + '/public/categories', { cache:'no-store' });
+            const jC = await rC.json().catch(()=>[]);
+            const arr = Array.isArray(jC?.categories) ? jC.categories : (Array.isArray(jC) ? jC : []);
+            buildCategoryIndices(arr);
+            // Populate category select with parent names
+            const parents = arr.filter(c=> c && c.parent_id == null);
+            parents.forEach(c=>{ const opt = document.createElement('option'); opt.value = String(c.name||''); opt.textContent = String(c.name||''); catEl.appendChild(opt); });
+          } catch(_) {
+            try { const fbC = await fetch('backend/categories.json', { cache:'no-store' }); if (fbC && fbC.ok) { const arr = await fbC.json(); buildCategoryIndices(arr); const parents = arr.filter(c=> c && c.parent_id == null); parents.forEach(c=>{ const opt = document.createElement('option'); opt.value = String(c.name||''); opt.textContent = String(c.name||''); catEl.appendChild(opt); }); } } catch(__){}
+          }
+          // Populate product select with approved listings
+          if (revProductSel) {
+            const idsInReviews = new Set(__reviews.map(r=> String(r.listingId||'' )).filter(Boolean));
+            const products = (__listings||[]).filter(l=> idsInReviews.has(String(l.id)));
+            revProductSel.innerHTML = '<option value="">Select product</option>' + products.map(p=>('<option value="'+String(p.id)+'">'+escapeHtml(p.title||('Vehicle #'+p.id))+'</option>')).join('');
+          }
+          bindControls(); render(); initRatingStars();
+          if (revSubmitBtn) revSubmitBtn.addEventListener('click', submitReview);
+        }catch(e){ empty.classList.remove('hidden'); }
+      }
+      loadAll();
+    })();
+  </script>
+  
+  <!-- COMPONENT: Footer (copied from Home) -->
+  <footer id="footer" class="bg-[#f5f5f5] text-[#666666]">
+    <div class="max-w-7xl mx-auto px-[24px] py-[32px]">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-[32px]">
+        <div class="space-y-[10px] text-[15px] leading-[26px]">
+          <div><span class="text-[#444444]">대표자</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">카일자민파룩아마드</span></div>
+          <div><span class="text-[#444444]">사업자등록 번호</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">470-88-00357</span></div>
+          <div><span class="text-[#444444]">주소</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">인천광역시 연수구 옥련로37 씨동 306호</span></div>
+          <div class="pt-[6px] flex items-center space-x-[14px] text-[20px]">
+            <a href="https://www.instagram.com/autonsm?igsh=ZmU2M2ppZzk1ZjVv&utm_source=qr" target="_blank" rel="noopener noreferrer" class="text-[#666666] hover:text-[#111111]">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://www.facebook.com/share/1A3NGCuwXh/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="text-[#666666] hover:text-[#111111]">
+              <i class="fa-brands fa-facebook"></i>
+            </a>
+            <a href="https://www.tiktok.com/@autonsm" target="_blank" rel="noopener noreferrer" class="text-[#666666] hover:text-[#111111]">
+              <i class="fa-brands fa-tiktok"></i>
+            </a>
+          </div>
+        </div>
+        <div class="space-y-[10px] text-[15px] leading-[26px]">
+          <div><span class="text-[#444444]">Email</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">info@autonsm.com</span></div>
+          <div>
+            <span class="text-[#444444]">TEL</span>
+            <span class="text-[#666666] whitespace-pre">   +82 10-9199-9687 (English, Korean)</span>
+          </div>
+          <div><span class="text-[#444444]">TEL</span><span class="mx-[12px] text-[#9aa0a6]">|</span><span class="text-[#666666]">+821098699687</span></div>
+          <div><span class="text-[#666666] whitespace-pre">306 C dong  37 Okryeon ro  Yeonsu gu Incheon South Korea</span></div>
+        </div>
+      </div>
+      <div class="mt-[28px] border-t border-[#e5e7eb] pt-[18px]">
+        <div class="flex flex-col md:flex-row items-center justify-between">
+          <div class="text-[14px] text-[#666666] space-x-[18px]">
+            <a href="private-policy.html" class="hover:text-[#111111]">Private Policy</a>
+            <a href="terms-of-service.html" class="hover:text-[#111111]">Terms of Service</a>
+          </div>
+          <div class="text-[14px] text-[#666666] mt-[12px] md:mt-0">Copyright © Auto Nsm. All rights Reserved.</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Sticky header shadow effect -->
+  <script>
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('header');
+      if (window.scrollY > 10) {
+          header.classList.add('shadow-xl');
+      } else {
+          header.classList.remove('shadow-xl');
+      }
+    });
+  </script>
+
+  <!-- Header search bar: navigate to inventory with query -->
+  <script>
+    (function(){
+      const inputEl = document.querySelector('input[data-text="search-placeholder"]');
+      const btnEl = inputEl ? inputEl.parentElement?.querySelector('button') : null;
+      function go(){
+        const q = (inputEl?.value || '').trim();
+        const url = 'inventory.html' + (q ? ('?q=' + encodeURIComponent(q)) : '');
+        window.open(url, '_blank');
+      }
+      if (inputEl) {
+        inputEl.addEventListener('keydown', (e) => { if (e.key === 'Enter') go(); });
+      }
+      if (btnEl) {
+        btnEl.addEventListener('click', go);
+      }
+    })();
+  </script>
+
+  <!-- Header role-based replacement: show Dashboard link when signed in -->
+  <script>
+    (function(){
+      try {
+        var role = (localStorage.getItem('role') || localStorage.getItem('userRole') || '').toLowerCase();
+        if (!role || (role !== 'buyer' && role !== 'seller')) return;
+        var signInEl = document.querySelector('[data-text="sign-in"]');
+        var signUpEl = document.querySelector('[data-text="sign-up"]');
+        var container = (signInEl && signInEl.parentElement) || (signUpEl && signUpEl.parentElement);
+        if (!container) return;
+        if (signInEl) signInEl.remove();
+        if (signUpEl) signUpEl.remove();
+        var link = document.createElement('a');
+        link.textContent = role === 'buyer' ? 'Buyer Dashboard' : 'Seller Dashboard';
+        link.href = role === 'buyer' ? 'buyer-dashboard.html' : 'seller-dashboard.html';
+        link.className = 'bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-lg font-semibold transition-all transform hover:scale-105';
+        container.appendChild(link);
+      } catch(e) { /* no-op */ }
+    })();
+  </script>
+
+  <!-- Protected header actions: Favourite and Compare -->
+  <script>
+    (function(){
+      function isSignedIn(){
+        try {
+          var role = (localStorage.getItem('role') || localStorage.getItem('userRole') || '').toLowerCase();
+          var token = localStorage.getItem('token');
+          var user = localStorage.getItem('user');
+          return !!(token || user || (role === 'buyer' || role === 'seller'));
+        } catch(_) { return false; }
+      }
+      function protectLink(id){
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.addEventListener('click', function(e){
+          if (!isSignedIn()) {
+            e.preventDefault();
+            alert('Please sign in to use this feature.');
+          }
+        });
+      }
+      protectLink('favorite-action');
+      protectLink('compare-action');
+    })();
+  </script>
+</body>
+</html>
